@@ -1,0 +1,7 @@
+model,roc_auc,pr_auc,training_records,positive_events,evaluation_records,evaluation_positive_events,evaluation_prevalence,data_sufficiency,sufficiency_rule,status,model_type
+Goose Activity,0.7669139731873105,0.4995267908582638,2915,739,2187,553,0.2528577960676726,True,at least 50 event days and 20 held-out event days,Production,Random Forest
+Red-breasted Goose,0.6161992396968858,0.2895781906781322,2915,615,2187,460,0.21033379058070417,True,at least 50 event days and 20 held-out event days,Beta,Random Forest
+Lesser White-fronted Goose,0.6650235455883964,0.3495709147712467,2915,638,2187,482,0.22039323273891176,True,at least 50 event days and 20 held-out event days,Production,Random Forest
+Snow Goose,0.601140287289445,0.28984101560381237,2915,695,2187,496,0.2267946959304984,True,at least 50 event days and 20 held-out event days,Beta,Random Forest
+Ross's Goose,0.4864688935933355,0.22813563886156502,2915,670,2187,513,0.2345679012345679,True,at least 50 event days and 20 held-out event days,Experimental,Random Forest
+Black Brant,0.7241405966904215,0.4847901940412344,2915,645,2187,487,0.22267946959304985,True,at least 50 event days and 20 held-out event days,Production,Random Forest

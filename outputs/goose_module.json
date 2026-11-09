@@ -1,0 +1,1537 @@
+{
+  "product": "Winter Goose Module",
+  "generated_at": "2026-11-09T08:25:59.661849+00:00",
+  "rare_goose_weights": {
+    "Lesser White-fronted Goose": 4.0,
+    "Red-breasted Goose": 5.0,
+    "Snow Goose": 5.0,
+    "Ross's Goose": 8.0,
+    "Black Brant": 3.0
+  },
+  "rating_weights": {
+    "activity": 0.7,
+    "rare": 0.3
+  },
+  "rare_scaling": {
+    "lower_percentile": 5,
+    "upper_percentile": 95,
+    "historical_raw_p5": 2.9603299302549297,
+    "historical_raw_p95": 9.80753193195693,
+    "historical_sample_size": 2915,
+    "historical_start_date": "2010-10-02",
+    "historical_end_date": "2026-03-31",
+    "method": "historical_raw_p5_p95_clipped_to_0_100"
+  },
+  "historical_context": {
+    "method": "share of historical winter days (out-of-fold model output) with a lower score",
+    "sample_size": 2915,
+    "labels": {
+      "<50": "Common Conditions",
+      "50-75": "Above Average",
+      "75-90": "Strong",
+      "90-95": "Exceptional",
+      "95+": "Historic"
+    }
+  },
+  "model_evaluation": [
+    {
+      "model": "Goose Activity",
+      "status": "Production",
+      "roc_auc": 0.7669139732,
+      "pr_auc": 0.4995267909,
+      "training_records": 2915,
+      "positive_events": 739,
+      "data_sufficiency": true
+    },
+    {
+      "model": "Red-breasted Goose",
+      "status": "Beta",
+      "roc_auc": 0.6161992397,
+      "pr_auc": 0.2895781907,
+      "training_records": 2915,
+      "positive_events": 615,
+      "data_sufficiency": true
+    },
+    {
+      "model": "Lesser White-fronted Goose",
+      "status": "Production",
+      "roc_auc": 0.6650235456,
+      "pr_auc": 0.3495709148,
+      "training_records": 2915,
+      "positive_events": 638,
+      "data_sufficiency": true
+    },
+    {
+      "model": "Snow Goose",
+      "status": "Beta",
+      "roc_auc": 0.6011402873,
+      "pr_auc": 0.2898410156,
+      "training_records": 2915,
+      "positive_events": 695,
+      "data_sufficiency": true
+    },
+    {
+      "model": "Ross's Goose",
+      "status": "Experimental",
+      "roc_auc": 0.4864688936,
+      "pr_auc": 0.2281356389,
+      "training_records": 2915,
+      "positive_events": 670,
+      "data_sufficiency": true
+    },
+    {
+      "model": "Black Brant",
+      "status": "Production",
+      "roc_auc": 0.7241405967,
+      "pr_auc": 0.484790194,
+      "training_records": 2915,
+      "positive_events": 645,
+      "data_sufficiency": true
+    }
+  ],
+  "feature_importance": {
+    "Black Brant": [
+      {
+        "feature": "day_of_year_cos",
+        "importance": 0.05486
+      },
+      {
+        "feature": "day_of_year",
+        "importance": 0.05255
+      },
+      {
+        "feature": "week_of_year",
+        "importance": 0.03975
+      },
+      {
+        "feature": "day_of_year_sin",
+        "importance": 0.0299
+      },
+      {
+        "feature": "month",
+        "importance": 0.02066
+      },
+      {
+        "feature": "wind_direction_south_rolling_mean_7d",
+        "importance": 0.01507
+      },
+      {
+        "feature": "wind_direction_west_rolling_mean_7d",
+        "importance": 0.01313
+      },
+      {
+        "feature": "wind_direction_west_lag_72h",
+        "importance": 0.01241
+      },
+      {
+        "feature": "wind_speed_rolling_mean_7d",
+        "importance": 0.01201
+      },
+      {
+        "feature": "wind_direction_west_lag_24h",
+        "importance": 0.01103
+      }
+    ],
+    "Goose Activity": [
+      {
+        "feature": "day_of_year_sin",
+        "importance": 0.05321
+      },
+      {
+        "feature": "day_of_year",
+        "importance": 0.0474
+      },
+      {
+        "feature": "week_of_year",
+        "importance": 0.03333
+      },
+      {
+        "feature": "month",
+        "importance": 0.02734
+      },
+      {
+        "feature": "day_of_year_cos",
+        "importance": 0.0238
+      },
+      {
+        "feature": "temperature_rolling_mean_3d",
+        "importance": 0.01438
+      },
+      {
+        "feature": "temperature_rolling_mean_7d",
+        "importance": 0.01374
+      },
+      {
+        "feature": "goose_temp_mean_7d_c",
+        "importance": 0.01281
+      },
+      {
+        "feature": "temperature_lag_24h",
+        "importance": 0.01143
+      },
+      {
+        "feature": "TG_242",
+        "importance": 0.01124
+      }
+    ],
+    "Lesser White-fronted Goose": [
+      {
+        "feature": "day_of_year",
+        "importance": 0.0425
+      },
+      {
+        "feature": "week_of_year",
+        "importance": 0.03
+      },
+      {
+        "feature": "day_of_year_sin",
+        "importance": 0.02827
+      },
+      {
+        "feature": "month",
+        "importance": 0.02042
+      },
+      {
+        "feature": "day_of_year_cos",
+        "importance": 0.01725
+      },
+      {
+        "feature": "pressure_rolling_anomaly_7d",
+        "importance": 0.01183
+      },
+      {
+        "feature": "wind_direction_south_rolling_mean_7d",
+        "importance": 0.01173
+      },
+      {
+        "feature": "pressure_change_48h",
+        "importance": 0.01154
+      },
+      {
+        "feature": "temperature_rolling_mean_3d",
+        "importance": 0.01141
+      },
+      {
+        "feature": "wind_direction_south_lag_72h",
+        "importance": 0.01125
+      }
+    ],
+    "Red-breasted Goose": [
+      {
+        "feature": "day_of_year",
+        "importance": 0.02924
+      },
+      {
+        "feature": "day_of_year_sin",
+        "importance": 0.02799
+      },
+      {
+        "feature": "week_of_year",
+        "importance": 0.02162
+      },
+      {
+        "feature": "day_of_year_cos",
+        "importance": 0.0216
+      },
+      {
+        "feature": "wind_direction_south_rolling_mean_7d",
+        "importance": 0.01284
+      },
+      {
+        "feature": "wind_direction_south_lag_24h",
+        "importance": 0.01256
+      },
+      {
+        "feature": "wind_direction_south_lag_72h",
+        "importance": 0.01222
+      },
+      {
+        "feature": "pressure_rolling_anomaly_7d",
+        "importance": 0.01126
+      },
+      {
+        "feature": "month",
+        "importance": 0.01125
+      },
+      {
+        "feature": "wind_speed_rolling_mean_7d",
+        "importance": 0.0111
+      }
+    ],
+    "Ross's Goose": [
+      {
+        "feature": "day_of_year",
+        "importance": 0.0138
+      },
+      {
+        "feature": "day_of_year_cos",
+        "importance": 0.01364
+      },
+      {
+        "feature": "pressure_lag_24h",
+        "importance": 0.01249
+      },
+      {
+        "feature": "pressure_lag_72h",
+        "importance": 0.01236
+      },
+      {
+        "feature": "wind_direction_west_lag_72h",
+        "importance": 0.01221
+      },
+      {
+        "feature": "wind_direction_south_lag_24h",
+        "importance": 0.01217
+      },
+      {
+        "feature": "wind_direction_west_lag_24h",
+        "importance": 0.01196
+      },
+      {
+        "feature": "wind_direction_west_rolling_mean_7d",
+        "importance": 0.01188
+      },
+      {
+        "feature": "pressure_rolling_anomaly_7d",
+        "importance": 0.01184
+      },
+      {
+        "feature": "temperature_rolling_anomaly_7d",
+        "importance": 0.01137
+      }
+    ],
+    "Snow Goose": [
+      {
+        "feature": "day_of_year_sin",
+        "importance": 0.02809
+      },
+      {
+        "feature": "day_of_year",
+        "importance": 0.02699
+      },
+      {
+        "feature": "week_of_year",
+        "importance": 0.01872
+      },
+      {
+        "feature": "day_of_year_cos",
+        "importance": 0.01565
+      },
+      {
+        "feature": "wind_direction_south_rolling_mean_7d",
+        "importance": 0.013
+      },
+      {
+        "feature": "pressure_rolling_mean_7d",
+        "importance": 0.01273
+      },
+      {
+        "feature": "month",
+        "importance": 0.01236
+      },
+      {
+        "feature": "pressure_lag_72h",
+        "importance": 0.01229
+      },
+      {
+        "feature": "wind_direction_south_lag_72h",
+        "importance": 0.01221
+      },
+      {
+        "feature": "wind_direction_west_rolling_mean_7d",
+        "importance": 0.01183
+      }
+    ]
+  },
+  "model_comparison": [
+    {
+      "model": "Goose Activity",
+      "roc_auc_before": 0.7669139732,
+      "roc_auc_after": 0.7669139732,
+      "pr_auc_before": 0.4995267909,
+      "pr_auc_after": 0.4995267909,
+      "roc_auc_change": 0.0,
+      "pr_auc_change": 0.0
+    },
+    {
+      "model": "Red-breasted Goose",
+      "roc_auc_before": 0.6352810318,
+      "roc_auc_after": 0.6161992397,
+      "pr_auc_before": 0.3107287227,
+      "pr_auc_after": 0.2895781907,
+      "roc_auc_change": -0.0190817921,
+      "pr_auc_change": -0.021150532
+    },
+    {
+      "model": "Lesser White-fronted Goose",
+      "roc_auc_before": 0.6650235456,
+      "roc_auc_after": 0.6650235456,
+      "pr_auc_before": 0.3495709148,
+      "pr_auc_after": 0.3495709148,
+      "roc_auc_change": 0.0,
+      "pr_auc_change": 0.0
+    },
+    {
+      "model": "Snow Goose",
+      "roc_auc_before": 0.6046908118,
+      "roc_auc_after": 0.6011402873,
+      "pr_auc_before": 0.3030130808,
+      "pr_auc_after": 0.2898410156,
+      "roc_auc_change": -0.0035505245,
+      "pr_auc_change": -0.0131720652
+    },
+    {
+      "model": "Ross's Goose",
+      "roc_auc_before": 0.5025944562,
+      "roc_auc_after": 0.4864688936,
+      "pr_auc_before": 0.2346166901,
+      "pr_auc_after": 0.2281356389,
+      "roc_auc_change": -0.0161255626,
+      "pr_auc_change": -0.0064810513
+    },
+    {
+      "model": "Black Brant",
+      "roc_auc_before": 0.7241405967,
+      "roc_auc_after": 0.7241405967,
+      "pr_auc_before": 0.484790194,
+      "pr_auc_after": 0.484790194,
+      "roc_auc_change": 0.0,
+      "pr_auc_change": 0.0
+    }
+  ],
+  "european_influx_method": "Equal-weight mean of each rare species' percentile among its out-of-fold European activity probabilities; 7/14-day changes are forecast index differences from Tomorrow.",
+  "horizons": [
+    {
+      "label": "Tomorrow",
+      "forecast_day": 1,
+      "date": "2026-11-10",
+      "off_season": false,
+      "goose_day_rating": {
+        "score": 6,
+        "rating": "Poor",
+        "component_points": {
+          "activity": 3.9,
+          "rare": 2.21
+        },
+        "historical_percentile": 10.5,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 10% of historical winter days"
+      },
+      "goose_activity": {
+        "score": 6,
+        "category": "Quiet",
+        "probability": 0.05573809523809525,
+        "historical_percentile": 14.1,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 14% of historical winter days"
+      },
+      "rare_goose_potential": {
+        "score": 7,
+        "category": "Low",
+        "rarity_raw": 3.4637913105413105,
+        "species_probabilities": {
+          "Lesser White-fronted Goose": 0.059103174603174616,
+          "Red-breasted Goose": 0.05459523809523811,
+          "Snow Goose": 0.09602645502645503,
+          "Ross's Goose": 0.2640094627594627,
+          "Black Brant": 0.12073148148148147
+        },
+        "historical_percentile": 11.7,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 12% of historical winter days"
+      },
+      "european_goose_influx": {
+        "score": 20.9,
+        "historical_percentile": 11.9,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 12% of historical winter days",
+        "species_activity": [
+          {
+            "species": "Lesser White-fronted Goose",
+            "probability": 0.059103174603174616,
+            "activity_score": 5.9,
+            "european_percentile": 2.0,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Red-breasted Goose",
+            "probability": 0.05459523809523811,
+            "activity_score": 5.5,
+            "european_percentile": 2.5,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Snow Goose",
+            "probability": 0.09602645502645503,
+            "activity_score": 9.6,
+            "european_percentile": 8.0,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Ross's Goose",
+            "probability": 0.2640094627594627,
+            "activity_score": 26.4,
+            "european_percentile": 64.4,
+            "historical_label": "Above Average"
+          },
+          {
+            "species": "Black Brant",
+            "probability": 0.12073148148148147,
+            "activity_score": 12.1,
+            "european_percentile": 27.5,
+            "historical_label": "Common Conditions"
+          }
+        ],
+        "change_7d_points": 16.5,
+        "change_14d_points": 14.5
+      },
+      "recommendation": {
+        "decision": "STAY HOME",
+        "emoji": "\ud83d\udd34",
+        "reason": "Goose Day Rating 6 < 40"
+      },
+      "target_geese": [
+        {
+          "species": "Ross's Goose",
+          "probability": 0.2640094627594627,
+          "rarity_weight": 8.0,
+          "target_score": 2.1120757020757015,
+          "rank": 1
+        },
+        {
+          "species": "Snow Goose",
+          "probability": 0.09602645502645503,
+          "rarity_weight": 5.0,
+          "target_score": 0.48013227513227513,
+          "rank": 2
+        },
+        {
+          "species": "Black Brant",
+          "probability": 0.12073148148148147,
+          "rarity_weight": 3.0,
+          "target_score": 0.3621944444444444,
+          "rank": 3
+        },
+        {
+          "species": "Red-breasted Goose",
+          "probability": 0.05459523809523811,
+          "rarity_weight": 5.0,
+          "target_score": 0.2729761904761906,
+          "rank": 4
+        },
+        {
+          "species": "Lesser White-fronted Goose",
+          "probability": 0.059103174603174616,
+          "rarity_weight": 4.0,
+          "target_score": 0.23641269841269846,
+          "rank": 5
+        }
+      ],
+      "best_regions": [
+        {
+          "rank": 1,
+          "region": "Texel",
+          "score": 6.6,
+          "rating": "Poor",
+          "top_site": "Texel Midden (Oosterend)"
+        },
+        {
+          "rank": 2,
+          "region": "Zeeland",
+          "score": 6.5,
+          "rating": "Poor",
+          "top_site": "Oosterschelde (Neeltje Jans)"
+        },
+        {
+          "rank": 3,
+          "region": "Lauwersmeer",
+          "score": 5.6,
+          "rating": "Poor",
+          "top_site": "Lauwersmeer National Park"
+        },
+        {
+          "rank": 4,
+          "region": "Noord-Holland",
+          "score": 5.3,
+          "rating": "Poor",
+          "top_site": "Anna Paulowna Polder"
+        },
+        {
+          "rank": 5,
+          "region": "IJsselmeergebied",
+          "score": 4.8,
+          "rating": "Poor",
+          "top_site": "Hoorn & Enkhuizen (Markermeer)"
+        },
+        {
+          "rank": 6,
+          "region": "Friesland",
+          "score": 4.7,
+          "rating": "Poor",
+          "top_site": "Ameland"
+        },
+        {
+          "rank": 7,
+          "region": "Flevoland",
+          "score": 4.5,
+          "rating": "Poor",
+          "top_site": "Oostvaardersplassen"
+        },
+        {
+          "rank": 8,
+          "region": "Groningen",
+          "score": 4.1,
+          "rating": "Poor",
+          "top_site": "Eemshaven & Delfzijl"
+        }
+      ],
+      "top10_hotspots": [
+        {
+          "rank": 1,
+          "location": "Oosterschelde (Neeltje Jans)",
+          "region": "Zeeland",
+          "latitude": 51.63,
+          "longitude": 3.78,
+          "score": 7.3,
+          "rating": "Poor"
+        },
+        {
+          "rank": 2,
+          "location": "Texel Midden (Oosterend)",
+          "region": "Texel",
+          "latitude": 53.07,
+          "longitude": 4.9,
+          "score": 7.2,
+          "rating": "Poor"
+        },
+        {
+          "rank": 3,
+          "location": "Texel Zuid (Den Hoorn)",
+          "region": "Texel",
+          "latitude": 53.0,
+          "longitude": 4.77,
+          "score": 6.8,
+          "rating": "Poor"
+        },
+        {
+          "rank": 4,
+          "location": "Grevelingen & Schouwen-Duiveland",
+          "region": "Zeeland",
+          "latitude": 51.72,
+          "longitude": 3.95,
+          "score": 6.6,
+          "rating": "Poor"
+        },
+        {
+          "rank": 5,
+          "location": "Lauwersmeer National Park",
+          "region": "Lauwersmeer",
+          "latitude": 53.37,
+          "longitude": 6.2,
+          "score": 6.5,
+          "rating": "Poor"
+        },
+        {
+          "rank": 6,
+          "location": "Texel Noord (Eierland)",
+          "region": "Texel",
+          "latitude": 53.17,
+          "longitude": 4.85,
+          "score": 5.9,
+          "rating": "Poor"
+        },
+        {
+          "rank": 7,
+          "location": "Anna Paulowna Polder",
+          "region": "Noord-Holland",
+          "latitude": 52.87,
+          "longitude": 4.85,
+          "score": 5.7,
+          "rating": "Poor"
+        },
+        {
+          "rank": 8,
+          "location": "Walcheren & Veerse Meer",
+          "region": "Zeeland",
+          "latitude": 51.55,
+          "longitude": 3.65,
+          "score": 5.5,
+          "rating": "Poor"
+        },
+        {
+          "rank": 9,
+          "location": "Oostvaardersplassen",
+          "region": "Flevoland",
+          "latitude": 52.45,
+          "longitude": 5.35,
+          "score": 5.3,
+          "rating": "Poor"
+        },
+        {
+          "rank": 10,
+          "location": "Wormer- en Jisperveld",
+          "region": "Noord-Holland",
+          "latitude": 52.5,
+          "longitude": 4.85,
+          "score": 5.2,
+          "rating": "Poor"
+        }
+      ],
+      "conditions": {
+        "cold_outbreak": false,
+        "rapid_temp_drop": false,
+        "consecutive_frost_days": 0.0,
+        "temperature_c": 7.0
+      }
+    },
+    {
+      "label": "+3 days",
+      "forecast_day": 3,
+      "date": "2026-11-12",
+      "off_season": false,
+      "goose_day_rating": {
+        "score": 11,
+        "rating": "Poor",
+        "component_points": {
+          "activity": 7.47,
+          "rare": 3.24
+        },
+        "historical_percentile": 21.1,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 21% of historical winter days"
+      },
+      "goose_activity": {
+        "score": 11,
+        "category": "Quiet",
+        "probability": 0.106760582010582,
+        "historical_percentile": 28.6,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 29% of historical winter days"
+      },
+      "rare_goose_potential": {
+        "score": 11,
+        "category": "Low",
+        "rarity_raw": 3.7005608465608466,
+        "species_probabilities": {
+          "Lesser White-fronted Goose": 0.1108743386243386,
+          "Red-breasted Goose": 0.09970238095238096,
+          "Snow Goose": 0.145234126984127,
+          "Ross's Goose": 0.2109603174603175,
+          "Black Brant": 0.11489947089947088
+        },
+        "historical_percentile": 15.9,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 16% of historical winter days"
+      },
+      "european_goose_influx": {
+        "score": 23.6,
+        "historical_percentile": 15.2,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 15% of historical winter days",
+        "species_activity": [
+          {
+            "species": "Lesser White-fronted Goose",
+            "probability": 0.1108743386243386,
+            "activity_score": 11.1,
+            "european_percentile": 20.4,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Red-breasted Goose",
+            "probability": 0.09970238095238096,
+            "activity_score": 10.0,
+            "european_percentile": 13.7,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Snow Goose",
+            "probability": 0.145234126984127,
+            "activity_score": 14.5,
+            "european_percentile": 23.0,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Ross's Goose",
+            "probability": 0.2109603174603175,
+            "activity_score": 21.1,
+            "european_percentile": 35.3,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Black Brant",
+            "probability": 0.11489947089947088,
+            "activity_score": 11.5,
+            "european_percentile": 25.4,
+            "historical_label": "Common Conditions"
+          }
+        ],
+        "change_7d_points": 16.5,
+        "change_14d_points": 14.5
+      },
+      "recommendation": {
+        "decision": "STAY HOME",
+        "emoji": "\ud83d\udd34",
+        "reason": "Goose Day Rating 11 < 40"
+      },
+      "target_geese": [
+        {
+          "species": "Ross's Goose",
+          "probability": 0.2109603174603175,
+          "rarity_weight": 8.0,
+          "target_score": 1.68768253968254,
+          "rank": 1
+        },
+        {
+          "species": "Snow Goose",
+          "probability": 0.145234126984127,
+          "rarity_weight": 5.0,
+          "target_score": 0.7261706349206349,
+          "rank": 2
+        },
+        {
+          "species": "Red-breasted Goose",
+          "probability": 0.09970238095238096,
+          "rarity_weight": 5.0,
+          "target_score": 0.49851190476190477,
+          "rank": 3
+        },
+        {
+          "species": "Lesser White-fronted Goose",
+          "probability": 0.1108743386243386,
+          "rarity_weight": 4.0,
+          "target_score": 0.4434973544973544,
+          "rank": 4
+        },
+        {
+          "species": "Black Brant",
+          "probability": 0.11489947089947088,
+          "rarity_weight": 3.0,
+          "target_score": 0.3446984126984126,
+          "rank": 5
+        }
+      ],
+      "best_regions": [
+        {
+          "rank": 1,
+          "region": "Texel",
+          "score": 11.7,
+          "rating": "Poor",
+          "top_site": "Texel Midden (Oosterend)"
+        },
+        {
+          "rank": 2,
+          "region": "Zeeland",
+          "score": 11.3,
+          "rating": "Poor",
+          "top_site": "Oosterschelde (Neeltje Jans)"
+        },
+        {
+          "rank": 3,
+          "region": "Lauwersmeer",
+          "score": 9.8,
+          "rating": "Poor",
+          "top_site": "Lauwersmeer National Park"
+        },
+        {
+          "rank": 4,
+          "region": "Noord-Holland",
+          "score": 9.3,
+          "rating": "Poor",
+          "top_site": "Anna Paulowna Polder"
+        },
+        {
+          "rank": 5,
+          "region": "IJsselmeergebied",
+          "score": 8.5,
+          "rating": "Poor",
+          "top_site": "Wieringermeer"
+        },
+        {
+          "rank": 6,
+          "region": "Friesland",
+          "score": 8.3,
+          "rating": "Poor",
+          "top_site": "Ameland"
+        },
+        {
+          "rank": 7,
+          "region": "Flevoland",
+          "score": 8.1,
+          "rating": "Poor",
+          "top_site": "Oostvaardersplassen"
+        },
+        {
+          "rank": 8,
+          "region": "Groningen",
+          "score": 7.3,
+          "rating": "Poor",
+          "top_site": "Oldambt & Dollard"
+        }
+      ],
+      "top10_hotspots": [
+        {
+          "rank": 1,
+          "location": "Oosterschelde (Neeltje Jans)",
+          "region": "Zeeland",
+          "latitude": 51.63,
+          "longitude": 3.78,
+          "score": 12.7,
+          "rating": "Poor"
+        },
+        {
+          "rank": 2,
+          "location": "Texel Midden (Oosterend)",
+          "region": "Texel",
+          "latitude": 53.07,
+          "longitude": 4.9,
+          "score": 12.6,
+          "rating": "Poor"
+        },
+        {
+          "rank": 3,
+          "location": "Texel Zuid (Den Hoorn)",
+          "region": "Texel",
+          "latitude": 53.0,
+          "longitude": 4.77,
+          "score": 12.0,
+          "rating": "Poor"
+        },
+        {
+          "rank": 4,
+          "location": "Grevelingen & Schouwen-Duiveland",
+          "region": "Zeeland",
+          "latitude": 51.72,
+          "longitude": 3.95,
+          "score": 11.7,
+          "rating": "Poor"
+        },
+        {
+          "rank": 5,
+          "location": "Lauwersmeer National Park",
+          "region": "Lauwersmeer",
+          "latitude": 53.37,
+          "longitude": 6.2,
+          "score": 11.4,
+          "rating": "Poor"
+        },
+        {
+          "rank": 6,
+          "location": "Texel Noord (Eierland)",
+          "region": "Texel",
+          "latitude": 53.17,
+          "longitude": 4.85,
+          "score": 10.5,
+          "rating": "Poor"
+        },
+        {
+          "rank": 7,
+          "location": "Anna Paulowna Polder",
+          "region": "Noord-Holland",
+          "latitude": 52.87,
+          "longitude": 4.85,
+          "score": 10.0,
+          "rating": "Poor"
+        },
+        {
+          "rank": 8,
+          "location": "Walcheren & Veerse Meer",
+          "region": "Zeeland",
+          "latitude": 51.55,
+          "longitude": 3.65,
+          "score": 9.6,
+          "rating": "Poor"
+        },
+        {
+          "rank": 9,
+          "location": "Oostvaardersplassen",
+          "region": "Flevoland",
+          "latitude": 52.45,
+          "longitude": 5.35,
+          "score": 9.5,
+          "rating": "Poor"
+        },
+        {
+          "rank": 10,
+          "location": "Wormer- en Jisperveld",
+          "region": "Noord-Holland",
+          "latitude": 52.5,
+          "longitude": 4.85,
+          "score": 9.1,
+          "rating": "Poor"
+        }
+      ],
+      "conditions": {
+        "cold_outbreak": false,
+        "rapid_temp_drop": false,
+        "consecutive_frost_days": 0.0,
+        "temperature_c": 7.2
+      }
+    },
+    {
+      "label": "+7 days",
+      "forecast_day": 7,
+      "date": "2026-11-16",
+      "off_season": false,
+      "goose_day_rating": {
+        "score": 11,
+        "rating": "Poor",
+        "component_points": {
+          "activity": 4.28,
+          "rare": 7.15
+        },
+        "historical_percentile": 23.3,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 23% of historical winter days"
+      },
+      "goose_activity": {
+        "score": 6,
+        "category": "Quiet",
+        "probability": 0.06111375661375659,
+        "historical_percentile": 15.6,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 16% of historical winter days"
+      },
+      "rare_goose_potential": {
+        "score": 24,
+        "category": "Low",
+        "rarity_raw": 4.592327080327081,
+        "species_probabilities": {
+          "Lesser White-fronted Goose": 0.1270555555555556,
+          "Red-breasted Goose": 0.14801322751322754,
+          "Snow Goose": 0.103515873015873,
+          "Ross's Goose": 0.28545622895622896,
+          "Black Brant": 0.180936507936508
+        },
+        "historical_percentile": 31.6,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 32% of historical winter days"
+      },
+      "european_goose_influx": {
+        "score": 37.4,
+        "historical_percentile": 33.2,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 33% of historical winter days",
+        "species_activity": [
+          {
+            "species": "Lesser White-fronted Goose",
+            "probability": 0.1270555555555556,
+            "activity_score": 12.7,
+            "european_percentile": 27.2,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Red-breasted Goose",
+            "probability": 0.14801322751322754,
+            "activity_score": 14.8,
+            "european_percentile": 29.4,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Snow Goose",
+            "probability": 0.103515873015873,
+            "activity_score": 10.4,
+            "european_percentile": 9.5,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Ross's Goose",
+            "probability": 0.28545622895622896,
+            "activity_score": 28.5,
+            "european_percentile": 73.4,
+            "historical_label": "Above Average"
+          },
+          {
+            "species": "Black Brant",
+            "probability": 0.180936507936508,
+            "activity_score": 18.1,
+            "european_percentile": 47.7,
+            "historical_label": "Common Conditions"
+          }
+        ],
+        "change_7d_points": 16.5,
+        "change_14d_points": 14.5
+      },
+      "recommendation": {
+        "decision": "STAY HOME",
+        "emoji": "\ud83d\udd34",
+        "reason": "Goose Day Rating 11 < 40"
+      },
+      "target_geese": [
+        {
+          "species": "Ross's Goose",
+          "probability": 0.28545622895622896,
+          "rarity_weight": 8.0,
+          "target_score": 2.2836498316498317,
+          "rank": 1
+        },
+        {
+          "species": "Red-breasted Goose",
+          "probability": 0.14801322751322754,
+          "rarity_weight": 5.0,
+          "target_score": 0.7400661375661377,
+          "rank": 2
+        },
+        {
+          "species": "Black Brant",
+          "probability": 0.180936507936508,
+          "rarity_weight": 3.0,
+          "target_score": 0.5428095238095241,
+          "rank": 3
+        },
+        {
+          "species": "Snow Goose",
+          "probability": 0.103515873015873,
+          "rarity_weight": 5.0,
+          "target_score": 0.517579365079365,
+          "rank": 4
+        },
+        {
+          "species": "Lesser White-fronted Goose",
+          "probability": 0.1270555555555556,
+          "rarity_weight": 4.0,
+          "target_score": 0.5082222222222224,
+          "rank": 5
+        }
+      ],
+      "best_regions": [
+        {
+          "rank": 1,
+          "region": "Texel",
+          "score": 12.2,
+          "rating": "Poor",
+          "top_site": "Texel Midden (Oosterend)"
+        },
+        {
+          "rank": 2,
+          "region": "Zeeland",
+          "score": 11.9,
+          "rating": "Poor",
+          "top_site": "Oosterschelde (Neeltje Jans)"
+        },
+        {
+          "rank": 3,
+          "region": "Lauwersmeer",
+          "score": 10.2,
+          "rating": "Poor",
+          "top_site": "Lauwersmeer National Park"
+        },
+        {
+          "rank": 4,
+          "region": "Noord-Holland",
+          "score": 9.6,
+          "rating": "Poor",
+          "top_site": "Anna Paulowna Polder"
+        },
+        {
+          "rank": 5,
+          "region": "Friesland",
+          "score": 9.0,
+          "rating": "Poor",
+          "top_site": "Ameland"
+        },
+        {
+          "rank": 6,
+          "region": "IJsselmeergebied",
+          "score": 8.8,
+          "rating": "Poor",
+          "top_site": "Makkum & Workum coast"
+        },
+        {
+          "rank": 7,
+          "region": "Flevoland",
+          "score": 8.0,
+          "rating": "Poor",
+          "top_site": "Oostvaardersplassen"
+        },
+        {
+          "rank": 8,
+          "region": "Groningen",
+          "score": 7.5,
+          "rating": "Poor",
+          "top_site": "Oldambt & Dollard"
+        }
+      ],
+      "top10_hotspots": [
+        {
+          "rank": 1,
+          "location": "Oosterschelde (Neeltje Jans)",
+          "region": "Zeeland",
+          "latitude": 51.63,
+          "longitude": 3.78,
+          "score": 13.6,
+          "rating": "Poor"
+        },
+        {
+          "rank": 2,
+          "location": "Texel Midden (Oosterend)",
+          "region": "Texel",
+          "latitude": 53.07,
+          "longitude": 4.9,
+          "score": 13.2,
+          "rating": "Poor"
+        },
+        {
+          "rank": 3,
+          "location": "Texel Zuid (Den Hoorn)",
+          "region": "Texel",
+          "latitude": 53.0,
+          "longitude": 4.77,
+          "score": 12.6,
+          "rating": "Poor"
+        },
+        {
+          "rank": 4,
+          "location": "Grevelingen & Schouwen-Duiveland",
+          "region": "Zeeland",
+          "latitude": 51.72,
+          "longitude": 3.95,
+          "score": 12.3,
+          "rating": "Poor"
+        },
+        {
+          "rank": 5,
+          "location": "Lauwersmeer National Park",
+          "region": "Lauwersmeer",
+          "latitude": 53.37,
+          "longitude": 6.2,
+          "score": 12.2,
+          "rating": "Poor"
+        },
+        {
+          "rank": 6,
+          "location": "Anna Paulowna Polder",
+          "region": "Noord-Holland",
+          "latitude": 52.87,
+          "longitude": 4.85,
+          "score": 10.9,
+          "rating": "Poor"
+        },
+        {
+          "rank": 7,
+          "location": "Texel Noord (Eierland)",
+          "region": "Texel",
+          "latitude": 53.17,
+          "longitude": 4.85,
+          "score": 10.7,
+          "rating": "Poor"
+        },
+        {
+          "rank": 8,
+          "location": "Walcheren & Veerse Meer",
+          "region": "Zeeland",
+          "latitude": 51.55,
+          "longitude": 3.65,
+          "score": 9.9,
+          "rating": "Poor"
+        },
+        {
+          "rank": 9,
+          "location": "Ameland",
+          "region": "Friesland",
+          "latitude": 53.45,
+          "longitude": 5.75,
+          "score": 9.6,
+          "rating": "Poor"
+        },
+        {
+          "rank": 10,
+          "location": "Zuid-Beveland (Kapelle)",
+          "region": "Zeeland",
+          "latitude": 51.47,
+          "longitude": 4.0,
+          "score": 9.4,
+          "rating": "Poor"
+        }
+      ],
+      "conditions": {
+        "cold_outbreak": false,
+        "rapid_temp_drop": false,
+        "consecutive_frost_days": 0.0,
+        "temperature_c": 5.7
+      }
+    },
+    {
+      "label": "+14 days",
+      "forecast_day": 14,
+      "date": "2026-11-23",
+      "off_season": false,
+      "goose_day_rating": {
+        "score": 13,
+        "rating": "Poor",
+        "component_points": {
+          "activity": 6.65,
+          "rare": 6.33
+        },
+        "historical_percentile": 26.5,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 27% of historical winter days"
+      },
+      "goose_activity": {
+        "score": 10,
+        "category": "Quiet",
+        "probability": 0.09500733525733526,
+        "historical_percentile": 25.7,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 26% of historical winter days"
+      },
+      "rare_goose_potential": {
+        "score": 21,
+        "category": "Low",
+        "rarity_raw": 4.40460064935065,
+        "species_probabilities": {
+          "Lesser White-fronted Goose": 0.20537698412698419,
+          "Red-breasted Goose": 0.156010582010582,
+          "Snow Goose": 0.10044444444444443,
+          "Ross's Goose": 0.2357018999518999,
+          "Black Brant": 0.1384007936507937
+        },
+        "historical_percentile": 28.7,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 29% of historical winter days"
+      },
+      "european_goose_influx": {
+        "score": 35.4,
+        "historical_percentile": 30.5,
+        "historical_label": "Common Conditions",
+        "historical_rank_text": "Higher than 30% of historical winter days",
+        "species_activity": [
+          {
+            "species": "Lesser White-fronted Goose",
+            "probability": 0.20537698412698419,
+            "activity_score": 20.5,
+            "european_percentile": 52.9,
+            "historical_label": "Above Average"
+          },
+          {
+            "species": "Red-breasted Goose",
+            "probability": 0.156010582010582,
+            "activity_score": 15.6,
+            "european_percentile": 32.1,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Snow Goose",
+            "probability": 0.10044444444444443,
+            "activity_score": 10.0,
+            "european_percentile": 8.9,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Ross's Goose",
+            "probability": 0.2357018999518999,
+            "activity_score": 23.6,
+            "european_percentile": 49.4,
+            "historical_label": "Common Conditions"
+          },
+          {
+            "species": "Black Brant",
+            "probability": 0.1384007936507937,
+            "activity_score": 13.8,
+            "european_percentile": 33.9,
+            "historical_label": "Common Conditions"
+          }
+        ],
+        "change_7d_points": 16.5,
+        "change_14d_points": 14.5
+      },
+      "recommendation": {
+        "decision": "STAY HOME",
+        "emoji": "\ud83d\udd34",
+        "reason": "Goose Day Rating 13 < 40"
+      },
+      "target_geese": [
+        {
+          "species": "Ross's Goose",
+          "probability": 0.2357018999518999,
+          "rarity_weight": 8.0,
+          "target_score": 1.8856151996151993,
+          "rank": 1
+        },
+        {
+          "species": "Lesser White-fronted Goose",
+          "probability": 0.20537698412698419,
+          "rarity_weight": 4.0,
+          "target_score": 0.8215079365079367,
+          "rank": 2
+        },
+        {
+          "species": "Red-breasted Goose",
+          "probability": 0.156010582010582,
+          "rarity_weight": 5.0,
+          "target_score": 0.7800529100529099,
+          "rank": 3
+        },
+        {
+          "species": "Snow Goose",
+          "probability": 0.10044444444444443,
+          "rarity_weight": 5.0,
+          "target_score": 0.5022222222222221,
+          "rank": 4
+        },
+        {
+          "species": "Black Brant",
+          "probability": 0.1384007936507937,
+          "rarity_weight": 3.0,
+          "target_score": 0.41520238095238104,
+          "rank": 5
+        }
+      ],
+      "best_regions": [
+        {
+          "rank": 1,
+          "region": "Texel",
+          "score": 14.0,
+          "rating": "Poor",
+          "top_site": "Texel Midden (Oosterend)"
+        },
+        {
+          "rank": 2,
+          "region": "Zeeland",
+          "score": 13.6,
+          "rating": "Poor",
+          "top_site": "Oosterschelde (Neeltje Jans)"
+        },
+        {
+          "rank": 3,
+          "region": "Lauwersmeer",
+          "score": 11.7,
+          "rating": "Poor",
+          "top_site": "Lauwersmeer National Park"
+        },
+        {
+          "rank": 4,
+          "region": "Noord-Holland",
+          "score": 11.1,
+          "rating": "Poor",
+          "top_site": "Anna Paulowna Polder"
+        },
+        {
+          "rank": 5,
+          "region": "Friesland",
+          "score": 10.1,
+          "rating": "Poor",
+          "top_site": "Ameland"
+        },
+        {
+          "rank": 6,
+          "region": "IJsselmeergebied",
+          "score": 10.1,
+          "rating": "Poor",
+          "top_site": "Makkum & Workum coast"
+        },
+        {
+          "rank": 7,
+          "region": "Flevoland",
+          "score": 9.4,
+          "rating": "Poor",
+          "top_site": "Oostvaardersplassen"
+        },
+        {
+          "rank": 8,
+          "region": "Groningen",
+          "score": 8.6,
+          "rating": "Poor",
+          "top_site": "Pieterburen & Noordpolder"
+        }
+      ],
+      "top10_hotspots": [
+        {
+          "rank": 1,
+          "location": "Oosterschelde (Neeltje Jans)",
+          "region": "Zeeland",
+          "latitude": 51.63,
+          "longitude": 3.78,
+          "score": 15.5,
+          "rating": "Poor"
+        },
+        {
+          "rank": 2,
+          "location": "Texel Midden (Oosterend)",
+          "region": "Texel",
+          "latitude": 53.07,
+          "longitude": 4.9,
+          "score": 15.2,
+          "rating": "Poor"
+        },
+        {
+          "rank": 3,
+          "location": "Texel Zuid (Den Hoorn)",
+          "region": "Texel",
+          "latitude": 53.0,
+          "longitude": 4.77,
+          "score": 14.4,
+          "rating": "Poor"
+        },
+        {
+          "rank": 4,
+          "location": "Grevelingen & Schouwen-Duiveland",
+          "region": "Zeeland",
+          "latitude": 51.72,
+          "longitude": 3.95,
+          "score": 14.0,
+          "rating": "Poor"
+        },
+        {
+          "rank": 5,
+          "location": "Lauwersmeer National Park",
+          "region": "Lauwersmeer",
+          "latitude": 53.37,
+          "longitude": 6.2,
+          "score": 13.8,
+          "rating": "Poor"
+        },
+        {
+          "rank": 6,
+          "location": "Texel Noord (Eierland)",
+          "region": "Texel",
+          "latitude": 53.17,
+          "longitude": 4.85,
+          "score": 12.4,
+          "rating": "Poor"
+        },
+        {
+          "rank": 7,
+          "location": "Anna Paulowna Polder",
+          "region": "Noord-Holland",
+          "latitude": 52.87,
+          "longitude": 4.85,
+          "score": 12.3,
+          "rating": "Poor"
+        },
+        {
+          "rank": 8,
+          "location": "Walcheren & Veerse Meer",
+          "region": "Zeeland",
+          "latitude": 51.55,
+          "longitude": 3.65,
+          "score": 11.4,
+          "rating": "Poor"
+        },
+        {
+          "rank": 9,
+          "location": "Oostvaardersplassen",
+          "region": "Flevoland",
+          "latitude": 52.45,
+          "longitude": 5.35,
+          "score": 11.0,
+          "rating": "Poor"
+        },
+        {
+          "rank": 10,
+          "location": "Ameland",
+          "region": "Friesland",
+          "latitude": 53.45,
+          "longitude": 5.75,
+          "score": 10.8,
+          "rating": "Poor"
+        }
+      ],
+      "conditions": {
+        "cold_outbreak": false,
+        "rapid_temp_drop": false,
+        "consecutive_frost_days": 0.0,
+        "temperature_c": 6.6
+      }
+    }
+  ]
+}

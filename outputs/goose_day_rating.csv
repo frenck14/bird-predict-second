@@ -1,0 +1,5 @@
+date,horizon_days,label,score,rating,activity_score,rare_score,decision,best_region,historical_percentile,historical_label
+2026-11-10,1,Tomorrow,6,Poor,6,7,STAY HOME,Texel,10.5,Common Conditions
+2026-11-12,3,+3 days,11,Poor,11,11,STAY HOME,Texel,21.1,Common Conditions
+2026-11-16,7,+7 days,11,Poor,6,24,STAY HOME,Texel,23.3,Common Conditions
+2026-11-23,14,+14 days,13,Poor,10,21,STAY HOME,Texel,26.5,Common Conditions

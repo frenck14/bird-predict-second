@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Bird-Predict every day
+
+[Timer]
+OnCalendar=*-*-* 06:00:00 UTC
+Persistent=true
+RandomizedDelaySec=5m
+Unit=bird-predict-daily.service
+
+[Install]
+WantedBy=timers.target

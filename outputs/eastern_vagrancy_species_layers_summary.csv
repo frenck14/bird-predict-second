@@ -1,0 +1,10 @@
+species,slug,records,records_since_start,record_years,top_cell,top_probability,status,data_quality
+Yellow-browed Warbler,eastern_yellow_browed_warbler,68647,65446,27,3670000-3430000,0.003612774998149704,OK,sufficient
+Pallas's Leaf Warbler,eastern_pallass_leaf_warbler,13563,12022,27,4190000-3600000,0.032033248542019235,OK,sufficient
+Dusky Warbler,eastern_dusky_warbler,11044,10480,27,3670000-3430000,0.056755831184702295,OK,sufficient
+Radde's Warbler,eastern_raddes_warbler,3089,2611,27,3670000-3430000,0.016634737014069135,OK,sufficient
+Two-barred Warbler,eastern_two_barred_warbler,1378,1341,10,3660000-3430000,0.0012867193277718487,OK,sufficient
+Siberian Chiffchaff,eastern_siberian_chiffchaff,9400,9283,27,4200000-3600000,0.050823858384152584,OK,sufficient
+Red-flanked Bluetail,eastern_red_flanked_bluetail,6443,6221,26,3660000-4100000,0.004907743977661566,OK,sufficient
+Olive-backed Pipit,eastern_olive_backed_pipit,4597,4107,26,3660000-4100000,0.01503472608677036,OK,sufficient
+Rustic Bunting,eastern_rustic_bunting,3117,2408,27,3660000-4100000,0.002456190608032828,OK,sufficient

@@ -1,0 +1,17 @@
+[Unit]
+Description=Bird-Predict daily Yellow-browed Warbler forecast (Open-Meteo)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=birdpredict
+Group=birdpredict
+WorkingDirectory=/opt/bird-predict
+EnvironmentFile=-/etc/bird-predict/bird-predict.env
+ExecStart=/opt/bird-predict/.venv/bin/python src/run_daily_forecast.py
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/bird-predict/inputs /opt/bird-predict/outputs
+NoNewPrivileges=true

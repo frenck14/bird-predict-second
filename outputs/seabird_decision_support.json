@@ -1,0 +1,2333 @@
+{
+  "issued_on": "2026-11-09",
+  "horizons": [
+    {
+      "horizon_days": 1,
+      "label": "Tomorrow",
+      "date": "2026-11-10",
+      "probability": 0.0353068783068783,
+      "score": 7,
+      "status": "Normal",
+      "risk_level": "LOW",
+      "confidence": "High",
+      "trend": {
+        "direction": "down",
+        "change": -0.014338624338624296
+      },
+      "wind": {
+        "direction_degrees": 160.43445516765897,
+        "direction": "SSE",
+        "speed_ms": 3.328125000000001,
+        "gust_ms": 6.8,
+        "text": "SSE wind 3.3 m/s, gusting 7 m/s"
+      },
+      "recommended_coast": {
+        "coast": "Wadden islands",
+        "mean_probability": 0.009584011125132196,
+        "top_site": "Texel (NW)"
+      },
+      "best_locations": [
+        {
+          "rank": 1,
+          "location": "Fair Isle",
+          "country": "GB",
+          "probability": 0.0341273712010568,
+          "score": 7,
+          "risk_level": "LOW",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
+        },
+        {
+          "rank": 2,
+          "location": "Scilly Isles",
+          "country": "GB",
+          "probability": 0.03273056995524287,
+          "score": 7,
+          "risk_level": "LOW",
+          "latitude": 49.89913376686885,
+          "longitude": -6.240444835091222
+        },
+        {
+          "rank": 3,
+          "location": "Scilly Isles (SW)",
+          "country": "GB",
+          "probability": 0.031426752970660894,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 49.879271879947936,
+          "longitude": -6.376755276552173
+        },
+        {
+          "rank": 4,
+          "location": "Scilly Isles (N)",
+          "country": "GB",
+          "probability": 0.030540563778050908,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 49.98651177359376,
+          "longitude": -6.270737825295558
+        },
+        {
+          "rank": 5,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "probability": 0.029728426783626204,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
+        },
+        {
+          "rank": 6,
+          "location": "Shetland",
+          "country": "GB",
+          "probability": 0.028171091353996598,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 60.2384254365565,
+          "longitude": -1.1430098707669825
+        },
+        {
+          "rank": 7,
+          "location": "Scilly Isles (NW)",
+          "country": "GB",
+          "probability": 0.028019426264287,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 49.96660807548946,
+          "longitude": -6.407280774373756
+        },
+        {
+          "rank": 8,
+          "location": "North Ronaldsay",
+          "country": "GB",
+          "probability": 0.025712588343650693,
+          "score": 5,
+          "risk_level": "LOW",
+          "latitude": 59.39602016082837,
+          "longitude": -2.474020432857617
+        },
+        {
+          "rank": 9,
+          "location": "Shetland (W)",
+          "country": "GB",
+          "probability": 0.02541562476830659,
+          "score": 5,
+          "risk_level": "LOW",
+          "latitude": 60.22421424114578,
+          "longitude": -1.3208703050177297
+        },
+        {
+          "rank": 10,
+          "location": "Outer Hebrides",
+          "country": "GB",
+          "probability": 0.025205875568765797,
+          "score": 5,
+          "risk_level": "LOW",
+          "latitude": 58.198296511298466,
+          "longitude": -6.750785707625786
+        }
+      ],
+      "best_dutch_locations": [
+        {
+          "rank": 1,
+          "location": "Texel (NW)",
+          "country": "NL",
+          "probability": 0.018661520411694502,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 53.0959552203802,
+          "longitude": 4.68048038856925
+        },
+        {
+          "rank": 2,
+          "location": "Texel",
+          "country": "NL",
+          "probability": 0.01848942117563269,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 53.10244150895792,
+          "longitude": 4.82942665731369
+        },
+        {
+          "rank": 3,
+          "location": "Texel (SW)",
+          "country": "NL",
+          "probability": 0.01843097042723201,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 53.006370691346305,
+          "longitude": 4.691480088949886
+        },
+        {
+          "rank": 4,
+          "location": "Texel (SE)",
+          "country": "NL",
+          "probability": 0.01826842052589949,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 53.0128416515198,
+          "longitude": 4.840121039943961
+        },
+        {
+          "rank": 5,
+          "location": "Vlieland",
+          "country": "NL",
+          "probability": 0.01767611846591166,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 53.29411585632292,
+          "longitude": 5.107120915907821
+        }
+      ],
+      "map_locations": [
+        {
+          "rank": 1,
+          "location": "Fair Isle",
+          "country": "GB",
+          "probability": 0.0341273712010568,
+          "score": 7,
+          "risk_level": "LOW",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
+        },
+        {
+          "rank": 2,
+          "location": "Scilly Isles",
+          "country": "GB",
+          "probability": 0.03273056995524287,
+          "score": 7,
+          "risk_level": "LOW",
+          "latitude": 49.89913376686885,
+          "longitude": -6.240444835091222
+        },
+        {
+          "rank": 3,
+          "location": "Scilly Isles (SW)",
+          "country": "GB",
+          "probability": 0.031426752970660894,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 49.879271879947936,
+          "longitude": -6.376755276552173
+        },
+        {
+          "rank": 4,
+          "location": "Scilly Isles (N)",
+          "country": "GB",
+          "probability": 0.030540563778050908,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 49.98651177359376,
+          "longitude": -6.270737825295558
+        },
+        {
+          "rank": 5,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "probability": 0.029728426783626204,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
+        },
+        {
+          "rank": 6,
+          "location": "Shetland",
+          "country": "GB",
+          "probability": 0.028171091353996598,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 60.2384254365565,
+          "longitude": -1.1430098707669825
+        },
+        {
+          "rank": 7,
+          "location": "Scilly Isles (NW)",
+          "country": "GB",
+          "probability": 0.028019426264287,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 49.96660807548946,
+          "longitude": -6.407280774373756
+        },
+        {
+          "rank": 8,
+          "location": "North Ronaldsay",
+          "country": "GB",
+          "probability": 0.025712588343650693,
+          "score": 5,
+          "risk_level": "LOW",
+          "latitude": 59.39602016082837,
+          "longitude": -2.474020432857617
+        },
+        {
+          "rank": 9,
+          "location": "Shetland (W)",
+          "country": "GB",
+          "probability": 0.02541562476830659,
+          "score": 5,
+          "risk_level": "LOW",
+          "latitude": 60.22421424114578,
+          "longitude": -1.3208703050177297
+        },
+        {
+          "rank": 10,
+          "location": "Outer Hebrides",
+          "country": "GB",
+          "probability": 0.025205875568765797,
+          "score": 5,
+          "risk_level": "LOW",
+          "latitude": 58.198296511298466,
+          "longitude": -6.750785707625786
+        },
+        {
+          "rank": 11,
+          "location": "Outer Hebrides (E)",
+          "country": "GB",
+          "probability": 0.02377529200785273,
+          "score": 5,
+          "risk_level": "LOW",
+          "latitude": 58.219146585191666,
+          "longitude": -6.585197270255143
+        },
+        {
+          "rank": 12,
+          "location": "Fair Isle (W)",
+          "country": "GB",
+          "probability": 0.023067365340634798,
+          "score": 5,
+          "risk_level": "LOW",
+          "latitude": 59.5456929059122,
+          "longitude": -1.8110670604302148
+        },
+        {
+          "rank": 13,
+          "location": "North Ronaldsay (S)",
+          "country": "GB",
+          "probability": 0.022766853546277964,
+          "score": 5,
+          "risk_level": "LOW",
+          "latitude": 59.307676929118834,
+          "longitude": -2.44185074019834
+        },
+        {
+          "rank": 14,
+          "location": "Flamborough Head",
+          "country": "GB",
+          "probability": 0.022058016488920324,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 54.149666054744245,
+          "longitude": -0.07536280601207261
+        },
+        {
+          "rank": 15,
+          "location": "North Ronaldsay (NE)",
+          "country": "GB",
+          "probability": 0.02187385960390954,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 59.41163360709903,
+          "longitude": -2.3008367390713764
+        },
+        {
+          "rank": 16,
+          "location": "Scilly Isles (SE)",
+          "country": "GB",
+          "probability": 0.02080340467387238,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 49.811741975011614,
+          "longitude": -6.21028972171667
+        },
+        {
+          "rank": 17,
+          "location": "Fair Isle (SW)",
+          "country": "GB",
+          "probability": 0.020561994497234445,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 59.457178285724396,
+          "longitude": -1.7804182886813102
+        },
+        {
+          "rank": 18,
+          "location": "Flamborough Head (SE)",
+          "country": "GB",
+          "probability": 0.02035110736907917,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 54.060814411284326,
+          "longitude": -0.0538161004560878
+        },
+        {
+          "rank": 19,
+          "location": "Scilly Isles (E)",
+          "country": "GB",
+          "probability": 0.020317730418086197,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 49.91883256679416,
+          "longitude": -6.104032190604684
+        },
+        {
+          "rank": 20,
+          "location": "Shetland (N)",
+          "country": "GB",
+          "probability": 0.01995570644470746,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 60.32711656316582,
+          "longitude": -1.172909313704808
+        },
+        {
+          "rank": 21,
+          "location": "Outer Hebrides (NW)",
+          "country": "GB",
+          "probability": 0.019730937943954526,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 58.285316062145206,
+          "longitude": -6.7921760099688315
+        },
+        {
+          "rank": 22,
+          "location": "North Ronaldsay (SE)",
+          "country": "GB",
+          "probability": 0.01952213438796884,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 59.323245348737245,
+          "longitude": -2.269091038751042
+        },
+        {
+          "rank": 23,
+          "location": "Scilly Isles (S)",
+          "country": "GB",
+          "probability": 0.01935687025839593,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 49.79192170788401,
+          "longitude": -6.3463685875661175
+        },
+        {
+          "rank": 24,
+          "location": "Texel (NW)",
+          "country": "NL",
+          "probability": 0.018661520411694502,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 53.0959552203802,
+          "longitude": 4.68048038856925
+        },
+        {
+          "rank": 25,
+          "location": "Shetland (SE)",
+          "country": "GB",
+          "probability": 0.018502708310148115,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 60.149730210179065,
+          "longitude": -1.1132935820624017
+        },
+        {
+          "rank": 26,
+          "location": "Scilly Isles (NE)",
+          "country": "GB",
+          "probability": 0.018502192309967077,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 50.00625208299662,
+          "longitude": -6.134091970721871
+        },
+        {
+          "rank": 27,
+          "location": "Texel",
+          "country": "NL",
+          "probability": 0.01848942117563269,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 53.10244150895792,
+          "longitude": 4.82942665731369
+        },
+        {
+          "rank": 28,
+          "location": "Texel (SW)",
+          "country": "NL",
+          "probability": 0.01843097042723201,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 53.006370691346305,
+          "longitude": 4.691480088949886
+        },
+        {
+          "rank": 29,
+          "location": "Outer Hebrides (SE)",
+          "country": "GB",
+          "probability": 0.018413732879356926,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 58.13205621553171,
+          "longitude": -6.544410008726112
+        },
+        {
+          "rank": 30,
+          "location": "Texel (SE)",
+          "country": "NL",
+          "probability": 0.01826842052589949,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 53.0128416515198,
+          "longitude": 4.840121039943961
+        },
+        {
+          "rank": 31,
+          "location": "Shetland (NW)",
+          "country": "GB",
+          "probability": 0.018250812843778743,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 60.31286274591953,
+          "longitude": -1.3512265815570899
+        },
+        {
+          "rank": 32,
+          "location": "Flamborough Head (W)",
+          "country": "GB",
+          "probability": 0.01804155622339881,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 54.13709033563446,
+          "longitude": -0.22703903825736702
+        },
+        {
+          "rank": 33,
+          "location": "Fair Isle (N)",
+          "country": "GB",
+          "probability": 0.017944141732915978,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 59.64903715604272,
+          "longitude": -1.6672789147418798
+        },
+        {
+          "rank": 34,
+          "location": "Vlieland",
+          "country": "NL",
+          "probability": 0.01767611846591166,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 53.29411585632292,
+          "longitude": 5.107120915907821
+        },
+        {
+          "rank": 35,
+          "location": "Outer Hebrides (W)",
+          "country": "GB",
+          "probability": 0.017654784561520195,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 58.17724400447395,
+          "longitude": -6.916195427145621
+        },
+        {
+          "rank": 36,
+          "location": "Spurn",
+          "country": "GB",
+          "probability": 0.017376045859487675,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 53.61648051906133,
+          "longitude": 0.05227802599669143
+        },
+        {
+          "rank": 37,
+          "location": "Outer Hebrides (N)",
+          "country": "GB",
+          "probability": 0.017365512600718738,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 58.306223350306546,
+          "longitude": -6.626216312080842
+        },
+        {
+          "rank": 38,
+          "location": "Terschelling",
+          "country": "NL",
+          "probability": 0.017180730787048695,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 53.38971718296027,
+          "longitude": 5.246876605822208
+        },
+        {
+          "rank": 39,
+          "location": "Shetland (S)",
+          "country": "GB",
+          "probability": 0.01704182137587996,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 60.13556137337055,
+          "longitude": -1.2906998102783485
+        },
+        {
+          "rank": 40,
+          "location": "Flamborough Head (SW)",
+          "country": "GB",
+          "probability": 0.016593583969333865,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 54.0482691903194,
+          "longitude": -0.20517882753211975
+        }
+      ]
+    },
+    {
+      "horizon_days": 3,
+      "label": "+3 days",
+      "date": "2026-11-12",
+      "probability": 0.01898015873015873,
+      "score": 4,
+      "status": "Normal",
+      "risk_level": "LOW",
+      "confidence": "High",
+      "trend": {
+        "direction": "steady",
+        "change": 0.003361111111111129
+      },
+      "wind": {
+        "direction_degrees": 59.30279396392722,
+        "direction": "ENE",
+        "speed_ms": 3.5893749999999995,
+        "gust_ms": 6.7,
+        "text": "ENE wind 3.6 m/s, gusting 7 m/s"
+      },
+      "recommended_coast": {
+        "coast": "Wadden islands",
+        "mean_probability": 0.005152142051345792,
+        "top_site": "Texel (NW)"
+      },
+      "best_locations": [
+        {
+          "rank": 1,
+          "location": "Fair Isle",
+          "country": "GB",
+          "probability": 0.018346083072230034,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
+        },
+        {
+          "rank": 2,
+          "location": "Scilly Isles",
+          "country": "GB",
+          "probability": 0.0175951951254226,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 49.89913376686885,
+          "longitude": -6.240444835091222
+        },
+        {
+          "rank": 3,
+          "location": "Scilly Isles (SW)",
+          "country": "GB",
+          "probability": 0.016894293360408107,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 49.879271879947936,
+          "longitude": -6.376755276552173
+        },
+        {
+          "rank": 4,
+          "location": "Scilly Isles (N)",
+          "country": "GB",
+          "probability": 0.01641789860824414,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 49.98651177359376,
+          "longitude": -6.270737825295558
+        },
+        {
+          "rank": 5,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "probability": 0.015981312599964503,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
+        },
+        {
+          "rank": 6,
+          "location": "Shetland",
+          "country": "GB",
+          "probability": 0.015144125200003643,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 60.2384254365565,
+          "longitude": -1.1430098707669825
+        },
+        {
+          "rank": 7,
+          "location": "Scilly Isles (NW)",
+          "country": "GB",
+          "probability": 0.015062593566096742,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 49.96660807548946,
+          "longitude": -6.407280774373756
+        },
+        {
+          "rank": 8,
+          "location": "North Ronaldsay",
+          "country": "GB",
+          "probability": 0.013822491013900937,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 59.39602016082837,
+          "longitude": -2.474020432857617
+        },
+        {
+          "rank": 9,
+          "location": "Shetland (W)",
+          "country": "GB",
+          "probability": 0.013662850284745665,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 60.22421424114578,
+          "longitude": -1.3208703050177297
+        },
+        {
+          "rank": 10,
+          "location": "Outer Hebrides",
+          "country": "GB",
+          "probability": 0.013550093980826482,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 58.198296511298466,
+          "longitude": -6.750785707625786
+        }
+      ],
+      "best_dutch_locations": [
+        {
+          "rank": 1,
+          "location": "Texel (NW)",
+          "country": "NL",
+          "probability": 0.010032000464086784,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 53.0959552203802,
+          "longitude": 4.68048038856925
+        },
+        {
+          "rank": 2,
+          "location": "Texel",
+          "country": "NL",
+          "probability": 0.009939483907131482,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 53.10244150895792,
+          "longitude": 4.82942665731369
+        },
+        {
+          "rank": 3,
+          "location": "Texel (SW)",
+          "country": "NL",
+          "probability": 0.009908062140729514,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 53.006370691346305,
+          "longitude": 4.691480088949886
+        },
+        {
+          "rank": 4,
+          "location": "Texel (SE)",
+          "country": "NL",
+          "probability": 0.009820679084599574,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 53.0128416515198,
+          "longitude": 4.840121039943961
+        },
+        {
+          "rank": 5,
+          "location": "Vlieland",
+          "country": "NL",
+          "probability": 0.009502271237350758,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 53.29411585632292,
+          "longitude": 5.107120915907821
+        }
+      ],
+      "map_locations": [
+        {
+          "rank": 1,
+          "location": "Fair Isle",
+          "country": "GB",
+          "probability": 0.018346083072230034,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
+        },
+        {
+          "rank": 2,
+          "location": "Scilly Isles",
+          "country": "GB",
+          "probability": 0.0175951951254226,
+          "score": 4,
+          "risk_level": "LOW",
+          "latitude": 49.89913376686885,
+          "longitude": -6.240444835091222
+        },
+        {
+          "rank": 3,
+          "location": "Scilly Isles (SW)",
+          "country": "GB",
+          "probability": 0.016894293360408107,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 49.879271879947936,
+          "longitude": -6.376755276552173
+        },
+        {
+          "rank": 4,
+          "location": "Scilly Isles (N)",
+          "country": "GB",
+          "probability": 0.01641789860824414,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 49.98651177359376,
+          "longitude": -6.270737825295558
+        },
+        {
+          "rank": 5,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "probability": 0.015981312599964503,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
+        },
+        {
+          "rank": 6,
+          "location": "Shetland",
+          "country": "GB",
+          "probability": 0.015144125200003643,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 60.2384254365565,
+          "longitude": -1.1430098707669825
+        },
+        {
+          "rank": 7,
+          "location": "Scilly Isles (NW)",
+          "country": "GB",
+          "probability": 0.015062593566096742,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 49.96660807548946,
+          "longitude": -6.407280774373756
+        },
+        {
+          "rank": 8,
+          "location": "North Ronaldsay",
+          "country": "GB",
+          "probability": 0.013822491013900937,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 59.39602016082837,
+          "longitude": -2.474020432857617
+        },
+        {
+          "rank": 9,
+          "location": "Shetland (W)",
+          "country": "GB",
+          "probability": 0.013662850284745665,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 60.22421424114578,
+          "longitude": -1.3208703050177297
+        },
+        {
+          "rank": 10,
+          "location": "Outer Hebrides",
+          "country": "GB",
+          "probability": 0.013550093980826482,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 58.198296511298466,
+          "longitude": -6.750785707625786
+        },
+        {
+          "rank": 11,
+          "location": "Outer Hebrides (E)",
+          "country": "GB",
+          "probability": 0.012781045445102609,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 58.219146585191666,
+          "longitude": -6.585197270255143
+        },
+        {
+          "rank": 12,
+          "location": "Fair Isle (W)",
+          "country": "GB",
+          "probability": 0.012400480491262128,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.5456929059122,
+          "longitude": -1.8110670604302148
+        },
+        {
+          "rank": 13,
+          "location": "North Ronaldsay (S)",
+          "country": "GB",
+          "probability": 0.012238932321877062,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.307676929118834,
+          "longitude": -2.44185074019834
+        },
+        {
+          "rank": 14,
+          "location": "Flamborough Head",
+          "country": "GB",
+          "probability": 0.01185787796341667,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 54.149666054744245,
+          "longitude": -0.07536280601207261
+        },
+        {
+          "rank": 15,
+          "location": "North Ronaldsay (NE)",
+          "country": "GB",
+          "probability": 0.01175887949409928,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.41163360709903,
+          "longitude": -2.3008367390713764
+        },
+        {
+          "rank": 16,
+          "location": "Scilly Isles (SE)",
+          "country": "GB",
+          "probability": 0.011183427756084026,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 49.811741975011614,
+          "longitude": -6.21028972171667
+        },
+        {
+          "rank": 17,
+          "location": "Fair Isle (SW)",
+          "country": "GB",
+          "probability": 0.01105365124534756,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.457178285724396,
+          "longitude": -1.7804182886813102
+        },
+        {
+          "rank": 18,
+          "location": "Flamborough Head (SE)",
+          "country": "GB",
+          "probability": 0.010940283217402856,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 54.060814411284326,
+          "longitude": -0.0538161004560878
+        },
+        {
+          "rank": 19,
+          "location": "Scilly Isles (E)",
+          "country": "GB",
+          "probability": 0.010922340542826273,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 49.91883256679416,
+          "longitude": -6.104032190604684
+        },
+        {
+          "rank": 20,
+          "location": "Shetland (N)",
+          "country": "GB",
+          "probability": 0.010727724852956217,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 60.32711656316582,
+          "longitude": -1.172909313704808
+        },
+        {
+          "rank": 21,
+          "location": "Outer Hebrides (NW)",
+          "country": "GB",
+          "probability": 0.010606894521122566,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 58.285316062145206,
+          "longitude": -6.7921760099688315
+        },
+        {
+          "rank": 22,
+          "location": "North Ronaldsay (SE)",
+          "country": "GB",
+          "probability": 0.010494646573241605,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.323245348737245,
+          "longitude": -2.269091038751042
+        },
+        {
+          "rank": 23,
+          "location": "Scilly Isles (S)",
+          "country": "GB",
+          "probability": 0.010405804410974195,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 49.79192170788401,
+          "longitude": -6.3463685875661175
+        },
+        {
+          "rank": 24,
+          "location": "Texel (NW)",
+          "country": "NL",
+          "probability": 0.010032000464086784,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 53.0959552203802,
+          "longitude": 4.68048038856925
+        },
+        {
+          "rank": 25,
+          "location": "Shetland (SE)",
+          "country": "GB",
+          "probability": 0.009946626762412532,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 60.149730210179065,
+          "longitude": -1.1132935820624017
+        },
+        {
+          "rank": 26,
+          "location": "Scilly Isles (NE)",
+          "country": "GB",
+          "probability": 0.00994634937268536,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 50.00625208299662,
+          "longitude": -6.134091970721871
+        },
+        {
+          "rank": 27,
+          "location": "Texel",
+          "country": "NL",
+          "probability": 0.009939483907131482,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 53.10244150895792,
+          "longitude": 4.82942665731369
+        },
+        {
+          "rank": 28,
+          "location": "Texel (SW)",
+          "country": "NL",
+          "probability": 0.009908062140729514,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 53.006370691346305,
+          "longitude": 4.691480088949886
+        },
+        {
+          "rank": 29,
+          "location": "Outer Hebrides (SE)",
+          "country": "GB",
+          "probability": 0.009898795634867846,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 58.13205621553171,
+          "longitude": -6.544410008726112
+        },
+        {
+          "rank": 30,
+          "location": "Texel (SE)",
+          "country": "NL",
+          "probability": 0.009820679084599574,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 53.0128416515198,
+          "longitude": 4.840121039943961
+        },
+        {
+          "rank": 31,
+          "location": "Shetland (NW)",
+          "country": "GB",
+          "probability": 0.0098112136031538,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 60.31286274591953,
+          "longitude": -1.3512265815570899
+        },
+        {
+          "rank": 32,
+          "location": "Flamborough Head (W)",
+          "country": "GB",
+          "probability": 0.009698722098364662,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 54.13709033563446,
+          "longitude": -0.22703903825736702
+        },
+        {
+          "rank": 33,
+          "location": "Fair Isle (N)",
+          "country": "GB",
+          "probability": 0.009646354328098733,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.64903715604272,
+          "longitude": -1.6672789147418798
+        },
+        {
+          "rank": 34,
+          "location": "Vlieland",
+          "country": "NL",
+          "probability": 0.009502271237350758,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 53.29411585632292,
+          "longitude": 5.107120915907821
+        },
+        {
+          "rank": 35,
+          "location": "Outer Hebrides (W)",
+          "country": "GB",
+          "probability": 0.009490802625253009,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 58.17724400447395,
+          "longitude": -6.916195427145621
+        },
+        {
+          "rank": 36,
+          "location": "Spurn",
+          "country": "GB",
+          "probability": 0.009340959165210126,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 53.61648051906133,
+          "longitude": 0.05227802599669143
+        },
+        {
+          "rank": 37,
+          "location": "Outer Hebrides (N)",
+          "country": "GB",
+          "probability": 0.009335296729646081,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 58.306223350306546,
+          "longitude": -6.626216312080842
+        },
+        {
+          "rank": 38,
+          "location": "Terschelling",
+          "country": "NL",
+          "probability": 0.009235962313178546,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 53.38971718296027,
+          "longitude": 5.246876605822208
+        },
+        {
+          "rank": 39,
+          "location": "Shetland (S)",
+          "country": "GB",
+          "probability": 0.009161287836149468,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 60.13556137337055,
+          "longitude": -1.2906998102783485
+        },
+        {
+          "rank": 40,
+          "location": "Flamborough Head (SW)",
+          "country": "GB",
+          "probability": 0.008920325804584583,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 54.0482691903194,
+          "longitude": -0.20517882753211975
+        }
+      ]
+    },
+    {
+      "horizon_days": 7,
+      "label": "+7 days",
+      "date": "2026-11-16",
+      "probability": 0.014064814814814816,
+      "score": 3,
+      "status": "Normal",
+      "risk_level": "LOW",
+      "confidence": "Medium",
+      "trend": {
+        "direction": "up",
+        "change": 0.014064814814814816
+      },
+      "wind": {
+        "direction_degrees": 183.10873157940628,
+        "direction": "S",
+        "speed_ms": 8.038020833333334,
+        "gust_ms": 13.95,
+        "text": "S wind 8.0 m/s, gusting 14 m/s"
+      },
+      "recommended_coast": {
+        "coast": "Wadden islands",
+        "mean_probability": 0.0038178776522377745,
+        "top_site": "Texel (NW)"
+      },
+      "best_locations": [
+        {
+          "rank": 1,
+          "location": "Fair Isle",
+          "country": "GB",
+          "probability": 0.013594947474180918,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
+        },
+        {
+          "rank": 2,
+          "location": "Scilly Isles",
+          "country": "GB",
+          "probability": 0.013038519044436444,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 49.89913376686885,
+          "longitude": -6.240444835091222
+        },
+        {
+          "rank": 3,
+          "location": "Scilly Isles (SW)",
+          "country": "GB",
+          "probability": 0.012519131737488287,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 49.879271879947936,
+          "longitude": -6.376755276552173
+        },
+        {
+          "rank": 4,
+          "location": "Scilly Isles (N)",
+          "country": "GB",
+          "probability": 0.012166110244718096,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 49.98651177359376,
+          "longitude": -6.270737825295558
+        },
+        {
+          "rank": 5,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "probability": 0.011842588115926029,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
+        },
+        {
+          "rank": 6,
+          "location": "Shetland",
+          "country": "GB",
+          "probability": 0.011222209439796417,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 60.2384254365565,
+          "longitude": -1.1430098707669825
+        },
+        {
+          "rank": 7,
+          "location": "Scilly Isles (NW)",
+          "country": "GB",
+          "probability": 0.011161792277392618,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 49.96660807548946,
+          "longitude": -6.407280774373756
+        },
+        {
+          "rank": 8,
+          "location": "North Ronaldsay",
+          "country": "GB",
+          "probability": 0.010242842494306828,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.39602016082837,
+          "longitude": -2.474020432857617
+        },
+        {
+          "rank": 9,
+          "location": "Shetland (W)",
+          "country": "GB",
+          "probability": 0.01012454436390694,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 60.22421424114578,
+          "longitude": -1.3208703050177297
+        },
+        {
+          "rank": 10,
+          "location": "Outer Hebrides",
+          "country": "GB",
+          "probability": 0.01004098887017409,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 58.198296511298466,
+          "longitude": -6.750785707625786
+        }
+      ],
+      "best_dutch_locations": [
+        {
+          "rank": 1,
+          "location": "Texel (NW)",
+          "country": "NL",
+          "probability": 0.007433985708734741,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 53.0959552203802,
+          "longitude": 4.68048038856925
+        },
+        {
+          "rank": 2,
+          "location": "Texel",
+          "country": "NL",
+          "probability": 0.007365428419020772,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 53.10244150895792,
+          "longitude": 4.82942665731369
+        },
+        {
+          "rank": 3,
+          "location": "Texel (SW)",
+          "country": "NL",
+          "probability": 0.0073421440338962245,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 53.006370691346305,
+          "longitude": 4.691480088949886
+        },
+        {
+          "rank": 4,
+          "location": "Texel (SE)",
+          "country": "NL",
+          "probability": 0.007277390808178082,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 53.0128416515198,
+          "longitude": 4.840121039943961
+        },
+        {
+          "rank": 5,
+          "location": "Vlieland",
+          "country": "NL",
+          "probability": 0.007041441916980321,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 53.29411585632292,
+          "longitude": 5.107120915907821
+        }
+      ],
+      "map_locations": [
+        {
+          "rank": 1,
+          "location": "Fair Isle",
+          "country": "GB",
+          "probability": 0.013594947474180918,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
+        },
+        {
+          "rank": 2,
+          "location": "Scilly Isles",
+          "country": "GB",
+          "probability": 0.013038519044436444,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 49.89913376686885,
+          "longitude": -6.240444835091222
+        },
+        {
+          "rank": 3,
+          "location": "Scilly Isles (SW)",
+          "country": "GB",
+          "probability": 0.012519131737488287,
+          "score": 3,
+          "risk_level": "LOW",
+          "latitude": 49.879271879947936,
+          "longitude": -6.376755276552173
+        },
+        {
+          "rank": 4,
+          "location": "Scilly Isles (N)",
+          "country": "GB",
+          "probability": 0.012166110244718096,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 49.98651177359376,
+          "longitude": -6.270737825295558
+        },
+        {
+          "rank": 5,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "probability": 0.011842588115926029,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
+        },
+        {
+          "rank": 6,
+          "location": "Shetland",
+          "country": "GB",
+          "probability": 0.011222209439796417,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 60.2384254365565,
+          "longitude": -1.1430098707669825
+        },
+        {
+          "rank": 7,
+          "location": "Scilly Isles (NW)",
+          "country": "GB",
+          "probability": 0.011161792277392618,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 49.96660807548946,
+          "longitude": -6.407280774373756
+        },
+        {
+          "rank": 8,
+          "location": "North Ronaldsay",
+          "country": "GB",
+          "probability": 0.010242842494306828,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.39602016082837,
+          "longitude": -2.474020432857617
+        },
+        {
+          "rank": 9,
+          "location": "Shetland (W)",
+          "country": "GB",
+          "probability": 0.01012454436390694,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 60.22421424114578,
+          "longitude": -1.3208703050177297
+        },
+        {
+          "rank": 10,
+          "location": "Outer Hebrides",
+          "country": "GB",
+          "probability": 0.01004098887017409,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 58.198296511298466,
+          "longitude": -6.750785707625786
+        },
+        {
+          "rank": 11,
+          "location": "Outer Hebrides (E)",
+          "country": "GB",
+          "probability": 0.00947110294917946,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 58.219146585191666,
+          "longitude": -6.585197270255143
+        },
+        {
+          "rank": 12,
+          "location": "Fair Isle (W)",
+          "country": "GB",
+          "probability": 0.009189093948260523,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.5456929059122,
+          "longitude": -1.8110670604302148
+        },
+        {
+          "rank": 13,
+          "location": "North Ronaldsay (S)",
+          "country": "GB",
+          "probability": 0.009069382352673972,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.307676929118834,
+          "longitude": -2.44185074019834
+        },
+        {
+          "rank": 14,
+          "location": "Flamborough Head",
+          "country": "GB",
+          "probability": 0.008787010689595755,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 54.149666054744245,
+          "longitude": -0.07536280601207261
+        },
+        {
+          "rank": 15,
+          "location": "North Ronaldsay (NE)",
+          "country": "GB",
+          "probability": 0.008713650126193998,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.41163360709903,
+          "longitude": -2.3008367390713764
+        },
+        {
+          "rank": 16,
+          "location": "Scilly Isles (SE)",
+          "country": "GB",
+          "probability": 0.008287224707675898,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 49.811741975011614,
+          "longitude": -6.21028972171667
+        },
+        {
+          "rank": 17,
+          "location": "Fair Isle (SW)",
+          "country": "GB",
+          "probability": 0.008191056776902964,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.457178285724396,
+          "longitude": -1.7804182886813102
+        },
+        {
+          "rank": 18,
+          "location": "Flamborough Head (SE)",
+          "country": "GB",
+          "probability": 0.00810704797899816,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 54.060814411284326,
+          "longitude": -0.0538161004560878
+        },
+        {
+          "rank": 19,
+          "location": "Scilly Isles (E)",
+          "country": "GB",
+          "probability": 0.008093751968211845,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 49.91883256679416,
+          "longitude": -6.104032190604684
+        },
+        {
+          "rank": 20,
+          "location": "Shetland (N)",
+          "country": "GB",
+          "probability": 0.007949536438879606,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 60.32711656316582,
+          "longitude": -1.172909313704808
+        },
+        {
+          "rank": 21,
+          "location": "Outer Hebrides (NW)",
+          "country": "GB",
+          "probability": 0.007859997870450641,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 58.285316062145206,
+          "longitude": -6.7921760099688315
+        },
+        {
+          "rank": 22,
+          "location": "North Ronaldsay (SE)",
+          "country": "GB",
+          "probability": 0.007776819082394453,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 59.323245348737245,
+          "longitude": -2.269091038751042
+        },
+        {
+          "rank": 23,
+          "location": "Scilly Isles (S)",
+          "country": "GB",
+          "probability": 0.007710984619268844,
+          "score": 2,
+          "risk_level": "LOW",
+          "latitude": 49.79192170788401,
+          "longitude": -6.3463685875661175
+        },
+        {
+          "rank": 24,
+          "location": "Texel (NW)",
+          "country": "NL",
+          "probability": 0.007433985708734741,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 53.0959552203802,
+          "longitude": 4.68048038856925
+        },
+        {
+          "rank": 25,
+          "location": "Shetland (SE)",
+          "country": "GB",
+          "probability": 0.007370721469421735,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 60.149730210179065,
+          "longitude": -1.1132935820624017
+        },
+        {
+          "rank": 26,
+          "location": "Scilly Isles (NE)",
+          "country": "GB",
+          "probability": 0.007370515916075229,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 50.00625208299662,
+          "longitude": -6.134091970721871
+        },
+        {
+          "rank": 27,
+          "location": "Texel",
+          "country": "NL",
+          "probability": 0.007365428419020772,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 53.10244150895792,
+          "longitude": 4.82942665731369
+        },
+        {
+          "rank": 28,
+          "location": "Texel (SW)",
+          "country": "NL",
+          "probability": 0.0073421440338962245,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 53.006370691346305,
+          "longitude": 4.691480088949886
+        },
+        {
+          "rank": 29,
+          "location": "Outer Hebrides (SE)",
+          "country": "GB",
+          "probability": 0.007335277300547065,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 58.13205621553171,
+          "longitude": -6.544410008726112
+        },
+        {
+          "rank": 30,
+          "location": "Texel (SE)",
+          "country": "NL",
+          "probability": 0.007277390808178082,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 53.0128416515198,
+          "longitude": 4.840121039943961
+        },
+        {
+          "rank": 31,
+          "location": "Shetland (NW)",
+          "country": "GB",
+          "probability": 0.007270376628499155,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 60.31286274591953,
+          "longitude": -1.3512265815570899
+        },
+        {
+          "rank": 32,
+          "location": "Flamborough Head (W)",
+          "country": "GB",
+          "probability": 0.007187017358137255,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 54.13709033563446,
+          "longitude": -0.22703903825736702
+        },
+        {
+          "rank": 33,
+          "location": "Fair Isle (N)",
+          "country": "GB",
+          "probability": 0.0071482114133858705,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 59.64903715604272,
+          "longitude": -1.6672789147418798
+        },
+        {
+          "rank": 34,
+          "location": "Vlieland",
+          "country": "NL",
+          "probability": 0.007041441916980321,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 53.29411585632292,
+          "longitude": 5.107120915907821
+        },
+        {
+          "rank": 35,
+          "location": "Outer Hebrides (W)",
+          "country": "GB",
+          "probability": 0.007032943362904402,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 58.17724400447395,
+          "longitude": -6.916195427145621
+        },
+        {
+          "rank": 36,
+          "location": "Spurn",
+          "country": "GB",
+          "probability": 0.006921905275885378,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 53.61648051906133,
+          "longitude": 0.05227802599669143
+        },
+        {
+          "rank": 37,
+          "location": "Outer Hebrides (N)",
+          "country": "GB",
+          "probability": 0.006917709256835097,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 58.306223350306546,
+          "longitude": -6.626216312080842
+        },
+        {
+          "rank": 38,
+          "location": "Terschelling",
+          "country": "NL",
+          "probability": 0.006844099747440762,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 53.38971718296027,
+          "longitude": 5.246876605822208
+        },
+        {
+          "rank": 39,
+          "location": "Shetland (S)",
+          "country": "GB",
+          "probability": 0.006788763925136059,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 60.13556137337055,
+          "longitude": -1.2906998102783485
+        },
+        {
+          "rank": 40,
+          "location": "Flamborough Head (SW)",
+          "country": "GB",
+          "probability": 0.0066102044937032456,
+          "score": 1,
+          "risk_level": "LOW",
+          "latitude": 54.0482691903194,
+          "longitude": -0.20517882753211975
+        }
+      ]
+    },
+    {
+      "horizon_days": 14,
+      "label": "+14 days",
+      "date": "2026-11-23",
+      "probability": 0.056517316017316015,
+      "score": 11,
+      "status": "Normal",
+      "risk_level": "LOW",
+      "confidence": "Low",
+      "trend": {
+        "direction": "n/a",
+        "change": null
+      },
+      "wind": {
+        "direction_degrees": 156.28301086843598,
+        "direction": "SSE",
+        "speed_ms": 3.8809375000000004,
+        "gust_ms": 7.889999999999999,
+        "text": "SSE wind 3.9 m/s, gusting 8 m/s"
+      },
+      "recommended_coast": {
+        "coast": "Wadden islands",
+        "mean_probability": 0.015341559816321822,
+        "top_site": "Texel (NW)"
+      },
+      "best_locations": [
+        {
+          "rank": 1,
+          "location": "Fair Isle",
+          "country": "GB",
+          "probability": 0.05462922567795014,
+          "score": 11,
+          "risk_level": "LOW",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
+        },
+        {
+          "rank": 2,
+          "location": "Scilly Isles",
+          "country": "GB",
+          "probability": 0.05239330278675341,
+          "score": 10,
+          "risk_level": "LOW",
+          "latitude": 49.89913376686885,
+          "longitude": -6.240444835091222
+        },
+        {
+          "rank": 3,
+          "location": "Scilly Isles (SW)",
+          "country": "GB",
+          "probability": 0.050306224005506175,
+          "score": 10,
+          "risk_level": "LOW",
+          "latitude": 49.879271879947936,
+          "longitude": -6.376755276552173
+        },
+        {
+          "rank": 4,
+          "location": "Scilly Isles (N)",
+          "country": "GB",
+          "probability": 0.048887660908124915,
+          "score": 10,
+          "risk_level": "LOW",
+          "latitude": 49.98651177359376,
+          "longitude": -6.270737825295558
+        },
+        {
+          "rank": 5,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "probability": 0.04758763651162334,
+          "score": 10,
+          "risk_level": "LOW",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
+        },
+        {
+          "rank": 6,
+          "location": "Shetland",
+          "country": "GB",
+          "probability": 0.045094739296063155,
+          "score": 9,
+          "risk_level": "LOW",
+          "latitude": 60.2384254365565,
+          "longitude": -1.1430098707669825
+        },
+        {
+          "rank": 7,
+          "location": "Scilly Isles (NW)",
+          "country": "GB",
+          "probability": 0.04485196213152856,
+          "score": 9,
+          "risk_level": "LOW",
+          "latitude": 49.96660807548946,
+          "longitude": -6.407280774373756
+        },
+        {
+          "rank": 8,
+          "location": "North Ronaldsay",
+          "country": "GB",
+          "probability": 0.041159302400239565,
+          "score": 8,
+          "risk_level": "LOW",
+          "latitude": 59.39602016082837,
+          "longitude": -2.474020432857617
+        },
+        {
+          "rank": 9,
+          "location": "Shetland (W)",
+          "country": "GB",
+          "probability": 0.0406839393820912,
+          "score": 8,
+          "risk_level": "LOW",
+          "latitude": 60.22421424114578,
+          "longitude": -1.3208703050177297
+        },
+        {
+          "rank": 10,
+          "location": "Outer Hebrides",
+          "country": "GB",
+          "probability": 0.04034818435748126,
+          "score": 8,
+          "risk_level": "LOW",
+          "latitude": 58.198296511298466,
+          "longitude": -6.750785707625786
+        }
+      ],
+      "best_dutch_locations": [
+        {
+          "rank": 1,
+          "location": "Texel (NW)",
+          "country": "NL",
+          "probability": 0.02987233924517933,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 53.0959552203802,
+          "longitude": 4.68048038856925
+        },
+        {
+          "rank": 2,
+          "location": "Texel",
+          "country": "NL",
+          "probability": 0.029596852218931838,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 53.10244150895792,
+          "longitude": 4.82942665731369
+        },
+        {
+          "rank": 3,
+          "location": "Texel (SW)",
+          "country": "NL",
+          "probability": 0.029503287463925835,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 53.006370691346305,
+          "longitude": 4.691480088949886
+        },
+        {
+          "rank": 4,
+          "location": "Texel (SE)",
+          "country": "NL",
+          "probability": 0.029243086489420426,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 53.0128416515198,
+          "longitude": 4.840121039943961
+        },
+        {
+          "rank": 5,
+          "location": "Vlieland",
+          "country": "NL",
+          "probability": 0.028294961809263754,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 53.29411585632292,
+          "longitude": 5.107120915907821
+        }
+      ],
+      "map_locations": [
+        {
+          "rank": 1,
+          "location": "Fair Isle",
+          "country": "GB",
+          "probability": 0.05462922567795014,
+          "score": 11,
+          "risk_level": "LOW",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
+        },
+        {
+          "rank": 2,
+          "location": "Scilly Isles",
+          "country": "GB",
+          "probability": 0.05239330278675341,
+          "score": 10,
+          "risk_level": "LOW",
+          "latitude": 49.89913376686885,
+          "longitude": -6.240444835091222
+        },
+        {
+          "rank": 3,
+          "location": "Scilly Isles (SW)",
+          "country": "GB",
+          "probability": 0.050306224005506175,
+          "score": 10,
+          "risk_level": "LOW",
+          "latitude": 49.879271879947936,
+          "longitude": -6.376755276552173
+        },
+        {
+          "rank": 4,
+          "location": "Scilly Isles (N)",
+          "country": "GB",
+          "probability": 0.048887660908124915,
+          "score": 10,
+          "risk_level": "LOW",
+          "latitude": 49.98651177359376,
+          "longitude": -6.270737825295558
+        },
+        {
+          "rank": 5,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "probability": 0.04758763651162334,
+          "score": 10,
+          "risk_level": "LOW",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
+        },
+        {
+          "rank": 6,
+          "location": "Shetland",
+          "country": "GB",
+          "probability": 0.045094739296063155,
+          "score": 9,
+          "risk_level": "LOW",
+          "latitude": 60.2384254365565,
+          "longitude": -1.1430098707669825
+        },
+        {
+          "rank": 7,
+          "location": "Scilly Isles (NW)",
+          "country": "GB",
+          "probability": 0.04485196213152856,
+          "score": 9,
+          "risk_level": "LOW",
+          "latitude": 49.96660807548946,
+          "longitude": -6.407280774373756
+        },
+        {
+          "rank": 8,
+          "location": "North Ronaldsay",
+          "country": "GB",
+          "probability": 0.041159302400239565,
+          "score": 8,
+          "risk_level": "LOW",
+          "latitude": 59.39602016082837,
+          "longitude": -2.474020432857617
+        },
+        {
+          "rank": 9,
+          "location": "Shetland (W)",
+          "country": "GB",
+          "probability": 0.0406839393820912,
+          "score": 8,
+          "risk_level": "LOW",
+          "latitude": 60.22421424114578,
+          "longitude": -1.3208703050177297
+        },
+        {
+          "rank": 10,
+          "location": "Outer Hebrides",
+          "country": "GB",
+          "probability": 0.04034818435748126,
+          "score": 8,
+          "risk_level": "LOW",
+          "latitude": 58.198296511298466,
+          "longitude": -6.750785707625786
+        },
+        {
+          "rank": 11,
+          "location": "Outer Hebrides (E)",
+          "country": "GB",
+          "probability": 0.03805818458750585,
+          "score": 8,
+          "risk_level": "LOW",
+          "latitude": 58.219146585191666,
+          "longitude": -6.585197270255143
+        },
+        {
+          "rank": 12,
+          "location": "Fair Isle (W)",
+          "country": "GB",
+          "probability": 0.036924974372190764,
+          "score": 7,
+          "risk_level": "LOW",
+          "latitude": 59.5456929059122,
+          "longitude": -1.8110670604302148
+        },
+        {
+          "rank": 13,
+          "location": "North Ronaldsay (S)",
+          "country": "GB",
+          "probability": 0.036443931559485145,
+          "score": 7,
+          "risk_level": "LOW",
+          "latitude": 59.307676929118834,
+          "longitude": -2.44185074019834
+        },
+        {
+          "rank": 14,
+          "location": "Flamborough Head",
+          "country": "GB",
+          "probability": 0.035309264041522744,
+          "score": 7,
+          "risk_level": "LOW",
+          "latitude": 54.149666054744245,
+          "longitude": -0.07536280601207261
+        },
+        {
+          "rank": 15,
+          "location": "North Ronaldsay (NE)",
+          "country": "GB",
+          "probability": 0.03501447579158303,
+          "score": 7,
+          "risk_level": "LOW",
+          "latitude": 59.41163360709903,
+          "longitude": -2.3008367390713764
+        },
+        {
+          "rank": 16,
+          "location": "Scilly Isles (SE)",
+          "country": "GB",
+          "probability": 0.03330095019927889,
+          "score": 7,
+          "risk_level": "LOW",
+          "latitude": 49.811741975011614,
+          "longitude": -6.21028972171667
+        },
+        {
+          "rank": 17,
+          "location": "Fair Isle (SW)",
+          "country": "GB",
+          "probability": 0.03291451401751698,
+          "score": 7,
+          "risk_level": "LOW",
+          "latitude": 59.457178285724396,
+          "longitude": -1.7804182886813102
+        },
+        {
+          "rank": 18,
+          "location": "Flamborough Head (SE)",
+          "country": "GB",
+          "probability": 0.03257693745913816,
+          "score": 7,
+          "risk_level": "LOW",
+          "latitude": 54.060814411284326,
+          "longitude": -0.0538161004560878
+        },
+        {
+          "rank": 19,
+          "location": "Scilly Isles (E)",
+          "country": "GB",
+          "probability": 0.03252350946500714,
+          "score": 7,
+          "risk_level": "LOW",
+          "latitude": 49.91883256679416,
+          "longitude": -6.104032190604684
+        },
+        {
+          "rank": 20,
+          "location": "Shetland (N)",
+          "country": "GB",
+          "probability": 0.03194400132691994,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 60.32711656316582,
+          "longitude": -1.172909313704808
+        },
+        {
+          "rank": 21,
+          "location": "Outer Hebrides (NW)",
+          "country": "GB",
+          "probability": 0.03158420422797004,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 58.285316062145206,
+          "longitude": -6.7921760099688315
+        },
+        {
+          "rank": 22,
+          "location": "North Ronaldsay (SE)",
+          "country": "GB",
+          "probability": 0.03124996293774294,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 59.323245348737245,
+          "longitude": -2.269091038751042
+        },
+        {
+          "rank": 23,
+          "location": "Scilly Isles (S)",
+          "country": "GB",
+          "probability": 0.030985417175406902,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 49.79192170788401,
+          "longitude": -6.3463685875661175
+        },
+        {
+          "rank": 24,
+          "location": "Texel (NW)",
+          "country": "NL",
+          "probability": 0.02987233924517933,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 53.0959552203802,
+          "longitude": 4.68048038856925
+        },
+        {
+          "rank": 25,
+          "location": "Shetland (SE)",
+          "country": "GB",
+          "probability": 0.029618121535744432,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 60.149730210179065,
+          "longitude": -1.1132935820624017
+        },
+        {
+          "rank": 26,
+          "location": "Scilly Isles (NE)",
+          "country": "GB",
+          "probability": 0.029617295550930848,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 50.00625208299662,
+          "longitude": -6.134091970721871
+        },
+        {
+          "rank": 27,
+          "location": "Texel",
+          "country": "NL",
+          "probability": 0.029596852218931838,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 53.10244150895792,
+          "longitude": 4.82942665731369
+        },
+        {
+          "rank": 28,
+          "location": "Texel (SW)",
+          "country": "NL",
+          "probability": 0.029503287463925835,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 53.006370691346305,
+          "longitude": 4.691480088949886
+        },
+        {
+          "rank": 29,
+          "location": "Outer Hebrides (SE)",
+          "country": "GB",
+          "probability": 0.0294756945418852,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 58.13205621553171,
+          "longitude": -6.544410008726112
+        },
+        {
+          "rank": 30,
+          "location": "Texel (SE)",
+          "country": "NL",
+          "probability": 0.029243086489420426,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 53.0128416515198,
+          "longitude": 4.840121039943961
+        },
+        {
+          "rank": 31,
+          "location": "Shetland (NW)",
+          "country": "GB",
+          "probability": 0.029214901076762268,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 60.31286274591953,
+          "longitude": -1.3512265815570899
+        },
+        {
+          "rank": 32,
+          "location": "Flamborough Head (W)",
+          "country": "GB",
+          "probability": 0.028879934545880257,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 54.13709033563446,
+          "longitude": -0.22703903825736702
+        },
+        {
+          "rank": 33,
+          "location": "Fair Isle (N)",
+          "country": "GB",
+          "probability": 0.02872399876771741,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 59.64903715604272,
+          "longitude": -1.6672789147418798
+        },
+        {
+          "rank": 34,
+          "location": "Vlieland",
+          "country": "NL",
+          "probability": 0.028294961809263754,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 53.29411585632292,
+          "longitude": 5.107120915907821
+        },
+        {
+          "rank": 35,
+          "location": "Outer Hebrides (W)",
+          "country": "GB",
+          "probability": 0.028260811664187327,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 58.17724400447395,
+          "longitude": -6.916195427145621
+        },
+        {
+          "rank": 36,
+          "location": "Spurn",
+          "country": "GB",
+          "probability": 0.027814622024534042,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 53.61648051906133,
+          "longitude": 0.05227802599669143
+        },
+        {
+          "rank": 37,
+          "location": "Outer Hebrides (N)",
+          "country": "GB",
+          "probability": 0.0277977609611072,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 58.306223350306546,
+          "longitude": -6.626216312080842
+        },
+        {
+          "rank": 38,
+          "location": "Terschelling",
+          "country": "NL",
+          "probability": 0.027501972359615115,
+          "score": 6,
+          "risk_level": "LOW",
+          "latitude": 53.38971718296027,
+          "longitude": 5.246876605822208
+        },
+        {
+          "rank": 39,
+          "location": "Shetland (S)",
+          "country": "GB",
+          "probability": 0.02727961378629222,
+          "score": 5,
+          "risk_level": "LOW",
+          "latitude": 60.13556137337055,
+          "longitude": -1.2906998102783485
+        },
+        {
+          "rank": 40,
+          "location": "Flamborough Head (SW)",
+          "country": "GB",
+          "probability": 0.026562099908787717,
+          "score": 5,
+          "risk_level": "LOW",
+          "latitude": 54.0482691903194,
+          "longitude": -0.20517882753211975
+        }
+      ]
+    }
+  ]
+}

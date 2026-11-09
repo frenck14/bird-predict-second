@@ -1,0 +1,1054 @@
+{
+  "product": "Seawatch Day Rating",
+  "generated_at": "2026-11-09T08:25:47.472626+00:00",
+  "formula": {
+    "weights": {
+      "General Seabird Index": 0.4,
+      "European Storm-petrel": 0.3,
+      "Manx Shearwater": 0.2,
+      "Sooty Shearwater": 0.1
+    },
+    "weather_bonuses": {
+      "strong_westerly_wind": 10,
+      "deep_atlantic_low": 10,
+      "increasing_wind": 5,
+      "peak_seawatching_season": 5
+    },
+    "wind_threshold_kt": 20.0,
+    "wind_sector": "W through WNW (247.5\u00b0\u2013292.5\u00b0)",
+    "deep_low_pressure_hpa": 1000.0,
+    "score_cap": 100,
+    "rating_bands": [
+      {
+        "minimum": 0,
+        "rating": "Poor"
+      },
+      {
+        "minimum": 25,
+        "rating": "Fair"
+      },
+      {
+        "minimum": 50,
+        "rating": "Good"
+      },
+      {
+        "minimum": 70,
+        "rating": "Excellent"
+      },
+      {
+        "minimum": 85,
+        "rating": "Major Seawatch Day"
+      }
+    ]
+  },
+  "horizons": [
+    {
+      "date": "2026-11-10",
+      "label": "Tomorrow",
+      "score": 8,
+      "rating": "Poor",
+      "confidence": "High",
+      "best_coast": {
+        "coast": "Wadden islands",
+        "mean_probability": 0.004203830173719293,
+        "top_site": "Texel (NW)"
+      },
+      "top3_dutch_sites": [
+        {
+          "location": "Texel (NW)",
+          "score": 6,
+          "rating": "Poor",
+          "probability": 0.007816756691719717
+        },
+        {
+          "location": "Vlieland",
+          "score": 6,
+          "rating": "Poor",
+          "probability": 0.007401509521670632
+        },
+        {
+          "location": "Terschelling",
+          "score": 6,
+          "rating": "Poor",
+          "probability": 0.007201488212931047
+        }
+      ],
+      "drivers": [
+        {
+          "name": "General Seabird Index",
+          "points": 1.4122751322751321
+        },
+        {
+          "name": "European Storm-petrel",
+          "points": 0.40952380952380946
+        },
+        {
+          "name": "Manx Shearwater",
+          "points": 0.0
+        },
+        {
+          "name": "Sooty Shearwater",
+          "points": 1.2808862433862434
+        },
+        {
+          "name": "peak_seawatching_season",
+          "points": 5
+        }
+      ],
+      "component_points": {
+        "General Seabird Index": 1.4122751322751321,
+        "European Storm-petrel": 0.40952380952380946,
+        "Manx Shearwater": 0.0,
+        "Sooty Shearwater": 1.2808862433862434
+      },
+      "weather_bonuses": {
+        "strong_westerly_wind": 0,
+        "deep_atlantic_low": 0,
+        "increasing_wind": 0,
+        "peak_seawatching_season": 5
+      },
+      "input_probabilities": {
+        "General Seabird Index": 0.0353068783068783,
+        "European Storm-petrel": 0.01365079365079365,
+        "Manx Shearwater": 0.0,
+        "Sooty Shearwater": 0.12808862433862434
+      },
+      "weather": {
+        "wind_speed_ms": 3.328125000000001,
+        "wind_speed_kt": 6.46936304048643,
+        "wind_direction_degrees": 160.43445516765897,
+        "wind_direction": "SSE",
+        "minimum_pressure_hpa": 1021.4,
+        "wind_change_ms": null
+      },
+      "top10_hotspots": [
+        {
+          "rank": 1,
+          "location": "Scilly Isles",
+          "country": "GB",
+          "score": 7,
+          "rating": "Poor",
+          "latitude": 49.89913376686885,
+          "longitude": -6.240444835091222
+        },
+        {
+          "rank": 2,
+          "location": "Scilly Isles (SW)",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 49.879271879947936,
+          "longitude": -6.376755276552173
+        },
+        {
+          "rank": 3,
+          "location": "Fair Isle",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
+        },
+        {
+          "rank": 4,
+          "location": "Scilly Isles (N)",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 49.98651177359376,
+          "longitude": -6.270737825295558
+        },
+        {
+          "rank": 5,
+          "location": "Scilly Isles (NW)",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 49.96660807548946,
+          "longitude": -6.407280774373756
+        },
+        {
+          "rank": 6,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
+        },
+        {
+          "rank": 7,
+          "location": "Shetland",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 60.2384254365565,
+          "longitude": -1.1430098707669825
+        },
+        {
+          "rank": 8,
+          "location": "North Ronaldsay",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 59.39602016082837,
+          "longitude": -2.474020432857617
+        },
+        {
+          "rank": 9,
+          "location": "Shetland (W)",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 60.22421424114578,
+          "longitude": -1.3208703050177297
+        },
+        {
+          "rank": 10,
+          "location": "Outer Hebrides",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 58.198296511298466,
+          "longitude": -6.750785707625786
+        }
+      ],
+      "forecast_day": 1,
+      "coast_ranking": [
+        {
+          "coast": "Delta Coast",
+          "score": 6.0,
+          "top_site": "Neeltje Jans",
+          "rank": 1
+        },
+        {
+          "coast": "North Holland Coast",
+          "score": 6.0,
+          "top_site": "Bloemendaal aan Zee",
+          "rank": 2
+        },
+        {
+          "coast": "South Holland Coast",
+          "score": 6.0,
+          "top_site": "Maasvlakte",
+          "rank": 3
+        },
+        {
+          "coast": "Wadden Islands",
+          "score": 6.0,
+          "top_site": "Schiermonnikoog",
+          "rank": 4
+        }
+      ],
+      "positive_drivers": [
+        {
+          "name": "peak_seawatching_season",
+          "label": "October-November season",
+          "detail": "peak seawatching season",
+          "points": 5.0
+        }
+      ],
+      "negative_drivers": [
+        {
+          "name": "strong_westerly_wind",
+          "label": "Strong W-WNW airflow",
+          "detail": "SSE 6 kt; needs W-WNW at 20 kt or more",
+          "points": -10.0
+        },
+        {
+          "name": "deep_atlantic_low",
+          "label": "Deep Atlantic low",
+          "detail": "1021 hPa; no deep low (1000 hPa or lower)",
+          "points": -10.0
+        },
+        {
+          "name": "increasing_wind",
+          "label": "Increasing wind",
+          "detail": "no previous-day wind to compare",
+          "points": -5.0
+        },
+        {
+          "name": "storm_petrel_signal",
+          "label": "Weak Storm-petrel signal",
+          "detail": "1% event probability (elevated at 25%)",
+          "points": -7.09047619047619
+        },
+        {
+          "name": "manx_signal",
+          "label": "Weak Manx signal",
+          "detail": "0% event probability (elevated at 25%)",
+          "points": -5.0
+        },
+        {
+          "name": "sooty_signal",
+          "label": "Weak Sooty signal",
+          "detail": "13% event probability (elevated at 25%)",
+          "points": -1.2191137566137566
+        }
+      ],
+      "historical_percentile": 45.5,
+      "historical_label": "Common Conditions",
+      "historical_rank_text": "Higher than 46% of historical forecast days"
+    },
+    {
+      "date": "2026-11-12",
+      "label": "+3 days",
+      "score": 7,
+      "rating": "Poor",
+      "confidence": "High",
+      "best_coast": {
+        "coast": "Wadden islands",
+        "mean_probability": 0.002449480310782802,
+        "top_site": "Texel (NW)"
+      },
+      "top3_dutch_sites": [
+        {
+          "location": "Texel (NW)",
+          "score": 5,
+          "rating": "Poor",
+          "probability": 0.0043814331092240635
+        },
+        {
+          "location": "Vlieland",
+          "score": 5,
+          "rating": "Poor",
+          "probability": 0.0041517057952469094
+        },
+        {
+          "location": "Terschelling",
+          "score": 5,
+          "rating": "Poor",
+          "probability": 0.004041327355686745
+        }
+      ],
+      "drivers": [
+        {
+          "name": "General Seabird Index",
+          "points": 0.7592063492063492
+        },
+        {
+          "name": "European Storm-petrel",
+          "points": 0.1738888888888889
+        },
+        {
+          "name": "Manx Shearwater",
+          "points": 0.07777777777777778
+        },
+        {
+          "name": "Sooty Shearwater",
+          "points": 1.266877104377104
+        },
+        {
+          "name": "peak_seawatching_season",
+          "points": 5
+        }
+      ],
+      "component_points": {
+        "General Seabird Index": 0.7592063492063492,
+        "European Storm-petrel": 0.1738888888888889,
+        "Manx Shearwater": 0.07777777777777778,
+        "Sooty Shearwater": 1.266877104377104
+      },
+      "weather_bonuses": {
+        "strong_westerly_wind": 0,
+        "deep_atlantic_low": 0,
+        "increasing_wind": 0,
+        "peak_seawatching_season": 5
+      },
+      "input_probabilities": {
+        "General Seabird Index": 0.01898015873015873,
+        "European Storm-petrel": 0.005796296296296297,
+        "Manx Shearwater": 0.003888888888888889,
+        "Sooty Shearwater": 0.1266877104377104
+      },
+      "weather": {
+        "wind_speed_ms": 3.5893749999999995,
+        "wind_speed_kt": 6.977192852866395,
+        "wind_direction_degrees": 59.30279396392722,
+        "wind_direction": "ENE",
+        "minimum_pressure_hpa": 1005.1,
+        "wind_change_ms": -0.15333333333333332
+      },
+      "top10_hotspots": [
+        {
+          "rank": 1,
+          "location": "Scilly Isles",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 49.89913376686885,
+          "longitude": -6.240444835091222
+        },
+        {
+          "rank": 2,
+          "location": "Scilly Isles (SW)",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 49.879271879947936,
+          "longitude": -6.376755276552173
+        },
+        {
+          "rank": 3,
+          "location": "Scilly Isles (N)",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 49.98651177359376,
+          "longitude": -6.270737825295558
+        },
+        {
+          "rank": 4,
+          "location": "Fair Isle",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
+        },
+        {
+          "rank": 5,
+          "location": "Scilly Isles (NW)",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 49.96660807548946,
+          "longitude": -6.407280774373756
+        },
+        {
+          "rank": 6,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
+        },
+        {
+          "rank": 7,
+          "location": "Shetland",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 60.2384254365565,
+          "longitude": -1.1430098707669825
+        },
+        {
+          "rank": 8,
+          "location": "Scilly Isles (SE)",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 49.811741975011614,
+          "longitude": -6.21028972171667
+        },
+        {
+          "rank": 9,
+          "location": "Scilly Isles (E)",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 49.91883256679416,
+          "longitude": -6.104032190604684
+        },
+        {
+          "rank": 10,
+          "location": "North Ronaldsay",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 59.39602016082837,
+          "longitude": -2.474020432857617
+        }
+      ],
+      "forecast_day": 3,
+      "coast_ranking": [
+        {
+          "coast": "Delta Coast",
+          "score": 5.0,
+          "top_site": "Neeltje Jans",
+          "rank": 1
+        },
+        {
+          "coast": "North Holland Coast",
+          "score": 5.0,
+          "top_site": "Bloemendaal aan Zee",
+          "rank": 2
+        },
+        {
+          "coast": "South Holland Coast",
+          "score": 5.0,
+          "top_site": "Maasvlakte",
+          "rank": 3
+        },
+        {
+          "coast": "Wadden Islands",
+          "score": 5.0,
+          "top_site": "Schiermonnikoog",
+          "rank": 4
+        }
+      ],
+      "positive_drivers": [
+        {
+          "name": "peak_seawatching_season",
+          "label": "October-November season",
+          "detail": "peak seawatching season",
+          "points": 5.0
+        }
+      ],
+      "negative_drivers": [
+        {
+          "name": "strong_westerly_wind",
+          "label": "Strong W-WNW airflow",
+          "detail": "ENE 7 kt; needs W-WNW at 20 kt or more",
+          "points": -10.0
+        },
+        {
+          "name": "deep_atlantic_low",
+          "label": "Deep Atlantic low",
+          "detail": "1005 hPa; no deep low (1000 hPa or lower)",
+          "points": -10.0
+        },
+        {
+          "name": "increasing_wind",
+          "label": "Increasing wind",
+          "detail": "wind not increasing",
+          "points": -5.0
+        },
+        {
+          "name": "storm_petrel_signal",
+          "label": "Weak Storm-petrel signal",
+          "detail": "1% event probability (elevated at 25%)",
+          "points": -7.326111111111111
+        },
+        {
+          "name": "manx_signal",
+          "label": "Weak Manx signal",
+          "detail": "0% event probability (elevated at 25%)",
+          "points": -4.9222222222222225
+        },
+        {
+          "name": "sooty_signal",
+          "label": "Weak Sooty signal",
+          "detail": "13% event probability (elevated at 25%)",
+          "points": -1.2331228956228961
+        }
+      ],
+      "historical_percentile": 43.0,
+      "historical_label": "Common Conditions",
+      "historical_rank_text": "Higher than 43% of historical forecast days"
+    },
+    {
+      "date": "2026-11-16",
+      "label": "+7 days",
+      "score": 12,
+      "rating": "Poor",
+      "confidence": "Medium",
+      "best_coast": {
+        "coast": "Wadden islands",
+        "mean_probability": 0.0018759881252858699,
+        "top_site": "Texel (NW)"
+      },
+      "top3_dutch_sites": [
+        {
+          "location": "Texel (NW)",
+          "score": 10,
+          "rating": "Poor",
+          "probability": 0.0033134210500640592
+        },
+        {
+          "location": "Vlieland",
+          "score": 10,
+          "rating": "Poor",
+          "probability": 0.003127860428688198
+        },
+        {
+          "location": "Terschelling",
+          "score": 10,
+          "rating": "Poor",
+          "probability": 0.0030467026278556005
+        }
+      ],
+      "drivers": [
+        {
+          "name": "General Seabird Index",
+          "points": 0.5625925925925926
+        },
+        {
+          "name": "European Storm-petrel",
+          "points": 0.20297619047619048
+        },
+        {
+          "name": "Manx Shearwater",
+          "points": 0.022222222222222223
+        },
+        {
+          "name": "Sooty Shearwater",
+          "points": 1.2461243386243388
+        },
+        {
+          "name": "increasing_wind",
+          "points": 5
+        },
+        {
+          "name": "peak_seawatching_season",
+          "points": 5
+        }
+      ],
+      "component_points": {
+        "General Seabird Index": 0.5625925925925926,
+        "European Storm-petrel": 0.20297619047619048,
+        "Manx Shearwater": 0.022222222222222223,
+        "Sooty Shearwater": 1.2461243386243388
+      },
+      "weather_bonuses": {
+        "strong_westerly_wind": 0,
+        "deep_atlantic_low": 0,
+        "increasing_wind": 5,
+        "peak_seawatching_season": 5
+      },
+      "input_probabilities": {
+        "General Seabird Index": 0.014064814814814816,
+        "European Storm-petrel": 0.006765873015873016,
+        "Manx Shearwater": 0.0011111111111111111,
+        "Sooty Shearwater": 0.12461243386243388
+      },
+      "weather": {
+        "wind_speed_ms": 8.038020833333334,
+        "wind_speed_kt": 15.624676025638037,
+        "wind_direction_degrees": 183.10873157940628,
+        "wind_direction": "S",
+        "minimum_pressure_hpa": 1020.3,
+        "wind_change_ms": 3.370729166666667
+      },
+      "top10_hotspots": [
+        {
+          "rank": 1,
+          "location": "Scilly Isles",
+          "country": "GB",
+          "score": 11,
+          "rating": "Poor",
+          "latitude": 49.89913376686885,
+          "longitude": -6.240444835091222
+        },
+        {
+          "rank": 2,
+          "location": "Scilly Isles (SW)",
+          "country": "GB",
+          "score": 11,
+          "rating": "Poor",
+          "latitude": 49.879271879947936,
+          "longitude": -6.376755276552173
+        },
+        {
+          "rank": 3,
+          "location": "Scilly Isles (N)",
+          "country": "GB",
+          "score": 11,
+          "rating": "Poor",
+          "latitude": 49.98651177359376,
+          "longitude": -6.270737825295558
+        },
+        {
+          "rank": 4,
+          "location": "Scilly Isles (NW)",
+          "country": "GB",
+          "score": 11,
+          "rating": "Poor",
+          "latitude": 49.96660807548946,
+          "longitude": -6.407280774373756
+        },
+        {
+          "rank": 5,
+          "location": "Fair Isle",
+          "country": "GB",
+          "score": 11,
+          "rating": "Poor",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
+        },
+        {
+          "rank": 6,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "score": 11,
+          "rating": "Poor",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
+        },
+        {
+          "rank": 7,
+          "location": "Shetland",
+          "country": "GB",
+          "score": 10,
+          "rating": "Poor",
+          "latitude": 60.2384254365565,
+          "longitude": -1.1430098707669825
+        },
+        {
+          "rank": 8,
+          "location": "Scilly Isles (SE)",
+          "country": "GB",
+          "score": 10,
+          "rating": "Poor",
+          "latitude": 49.811741975011614,
+          "longitude": -6.21028972171667
+        },
+        {
+          "rank": 9,
+          "location": "Norfolk coast",
+          "country": "GB",
+          "score": 10,
+          "rating": "Poor",
+          "latitude": 52.99606456543794,
+          "longitude": 1.3985446656169962
+        },
+        {
+          "rank": 10,
+          "location": "Scilly Isles (E)",
+          "country": "GB",
+          "score": 10,
+          "rating": "Poor",
+          "latitude": 49.91883256679416,
+          "longitude": -6.104032190604684
+        }
+      ],
+      "forecast_day": 7,
+      "coast_ranking": [
+        {
+          "coast": "Delta Coast",
+          "score": 10.0,
+          "top_site": "Neeltje Jans",
+          "rank": 1
+        },
+        {
+          "coast": "North Holland Coast",
+          "score": 10.0,
+          "top_site": "Bloemendaal aan Zee",
+          "rank": 2
+        },
+        {
+          "coast": "South Holland Coast",
+          "score": 10.0,
+          "top_site": "Maasvlakte",
+          "rank": 3
+        },
+        {
+          "coast": "Wadden Islands",
+          "score": 10.0,
+          "top_site": "Schiermonnikoog",
+          "rank": 4
+        }
+      ],
+      "positive_drivers": [
+        {
+          "name": "increasing_wind",
+          "label": "Increasing wind",
+          "detail": "wind stronger than previous day",
+          "points": 5.0
+        },
+        {
+          "name": "peak_seawatching_season",
+          "label": "October-November season",
+          "detail": "peak seawatching season",
+          "points": 5.0
+        }
+      ],
+      "negative_drivers": [
+        {
+          "name": "strong_westerly_wind",
+          "label": "Strong W-WNW airflow",
+          "detail": "S 16 kt; needs W-WNW at 20 kt or more",
+          "points": -10.0
+        },
+        {
+          "name": "deep_atlantic_low",
+          "label": "Deep Atlantic low",
+          "detail": "1020 hPa; no deep low (1000 hPa or lower)",
+          "points": -10.0
+        },
+        {
+          "name": "storm_petrel_signal",
+          "label": "Weak Storm-petrel signal",
+          "detail": "1% event probability (elevated at 25%)",
+          "points": -7.29702380952381
+        },
+        {
+          "name": "manx_signal",
+          "label": "Weak Manx signal",
+          "detail": "0% event probability (elevated at 25%)",
+          "points": -4.977777777777778
+        },
+        {
+          "name": "sooty_signal",
+          "label": "Weak Sooty signal",
+          "detail": "12% event probability (elevated at 25%)",
+          "points": -1.2538756613756612
+        }
+      ],
+      "historical_percentile": 59.5,
+      "historical_label": "Above Average",
+      "historical_rank_text": "Higher than 60% of historical forecast days"
+    },
+    {
+      "date": "2026-11-23",
+      "label": "+14 days",
+      "score": 10,
+      "rating": "Poor",
+      "confidence": "Low",
+      "best_coast": {
+        "coast": "Wadden islands",
+        "mean_probability": 0.006316491229305488,
+        "top_site": "Texel (NW)"
+      },
+      "top3_dutch_sites": [
+        {
+          "location": "Texel (NW)",
+          "score": 6,
+          "rating": "Poor",
+          "probability": 0.012140873576134305
+        },
+        {
+          "location": "Vlieland",
+          "score": 6,
+          "rating": "Poor",
+          "probability": 0.011488346359560917
+        },
+        {
+          "location": "Terschelling",
+          "score": 6,
+          "rating": "Poor",
+          "probability": 0.011168165667799166
+        }
+      ],
+      "drivers": [
+        {
+          "name": "General Seabird Index",
+          "points": 2.260692640692641
+        },
+        {
+          "name": "European Storm-petrel",
+          "points": 1.3152380952380955
+        },
+        {
+          "name": "Manx Shearwater",
+          "points": 0.11555555555555558
+        },
+        {
+          "name": "Sooty Shearwater",
+          "points": 1.1919684944684943
+        },
+        {
+          "name": "peak_seawatching_season",
+          "points": 5
+        }
+      ],
+      "component_points": {
+        "General Seabird Index": 2.260692640692641,
+        "European Storm-petrel": 1.3152380952380955,
+        "Manx Shearwater": 0.11555555555555558,
+        "Sooty Shearwater": 1.1919684944684943
+      },
+      "weather_bonuses": {
+        "strong_westerly_wind": 0,
+        "deep_atlantic_low": 0,
+        "increasing_wind": 0,
+        "peak_seawatching_season": 5
+      },
+      "input_probabilities": {
+        "General Seabird Index": 0.056517316017316015,
+        "European Storm-petrel": 0.043841269841269855,
+        "Manx Shearwater": 0.005777777777777778,
+        "Sooty Shearwater": 0.11919684944684943
+      },
+      "weather": {
+        "wind_speed_ms": 3.8809375000000004,
+        "wind_speed_kt": 7.543945502328728,
+        "wind_direction_degrees": 156.28301086843598,
+        "wind_direction": "SSE",
+        "minimum_pressure_hpa": 1022.3,
+        "wind_change_ms": -0.2826041666666659
+      },
+      "top10_hotspots": [
+        {
+          "rank": 1,
+          "location": "Fair Isle",
+          "country": "GB",
+          "score": 7,
+          "rating": "Poor",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
+        },
+        {
+          "rank": 2,
+          "location": "Scilly Isles",
+          "country": "GB",
+          "score": 7,
+          "rating": "Poor",
+          "latitude": 49.89913376686885,
+          "longitude": -6.240444835091222
+        },
+        {
+          "rank": 3,
+          "location": "Scilly Isles (SW)",
+          "country": "GB",
+          "score": 7,
+          "rating": "Poor",
+          "latitude": 49.879271879947936,
+          "longitude": -6.376755276552173
+        },
+        {
+          "rank": 4,
+          "location": "Scilly Isles (N)",
+          "country": "GB",
+          "score": 7,
+          "rating": "Poor",
+          "latitude": 49.98651177359376,
+          "longitude": -6.270737825295558
+        },
+        {
+          "rank": 5,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "score": 7,
+          "rating": "Poor",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
+        },
+        {
+          "rank": 6,
+          "location": "Scilly Isles (NW)",
+          "country": "GB",
+          "score": 7,
+          "rating": "Poor",
+          "latitude": 49.96660807548946,
+          "longitude": -6.407280774373756
+        },
+        {
+          "rank": 7,
+          "location": "Shetland",
+          "country": "GB",
+          "score": 7,
+          "rating": "Poor",
+          "latitude": 60.2384254365565,
+          "longitude": -1.1430098707669825
+        },
+        {
+          "rank": 8,
+          "location": "North Ronaldsay",
+          "country": "GB",
+          "score": 7,
+          "rating": "Poor",
+          "latitude": 59.39602016082837,
+          "longitude": -2.474020432857617
+        },
+        {
+          "rank": 9,
+          "location": "Shetland (W)",
+          "country": "GB",
+          "score": 7,
+          "rating": "Poor",
+          "latitude": 60.22421424114578,
+          "longitude": -1.3208703050177297
+        },
+        {
+          "rank": 10,
+          "location": "Outer Hebrides",
+          "country": "GB",
+          "score": 7,
+          "rating": "Poor",
+          "latitude": 58.198296511298466,
+          "longitude": -6.750785707625786
+        }
+      ],
+      "forecast_day": 14,
+      "coast_ranking": [
+        {
+          "coast": "Delta Coast",
+          "score": 6.0,
+          "top_site": "Neeltje Jans",
+          "rank": 1
+        },
+        {
+          "coast": "North Holland Coast",
+          "score": 6.0,
+          "top_site": "Bloemendaal aan Zee",
+          "rank": 2
+        },
+        {
+          "coast": "South Holland Coast",
+          "score": 6.0,
+          "top_site": "Maasvlakte",
+          "rank": 3
+        },
+        {
+          "coast": "Wadden Islands",
+          "score": 6.0,
+          "top_site": "Schiermonnikoog",
+          "rank": 4
+        }
+      ],
+      "positive_drivers": [
+        {
+          "name": "peak_seawatching_season",
+          "label": "October-November season",
+          "detail": "peak seawatching season",
+          "points": 5.0
+        }
+      ],
+      "negative_drivers": [
+        {
+          "name": "strong_westerly_wind",
+          "label": "Strong W-WNW airflow",
+          "detail": "SSE 8 kt; needs W-WNW at 20 kt or more",
+          "points": -10.0
+        },
+        {
+          "name": "deep_atlantic_low",
+          "label": "Deep Atlantic low",
+          "detail": "1022 hPa; no deep low (1000 hPa or lower)",
+          "points": -10.0
+        },
+        {
+          "name": "increasing_wind",
+          "label": "Increasing wind",
+          "detail": "wind not increasing",
+          "points": -5.0
+        },
+        {
+          "name": "storm_petrel_signal",
+          "label": "Weak Storm-petrel signal",
+          "detail": "4% event probability (elevated at 25%)",
+          "points": -6.1847619047619045
+        },
+        {
+          "name": "manx_signal",
+          "label": "Weak Manx signal",
+          "detail": "1% event probability (elevated at 25%)",
+          "points": -4.884444444444445
+        },
+        {
+          "name": "sooty_signal",
+          "label": "Weak Sooty signal",
+          "detail": "12% event probability (elevated at 25%)",
+          "points": -1.3080315055315057
+        }
+      ],
+      "historical_percentile": 50.3,
+      "historical_label": "Above Average",
+      "historical_rank_text": "Higher than 50% of historical forecast days"
+    }
+  ],
+  "historical_context": {
+    "method": "share of all historical model-output days with a lower score",
+    "seawatch_sample_size": 5792,
+    "rarity_sample_size": 5792,
+    "labels": {
+      "<50": "Common Conditions",
+      "50-75": "Above Average",
+      "75-90": "Strong",
+      "90-95": "Exceptional",
+      "95+": "Historic"
+    }
+  }
+}

@@ -1,0 +1,745 @@
+model,feature,importance,rank
+Goose Activity,day_of_year_sin,0.05320637453731773,1
+Goose Activity,day_of_year,0.04740261579616279,2
+Goose Activity,week_of_year,0.03332527224394221,3
+Goose Activity,month,0.027335489408939376,4
+Goose Activity,day_of_year_cos,0.023800314291711262,5
+Goose Activity,temperature_rolling_mean_3d,0.014377398852299444,6
+Goose Activity,temperature_rolling_mean_7d,0.013735526015110817,7
+Goose Activity,goose_temp_mean_7d_c,0.012810460465894636,8
+Goose Activity,temperature_lag_24h,0.011428121640430312,9
+Goose Activity,TG_242,0.01124431066375747,10
+Goose Activity,TN_242,0.01071528131498637,11
+Goose Activity,wind_direction_south_lag_72h,0.010643272348275258,12
+Goose Activity,wind_direction_south_rolling_mean_7d,0.010388851208452971,13
+Goose Activity,pressure_rolling_mean_3d,0.010034613225677712,14
+Goose Activity,wind_direction_west_rolling_anomaly_3d,0.009871529863983845,15
+Goose Activity,temperature_rolling_anomaly_7d,0.009728727258030388,16
+Goose Activity,temperature_lag_72h,0.009517279645514125,17
+Goose Activity,temperature_lag_48h,0.00938518820084912,18
+Goose Activity,TX_242,0.009371040586735113,19
+Goose Activity,goose_temp_change_72h_c,0.009207833071438807,20
+Goose Activity,pressure_lag_72h,0.009113985667479117,21
+Goose Activity,coast_TG_mean,0.009093371143714299,22
+Goose Activity,wind_direction_west_rolling_anomaly_7d,0.009079512062992467,23
+Goose Activity,coast_TX_mean,0.00903396566354164,24
+Goose Activity,PX_310,0.008910336809117682,25
+Goose Activity,coast_pressure_gradient,0.008819300866956224,26
+Goose Activity,coast_PX_mean,0.008807838189659531,27
+Goose Activity,goose_temp_min_c,0.008783998276101974,28
+Goose Activity,precipitation_rolling_mean_7d,0.008756459694534546,29
+Goose Activity,pressure_rolling_mean_7d,0.008754542499725938,30
+Goose Activity,wind_direction_south_lag_48h,0.008721783528822817,31
+Goose Activity,pressure_lag_48h,0.008706948951224818,32
+Goose Activity,pressure_rolling_anomaly_7d,0.008688557249021166,33
+Goose Activity,wind_speed_rolling_anomaly_7d,0.008589867450219993,34
+Goose Activity,TX_310,0.00850648654060436,35
+Goose Activity,pressure_lag_24h,0.008316529773164551,36
+Goose Activity,precipitation_rolling_anomaly_7d,0.008302340093767104,37
+Goose Activity,wind_speed_rolling_anomaly_3d,0.008220968697100114,38
+Goose Activity,goose_temp_mean_c,0.0082197754336829,39
+Goose Activity,wind_direction_west_lag_72h,0.008215503087260509,40
+Goose Activity,wind_direction_south_rolling_anomaly_7d,0.008214536784511667,41
+Goose Activity,temperature_rolling_anomaly_3d,0.008190249350213872,42
+Goose Activity,wind_direction_south_lag_24h,0.008181330850868338,43
+Goose Activity,temp_change_24h,0.008124638573588198,44
+Goose Activity,wind_direction_south_rolling_anomaly_3d,0.008116965338557675,45
+Goose Activity,wind_direction_west_lag_24h,0.008086147209293255,46
+Goose Activity,wind_direction_west_rolling_mean_7d,0.008081127390810473,47
+Goose Activity,wind_direction_south_rolling_mean_3d,0.00800816621348215,48
+Goose Activity,coast_PX_min,0.008003713365743908,49
+Goose Activity,PX_235,0.007995593747179114,50
+Goose Activity,goose_temp_change_24h_c,0.007979176213773575,51
+Goose Activity,TG_235,0.007949586973523465,52
+Goose Activity,coast_wind_cos,0.00791687508285877,53
+Goose Activity,wind_sin_310,0.00790298953703979,54
+Goose Activity,wind_speed_rolling_mean_7d,0.007898836902695787,55
+Goose Activity,wind_sin_235,0.007865436731570695,56
+Goose Activity,wind_speed_lag_72h,0.007783240790034851,57
+Goose Activity,wind_change_24h,0.007756147511927021,58
+Goose Activity,pressure_change_24h,0.007726358611753758,59
+Goose Activity,PX_242,0.00771170566045096,60
+Goose Activity,wind_direction_west_rolling_mean_3d,0.00769921862937741,61
+Goose Activity,wind_speed_lag_24h,0.007657863567956368,62
+Goose Activity,wind_direction_west_lag_48h,0.007644040094146991,63
+Goose Activity,wind_sin_242,0.007635603847060344,64
+Goose Activity,goose_temp_max_c,0.00760771524633741,65
+Goose Activity,TG_310,0.007559259308020625,66
+Goose Activity,coast_wind_sin,0.007544529281716176,67
+Goose Activity,goose_pressure_change_24h_hpa,0.007490380946667233,68
+Goose Activity,wind_cos_235,0.007469512382909258,69
+Goose Activity,TX_235,0.007454307012099603,70
+Goose Activity,coast_west_wind_component,0.007436530248929107,71
+Goose Activity,goose_pressure_hpa,0.007368329957726242,72
+Goose Activity,TN_235,0.007275524045534156,73
+Goose Activity,goose_precipitation_3d_mm,0.007196050561248334,74
+Goose Activity,wind_sin_225,0.007179598240729919,75
+Goose Activity,wind_cos_242,0.007175207129047669,76
+Goose Activity,coast_south_wind_component,0.007131489474345718,77
+Goose Activity,pressure_rolling_anomaly_3d,0.007111815815958355,78
+Goose Activity,wind_speed_lag_48h,0.007040812043818733,79
+Goose Activity,goose_easterly_wind_ms,0.0070400823160656325,80
+Goose Activity,temp_change_48h,0.007016332074789839,81
+Goose Activity,pressure_change_48h,0.006932660025918952,82
+Goose Activity,goose_wind_direction_deg,0.006851715130950703,83
+Goose Activity,coast_TX_max,0.006850923484654192,84
+Goose Activity,precipitation_rolling_anomaly_3d,0.006837440916079043,85
+Goose Activity,wind_cos_310,0.0068151343434618575,86
+Goose Activity,wind_change_48h,0.0067884089016810025,87
+Goose Activity,TN_310,0.006771506865257441,88
+Goose Activity,precipitation_rolling_mean_3d,0.006767175966701391,89
+Goose Activity,wind_speed_rolling_mean_3d,0.006615873039018808,90
+Goose Activity,wind_cos_225,0.006498162629640688,91
+Goose Activity,FG_242,0.006388891234017885,92
+Goose Activity,FG_310,0.006126760462084147,93
+Goose Activity,precipitation_lag_24h,0.0060561036922916886,94
+Goose Activity,coast_FG_max,0.0059415298636195275,95
+Goose Activity,FG_235,0.00585869254151343,96
+Goose Activity,FG_225,0.005765351654107605,97
+Goose Activity,precipitation_lag_72h,0.005629859434083686,98
+Goose Activity,precipitation_lag_48h,0.00555839158755931,99
+Goose Activity,goose_wind_speed_ms,0.005547775952633788,100
+Goose Activity,coast_FG_mean,0.0048768365135161,101
+Goose Activity,coast_RH_mean,0.004581951389673143,102
+Goose Activity,coast_FHX_mean,0.004448179732672941,103
+Goose Activity,goose_precipitation_mm,0.0041737645518295985,104
+Goose Activity,RH_235,0.003877084877662369,105
+Goose Activity,RH_310,0.0037611391867978226,106
+Goose Activity,FHX_225,0.003631305040035122,107
+Goose Activity,coast_FHX_max,0.0034323537013376654,108
+Goose Activity,FHX_242,0.00325159421835896,109
+Goose Activity,FHX_310,0.0029793534263254837,110
+Goose Activity,FHX_235,0.002626998161782909,111
+Goose Activity,goose_frost_days_7d,0.0011226180487259577,112
+Goose Activity,goose_consecutive_frost_days,0.0006354731209045158,113
+Goose Activity,goose_frost,0.00042967902761051335,114
+Goose Activity,coast_atlantic_storm_wind,6.895942012265265e-05,115
+Goose Activity,goose_cold_outbreak,5.194819118122348e-05,116
+Goose Activity,goose_rapid_temp_drop,2.9656689148849723e-05,117
+Goose Activity,coast_atlantic_storm_pressure,2.0149594475204367e-05,118
+Goose Activity,RH_242,0.0,119
+Goose Activity,TG_225,0.0,120
+Goose Activity,TN_225,0.0,121
+Goose Activity,TX_225,0.0,122
+Goose Activity,RH_225,0.0,123
+Goose Activity,PX_225,0.0,124
+Red-breasted Goose,day_of_year,0.02924252233532556,1
+Red-breasted Goose,day_of_year_sin,0.02799171934503586,2
+Red-breasted Goose,week_of_year,0.021623892953228856,3
+Red-breasted Goose,day_of_year_cos,0.021595810268099282,4
+Red-breasted Goose,wind_direction_south_rolling_mean_7d,0.01284271719003123,5
+Red-breasted Goose,wind_direction_south_lag_24h,0.012564064283319493,6
+Red-breasted Goose,wind_direction_south_lag_72h,0.012224286968175246,7
+Red-breasted Goose,pressure_rolling_anomaly_7d,0.011257369484921193,8
+Red-breasted Goose,month,0.011254545351471369,9
+Red-breasted Goose,wind_speed_rolling_mean_7d,0.011098152345057911,10
+Red-breasted Goose,wind_direction_west_rolling_mean_7d,0.011078372384414023,11
+Red-breasted Goose,wind_direction_west_lag_72h,0.011051227401752343,12
+Red-breasted Goose,wind_direction_south_rolling_anomaly_7d,0.010979290686353048,13
+Red-breasted Goose,wind_direction_south_lag_48h,0.010912655176396075,14
+Red-breasted Goose,precipitation_rolling_mean_7d,0.010776261611045869,15
+Red-breasted Goose,wind_direction_south_rolling_anomaly_3d,0.010429772933986673,16
+Red-breasted Goose,pressure_change_48h,0.010259335251474145,17
+Red-breasted Goose,pressure_lag_72h,0.01024832830580246,18
+Red-breasted Goose,precipitation_rolling_anomaly_7d,0.010238685738679039,19
+Red-breasted Goose,temperature_lag_48h,0.010158997484183637,20
+Red-breasted Goose,temperature_rolling_anomaly_7d,0.010125973017859299,21
+Red-breasted Goose,goose_pressure_change_24h_hpa,0.010027752999835847,22
+Red-breasted Goose,pressure_rolling_mean_7d,0.010009267710016128,23
+Red-breasted Goose,wind_sin_310,0.00991325634589569,24
+Red-breasted Goose,pressure_rolling_anomaly_3d,0.009867706393518645,25
+Red-breasted Goose,wind_speed_lag_72h,0.0098640902583323,26
+Red-breasted Goose,precipitation_rolling_mean_3d,0.009741861295313183,27
+Red-breasted Goose,goose_temp_mean_7d_c,0.00967847693934079,28
+Red-breasted Goose,pressure_lag_48h,0.009654639291077472,29
+Red-breasted Goose,wind_direction_south_rolling_mean_3d,0.009476800850540841,30
+Red-breasted Goose,PX_310,0.009455841214301958,31
+Red-breasted Goose,temperature_rolling_mean_7d,0.009425312552740733,32
+Red-breasted Goose,pressure_change_24h,0.009415458010989053,33
+Red-breasted Goose,pressure_rolling_mean_3d,0.009409256261024696,34
+Red-breasted Goose,wind_direction_west_lag_48h,0.009379145949215446,35
+Red-breasted Goose,precipitation_rolling_anomaly_3d,0.009359708754542758,36
+Red-breasted Goose,wind_speed_lag_48h,0.009301513426566743,37
+Red-breasted Goose,wind_direction_west_rolling_anomaly_3d,0.009220721778052894,38
+Red-breasted Goose,wind_cos_235,0.009197738366228605,39
+Red-breasted Goose,coast_PX_min,0.009148718462895349,40
+Red-breasted Goose,goose_precipitation_3d_mm,0.009047154729847988,41
+Red-breasted Goose,wind_direction_west_rolling_anomaly_7d,0.008799835000899207,42
+Red-breasted Goose,wind_cos_242,0.008796453701396536,43
+Red-breasted Goose,wind_change_24h,0.008796232181165927,44
+Red-breasted Goose,temperature_rolling_anomaly_3d,0.008668952220976363,45
+Red-breasted Goose,wind_speed_lag_24h,0.008641241585601811,46
+Red-breasted Goose,precipitation_lag_48h,0.008615845633711466,47
+Red-breasted Goose,coast_wind_cos,0.008578647902642976,48
+Red-breasted Goose,wind_speed_rolling_mean_3d,0.008561502176628946,49
+Red-breasted Goose,goose_temp_change_24h_c,0.008510848617944839,50
+Red-breasted Goose,temp_change_24h,0.008508055994737949,51
+Red-breasted Goose,coast_south_wind_component,0.008491923946021721,52
+Red-breasted Goose,temp_change_48h,0.00844695580535807,53
+Red-breasted Goose,temperature_lag_72h,0.008431824034684671,54
+Red-breasted Goose,goose_temp_change_72h_c,0.008424320339795394,55
+Red-breasted Goose,wind_direction_west_lag_24h,0.008391719084198921,56
+Red-breasted Goose,TX_242,0.008322842540969818,57
+Red-breasted Goose,TN_235,0.008318410741384388,58
+Red-breasted Goose,pressure_lag_24h,0.008266608614648022,59
+Red-breasted Goose,coast_PX_mean,0.008171599610828332,60
+Red-breasted Goose,PX_242,0.008161608566104837,61
+Red-breasted Goose,TN_242,0.008149691373785546,62
+Red-breasted Goose,goose_temp_min_c,0.00813249401472019,63
+Red-breasted Goose,goose_pressure_hpa,0.008090174425444052,64
+Red-breasted Goose,wind_cos_225,0.008077476088059948,65
+Red-breasted Goose,wind_cos_310,0.008073500795417642,66
+Red-breasted Goose,coast_TX_mean,0.008010230414786606,67
+Red-breasted Goose,coast_TX_max,0.007998017725346406,68
+Red-breasted Goose,TX_235,0.007992030139663427,69
+Red-breasted Goose,temperature_lag_24h,0.007965664230577986,70
+Red-breasted Goose,TG_235,0.007964563426446872,71
+Red-breasted Goose,TN_310,0.007888046453633661,72
+Red-breasted Goose,precipitation_lag_24h,0.007875834464434432,73
+Red-breasted Goose,goose_wind_direction_deg,0.00784478815998031,74
+Red-breasted Goose,coast_wind_sin,0.007775504222243491,75
+Red-breasted Goose,coast_pressure_gradient,0.00773214616473118,76
+Red-breasted Goose,wind_speed_rolling_anomaly_3d,0.007714574538828823,77
+Red-breasted Goose,TX_310,0.007704087552007565,78
+Red-breasted Goose,goose_easterly_wind_ms,0.007671494565843898,79
+Red-breasted Goose,coast_TG_mean,0.007668099891207759,80
+Red-breasted Goose,goose_temp_mean_c,0.007617124007298166,81
+Red-breasted Goose,wind_speed_rolling_anomaly_7d,0.007599814472056953,82
+Red-breasted Goose,wind_change_48h,0.007465139697973802,83
+Red-breasted Goose,FG_235,0.0073838043121031505,84
+Red-breasted Goose,coast_west_wind_component,0.007380468715472086,85
+Red-breasted Goose,TG_310,0.007361708296636531,86
+Red-breasted Goose,PX_235,0.007348456546335091,87
+Red-breasted Goose,wind_direction_west_rolling_mean_3d,0.007338005203839169,88
+Red-breasted Goose,temperature_rolling_mean_3d,0.007318880223221639,89
+Red-breasted Goose,wind_sin_225,0.007303359009371185,90
+Red-breasted Goose,precipitation_lag_72h,0.007134313583510897,91
+Red-breasted Goose,wind_sin_242,0.00713379107628163,92
+Red-breasted Goose,goose_temp_max_c,0.007056529851240288,93
+Red-breasted Goose,coast_FG_mean,0.007038123811353061,94
+Red-breasted Goose,TG_242,0.0069866302042157664,95
+Red-breasted Goose,wind_sin_235,0.006974282706607406,96
+Red-breasted Goose,FG_310,0.006800442628578031,97
+Red-breasted Goose,coast_FG_max,0.006695815591749616,98
+Red-breasted Goose,goose_wind_speed_ms,0.006594961527818276,99
+Red-breasted Goose,FG_242,0.006534991720571571,100
+Red-breasted Goose,coast_RH_mean,0.006513271897262316,101
+Red-breasted Goose,FG_225,0.006383286452427935,102
+Red-breasted Goose,coast_FHX_mean,0.005953847619284107,103
+Red-breasted Goose,goose_precipitation_mm,0.005669936339485232,104
+Red-breasted Goose,RH_310,0.0051223921977428255,105
+Red-breasted Goose,FHX_242,0.004785375055082513,106
+Red-breasted Goose,RH_235,0.004777207450978602,107
+Red-breasted Goose,coast_FHX_max,0.004151713890892763,108
+Red-breasted Goose,FHX_310,0.00409235397028098,109
+Red-breasted Goose,FHX_225,0.003938196589693668,110
+Red-breasted Goose,FHX_235,0.00313414802562325,111
+Red-breasted Goose,goose_frost_days_7d,0.0017658612581778284,112
+Red-breasted Goose,goose_consecutive_frost_days,0.001160827553224369,113
+Red-breasted Goose,coast_atlantic_storm_wind,0.0003769347380070464,114
+Red-breasted Goose,goose_frost,0.00025191923397719344,115
+Red-breasted Goose,goose_cold_outbreak,4.3848379403635785e-05,116
+Red-breasted Goose,goose_rapid_temp_drop,2.9987108471833284e-05,117
+Red-breasted Goose,RH_242,0.0,118
+Red-breasted Goose,TG_225,0.0,119
+Red-breasted Goose,TN_225,0.0,120
+Red-breasted Goose,TX_225,0.0,121
+Red-breasted Goose,RH_225,0.0,122
+Red-breasted Goose,PX_225,0.0,123
+Red-breasted Goose,coast_atlantic_storm_pressure,0.0,124
+Lesser White-fronted Goose,day_of_year,0.0425003510044888,1
+Lesser White-fronted Goose,week_of_year,0.029996221607722237,2
+Lesser White-fronted Goose,day_of_year_sin,0.02826605618152349,3
+Lesser White-fronted Goose,month,0.020420767596160967,4
+Lesser White-fronted Goose,day_of_year_cos,0.017249751502853766,5
+Lesser White-fronted Goose,pressure_rolling_anomaly_7d,0.011829192085857577,6
+Lesser White-fronted Goose,wind_direction_south_rolling_mean_7d,0.01173132918109326,7
+Lesser White-fronted Goose,pressure_change_48h,0.011541053730355797,8
+Lesser White-fronted Goose,temperature_rolling_mean_3d,0.011413555126011788,9
+Lesser White-fronted Goose,wind_direction_south_lag_72h,0.011254650581691065,10
+Lesser White-fronted Goose,temperature_rolling_mean_7d,0.011070136597408867,11
+Lesser White-fronted Goose,wind_direction_west_lag_72h,0.010685099759917705,12
+Lesser White-fronted Goose,temperature_lag_72h,0.010464465675897205,13
+Lesser White-fronted Goose,wind_speed_lag_72h,0.010443600213188317,14
+Lesser White-fronted Goose,coast_TX_mean,0.010440570057875688,15
+Lesser White-fronted Goose,pressure_lag_72h,0.010251767165178652,16
+Lesser White-fronted Goose,goose_temp_mean_7d_c,0.010197269271005803,17
+Lesser White-fronted Goose,pressure_rolling_anomaly_3d,0.01014259478900346,18
+Lesser White-fronted Goose,pressure_lag_48h,0.009761412701736619,19
+Lesser White-fronted Goose,pressure_rolling_mean_7d,0.00974657146529932,20
+Lesser White-fronted Goose,pressure_lag_24h,0.009683888376087262,21
+Lesser White-fronted Goose,temperature_lag_48h,0.009662548127966738,22
+Lesser White-fronted Goose,wind_sin_310,0.009648354677762,23
+Lesser White-fronted Goose,TX_242,0.009574897432096344,24
+Lesser White-fronted Goose,wind_direction_west_lag_48h,0.009539273545431987,25
+Lesser White-fronted Goose,wind_direction_south_lag_24h,0.009538144221701484,26
+Lesser White-fronted Goose,temperature_rolling_anomaly_7d,0.009497720160313076,27
+Lesser White-fronted Goose,wind_direction_west_rolling_mean_7d,0.009480552433147693,28
+Lesser White-fronted Goose,goose_temp_change_72h_c,0.009479151577612765,29
+Lesser White-fronted Goose,wind_speed_rolling_mean_7d,0.009435061484437754,30
+Lesser White-fronted Goose,wind_direction_west_rolling_mean_3d,0.009242476022923246,31
+Lesser White-fronted Goose,wind_speed_lag_48h,0.009207674653894682,32
+Lesser White-fronted Goose,wind_direction_west_rolling_anomaly_3d,0.00920330607521942,33
+Lesser White-fronted Goose,temperature_lag_24h,0.009114971412076407,34
+Lesser White-fronted Goose,wind_speed_lag_24h,0.009112929750543886,35
+Lesser White-fronted Goose,TN_235,0.009031032334787317,36
+Lesser White-fronted Goose,wind_direction_south_rolling_mean_3d,0.009010501015664075,37
+Lesser White-fronted Goose,wind_direction_south_rolling_anomaly_7d,0.008993670372834125,38
+Lesser White-fronted Goose,temp_change_48h,0.008989383386352733,39
+Lesser White-fronted Goose,pressure_rolling_mean_3d,0.00888749891635795,40
+Lesser White-fronted Goose,coast_wind_sin,0.008853494427418182,41
+Lesser White-fronted Goose,precipitation_rolling_mean_7d,0.00882765969499634,42
+Lesser White-fronted Goose,PX_310,0.00876185149545947,43
+Lesser White-fronted Goose,TN_242,0.008657504009853255,44
+Lesser White-fronted Goose,coast_wind_cos,0.008642146176095161,45
+Lesser White-fronted Goose,wind_direction_south_rolling_anomaly_3d,0.008638527880136148,46
+Lesser White-fronted Goose,wind_change_48h,0.00854208995774066,47
+Lesser White-fronted Goose,wind_direction_west_lag_24h,0.008522505543996807,48
+Lesser White-fronted Goose,goose_pressure_change_24h_hpa,0.008474711342315595,49
+Lesser White-fronted Goose,goose_temp_min_c,0.008469480751250045,50
+Lesser White-fronted Goose,TX_310,0.008385974137090553,51
+Lesser White-fronted Goose,goose_temp_max_c,0.008359887622797105,52
+Lesser White-fronted Goose,wind_speed_rolling_anomaly_7d,0.00834664214822842,53
+Lesser White-fronted Goose,pressure_change_24h,0.008338409780107574,54
+Lesser White-fronted Goose,precipitation_rolling_anomaly_3d,0.008327877790842394,55
+Lesser White-fronted Goose,wind_direction_south_lag_48h,0.008274038985821726,56
+Lesser White-fronted Goose,coast_PX_min,0.008267407405437702,57
+Lesser White-fronted Goose,precipitation_rolling_anomaly_7d,0.008252526219119951,58
+Lesser White-fronted Goose,TG_242,0.008235517778194937,59
+Lesser White-fronted Goose,coast_TG_mean,0.008136918580169565,60
+Lesser White-fronted Goose,temperature_rolling_anomaly_3d,0.008110224190645169,61
+Lesser White-fronted Goose,precipitation_rolling_mean_3d,0.008094577357475536,62
+Lesser White-fronted Goose,precipitation_lag_48h,0.007963296696817281,63
+Lesser White-fronted Goose,goose_pressure_hpa,0.007914546204274033,64
+Lesser White-fronted Goose,wind_speed_rolling_mean_3d,0.007913287198686744,65
+Lesser White-fronted Goose,coast_south_wind_component,0.007902466715794596,66
+Lesser White-fronted Goose,PX_242,0.00788285897236358,67
+Lesser White-fronted Goose,goose_temp_change_24h_c,0.007840509302512526,68
+Lesser White-fronted Goose,wind_direction_west_rolling_anomaly_7d,0.007838577084541772,69
+Lesser White-fronted Goose,goose_temp_mean_c,0.00783404618040594,70
+Lesser White-fronted Goose,PX_235,0.0077953774829915235,71
+Lesser White-fronted Goose,goose_precipitation_3d_mm,0.007789641772946277,72
+Lesser White-fronted Goose,TX_235,0.007751464350643595,73
+Lesser White-fronted Goose,goose_easterly_wind_ms,0.0077271578414868725,74
+Lesser White-fronted Goose,wind_change_24h,0.00768732542717772,75
+Lesser White-fronted Goose,TG_235,0.007680155253455322,76
+Lesser White-fronted Goose,goose_wind_direction_deg,0.007579654504604705,77
+Lesser White-fronted Goose,coast_PX_mean,0.007553561909042893,78
+Lesser White-fronted Goose,wind_cos_310,0.007504824269611364,79
+Lesser White-fronted Goose,wind_sin_242,0.007495042420174265,80
+Lesser White-fronted Goose,wind_sin_225,0.007494443505595047,81
+Lesser White-fronted Goose,wind_sin_235,0.00747412679101421,82
+Lesser White-fronted Goose,coast_pressure_gradient,0.0074438862624787725,83
+Lesser White-fronted Goose,wind_cos_225,0.007435578393251879,84
+Lesser White-fronted Goose,temp_change_24h,0.0074155846898168705,85
+Lesser White-fronted Goose,TG_310,0.007210434204679504,86
+Lesser White-fronted Goose,TN_310,0.0070040678516149766,87
+Lesser White-fronted Goose,precipitation_lag_24h,0.0068866414275752606,88
+Lesser White-fronted Goose,coast_west_wind_component,0.006770132006271021,89
+Lesser White-fronted Goose,coast_TX_max,0.006762803540361264,90
+Lesser White-fronted Goose,precipitation_lag_72h,0.006730239531731575,91
+Lesser White-fronted Goose,wind_speed_rolling_anomaly_3d,0.006708933876249343,92
+Lesser White-fronted Goose,FG_310,0.006589245626946681,93
+Lesser White-fronted Goose,wind_cos_235,0.006567739025676746,94
+Lesser White-fronted Goose,FG_242,0.006449765074864162,95
+Lesser White-fronted Goose,goose_wind_speed_ms,0.006439524681293557,96
+Lesser White-fronted Goose,coast_FG_mean,0.006326261559858627,97
+Lesser White-fronted Goose,wind_cos_242,0.006261255747900086,98
+Lesser White-fronted Goose,coast_FG_max,0.0061086112693199855,99
+Lesser White-fronted Goose,FG_235,0.005987030428343628,100
+Lesser White-fronted Goose,FG_225,0.0056647442796393605,101
+Lesser White-fronted Goose,goose_precipitation_mm,0.00547492705911792,102
+Lesser White-fronted Goose,coast_RH_mean,0.005299115786731151,103
+Lesser White-fronted Goose,RH_235,0.005104520204635657,104
+Lesser White-fronted Goose,coast_FHX_mean,0.004788280077304216,105
+Lesser White-fronted Goose,RH_310,0.004694616208484857,106
+Lesser White-fronted Goose,FHX_225,0.004240935453183994,107
+Lesser White-fronted Goose,coast_FHX_max,0.004160323196326433,108
+Lesser White-fronted Goose,FHX_310,0.0039983855611374205,109
+Lesser White-fronted Goose,FHX_242,0.0036567231629224544,110
+Lesser White-fronted Goose,FHX_235,0.003218352165179799,111
+Lesser White-fronted Goose,goose_frost_days_7d,0.0013733928928774041,112
+Lesser White-fronted Goose,goose_consecutive_frost_days,0.0005728699749949428,113
+Lesser White-fronted Goose,goose_frost,0.0005538017966745688,114
+Lesser White-fronted Goose,coast_atlantic_storm_wind,0.00010832492890736215,115
+Lesser White-fronted Goose,goose_cold_outbreak,6.31187642137418e-05,116
+Lesser White-fronted Goose,coast_atlantic_storm_pressure,4.804385862062921e-05,117
+Lesser White-fronted Goose,RH_242,0.0,118
+Lesser White-fronted Goose,TG_225,0.0,119
+Lesser White-fronted Goose,TN_225,0.0,120
+Lesser White-fronted Goose,TX_225,0.0,121
+Lesser White-fronted Goose,RH_225,0.0,122
+Lesser White-fronted Goose,PX_225,0.0,123
+Lesser White-fronted Goose,goose_rapid_temp_drop,0.0,124
+Snow Goose,day_of_year_sin,0.02808772095746489,1
+Snow Goose,day_of_year,0.026989438620449387,2
+Snow Goose,week_of_year,0.018722789953792965,3
+Snow Goose,day_of_year_cos,0.01564890195496509,4
+Snow Goose,wind_direction_south_rolling_mean_7d,0.013004541792272476,5
+Snow Goose,pressure_rolling_mean_7d,0.01273175266169171,6
+Snow Goose,month,0.012358243771950675,7
+Snow Goose,pressure_lag_72h,0.012292069352940421,8
+Snow Goose,wind_direction_south_lag_72h,0.012210876457881603,9
+Snow Goose,wind_direction_west_rolling_mean_7d,0.011833138776501401,10
+Snow Goose,wind_speed_rolling_mean_7d,0.010999617770739252,11
+Snow Goose,wind_direction_south_lag_48h,0.010780071444452779,12
+Snow Goose,wind_direction_west_lag_72h,0.010737594151716745,13
+Snow Goose,PX_310,0.010556284986958311,14
+Snow Goose,temperature_rolling_mean_7d,0.010440720697199472,15
+Snow Goose,pressure_lag_48h,0.010358650927335601,16
+Snow Goose,pressure_rolling_mean_3d,0.010300128936753567,17
+Snow Goose,wind_direction_south_rolling_mean_3d,0.010290896802974745,18
+Snow Goose,goose_temp_mean_7d_c,0.010212249130552267,19
+Snow Goose,temperature_rolling_mean_3d,0.010186071528697363,20
+Snow Goose,wind_direction_west_lag_48h,0.010147317662486943,21
+Snow Goose,precipitation_rolling_mean_7d,0.010005735067062977,22
+Snow Goose,wind_direction_south_rolling_anomaly_7d,0.00993727144401882,23
+Snow Goose,coast_PX_mean,0.00990171350854903,24
+Snow Goose,pressure_change_48h,0.009897672758547235,25
+Snow Goose,wind_speed_lag_24h,0.009892432698135667,26
+Snow Goose,wind_speed_lag_72h,0.00989140262113525,27
+Snow Goose,temperature_rolling_anomaly_7d,0.009823305362403117,28
+Snow Goose,temperature_lag_72h,0.009791585892682746,29
+Snow Goose,wind_change_24h,0.00965469268156587,30
+Snow Goose,wind_direction_west_rolling_anomaly_7d,0.009649752800763455,31
+Snow Goose,wind_speed_rolling_anomaly_7d,0.009633520945329765,32
+Snow Goose,wind_direction_west_rolling_anomaly_3d,0.009602734615058846,33
+Snow Goose,TN_310,0.009527899401137303,34
+Snow Goose,pressure_rolling_anomaly_3d,0.009452821978534393,35
+Snow Goose,coast_south_wind_component,0.00942232595737531,36
+Snow Goose,temperature_lag_24h,0.0094216791166963,37
+Snow Goose,wind_direction_west_rolling_mean_3d,0.00940690198007944,38
+Snow Goose,wind_direction_south_lag_24h,0.009395979874389188,39
+Snow Goose,wind_direction_west_lag_24h,0.009273009938218871,40
+Snow Goose,coast_PX_min,0.009214077249531204,41
+Snow Goose,goose_pressure_hpa,0.009192425079619761,42
+Snow Goose,pressure_lag_24h,0.00918580832488213,43
+Snow Goose,wind_sin_310,0.00907141031392266,44
+Snow Goose,coast_wind_cos,0.009068767931959187,45
+Snow Goose,goose_wind_direction_deg,0.008962853712412653,46
+Snow Goose,goose_precipitation_3d_mm,0.008919508008188274,47
+Snow Goose,PX_242,0.008881577693041811,48
+Snow Goose,temp_change_48h,0.00879888676363576,49
+Snow Goose,pressure_rolling_anomaly_7d,0.008756035085971697,50
+Snow Goose,precipitation_rolling_anomaly_7d,0.008658560920293545,51
+Snow Goose,wind_change_48h,0.008626100582597098,52
+Snow Goose,goose_temp_change_72h_c,0.008555387821414653,53
+Snow Goose,precipitation_rolling_mean_3d,0.008554269396348726,54
+Snow Goose,goose_pressure_change_24h_hpa,0.008548236932187573,55
+Snow Goose,TX_242,0.008467892774414593,56
+Snow Goose,wind_speed_lag_48h,0.008429890447150111,57
+Snow Goose,precipitation_rolling_anomaly_3d,0.00841495517103285,58
+Snow Goose,coast_pressure_gradient,0.008377505687705383,59
+Snow Goose,wind_speed_rolling_mean_3d,0.00833591467822144,60
+Snow Goose,pressure_change_24h,0.008296364399826237,61
+Snow Goose,PX_235,0.008274358659922402,62
+Snow Goose,wind_direction_south_rolling_anomaly_3d,0.008251982220804453,63
+Snow Goose,temperature_rolling_anomaly_3d,0.008245867636510156,64
+Snow Goose,wind_speed_rolling_anomaly_3d,0.008205340202995726,65
+Snow Goose,FG_242,0.008174345863455279,66
+Snow Goose,coast_wind_sin,0.008160950822226606,67
+Snow Goose,temperature_lag_48h,0.008100140845622715,68
+Snow Goose,wind_cos_225,0.008078948777003095,69
+Snow Goose,goose_temp_change_24h_c,0.008062914460092852,70
+Snow Goose,precipitation_lag_72h,0.008051040046214857,71
+Snow Goose,precipitation_lag_48h,0.008003534636385909,72
+Snow Goose,TN_235,0.007950016547550455,73
+Snow Goose,wind_cos_235,0.007853716560411254,74
+Snow Goose,goose_easterly_wind_ms,0.00782475124308098,75
+Snow Goose,temp_change_24h,0.00782472611803832,76
+Snow Goose,TX_235,0.00781684037389954,77
+Snow Goose,wind_cos_242,0.007687443565286757,78
+Snow Goose,FG_225,0.007622737654185007,79
+Snow Goose,coast_FG_max,0.007592223946685295,80
+Snow Goose,wind_sin_235,0.007591484054257554,81
+Snow Goose,coast_TX_max,0.0075336835827081155,82
+Snow Goose,wind_sin_242,0.007511065471688461,83
+Snow Goose,coast_TG_mean,0.007489217036360699,84
+Snow Goose,TG_242,0.007486959036470643,85
+Snow Goose,wind_cos_310,0.007483636940701493,86
+Snow Goose,FG_310,0.007471181350497292,87
+Snow Goose,goose_temp_max_c,0.007414317654866979,88
+Snow Goose,coast_west_wind_component,0.007364511040380497,89
+Snow Goose,goose_temp_mean_c,0.007325442664979031,90
+Snow Goose,goose_temp_min_c,0.007315491465181317,91
+Snow Goose,TX_310,0.007153884438624362,92
+Snow Goose,TN_242,0.007140825156034171,93
+Snow Goose,wind_sin_225,0.007138904577997668,94
+Snow Goose,coast_TX_mean,0.007138603744275847,95
+Snow Goose,TG_310,0.0071301479759759276,96
+Snow Goose,precipitation_lag_24h,0.007072338921857408,97
+Snow Goose,FG_235,0.007038851819083459,98
+Snow Goose,coast_FG_mean,0.006885578129911773,99
+Snow Goose,TG_235,0.006535696707988907,100
+Snow Goose,goose_wind_speed_ms,0.006500972371062466,101
+Snow Goose,coast_FHX_mean,0.005925975919664283,102
+Snow Goose,RH_235,0.005485253304553105,103
+Snow Goose,coast_RH_mean,0.005361135448450176,104
+Snow Goose,RH_310,0.005282728587791266,105
+Snow Goose,goose_precipitation_mm,0.00508298002670197,106
+Snow Goose,FHX_225,0.00479409079861343,107
+Snow Goose,FHX_242,0.004635352606822171,108
+Snow Goose,FHX_310,0.004255257237811329,109
+Snow Goose,coast_FHX_max,0.003726550309024349,110
+Snow Goose,FHX_235,0.003631351657087907,111
+Snow Goose,goose_frost_days_7d,0.0016312448656667143,112
+Snow Goose,goose_consecutive_frost_days,0.0005653930442069547,113
+Snow Goose,goose_frost,0.00017576827852047041,114
+Snow Goose,coast_atlantic_storm_wind,6.533964023542986e-05,115
+Snow Goose,goose_cold_outbreak,6.265489914208193e-05,116
+Snow Goose,goose_rapid_temp_drop,2.6303098614142465e-05,117
+Snow Goose,RH_242,0.0,118
+Snow Goose,TG_225,0.0,119
+Snow Goose,TN_225,0.0,120
+Snow Goose,TX_225,0.0,121
+Snow Goose,RH_225,0.0,122
+Snow Goose,PX_225,0.0,123
+Snow Goose,coast_atlantic_storm_pressure,0.0,124
+Ross's Goose,day_of_year,0.013801809949528102,1
+Ross's Goose,day_of_year_cos,0.013637577401432508,2
+Ross's Goose,pressure_lag_24h,0.01249056079780555,3
+Ross's Goose,pressure_lag_72h,0.01236475833370334,4
+Ross's Goose,wind_direction_west_lag_72h,0.012206697982791177,5
+Ross's Goose,wind_direction_south_lag_24h,0.012173603543003775,6
+Ross's Goose,wind_direction_west_lag_24h,0.01195720864411415,7
+Ross's Goose,wind_direction_west_rolling_mean_7d,0.011884850311655608,8
+Ross's Goose,pressure_rolling_anomaly_7d,0.011835138850338626,9
+Ross's Goose,temperature_rolling_anomaly_7d,0.011367422555361169,10
+Ross's Goose,pressure_lag_48h,0.011195470290382965,11
+Ross's Goose,wind_speed_rolling_anomaly_7d,0.011178743458242931,12
+Ross's Goose,wind_direction_south_rolling_mean_7d,0.011156425388251396,13
+Ross's Goose,wind_speed_lag_72h,0.011149343831467068,14
+Ross's Goose,coast_PX_mean,0.011099253435618454,15
+Ross's Goose,wind_direction_south_rolling_mean_3d,0.011053619274405005,16
+Ross's Goose,wind_speed_rolling_mean_7d,0.010916335784507649,17
+Ross's Goose,wind_direction_west_rolling_anomaly_7d,0.010840463544865208,18
+Ross's Goose,temperature_lag_72h,0.010828998173876215,19
+Ross's Goose,wind_direction_south_rolling_anomaly_3d,0.010704305154732915,20
+Ross's Goose,precipitation_rolling_mean_7d,0.01064217203066524,21
+Ross's Goose,wind_change_24h,0.010555634673235061,22
+Ross's Goose,wind_speed_lag_24h,0.01048253070361203,23
+Ross's Goose,day_of_year_sin,0.010472150577474623,24
+Ross's Goose,precipitation_rolling_anomaly_7d,0.010438856677900135,25
+Ross's Goose,pressure_change_48h,0.010382686737707099,26
+Ross's Goose,pressure_rolling_mean_3d,0.010355808087316086,27
+Ross's Goose,pressure_rolling_mean_7d,0.010332712974828635,28
+Ross's Goose,temperature_rolling_mean_3d,0.010309580984226867,29
+Ross's Goose,wind_direction_south_rolling_anomaly_7d,0.010277639554639851,30
+Ross's Goose,precipitation_rolling_anomaly_3d,0.010226182679184877,31
+Ross's Goose,pressure_rolling_anomaly_3d,0.010178393050943438,32
+Ross's Goose,wind_direction_west_lag_48h,0.010136919366126393,33
+Ross's Goose,temperature_lag_48h,0.01011892085827841,34
+Ross's Goose,PX_242,0.01010821090367108,35
+Ross's Goose,temperature_rolling_mean_7d,0.010087115052612087,36
+Ross's Goose,wind_direction_south_lag_48h,0.010014853967577113,37
+Ross's Goose,wind_change_48h,0.009980132225389746,38
+Ross's Goose,temp_change_48h,0.0099722812866522,39
+Ross's Goose,wind_speed_rolling_anomaly_3d,0.009937358560987668,40
+Ross's Goose,goose_pressure_hpa,0.009924940224976121,41
+Ross's Goose,wind_direction_south_lag_72h,0.009899412525131475,42
+Ross's Goose,wind_direction_west_rolling_anomaly_3d,0.009868808687418695,43
+Ross's Goose,week_of_year,0.009849567658249476,44
+Ross's Goose,wind_speed_lag_48h,0.009817975981441065,45
+Ross's Goose,goose_temp_change_72h_c,0.009747326882643022,46
+Ross's Goose,goose_temp_change_24h_c,0.009734246156957683,47
+Ross's Goose,PX_310,0.009619057670575045,48
+Ross's Goose,temp_change_24h,0.009555350289507308,49
+Ross's Goose,temperature_rolling_anomaly_3d,0.00953922770507148,50
+Ross's Goose,wind_direction_west_rolling_mean_3d,0.009502918392456426,51
+Ross's Goose,PX_235,0.009498153333840194,52
+Ross's Goose,goose_temp_mean_7d_c,0.009487631379858898,53
+Ross's Goose,pressure_change_24h,0.009485308159803295,54
+Ross's Goose,coast_PX_min,0.009400331050321717,55
+Ross's Goose,wind_cos_242,0.009357378761395913,56
+Ross's Goose,temperature_lag_24h,0.009313469754344614,57
+Ross's Goose,wind_speed_rolling_mean_3d,0.009235450633267335,58
+Ross's Goose,wind_sin_310,0.009075925671279865,59
+Ross's Goose,coast_south_wind_component,0.009068569507158508,60
+Ross's Goose,goose_pressure_change_24h_hpa,0.009020984514347926,61
+Ross's Goose,precipitation_rolling_mean_3d,0.008927654903108822,62
+Ross's Goose,coast_wind_cos,0.008925045282509933,63
+Ross's Goose,wind_cos_225,0.008813452964094462,64
+Ross's Goose,goose_precipitation_3d_mm,0.008725291373296275,65
+Ross's Goose,wind_cos_235,0.008702915965739756,66
+Ross's Goose,precipitation_lag_24h,0.0085489970264779,67
+Ross's Goose,coast_pressure_gradient,0.008308060184539083,68
+Ross's Goose,TN_242,0.008300013803221679,69
+Ross's Goose,TX_310,0.008207073676788527,70
+Ross's Goose,coast_wind_sin,0.008204788520146703,71
+Ross's Goose,FG_310,0.008165664245025715,72
+Ross's Goose,goose_wind_direction_deg,0.008081835057640667,73
+Ross's Goose,goose_wind_speed_ms,0.008061729986965763,74
+Ross's Goose,wind_sin_225,0.00804996750961491,75
+Ross's Goose,coast_west_wind_component,0.008009462025411359,76
+Ross's Goose,FG_225,0.007972165472092858,77
+Ross's Goose,wind_cos_310,0.007874605887565791,78
+Ross's Goose,goose_temp_mean_c,0.007867246154740621,79
+Ross's Goose,TN_235,0.007798385615762879,80
+Ross's Goose,precipitation_lag_72h,0.00778157089796421,81
+Ross's Goose,goose_temp_max_c,0.007724613189573535,82
+Ross's Goose,FG_242,0.007713565555114807,83
+Ross's Goose,FG_235,0.00767339516991937,84
+Ross's Goose,TN_310,0.007644182394966292,85
+Ross's Goose,coast_FG_max,0.0075931430500854385,86
+Ross's Goose,goose_easterly_wind_ms,0.007447555855354205,87
+Ross's Goose,coast_FG_mean,0.007426338108144985,88
+Ross's Goose,coast_TG_mean,0.007317561475302866,89
+Ross's Goose,TG_310,0.007241715583387515,90
+Ross's Goose,precipitation_lag_48h,0.007235087371489185,91
+Ross's Goose,coast_TX_mean,0.007226558132662799,92
+Ross's Goose,wind_sin_235,0.007203613643044577,93
+Ross's Goose,goose_temp_min_c,0.007085859684667982,94
+Ross's Goose,coast_FHX_mean,0.007073887191225515,95
+Ross's Goose,TG_235,0.007066541751151452,96
+Ross's Goose,TX_235,0.007024082732309743,97
+Ross's Goose,wind_sin_242,0.007014046462854525,98
+Ross's Goose,TX_242,0.006871396432762949,99
+Ross's Goose,TG_242,0.006556346457688654,100
+Ross's Goose,coast_TX_max,0.00655027289481378,101
+Ross's Goose,coast_RH_mean,0.005986181085622498,102
+Ross's Goose,goose_precipitation_mm,0.005940828518716384,103
+Ross's Goose,RH_310,0.005686433469355198,104
+Ross's Goose,RH_235,0.0056779550426631666,105
+Ross's Goose,FHX_310,0.004953737135811571,106
+Ross's Goose,FHX_225,0.004454568775922362,107
+Ross's Goose,FHX_242,0.004302195354075159,108
+Ross's Goose,FHX_235,0.004262762494246468,109
+Ross's Goose,coast_FHX_max,0.004156350670267375,110
+Ross's Goose,month,0.003163569713825367,111
+Ross's Goose,goose_frost_days_7d,0.0016413918510102012,112
+Ross's Goose,goose_consecutive_frost_days,0.0005129109632939887,113
+Ross's Goose,goose_frost,0.00017778448124964113,114
+Ross's Goose,goose_cold_outbreak,0.00010500594354010881,115
+Ross's Goose,coast_atlantic_storm_pressure,7.23881821255356e-05,116
+Ross's Goose,coast_atlantic_storm_wind,3.306026872522489e-05,117
+Ross's Goose,goose_rapid_temp_drop,2.423761163265529e-06,118
+Ross's Goose,RH_242,0.0,119
+Ross's Goose,TG_225,0.0,120
+Ross's Goose,TN_225,0.0,121
+Ross's Goose,TX_225,0.0,122
+Ross's Goose,RH_225,0.0,123
+Ross's Goose,PX_225,0.0,124
+Black Brant,day_of_year_cos,0.05486198386829819,1
+Black Brant,day_of_year,0.05254609446948245,2
+Black Brant,week_of_year,0.039753961815876884,3
+Black Brant,day_of_year_sin,0.02990391842073132,4
+Black Brant,month,0.020662102401789697,5
+Black Brant,wind_direction_south_rolling_mean_7d,0.015071534881770654,6
+Black Brant,wind_direction_west_rolling_mean_7d,0.013125434549796113,7
+Black Brant,wind_direction_west_lag_72h,0.01240740190769484,8
+Black Brant,wind_speed_rolling_mean_7d,0.012011915647656706,9
+Black Brant,wind_direction_west_lag_24h,0.011027200861643806,10
+Black Brant,wind_direction_west_lag_48h,0.010863850381328777,11
+Black Brant,wind_direction_south_lag_72h,0.010694452089705143,12
+Black Brant,wind_speed_lag_72h,0.010410108875562136,13
+Black Brant,wind_direction_south_lag_24h,0.009988348043616377,14
+Black Brant,TX_242,0.009812669393802601,15
+Black Brant,wind_direction_south_rolling_mean_3d,0.009512434303784338,16
+Black Brant,wind_direction_west_rolling_mean_3d,0.009271450834028078,17
+Black Brant,goose_temp_mean_7d_c,0.009216315946856516,18
+Black Brant,goose_temp_change_72h_c,0.00918822172296515,19
+Black Brant,temperature_rolling_mean_7d,0.008987004268156051,20
+Black Brant,temperature_lag_24h,0.00888060751841543,21
+Black Brant,pressure_rolling_mean_7d,0.008873613905167334,22
+Black Brant,pressure_rolling_anomaly_3d,0.00880269116678056,23
+Black Brant,wind_direction_west_rolling_anomaly_3d,0.008781930654990484,24
+Black Brant,wind_speed_lag_24h,0.008759077098944489,25
+Black Brant,wind_direction_south_lag_48h,0.00871749480256677,26
+Black Brant,pressure_lag_72h,0.00862963178260588,27
+Black Brant,pressure_rolling_anomaly_7d,0.008586156482053726,28
+Black Brant,coast_south_wind_component,0.008481250311250904,29
+Black Brant,temperature_rolling_mean_3d,0.008458447396122226,30
+Black Brant,wind_direction_south_rolling_anomaly_7d,0.008318609376848154,31
+Black Brant,goose_temp_max_c,0.008312071604332404,32
+Black Brant,coast_wind_sin,0.008305650551859065,33
+Black Brant,coast_TX_mean,0.008303786341887037,34
+Black Brant,precipitation_rolling_mean_7d,0.008242948716623217,35
+Black Brant,wind_direction_south_rolling_anomaly_3d,0.008229393763529488,36
+Black Brant,temp_change_24h,0.008208934901611484,37
+Black Brant,goose_wind_direction_deg,0.008195802119883825,38
+Black Brant,wind_change_24h,0.008144491510404951,39
+Black Brant,temperature_lag_48h,0.00808776045434509,40
+Black Brant,wind_speed_lag_48h,0.008042412569868795,41
+Black Brant,coast_TX_max,0.00801735291077304,42
+Black Brant,pressure_change_48h,0.008016579568332101,43
+Black Brant,TX_310,0.008010415392900788,44
+Black Brant,coast_wind_cos,0.007999784596210813,45
+Black Brant,temperature_lag_72h,0.007981924820478522,46
+Black Brant,wind_sin_242,0.00797977076114221,47
+Black Brant,wind_cos_242,0.007967034170121562,48
+Black Brant,pressure_lag_48h,0.007919650511569695,49
+Black Brant,wind_direction_west_rolling_anomaly_7d,0.00790742936130703,50
+Black Brant,wind_speed_rolling_mean_3d,0.007876788295153888,51
+Black Brant,precipitation_rolling_mean_3d,0.007853860013914997,52
+Black Brant,temperature_rolling_anomaly_7d,0.007830423329789796,53
+Black Brant,TX_235,0.007764225996966266,54
+Black Brant,wind_speed_rolling_anomaly_3d,0.007693270045491717,55
+Black Brant,precipitation_lag_48h,0.007664207115224342,56
+Black Brant,pressure_lag_24h,0.007631954747666276,57
+Black Brant,coast_pressure_gradient,0.007609420667142741,58
+Black Brant,pressure_rolling_mean_3d,0.007541840507871318,59
+Black Brant,wind_speed_rolling_anomaly_7d,0.007466899641819617,60
+Black Brant,pressure_change_24h,0.007449292142993172,61
+Black Brant,wind_sin_225,0.0074087851868287905,62
+Black Brant,coast_PX_mean,0.007398096886536905,63
+Black Brant,TG_242,0.007305454481260217,64
+Black Brant,temp_change_48h,0.0072362033681171315,65
+Black Brant,precipitation_rolling_anomaly_7d,0.00720442377329,66
+Black Brant,wind_cos_235,0.0071811884937510225,67
+Black Brant,wind_sin_235,0.007133909722988971,68
+Black Brant,goose_precipitation_3d_mm,0.007123709681534698,69
+Black Brant,goose_easterly_wind_ms,0.007107413426543408,70
+Black Brant,PX_310,0.0070951430038804445,71
+Black Brant,temperature_rolling_anomaly_3d,0.007077113985350959,72
+Black Brant,goose_temp_change_24h_c,0.007056961720076639,73
+Black Brant,TN_242,0.007003324667782258,74
+Black Brant,coast_west_wind_component,0.006988512902812895,75
+Black Brant,wind_change_48h,0.0069594447577645945,76
+Black Brant,TG_310,0.00695880835750085,77
+Black Brant,coast_PX_min,0.0069499126514249296,78
+Black Brant,PX_235,0.006924759779261009,79
+Black Brant,wind_cos_225,0.0068905541745964615,80
+Black Brant,goose_pressure_change_24h_hpa,0.00687373117540298,81
+Black Brant,goose_pressure_hpa,0.006845133117854742,82
+Black Brant,coast_TG_mean,0.0068395486950821515,83
+Black Brant,precipitation_rolling_anomaly_3d,0.006761065660060965,84
+Black Brant,TN_310,0.006746286830700751,85
+Black Brant,wind_sin_310,0.006592421305305964,86
+Black Brant,FG_242,0.006580667091973906,87
+Black Brant,precipitation_lag_24h,0.006480256623096814,88
+Black Brant,wind_cos_310,0.0063863339635694604,89
+Black Brant,goose_temp_mean_c,0.006249767611706392,90
+Black Brant,PX_242,0.006240565032437268,91
+Black Brant,precipitation_lag_72h,0.006230624279768761,92
+Black Brant,TN_235,0.005981938576630146,93
+Black Brant,goose_temp_min_c,0.005910428674814708,94
+Black Brant,TG_235,0.005833634457430739,95
+Black Brant,FG_235,0.005522152101637736,96
+Black Brant,FG_310,0.0055209821863348085,97
+Black Brant,goose_wind_speed_ms,0.005337743510865713,98
+Black Brant,FG_225,0.005333585633677088,99
+Black Brant,coast_FG_max,0.005293489553515744,100
+Black Brant,coast_FG_mean,0.005200091803792508,101
+Black Brant,coast_FHX_mean,0.00518601860703086,102
+Black Brant,coast_RH_mean,0.00477128299085509,103
+Black Brant,RH_235,0.004558065055442926,104
+Black Brant,goose_precipitation_mm,0.004498585565667126,105
+Black Brant,RH_310,0.004210068730567884,106
+Black Brant,FHX_242,0.004208560539740821,107
+Black Brant,FHX_310,0.003747988044557562,108
+Black Brant,coast_FHX_max,0.0036110896237981274,109
+Black Brant,FHX_235,0.0031087387061200225,110
+Black Brant,FHX_225,0.0030971309681870505,111
+Black Brant,goose_frost_days_7d,0.0013586678833829343,112
+Black Brant,goose_consecutive_frost_days,0.0006136265692781523,113
+Black Brant,coast_atlantic_storm_wind,0.00015199212575243607,114
+Black Brant,goose_frost,0.00010486315623685149,115
+Black Brant,coast_atlantic_storm_pressure,7.302518613635764e-05,116
+Black Brant,goose_cold_outbreak,5.9478576842394504e-05,117
+Black Brant,goose_rapid_temp_drop,1.5356451934813073e-05,118
+Black Brant,RH_242,0.0,119
+Black Brant,TG_225,0.0,120
+Black Brant,TN_225,0.0,121
+Black Brant,TX_225,0.0,122
+Black Brant,RH_225,0.0,123
+Black Brant,PX_225,0.0,124

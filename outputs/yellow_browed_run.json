@@ -1,0 +1,838 @@
+{
+  "generated_at": "2026-11-09T08:27:14.651153+00:00",
+  "species": "Yellow-browed Warbler",
+  "model_name": "XGBoost",
+  "weather_source": "Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)",
+  "input_forecast_file": "inputs/open_meteo_forecast_current.csv",
+  "forecast_csv": "outputs/yellow_browed_forecast.csv",
+  "location_forecast_csv": "outputs/yellow_browed_location_forecast.csv",
+  "forecast_plot": "outputs/yellow_browed_forecast.png",
+  "daily_report": "outputs/yellow_browed_report.md",
+  "forecast_start": "2026-11-10",
+  "forecast_end": "2026-11-23",
+  "mean_probability": 0.25663477182388306,
+  "location_cells": 240,
+  "atlantic_vagrancy": {
+    "product": "Atlantic Vagrancy Index",
+    "model_name": "Random Forest",
+    "model_species": [
+      "Red-eyed Vireo",
+      "Northern Waterthrush",
+      "Blackpoll Warbler",
+      "Ovenbird",
+      "Connecticut Warbler",
+      "Black-and-white Warbler",
+      "Prothonotary Warbler",
+      "American Redstart",
+      "Yellow-rumped Warbler"
+    ],
+    "forecast_csv": "outputs/atlantic_vagrancy_forecast.csv",
+    "forecast_plot": "outputs/atlantic_vagrancy_forecast.png",
+    "forecast_start": "2026-11-10",
+    "forecast_end": "2026-11-23",
+    "mean_probability": 0.028358792001649147,
+    "location_forecast_csv": "outputs/atlantic_vagrancy_location_forecast.csv",
+    "location_cells": 123,
+    "location_forecast_simple_csv": "outputs/atlantic_location_forecast.csv",
+    "location_forecast_map": "outputs/atlantic_location_forecast.png",
+    "species_layers": [
+      {
+        "species": "Yellow-browed Warbler",
+        "slug": "yellow_browed_warbler",
+        "records": 68647,
+        "records_since_start": 65446,
+        "record_years": 27,
+        "countries": "BE,DK,GB,IE,NL",
+        "occupied_cells": 1343,
+        "seasonal_peak": "10-09",
+        "top_cell": "3720000-3350000",
+        "top_probability": 0.001652682604601038,
+        "positive_anomaly_rows": 280,
+        "status": "OK",
+        "data_quality": "sufficient"
+      },
+      {
+        "species": "Red-eyed Vireo",
+        "slug": "red_eyed_vireo",
+        "records": 1440,
+        "records_since_start": 1049,
+        "record_years": 23,
+        "countries": "BE,DK,GB,IE,NL",
+        "occupied_cells": 53,
+        "seasonal_peak": "10-22",
+        "top_cell": "3150000-3100000",
+        "top_probability": 0.0013703196418493,
+        "positive_anomaly_rows": 280,
+        "status": "OK",
+        "data_quality": "sufficient"
+      },
+      {
+        "species": "Blackpoll Warbler",
+        "slug": "blackpoll_warbler",
+        "records": 674,
+        "records_since_start": 464,
+        "record_years": 11,
+        "countries": "DK,GB,IE,NL",
+        "occupied_cells": 15,
+        "seasonal_peak": "10-20",
+        "top_cell": "3160000-3100000",
+        "top_probability": 0.00147867190681225,
+        "positive_anomaly_rows": 280,
+        "status": "OK",
+        "data_quality": "sufficient"
+      },
+      {
+        "species": "American Redstart",
+        "slug": "american_redstart",
+        "records": 65,
+        "records_since_start": 13,
+        "record_years": 1,
+        "countries": "GB",
+        "occupied_cells": 2,
+        "seasonal_peak": "09-09",
+        "top_cell": "3270000-3890000",
+        "top_probability": 0.0011531896363620986,
+        "positive_anomaly_rows": 280,
+        "status": "OK",
+        "data_quality": "sparse"
+      },
+      {
+        "species": "Blackburnian Warbler",
+        "slug": "blackburnian_warbler",
+        "records": 120,
+        "records_since_start": 116,
+        "record_years": 3,
+        "countries": "GB",
+        "occupied_cells": 3,
+        "seasonal_peak": "10-17",
+        "top_cell": "3150000-3110000",
+        "top_probability": 0.001227362137090137,
+        "positive_anomaly_rows": 280,
+        "status": "OK",
+        "data_quality": "sparse"
+      },
+      {
+        "species": "Northern Parula",
+        "slug": "northern_parula",
+        "records": 156,
+        "records_since_start": 9,
+        "record_years": 4,
+        "countries": "GB,IE",
+        "occupied_cells": 4,
+        "seasonal_peak": "09-30",
+        "top_cell": "3160000-3110000",
+        "top_probability": 0.0013204334491435574,
+        "positive_anomaly_rows": 280,
+        "status": "OK",
+        "data_quality": "sparse"
+      },
+      {
+        "species": "Tennessee Warbler",
+        "slug": "tennessee_warbler",
+        "records": 51,
+        "records_since_start": 39,
+        "record_years": 5,
+        "countries": "GB,IE,NL",
+        "occupied_cells": 6,
+        "seasonal_peak": "09-30",
+        "top_cell": "3000000-3570000",
+        "top_probability": 0.0009568921342167651,
+        "positive_anomaly_rows": 280,
+        "status": "OK",
+        "data_quality": "sparse"
+      },
+      {
+        "species": "Bobolink",
+        "slug": "bobolink",
+        "records": 260,
+        "records_since_start": 89,
+        "record_years": 10,
+        "countries": "GB,IE,NL",
+        "occupied_cells": 14,
+        "seasonal_peak": "10-11",
+        "top_cell": "3160000-3100000",
+        "top_probability": 0.014117714835953268,
+        "positive_anomaly_rows": 280,
+        "status": "OK",
+        "data_quality": "sparse"
+      },
+      {
+        "species": "American Robin",
+        "slug": "american_robin",
+        "records": 733,
+        "records_since_start": 679,
+        "record_years": 11,
+        "countries": "GB,NL",
+        "occupied_cells": 29,
+        "seasonal_peak": "04-20",
+        "top_cell": "3150000-3110000",
+        "top_probability": 0.002283135647207399,
+        "positive_anomaly_rows": 280,
+        "status": "OK",
+        "data_quality": "sufficient"
+      },
+      {
+        "species": "Dark-eyed Junco",
+        "slug": "dark_eyed_junco",
+        "records": 1924,
+        "records_since_start": 1764,
+        "record_years": 17,
+        "countries": "BE,DK,GB,IE,NL",
+        "occupied_cells": 32,
+        "seasonal_peak": "02-09",
+        "top_cell": "3680000-3120000",
+        "top_probability": 0.0005900220150085056,
+        "positive_anomaly_rows": 280,
+        "status": "OK",
+        "data_quality": "sufficient"
+      }
+    ]
+  },
+  "seabird_index": {
+    "product": "Seabird Index",
+    "model_name": "Random Forest",
+    "model_species": [
+      "Northern Fulmar",
+      "European Storm-petrel",
+      "Leach's Storm-petrel",
+      "Sooty Shearwater",
+      "Great Shearwater",
+      "Manx Shearwater",
+      "Balearic Shearwater",
+      "Pomarine Skua",
+      "Arctic Skua",
+      "Great Skua",
+      "Sabine's Gull",
+      "Long-tailed Skua",
+      "Grey Phalarope",
+      "Wilson's Storm-petrel",
+      "Cory's Shearwater"
+    ],
+    "forecast_csv": "outputs/seabird_forecast.csv",
+    "forecast_plot": "outputs/seabird_forecast.png",
+    "forecast_start": "2026-11-10",
+    "forecast_end": "2026-11-23",
+    "mean_probability": 0.05549421147635432,
+    "strongest_location": "Fair Isle",
+    "strongest_probability": 0.0341273712010568,
+    "top10_locations": [
+      {
+        "rank": 1,
+        "location": "Fair Isle",
+        "country": "GB",
+        "probability": 0.0341273712010568
+      },
+      {
+        "rank": 2,
+        "location": "Scilly Isles",
+        "country": "GB",
+        "probability": 0.03273056995524287
+      },
+      {
+        "rank": 3,
+        "location": "Scilly Isles (SW)",
+        "country": "GB",
+        "probability": 0.031426752970660894
+      },
+      {
+        "rank": 4,
+        "location": "Scilly Isles (N)",
+        "country": "GB",
+        "probability": 0.030540563778050908
+      },
+      {
+        "rank": 5,
+        "location": "Fair Isle (S)",
+        "country": "GB",
+        "probability": 0.029728426783626204
+      },
+      {
+        "rank": 6,
+        "location": "Shetland",
+        "country": "GB",
+        "probability": 0.028171091353996598
+      },
+      {
+        "rank": 7,
+        "location": "Scilly Isles (NW)",
+        "country": "GB",
+        "probability": 0.028019426264287
+      },
+      {
+        "rank": 8,
+        "location": "North Ronaldsay",
+        "country": "GB",
+        "probability": 0.025712588343650693
+      },
+      {
+        "rank": 9,
+        "location": "Shetland (W)",
+        "country": "GB",
+        "probability": 0.02541562476830659
+      },
+      {
+        "rank": 10,
+        "location": "Outer Hebrides",
+        "country": "GB",
+        "probability": 0.025205875568765797
+      }
+    ],
+    "generated_at": "2026-11-09T08:27:14.651092+00:00",
+    "location_forecast_csv": "outputs/seabird_location_forecast.csv",
+    "location_forecast_detail_csv": "outputs/seabird_location_forecast_detail.csv",
+    "location_forecast_simple_csv": "outputs/seabird_location_forecast.csv",
+    "location_cells": 5802,
+    "location_forecast_map": "outputs/seabird_location_forecast.png",
+    "decision_support_json": "outputs/seabird_decision_support.json"
+  },
+  "seabird_species": {
+    "European Storm-petrel": {
+      "forecast_csv": "outputs/storm_petrel_forecast.csv",
+      "location_forecast_csv": "outputs/storm_petrel_location_forecast.csv",
+      "hotspots_csv": "outputs/storm_petrel_hotspots.csv",
+      "map": "outputs/storm_petrel_location_forecast.png",
+      "forecast_start": "2026-11-10",
+      "forecast_end": "2026-11-23",
+      "mean_probability": 0.03198754552325981
+    },
+    "Northern Fulmar": {
+      "forecast_csv": "outputs/fulmar_forecast.csv",
+      "location_forecast_csv": "outputs/fulmar_location_forecast.csv",
+      "hotspots_csv": "outputs/fulmar_hotspots.csv",
+      "map": "outputs/fulmar_location_forecast.png",
+      "forecast_start": "2026-11-10",
+      "forecast_end": "2026-11-23",
+      "mean_probability": 0.0351844894523466
+    },
+    "Sooty Shearwater": {
+      "forecast_csv": "outputs/sooty_shearwater_forecast.csv",
+      "location_forecast_csv": "outputs/sooty_shearwater_location_forecast.csv",
+      "hotspots_csv": "outputs/sooty_shearwater_hotspots.csv",
+      "map": "outputs/sooty_shearwater_location_forecast.png",
+      "forecast_start": "2026-11-10",
+      "forecast_end": "2026-11-23",
+      "mean_probability": 0.11252746856318285
+    },
+    "Manx Shearwater": {
+      "forecast_csv": "outputs/manx_shearwater_forecast.csv",
+      "location_forecast_csv": "outputs/manx_shearwater_location_forecast.csv",
+      "hotspots_csv": "outputs/manx_shearwater_hotspots.csv",
+      "map": "outputs/manx_shearwater_location_forecast.png",
+      "forecast_start": "2026-11-10",
+      "forecast_end": "2026-11-23",
+      "mean_probability": 0.01660998789570218
+    },
+    "Great Shearwater": {
+      "forecast_csv": "outputs/great_shearwater_forecast.csv",
+      "location_forecast_csv": "outputs/great_shearwater_location_forecast.csv",
+      "hotspots_csv": "outputs/great_shearwater_hotspots.csv",
+      "map": "outputs/great_shearwater_location_forecast.png",
+      "forecast_start": "2026-11-10",
+      "forecast_end": "2026-11-23",
+      "mean_probability": 0.02810456606885178
+    }
+  },
+  "rarity_index": {
+    "csv": "outputs/rarity_index.csv",
+    "json": "outputs/rarity_index.json",
+    "generated_at": "2026-11-09T08:25:37.541727+00:00",
+    "tomorrow_score": 23.8,
+    "tomorrow_leading_species": "Sooty Shearwater",
+    "horizons": [
+      {
+        "date": "2026-11-10",
+        "rarity_index": 23.8,
+        "leading_rarity_species": "Sooty Shearwater"
+      },
+      {
+        "date": "2026-11-12",
+        "rarity_index": 31.9,
+        "leading_rarity_species": "Sooty Shearwater"
+      },
+      {
+        "date": "2026-11-16",
+        "rarity_index": 31.7,
+        "leading_rarity_species": "Sooty Shearwater"
+      },
+      {
+        "date": "2026-11-23",
+        "rarity_index": 27.8,
+        "leading_rarity_species": "Sooty Shearwater"
+      }
+    ]
+  },
+  "seawatch_day_rating": {
+    "rating_csv": "outputs/seawatch_day_rating.csv",
+    "hotspots_csv": "outputs/seawatch_day_hotspots.csv",
+    "rating_json": "outputs/seawatch_day_rating.json",
+    "generated_at": "2026-11-09T08:25:47.472626+00:00",
+    "tomorrow_score": 8,
+    "tomorrow_rating": "Poor",
+    "tomorrow_best_coast": "Wadden islands",
+    "coast_ranking_csv": "outputs/dutch_coast_ranking.csv",
+    "historical_percentiles_csv": "outputs/historical_percentiles.csv",
+    "historical_percentiles": [
+      {
+        "date": "2026-11-10",
+        "seawatch_percentile": 45.5,
+        "seawatch_label": "Common Conditions",
+        "rarity_percentile": 68.2,
+        "rarity_label": "Above Average"
+      },
+      {
+        "date": "2026-11-12",
+        "seawatch_percentile": 43.0,
+        "seawatch_label": "Common Conditions",
+        "rarity_percentile": 75.0,
+        "rarity_label": "Above Average"
+      },
+      {
+        "date": "2026-11-16",
+        "seawatch_percentile": 59.5,
+        "seawatch_label": "Above Average",
+        "rarity_percentile": 74.8,
+        "rarity_label": "Above Average"
+      },
+      {
+        "date": "2026-11-23",
+        "seawatch_percentile": 50.3,
+        "seawatch_label": "Above Average",
+        "rarity_percentile": 71.8,
+        "rarity_label": "Above Average"
+      }
+    ],
+    "target_species_csv": "outputs/target_species.csv",
+    "tomorrow_target_species": "Sooty Shearwater",
+    "recommendation": "STAY HOME",
+    "recommendations": [
+      {
+        "date": "2026-11-10",
+        "decision": "STAY HOME",
+        "best_coast": "Delta Coast",
+        "best_site": "Neeltje Jans"
+      },
+      {
+        "date": "2026-11-12",
+        "decision": "STAY HOME",
+        "best_coast": "Delta Coast",
+        "best_site": "Neeltje Jans"
+      },
+      {
+        "date": "2026-11-16",
+        "decision": "STAY HOME",
+        "best_coast": "Delta Coast",
+        "best_site": "Neeltje Jans"
+      },
+      {
+        "date": "2026-11-23",
+        "decision": "STAY HOME",
+        "best_coast": "Delta Coast",
+        "best_site": "Neeltje Jans"
+      }
+    ],
+    "horizons": [
+      {
+        "date": "2026-11-10",
+        "score": 8,
+        "rating": "Poor",
+        "best_coast": "Wadden islands"
+      },
+      {
+        "date": "2026-11-12",
+        "score": 7,
+        "rating": "Poor",
+        "best_coast": "Wadden islands"
+      },
+      {
+        "date": "2026-11-16",
+        "score": 12,
+        "rating": "Poor",
+        "best_coast": "Wadden islands"
+      },
+      {
+        "date": "2026-11-23",
+        "score": 10,
+        "rating": "Poor",
+        "best_coast": "Wadden islands"
+      }
+    ]
+  },
+  "eastern_vagrancy": {
+    "product": "Eastern Vagrancy Index",
+    "model_name": "Random Forest",
+    "model_species": [
+      "Yellow-browed Warbler",
+      "Red-flanked Bluetail",
+      "Olive-backed Pipit",
+      "Pallas's Warbler",
+      "Dusky Warbler",
+      "Siberian Chiffchaff",
+      "Lanceolated Warbler",
+      "Blyth's Reed Warbler",
+      "Paddyfield Warbler",
+      "Citrine Wagtail",
+      "Pechora Pipit",
+      "Taiga Flycatcher",
+      "Booted Warbler"
+    ],
+    "forecast_csv": "outputs/eastern_vagrancy_forecast.csv",
+    "forecast_plot": "outputs/eastern_vagrancy_forecast.png",
+    "forecast_start": "2026-11-10",
+    "forecast_end": "2026-11-23",
+    "mean_probability": 0.15275988297416868,
+    "location_forecast_csv": "outputs/eastern_vagrancy_location_forecast.csv",
+    "location_cells": 1579,
+    "location_forecast_simple_csv": "outputs/eastern_location_forecast.csv",
+    "location_forecast_map": "outputs/eastern_location_forecast.png"
+  },
+  "eastern_hotspots": {
+    "strongest_location": "Shetland Mainland",
+    "strongest_probability": 0.12526222536887507,
+    "top10_locations": [
+      {
+        "rank": 1,
+        "location": "Shetland Mainland",
+        "country": "GB",
+        "probability": 0.12526222536887507
+      },
+      {
+        "rank": 2,
+        "location": "Fair Isle",
+        "country": "GB",
+        "probability": 0.1228095304016414
+      },
+      {
+        "rank": 3,
+        "location": "Shetland Mainland (S)",
+        "country": "GB",
+        "probability": 0.12169634594412053
+      },
+      {
+        "rank": 4,
+        "location": "Shetland Mainland (NE)",
+        "country": "GB",
+        "probability": 0.1185665724283009
+      },
+      {
+        "rank": 5,
+        "location": "Shetland Mainland (W)",
+        "country": "GB",
+        "probability": 0.11666443429659981
+      },
+      {
+        "rank": 6,
+        "location": "Shetland Mainland (SE)",
+        "country": "GB",
+        "probability": 0.11562577788767445
+      },
+      {
+        "rank": 7,
+        "location": "Shetland Mainland (N)",
+        "country": "GB",
+        "probability": 0.11382648239094162
+      },
+      {
+        "rank": 8,
+        "location": "Shetland Mainland (SW)",
+        "country": "GB",
+        "probability": 0.11381986167218289
+      },
+      {
+        "rank": 9,
+        "location": "North Norfolk coast",
+        "country": "GB",
+        "probability": 0.11148574980552199
+      },
+      {
+        "rank": 10,
+        "location": "Unst",
+        "country": "GB",
+        "probability": 0.11127805229020253
+      }
+    ],
+    "generated_at": "2026-11-09T08:27:14.720851+00:00",
+    "species_layers": [
+      {
+        "species": "Yellow-browed Warbler",
+        "slug": "eastern_yellow_browed_warbler",
+        "records": 68647,
+        "records_since_start": 65446,
+        "record_years": 27,
+        "top_cell": "3670000-3430000",
+        "top_probability": 0.003612774998149704,
+        "status": "OK",
+        "data_quality": "sufficient"
+      },
+      {
+        "species": "Pallas's Leaf Warbler",
+        "slug": "eastern_pallass_leaf_warbler",
+        "records": 13563,
+        "records_since_start": 12022,
+        "record_years": 27,
+        "top_cell": "4190000-3600000",
+        "top_probability": 0.032033248542019235,
+        "status": "OK",
+        "data_quality": "sufficient"
+      },
+      {
+        "species": "Dusky Warbler",
+        "slug": "eastern_dusky_warbler",
+        "records": 11044,
+        "records_since_start": 10480,
+        "record_years": 27,
+        "top_cell": "3670000-3430000",
+        "top_probability": 0.056755831184702295,
+        "status": "OK",
+        "data_quality": "sufficient"
+      },
+      {
+        "species": "Radde's Warbler",
+        "slug": "eastern_raddes_warbler",
+        "records": 3089,
+        "records_since_start": 2611,
+        "record_years": 27,
+        "top_cell": "3670000-3430000",
+        "top_probability": 0.016634737014069135,
+        "status": "OK",
+        "data_quality": "sufficient"
+      },
+      {
+        "species": "Two-barred Warbler",
+        "slug": "eastern_two_barred_warbler",
+        "records": 1378,
+        "records_since_start": 1341,
+        "record_years": 10,
+        "top_cell": "3660000-3430000",
+        "top_probability": 0.0012867193277718487,
+        "status": "OK",
+        "data_quality": "sufficient"
+      },
+      {
+        "species": "Siberian Chiffchaff",
+        "slug": "eastern_siberian_chiffchaff",
+        "records": 9400,
+        "records_since_start": 9283,
+        "record_years": 27,
+        "top_cell": "4200000-3600000",
+        "top_probability": 0.050823858384152584,
+        "status": "OK",
+        "data_quality": "sufficient"
+      },
+      {
+        "species": "Red-flanked Bluetail",
+        "slug": "eastern_red_flanked_bluetail",
+        "records": 6443,
+        "records_since_start": 6221,
+        "record_years": 26,
+        "top_cell": "3660000-4100000",
+        "top_probability": 0.004907743977661566,
+        "status": "OK",
+        "data_quality": "sufficient"
+      },
+      {
+        "species": "Olive-backed Pipit",
+        "slug": "eastern_olive_backed_pipit",
+        "records": 4597,
+        "records_since_start": 4107,
+        "record_years": 26,
+        "top_cell": "3660000-4100000",
+        "top_probability": 0.01503472608677036,
+        "status": "OK",
+        "data_quality": "sufficient"
+      },
+      {
+        "species": "Rustic Bunting",
+        "slug": "eastern_rustic_bunting",
+        "records": 3117,
+        "records_since_start": 2408,
+        "record_years": 27,
+        "top_cell": "3660000-4100000",
+        "top_probability": 0.002456190608032828,
+        "status": "OK",
+        "data_quality": "sufficient"
+      }
+    ]
+  },
+  "atlantic_hotspots": {
+    "strongest_location": "Scilly Isles",
+    "strongest_probability": 0.07147784924481611,
+    "top10_locations": [
+      {
+        "rank": 1,
+        "location": "Scilly Isles",
+        "country": "GB",
+        "probability": 0.07147784924481611
+      },
+      {
+        "rank": 2,
+        "location": "Fair Isle",
+        "country": "GB",
+        "probability": 0.06991340866421736
+      },
+      {
+        "rank": 3,
+        "location": "Scilly Isles (SW)",
+        "country": "GB",
+        "probability": 0.06625788739925226
+      },
+      {
+        "rank": 4,
+        "location": "Shetland Mainland",
+        "country": "GB",
+        "probability": 0.06535150063211582
+      },
+      {
+        "rank": 5,
+        "location": "Scilly Isles (N)",
+        "country": "GB",
+        "probability": 0.0646895404132647
+      },
+      {
+        "rank": 6,
+        "location": "Scilly Isles (NW)",
+        "country": "GB",
+        "probability": 0.060166692879121256
+      },
+      {
+        "rank": 7,
+        "location": "Shetland Mainland (N)",
+        "country": "GB",
+        "probability": 0.05954891271251799
+      },
+      {
+        "rank": 8,
+        "location": "Uists",
+        "country": "GB",
+        "probability": 0.05917159817817879
+      },
+      {
+        "rank": 9,
+        "location": "Lewis",
+        "country": "GB",
+        "probability": 0.058026747851834586
+      },
+      {
+        "rank": 10,
+        "location": "Shetland Mainland (S)",
+        "country": "GB",
+        "probability": 0.05747589254408172
+      }
+    ],
+    "generated_at": "2026-11-09T08:27:14.731199+00:00"
+  },
+  "seabird_hotspots": {
+    "strongest_location": "Fair Isle",
+    "strongest_probability": 0.0341273712010568,
+    "top10_locations": [
+      {
+        "rank": 1,
+        "location": "Fair Isle",
+        "country": "GB",
+        "probability": 0.0341273712010568
+      },
+      {
+        "rank": 2,
+        "location": "Scilly Isles",
+        "country": "GB",
+        "probability": 0.03273056995524287
+      },
+      {
+        "rank": 3,
+        "location": "Scilly Isles (SW)",
+        "country": "GB",
+        "probability": 0.031426752970660894
+      },
+      {
+        "rank": 4,
+        "location": "Scilly Isles (N)",
+        "country": "GB",
+        "probability": 0.030540563778050908
+      },
+      {
+        "rank": 5,
+        "location": "Fair Isle (S)",
+        "country": "GB",
+        "probability": 0.029728426783626204
+      },
+      {
+        "rank": 6,
+        "location": "Shetland",
+        "country": "GB",
+        "probability": 0.028171091353996598
+      },
+      {
+        "rank": 7,
+        "location": "Scilly Isles (NW)",
+        "country": "GB",
+        "probability": 0.028019426264287
+      },
+      {
+        "rank": 8,
+        "location": "North Ronaldsay",
+        "country": "GB",
+        "probability": 0.025712588343650693
+      },
+      {
+        "rank": 9,
+        "location": "Shetland (W)",
+        "country": "GB",
+        "probability": 0.02541562476830659
+      },
+      {
+        "rank": 10,
+        "location": "Outer Hebrides",
+        "country": "GB",
+        "probability": 0.025205875568765797
+      }
+    ],
+    "generated_at": "2026-11-09T08:27:14.651092+00:00",
+    "best_dutch_site": {
+      "location": "Texel (NW)",
+      "country": "NL",
+      "probability": 0.018661520411694502,
+      "risk_level": "LOW",
+      "rationale": "Strong SSE airflow at 3.3 m/s favouring an exposed Dutch seawatching site."
+    }
+  },
+  "goose_module": {
+    "status": "ok",
+    "json": "outputs/goose_module.json",
+    "generated_at": "2026-11-09T08:25:59.661849+00:00",
+    "tomorrow_score": 6,
+    "tomorrow_rating": "Poor",
+    "tomorrow_decision": "STAY HOME",
+    "tomorrow_best_region": "Texel",
+    "horizons": [
+      {
+        "date": "2026-11-10",
+        "score": 6,
+        "rating": "Poor",
+        "decision": "STAY HOME"
+      },
+      {
+        "date": "2026-11-12",
+        "score": 11,
+        "rating": "Poor",
+        "decision": "STAY HOME"
+      },
+      {
+        "date": "2026-11-16",
+        "score": 11,
+        "rating": "Poor",
+        "decision": "STAY HOME"
+      },
+      {
+        "date": "2026-11-23",
+        "score": 13,
+        "rating": "Poor",
+        "decision": "STAY HOME"
+      }
+    ]
+  },
+  "birding_opportunity_index": {
+    "csv": "outputs/birding_opportunity_index.csv",
+    "json": "outputs/birding_opportunity_index.json",
+    "tomorrow_score": 67.2,
+    "tomorrow_category": "Good"
+  }
+}

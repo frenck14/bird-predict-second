@@ -1,0 +1,149 @@
+{
+  "product": "Birding Opportunity Index",
+  "method": "weighted mean of module historical percentiles; weights renormalised over available modules",
+  "weights": {
+    "Atlantic": 0.35,
+    "Eastern": 0.35,
+    "Seawatch": 0.15,
+    "Goose": 0.15
+  },
+  "categories": {
+    "0-20": "Dead",
+    "20-40": "Quiet",
+    "40-60": "Average",
+    "60-80": "Good",
+    "80-90": "Excellent",
+    "90-100": "Mega Day"
+  },
+  "historical_sample_size": 5792,
+  "horizons": [
+    {
+      "horizon_days": 1,
+      "label": "Tomorrow",
+      "date": "2026-11-10",
+      "boi_score": 67.2,
+      "historical_percentile": 78.4,
+      "rating_category": "Good",
+      "recommended_style": "East-coast bush-bashing: migration traps, coastal scrub and headlands for Siberian vagrants",
+      "main_module": "Eastern",
+      "module_percentiles": {
+        "Atlantic": 83.3,
+        "Eastern": 84.7,
+        "Seawatch": 45.5,
+        "Goose": 10.5
+      },
+      "weighted_contributions": {
+        "Atlantic": 29.14,
+        "Eastern": 29.65,
+        "Seawatch": 6.83,
+        "Goose": 1.57
+      },
+      "best_hotspots": [
+        "Shetland Mainland (13%)",
+        "Fair Isle (12%)",
+        "Shetland Mainland (S) (12%)"
+      ],
+      "target_species": [
+        "Dusky Warbler (6%)",
+        "Siberian Chiffchaff (5%)",
+        "Pallas's Leaf Warbler (3%)"
+      ]
+    },
+    {
+      "horizon_days": 3,
+      "label": "+3 days",
+      "date": "2026-11-12",
+      "boi_score": 63.8,
+      "historical_percentile": 74.1,
+      "rating_category": "Good",
+      "recommended_style": "East-coast bush-bashing: migration traps, coastal scrub and headlands for Siberian vagrants",
+      "main_module": "Eastern",
+      "module_percentiles": {
+        "Atlantic": 71.9,
+        "Eastern": 82.8,
+        "Seawatch": 43.0,
+        "Goose": 21.1
+      },
+      "weighted_contributions": {
+        "Atlantic": 25.17,
+        "Eastern": 28.98,
+        "Seawatch": 6.45,
+        "Goose": 3.17
+      },
+      "best_hotspots": [
+        "Shetland Mainland (9%)",
+        "Fair Isle (8%)",
+        "Shetland Mainland (S) (8%)"
+      ],
+      "target_species": [
+        "Dusky Warbler (3%)",
+        "Siberian Chiffchaff (3%)",
+        "Pallas's Leaf Warbler (2%)"
+      ]
+    },
+    {
+      "horizon_days": 7,
+      "label": "+7 days",
+      "date": "2026-11-16",
+      "boi_score": 65.0,
+      "historical_percentile": 75.8,
+      "rating_category": "Good",
+      "recommended_style": "East-coast bush-bashing: migration traps, coastal scrub and headlands for Siberian vagrants",
+      "main_module": "Eastern",
+      "module_percentiles": {
+        "Atlantic": 68.7,
+        "Eastern": 81.5,
+        "Seawatch": 59.5,
+        "Goose": 23.3
+      },
+      "weighted_contributions": {
+        "Atlantic": 24.04,
+        "Eastern": 28.51,
+        "Seawatch": 8.92,
+        "Goose": 3.5
+      },
+      "best_hotspots": [
+        "Shetland Mainland (7%)",
+        "Fair Isle (7%)",
+        "Shetland Mainland (S) (7%)"
+      ],
+      "target_species": [
+        "Siberian Chiffchaff (2%)",
+        "Dusky Warbler (2%)",
+        "Pallas's Leaf Warbler (1%)"
+      ]
+    },
+    {
+      "horizon_days": 14,
+      "label": "+14 days",
+      "date": "2026-11-23",
+      "boi_score": 68.1,
+      "historical_percentile": 79.3,
+      "rating_category": "Good",
+      "recommended_style": "East-coast bush-bashing: migration traps, coastal scrub and headlands for Siberian vagrants",
+      "main_module": "Eastern",
+      "module_percentiles": {
+        "Atlantic": 76.7,
+        "Eastern": 85.0,
+        "Seawatch": 50.3,
+        "Goose": 26.5
+      },
+      "weighted_contributions": {
+        "Atlantic": 26.85,
+        "Eastern": 29.74,
+        "Seawatch": 7.54,
+        "Goose": 3.97
+      },
+      "best_hotspots": [
+        "Shetland Mainland (13%)",
+        "Fair Isle (13%)",
+        "Shetland Mainland (S) (13%)"
+      ],
+      "target_species": [
+        "Dusky Warbler (3%)",
+        "Siberian Chiffchaff (2%)",
+        "Two-barred Warbler (2%)"
+      ]
+    }
+  ]
+}

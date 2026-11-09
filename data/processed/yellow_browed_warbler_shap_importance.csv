@@ -1,0 +1,68 @@
+rank,feature,mean_abs_shap,category
+1,day_of_year_sin,1.5697395802,Seasonality
+2,day_of_year,0.9753482938,Seasonality
+3,day_of_year_cos,0.7165178061,Seasonality
+4,TN_242,0.1659439802,Temperature
+5,wind_speed_lag_72h,0.1399625242,Other
+6,pressure_lag_24h,0.1289272159,Pressure
+7,TN_310,0.0949947238,Temperature
+8,temperature_lag_72h,0.0884751752,Temperature
+9,coast_TX_max,0.0743844658,Temperature
+10,pressure_lag_48h,0.0729515776,Pressure
+11,temperature_lag_48h,0.0684226379,Temperature
+12,TN_235,0.0620664917,Temperature
+13,PX_310,0.0579261035,Pressure
+14,wind_speed_lag_48h,0.0534255952,Other
+15,coast_wind_cos,0.0502422713,Wind direction
+16,wind_cos_310,0.0464133359,Wind direction
+17,TG_242,0.0426755250,Temperature
+18,temp_change_48h,0.0342609063,Temperature
+19,FG_310,0.0342479534,Other
+20,FG_235,0.0340468623,Other
+21,wind_change_48h,0.0337739252,Other
+22,TX_310,0.0327290744,Temperature
+23,temperature_lag_24h,0.0313763283,Temperature
+24,wind_cos_242,0.0292091295,Wind direction
+25,wind_change_24h,0.0287452955,Other
+26,PX_242,0.0274306592,Pressure
+27,wind_cos_225,0.0265897736,Wind direction
+28,TG_235,0.0260198507,Temperature
+29,coast_TX_mean,0.0253509469,Temperature
+30,pressure_change_24h,0.0230267551,Pressure change
+31,PX_235,0.0203240383,Pressure
+32,FHX_310,0.0198726114,Other
+33,wind_speed_lag_24h,0.0187146589,Other
+34,RH_310,0.0179756172,Other
+35,wind_sin_310,0.0176073741,Wind direction
+36,FG_242,0.0163442548,Other
+37,TG_310,0.0153829372,Temperature
+38,wind_sin_235,0.0149858976,Wind direction
+39,TX_242,0.0143237757,Temperature
+40,pressure_lag_72h,0.0125533268,Pressure
+41,pressure_change_48h,0.0122879725,Pressure change
+42,coast_TG_mean,0.0121745607,Temperature
+43,coast_PX_mean,0.0119341919,Pressure
+44,temp_change_24h,0.0117086293,Temperature
+45,coast_RH_mean,0.0107920561,Other
+46,wind_sin_242,0.0103108697,Wind direction
+47,TX_235,0.0100151319,Temperature
+48,FG_225,0.0097460104,Other
+49,month,0.0095201051,Seasonality
+50,RH_235,0.0095002539,Other
+51,coast_PX_min,0.0093779005,Pressure
+52,wind_sin_225,0.0077691339,Wind direction
+53,wind_cos_235,0.0075125177,Wind direction
+54,coast_FG_mean,0.0073595033,Other
+55,coast_wind_sin,0.0039065885,Wind direction
+56,FHX_235,0.0038164395,Other
+57,coast_FHX_mean,0.0024193439,Other
+58,coast_FHX_max,0.0018639074,Other
+59,FHX_242,0.0007835014,Other
+60,FHX_225,0.0001017287,Other
+61,TN_225,0.0000000000,Temperature
+62,TX_225,0.0000000000,Temperature
+63,TG_225,0.0000000000,Temperature
+64,RH_225,0.0000000000,Other
+65,RH_242,0.0000000000,Other
+66,PX_225,0.0000000000,Pressure
+67,coast_FG_max,0.0000000000,Other
