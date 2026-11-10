@@ -1,0 +1,51 @@
+species,scientific_name,pathway,probability_1yr,probability_5yr,probability_10yr,confidence,confidence_score,key_drivers
+Western Tanager,Piranga ludoviciana,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Blue Grosbeak,Passerina caerulea,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Black-throated Gray Warbler,Setophaga nigrescens,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Common Nighthawk,Chordeiles minor,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Swainson's Hawk,Buteo swainsoni,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Cassin's Sparrow,Peucaea cassinii,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Brewer's Sparrow,Spizella breweri,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+MacGillivray's Warbler,Geothlypis tolmiei,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Townsend's Warbler,Setophaga townsendi,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Nashville Warbler,Leiothlypis ruficapilla,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Virginia Rail,Rallus limicola,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Yellow Rail,Coturnicops noveboracensis,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Cedar Waxwing,Bombycilla cedrorum,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Summer Tanager,Piranga rubra,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Painted Bunting,Passerina ciris,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+American Golden Plover,Pluvialis dominica,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Baird's Sandpiper,Calidris bairdii,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Wilson's Phalarope,Phalaropus tricolor,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Upland Sandpiper,Bartramia longicauda,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Bufflehead,Bucephala albeola,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Harlequin Duck,Histrionicus histrionicus,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Yellow-billed Cuckoo,Coccyzus americanus,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Black-billed Cuckoo,Coccyzus erythropthalmus,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Mississippi Kite,Ictinia mississippiensis,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Brown Shrike,Lanius cristatus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Thick-billed Warbler,Arundinax aedon,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Siberian Rubythroat,Calliope calliope,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Lanceolated Warbler,Locustella lanceolata,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Black-faced Bunting,Emberiza spodocephala,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Yellow-breasted Bunting,Emberiza aureola,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Siberian Accentor,Prunella montanella,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Oriental Turtle Dove,Streptopelia orientalis,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+White's Thrush,Zoothera aurea,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Stejneger's Stonechat,Saxicola stejnegeri,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Pale Thrush,Turdus pallidus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Japanese Robin,Larvivora akahige,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Mugimaki Flycatcher,Ficedula mugimaki,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Red-flanked Bluetail,Tarsiger cyanurus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Two-barred Greenish Warbler,Phylloscopus plumbeitarsus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Siberian Blue Robin,Larvivora cyane,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Rufous-tailed Robin,Larvivora sibilans,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Siberian Thrush,Geokichla sibirica,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Eyebrowed Thrush,Turdus obscurus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Black-throated Thrush,Turdus atrogularis,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Dusky Thrush,Turdus eunomus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Long-toed Stint,Calidris subminuta,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Falcated Duck,Mareca falcata,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Eastern Buzzard,Buteo japonicus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Northern Hawk-Owl,Surnia ulula,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Black-and-white Warbler,Mniotilta varia,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data

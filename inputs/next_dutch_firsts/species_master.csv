@@ -1,0 +1,51 @@
+species,scientific_name,family,origin_region,pathway,candidate_type,dutch_records,first_dutch_record,last_dutch_record,uk_records,ireland_records,belgium_records,germany_records,denmark_records,western_europe_trend,notes,dutch_status,most_recent_record_year,last_10yr_records,last_20yr_records
+Western Tanager,Piranga ludoviciana,Cardinalidae,North America,Atlantic,dutch_first,,,,,,,,,,High interest: western North American migrant; candidate for transatlantic dispersal.,no_dutch_record,,,
+Blue Grosbeak,Passerina caerulea,Cardinalidae,North America,Atlantic,dutch_first,,,,,,,,,,Transatlantic candidate; provenance should be carefully assessed.,no_dutch_record,,,
+Black-throated Gray Warbler,Setophaga nigrescens,Parulidae,North America,Atlantic,dutch_first,,,,,,,,,,High interest: western Nearctic warbler with potential for Atlantic vagrancy.,no_dutch_record,,,
+Common Nighthawk,Chordeiles minor,Caprimulgidae,North America,Atlantic,dutch_first,,,,,,,,,,High interest: long-distance nocturnal migrant with precedent in western Europe.,no_dutch_record,,,
+Swainson's Hawk,Buteo swainsoni,Accipitridae,North America,Atlantic,dutch_first,,,,,,,,,,Long-distance migrant; an exceptional long-range raptor candidate.,no_dutch_record,,,
+Cassin's Sparrow,Peucaea cassinii,Passerellidae,North America,Atlantic,dutch_first,,,,,,,,,,Speculative candidate; western European vagrancy evidence needs review.,no_dutch_record,,,
+Brewer's Sparrow,Spizella breweri,Passerellidae,North America,Atlantic,dutch_first,,,,,,,,,,Speculative western Nearctic candidate; identification and provenance require care.,no_dutch_record,,,
+MacGillivray's Warbler,Geothlypis tolmiei,Parulidae,North America,Atlantic,dutch_first,,,,,,,,,,Western Nearctic migrant; similar species and identification should be reviewed.,no_dutch_record,,,
+Townsend's Warbler,Setophaga townsendi,Parulidae,North America,Atlantic,dutch_first,,,,,,,,,,High interest: western Nearctic warbler with potential for Atlantic vagrancy.,no_dutch_record,,,
+Nashville Warbler,Leiothlypis ruficapilla,Parulidae,North America,Atlantic,dutch_first,,,,,,,,,,High interest: migratory Nearctic warbler and candidate for transatlantic arrival.,no_dutch_record,,,
+Virginia Rail,Rallus limicola,Rallidae,North America,Atlantic,dutch_first,,,,,,,,,,Secretive wetland bird; detection and origin are challenging.,no_dutch_record,,,
+Yellow Rail,Coturnicops noveboracensis,Rallidae,North America,Atlantic,dutch_first,,,,,,,,,,Secretive wetland migrant; detection and origin are challenging.,no_dutch_record,,,
+Cedar Waxwing,Bombycilla cedrorum,Bombycillidae,North America,Atlantic,dutch_first,,,,,,,,,,Potential long-distance vagrant; provenance should be assessed.,no_dutch_record,,,
+Summer Tanager,Piranga rubra,Cardinalidae,North America,Atlantic,dutch_first,,,,,,,,,,Nearctic migrant; potential transatlantic vagrant.,no_dutch_record,,,
+Painted Bunting,Passerina ciris,Cardinalidae,North America,Atlantic,dutch_first,,,,,,,,,,Potential vagrant but captive origin requires careful assessment.,no_dutch_record,,,
+American Golden Plover,Pluvialis dominica,Charadriidae,North America,Atlantic,mega_rarity,1,1998,1998,,,,,,,Accepted Dutch records; retained as a rare shorebird comparator.,exceptionally_rare_dutch_vagrant,1998,0,0
+Baird's Sandpiper,Calidris bairdii,Scolopacidae,North America,Atlantic,mega_rarity,3,1975,2020,,,,,,,Accepted Dutch records; transatlantic shorebird.,exceptionally_rare_dutch_vagrant,2020,,
+Wilson's Phalarope,Phalaropus tricolor,Scolopacidae,North America,Atlantic,extreme_rarity,2,1981,2014,,,,,,,Accepted Dutch records; long-distance migrant.,exceptionally_rare_dutch_vagrant,2014,0,
+Upland Sandpiper,Bartramia longicauda,Scolopacidae,North America,Atlantic,extreme_rarity,1,1984,1984,,,,,,,Accepted Dutch records; grassland shorebird.,exceptionally_rare_dutch_vagrant,1984,0,0
+Bufflehead,Bucephala albeola,Anatidae,North America,Atlantic,extreme_rarity,2,2006,2020,,,,,,,Accepted Dutch records; wild origin should be assessed.,exceptionally_rare_dutch_vagrant,2020,,2
+Harlequin Duck,Histrionicus histrionicus,Anatidae,North America,Atlantic,extreme_rarity,1,1997,1997,,,,,,,North Atlantic source populations also occur outside North America; origin requires review.,exceptionally_rare_dutch_vagrant,1997,0,0
+Yellow-billed Cuckoo,Coccyzus americanus,Cuculidae,North America,Atlantic,extreme_rarity,1,1976,1976,,,,,,,Accepted Dutch records; a rare transatlantic migrant.,exceptionally_rare_dutch_vagrant,1976,0,0
+Black-billed Cuckoo,Coccyzus erythropthalmus,Cuculidae,North America,Atlantic,dutch_first,,,,,,,,,,Candidate status needs verification against recent Dutch decisions.,no_dutch_record,,,
+Mississippi Kite,Ictinia mississippiensis,Accipitridae,North America,Atlantic,dutch_first,,,,,,,,,,Speculative long-distance raptor candidate.,no_dutch_record,,,
+Brown Shrike,Lanius cristatus,Laniidae,East Asia,Eastern,extreme_rarity,1,2016,2016,,,,,,,High interest: accepted Dutch rarity with an eastern migrant pathway.,exceptionally_rare_dutch_vagrant,2016,1,1
+Thick-billed Warbler,Arundinax aedon,Acrocephalidae,East Asia,Eastern,dutch_first,,,,,,,,,,High interest: Asian long-distance migrant; recent Dutch status needs verification.,no_dutch_record,,,
+Siberian Rubythroat,Calliope calliope,Muscicapidae,Siberia,Eastern,extreme_rarity,2,2009,2021,,,,,,,High interest: Siberian long-distance migrant with accepted Dutch records.,exceptionally_rare_dutch_vagrant,2021,,2
+Lanceolated Warbler,Locustella lanceolata,Locustellidae,Siberia,Eastern,mega_rarity,3,1992,2020,,,,,,,Secretive Siberian migrant with accepted Dutch records.,exceptionally_rare_dutch_vagrant,2020,,
+Black-faced Bunting,Emberiza spodocephala,Emberizidae,East Asia,Eastern,extreme_rarity,1,2010,2010,,,,,,,Asian migrant with accepted Dutch records.,exceptionally_rare_dutch_vagrant,2010,0,1
+Yellow-breasted Bunting,Emberiza aureola,Emberizidae,Siberia,Eastern,mega_rarity,4,1996,2022,,,,,,,Rare eastern migrant; conservation status and changing abundance matter.,exceptionally_rare_dutch_vagrant,2022,,
+Siberian Accentor,Prunella montanella,Prunellidae,Siberia,Eastern,mega_rarity,6,1992,2022,,,,,,,Accepted Dutch records; status varies with irruption events.,rare_dutch_vagrant,2022,,
+Oriental Turtle Dove,Streptopelia orientalis,Columbidae,East Asia,Eastern,mega_rarity,3,2010,2022,,,,,,,Accepted Dutch records; provenance and subspecies should be considered.,exceptionally_rare_dutch_vagrant,2022,,3
+White's Thrush,Zoothera aurea,Turdidae,East Asia,Eastern,extreme_rarity,2,2006,2019,,,,,,,Eastern forest migrant with accepted Dutch records.,exceptionally_rare_dutch_vagrant,2019,,2
+Stejneger's Stonechat,Saxicola stejnegeri,Muscicapidae,East Asia,Eastern,extreme_rarity,1,2017,2017,,,,,,,Identification and taxonomic treatment need careful review.,exceptionally_rare_dutch_vagrant,2017,1,1
+Pale Thrush,Turdus pallidus,Turdidae,East Asia,Eastern,dutch_first,,,,,,,,,,High interest: East Asian thrush and potential western vagrant.,no_dutch_record,,,
+Japanese Robin,Larvivora akahige,Muscicapidae,East Asia,Eastern,dutch_first,,,,,,,,,,Speculative long-distance candidate; provenance should be assessed.,no_dutch_record,,,
+Mugimaki Flycatcher,Ficedula mugimaki,Muscicapidae,East Asia,Eastern,dutch_first,,,,,,,,,,High interest: migratory East Asian flycatcher and potential western vagrant.,no_dutch_record,,,
+Red-flanked Bluetail,Tarsiger cyanurus,Muscicapidae,Siberia,Eastern,mega_rarity,80,1989,2024,,,,,,,Requested pathway comparator; now almost annual in the Netherlands and not a Dutch first.,rare_dutch_vagrant,2024,,
+Two-barred Greenish Warbler,Phylloscopus plumbeitarsus,Phylloscopidae,Siberia,Eastern,mega_rarity,5,1998,2020,,,,,,,Also called Two-barred Warbler; accepted Dutch records.,exceptionally_rare_dutch_vagrant,2020,,
+Siberian Blue Robin,Larvivora cyane,Muscicapidae,East Asia,Eastern,dutch_first,,,,,,,,,,Asian migrant; potential long-distance vagrant.,no_dutch_record,,,
+Rufous-tailed Robin,Larvivora sibilans,Muscicapidae,East Asia,Eastern,dutch_first,,,,,,,,,,Asian migrant; difficult detection and identification.,no_dutch_record,,,
+Siberian Thrush,Geokichla sibirica,Turdidae,Siberia,Eastern,extreme_rarity,2,2003,2018,,,,,,,Accepted Dutch records; Siberian forest migrant.,exceptionally_rare_dutch_vagrant,2018,,
+Eyebrowed Thrush,Turdus obscurus,Turdidae,East Asia,Eastern,extreme_rarity,1,2015,2015,,,,,,,Accepted Dutch records; Asian long-distance migrant.,exceptionally_rare_dutch_vagrant,2015,0,1
+Black-throated Thrush,Turdus atrogularis,Turdidae,Siberia,Eastern,mega_rarity,3,2003,2021,,,,,,,Accepted Dutch records; possible confusion with related thrush taxa.,exceptionally_rare_dutch_vagrant,2021,,
+Dusky Thrush,Turdus eunomus,Turdidae,Siberia,Eastern,extreme_rarity,4,1991,2020,,,,,,,Accepted Dutch records; identification and taxonomy require care.,exceptionally_rare_dutch_vagrant,2020,,
+Long-toed Stint,Calidris subminuta,Scolopacidae,Siberia,Eastern,extreme_rarity,2,1992,2017,,,,,,,Accepted Dutch records; Siberian shorebird.,exceptionally_rare_dutch_vagrant,2017,,
+Falcated Duck,Mareca falcata,Anatidae,East Asia,Eastern,extreme_rarity,1,2019,2019,,,,,,,Captive origin is a significant consideration for western European records.,exceptionally_rare_dutch_vagrant,2019,1,1
+Eastern Buzzard,Buteo japonicus,Accipitridae,East Asia,Eastern,dutch_first,,,,,,,,,,Speculative eastern raptor candidate; identification and taxonomic treatment need review.,no_dutch_record,,,
+Northern Hawk-Owl,Surnia ulula,Strigidae,Arctic,Eastern,extreme_rarity,3,1997,2018,,,,,,,Accepted Dutch records; boreal irruptive nightbird rather than a typical migrant.,exceptionally_rare_dutch_vagrant,2018,,
+Black-and-white Warbler,Mniotilta varia,Parulidae,North America,Atlantic,dutch_first,,,,,,,,,,Nearctic passerine with western European vagrancy precedent; verify Dutch status before modeling.,no_dutch_record,,,

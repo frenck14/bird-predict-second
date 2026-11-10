@@ -1,0 +1,4 @@
+name,source_type,priority,last_updated,update_status,record_count,error_message
+Dutch Avifauna (CDNA),dutch_rarity,1,2026-11-10T11:45:57.343633,success,25,
+Species Master (Live),european_occurrence,2,2026-11-10T11:45:58.348353,success,25,
+Western Europe Occurrences,atlantic_pathway,2,2026-11-10T11:45:58.367782,success,0,

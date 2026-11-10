@@ -1,0 +1,67 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║           NEXT DUTCH FIRSTS - PROBABILITY FORECAST DASHBOARD             ║
+║                    Transparent Actuarial Model                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+Generated: 2026-11-10 12:27:38 UTC
+Total species analyzed: 50
+
+═══════════════════════════════════════════════════════════════════════════
+MOST LIKELY WITHIN 1 YEAR
+═══════════════════════════════════════════════════════════════════════════
+
+Rank  Species                        1-Yr     5-Yr     Conf    
+───────────────────────────────────────────────────────────────────────────
+1     Western Tanager                2.0%     5.0%     Low     
+2     Blue Grosbeak                  2.0%     5.0%     Low     
+3     Black-throated Gray Warbler    2.0%     5.0%     Low     
+4     Common Nighthawk               2.0%     5.0%     Low     
+5     Swainson's Hawk                2.0%     5.0%     Low     
+
+═══════════════════════════════════════════════════════════════════════════
+MOST LIKELY WITHIN 5 YEARS
+═══════════════════════════════════════════════════════════════════════════
+
+Rank  Species                        5-Yr     10-Yr    Conf    
+───────────────────────────────────────────────────────────────────────────
+1     Western Tanager                5.0%     8.0%     Low     
+2     Blue Grosbeak                  5.0%     8.0%     Low     
+3     Black-throated Gray Warbler    5.0%     8.0%     Low     
+4     Common Nighthawk               5.0%     8.0%     Low     
+5     Swainson's Hawk                5.0%     8.0%     Low     
+
+═══════════════════════════════════════════════════════════════════════════
+MOST LIKELY WITHIN 10 YEARS
+═══════════════════════════════════════════════════════════════════════════
+
+Rank  Species                        10-Yr    Conf    
+───────────────────────────────────────────────────────────────────────────
+1     Western Tanager                8.0%     Low     
+2     Blue Grosbeak                  8.0%     Low     
+3     Black-throated Gray Warbler    8.0%     Low     
+4     Common Nighthawk               8.0%     Low     
+5     Swainson's Hawk                8.0%     Low     
+
+═══════════════════════════════════════════════════════════════════════════
+STRONGEST ATLANTIC CANDIDATES
+═══════════════════════════════════════════════════════════════════════════
+
+Rank  Species                        1-Yr     5-Yr     10-Yr   
+───────────────────────────────────────────────────────────────────────────
+1     Western Tanager                2.0%     5.0%     8.0%    
+2     Blue Grosbeak                  2.0%     5.0%     8.0%    
+3     Black-throated Gray Warbler    2.0%     5.0%     8.0%    
+4     Common Nighthawk               2.0%     5.0%     8.0%    
+5     Swainson's Hawk                2.0%     5.0%     8.0%    
+
+═══════════════════════════════════════════════════════════════════════════
+STRONGEST EASTERN CANDIDATES
+═══════════════════════════════════════════════════════════════════════════
+
+Rank  Species                        1-Yr     5-Yr     10-Yr   
+───────────────────────────────────────────────────────────────────────────
+1     Brown Shrike                   2.0%     5.0%     8.0%    
+2     Thick-billed Warbler           2.0%     5.0%     8.0%    
+3     Siberian Rubythroat            2.0%     5.0%     8.0%    
+4     Lanceolated Warbler            2.0%     5.0%     8.0%    
+5     Black-faced Bunting            2.0%     5.0%     8.0%    

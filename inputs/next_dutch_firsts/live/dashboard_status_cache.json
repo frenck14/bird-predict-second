@@ -1,0 +1,37 @@
+{
+  "status": "operational",
+  "timestamp": "2026-11-10T11:45:58.474139",
+  "overall_health": "good",
+  "health_percent": 100.0,
+  "sources_healthy": 3,
+  "sources_total": 3,
+  "sources": {
+    "Dutch Avifauna (CDNA)": {
+      "emoji": "\u2705",
+      "type": "dutch_rarity",
+      "status": "success",
+      "priority": 1,
+      "record_count": 25,
+      "last_updated": "2026-11-10T11:45:57.343633",
+      "error": NaN
+    },
+    "Species Master (Live)": {
+      "emoji": "\u2705",
+      "type": "european_occurrence",
+      "status": "success",
+      "priority": 2,
+      "record_count": 25,
+      "last_updated": "2026-11-10T11:45:58.348353",
+      "error": NaN
+    },
+    "Western Europe Occurrences": {
+      "emoji": "\u2705",
+      "type": "atlantic_pathway",
+      "status": "success",
+      "priority": 2,
+      "record_count": 0,
+      "last_updated": "2026-11-10T11:45:58.367782",
+      "error": NaN
+    }
+  }
+}

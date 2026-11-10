@@ -1,0 +1,202 @@
+═══════════════════════════════════════════════════════════════════════════════
+TEMPORAL FIELDS - QUICK REFERENCE CARD
+═══════════════════════════════════════════════════════════════════════════════
+
+NEW COLUMNS ADDED
+─────────────────────────────────────────────────────────────────────────────
+
+Column Name                 Type       Populated    Definition
+─────────────────────────────────────────────────────────────────────────────
+most_recent_record_year     integer    25/50 (50%)  Year of latest Dutch record
+last_10yr_records           integer    10/50 (20%)  Records in 2016-2026
+last_20yr_records           integer    13/50 (26%)  Records in 2006-2026
+
+FILES AFFECTED
+─────────────────────────────────────────────────────────────────────────────
+✓ inputs/next_dutch_firsts/dutch_avifauna_records.csv  (9 columns)
+✓ inputs/next_dutch_firsts/species_master.csv          (20 columns)
+
+REFERENCE DATES (Current: 2026)
+─────────────────────────────────────────────────────────────────────────────
+Temporal Window    Date Range      Cutoff Year    Years Span
+─────────────────────────────────────────────────────────────────────────────
+Most Recent        Current         2026           Last known date
+10-year window     2016-2026       2015           Past 10 years
+20-year window     2006-2026       2005           Past 20 years
+
+FIELD VALUES EXPLAINED
+─────────────────────────────────────────────────────────────────────────────
+
+most_recent_record_year
+  Value         Meaning
+  ─────────────────────────────────────────────────────────────────────────
+  2024          Recorded very recently (last 2 years) - active vagrant
+  2010-2023     Recorded within past ~10-15 years - some recent activity
+  2000-2009     Recorded 15-25 years ago - historical but known
+  1990-1999     Recorded 25-35 years ago - very historical
+  (empty)       No verified Dutch records for this species
+
+last_10yr_records (2016-2026 window)
+  Value         Meaning
+  ─────────────────────────────────────────────────────────────────────────
+  6+            Established contemporary vagrant (multiple recent records)
+  1-5           Rare contemporary vagrant (occasional recent records)
+  0             Not recorded since before 2016 (historical species)
+  (empty)       Unknown distribution - needs manual verification
+
+last_20yr_records (2006-2026 window)
+  Value         Meaning
+  ─────────────────────────────────────────────────────────────────────────
+  6+            Regular vagrant with 20-year pattern
+  1-5           Occasional vagrant over 20-year span
+  0             Not recorded since before 2006 (very old records)
+  (empty)       Unknown distribution - needs manual verification
+
+EMPTY VALUES
+─────────────────────────────────────────────────────────────────────────────
+Empty fields appear when:
+  • Records span across boundary year (e.g., records from 1990-2020)
+  • No verified Dutch records exist
+  • Source data too coarse for calculation
+
+Empty ≠ Zero. Empty means "unknown" or "needs research"
+Zero means "confirmed no records in that period"
+
+FILTERING PATTERNS
+─────────────────────────────────────────────────────────────────────────────
+
+Get Currently Active Vagrants:
+  most_recent_record_year >= 2020
+
+Get Species Not Recorded Recently:
+  most_recent_record_year < 2010
+
+Get Established Contemporary Patterns:
+  last_10yr_records > 0  (and not null)
+
+Get Truly Unrecorded Species (Dutch First Candidates):
+  most_recent_record_year IS NULL
+
+Get Species Needing Manual Verification:
+  last_10yr_records IS NULL  (but most_recent_record_year is not null)
+
+SPECIES EXAMPLES
+─────────────────────────────────────────────────────────────────────────────
+
+Recently Active (2020+):
+  Red-flanked Bluetail      2024  (80 total, active vagrant)
+  Siberian Accentor         2022  (6 total, irruptive pattern)
+  Yellow-breasted Bunting   2022  (4 total)
+  Baird's Sandpiper         2020  (3 total)
+  Bufflehead                2020  (2 total)
+
+Historical (No Recent):
+  American Golden Plover    1998  (1 total, 28 years old)
+  Upland Sandpiper          1984  (1 total, 42 years old)
+  Yellow-billed Cuckoo      1976  (1 total, 50 years old)
+  Harlequin Duck            1997  (1 total, 29 years old)
+
+Need Year-Level Detail:
+  Baird's Sandpiper         (3 records, 1975-2020)
+  Black-throated Thrush     (3 records, 2003-2021)
+  Yellow-breasted Bunting   (4 records, 1996-2022)
+
+Unrecorded:
+  Western Tanager           (no Dutch records)
+  Blue Grosbeak             (no Dutch records)
+  Black-throated Gray Warbler (no Dutch records)
+
+DATA QUALITY BY FIELD
+─────────────────────────────────────────────────────────────────────────────
+
+most_recent_record_year:
+  ✓ 25 species (50%) - High quality, no research needed
+  ⟶ 25 species (50%) - Empty (no records for these species)
+
+last_10yr_records:
+  ✓ 8 species (16%) - 0 value (old records, verified)
+  ✓ 2 species (4%)  - >0 value (recent records within window)
+  ⟶ 15 species (30%) - Empty (span boundary, needs detail)
+  ⟶ 25 species (50%) - Empty (no records)
+
+last_20yr_records:
+  ✓ 10 species (20%) - 0 value (very old records, verified)
+  ✓ 3 species (6%)  - >0 value (within 20-year window)
+  ⟶ 12 species (24%) - Empty (span boundary, needs detail)
+  ⟶ 25 species (50%) - Empty (no records)
+
+PYTHON USAGE EXAMPLES
+─────────────────────────────────────────────────────────────────────────────
+
+import pandas as pd
+
+df = pd.read_csv('inputs/next_dutch_firsts/species_master.csv')
+
+# Contemporary vagrants (last recorded 2020+)
+active = df[df['most_recent_record_year'] >= 2020]
+print(active[['species', 'most_recent_record_year']])
+
+# Not recorded recently (< 2010)
+old_records = df[df['most_recent_record_year'] < 2010]
+
+# Clear absence in 10 years (confirmed 0)
+absent_10yr = df[df['last_10yr_records'] == 0]
+
+# Unrecorded species (Dutch first candidates)
+candidates = df[df['most_recent_record_year'].isna()]
+
+# Needs manual verification
+needs_detail = df[df['last_10yr_records'].isna() & 
+                  df['most_recent_record_year'].notna()]
+
+MODEL FEATURES
+─────────────────────────────────────────────────────────────────────────────
+
+Recency Score: 2026 - most_recent_record_year
+  • Lower = more recent
+  • Can be used as regression feature
+  • 0 for never recorded (outlier handling needed)
+
+Activity Indicator: last_10yr_records > 0
+  • Binary feature: 1 if active in past decade, 0 if not
+  • Useful for vagrant vs. historical distinction
+
+Trend: last_10yr_records - last_20yr_records
+  • Positive = increasing activity
+  • Negative = decreasing activity
+  • Zero = stable pattern
+
+WHEN TO USE EACH FIELD
+─────────────────────────────────────────────────────────────────────────────
+
+Use most_recent_record_year when:
+  • Filtering for contemporary occurrences
+  • Calculating recency-based features
+  • Identifying most recently recorded species
+
+Use last_10yr_records when:
+  • Focusing on current decade patterns
+  • Filtering out historical records
+  • Assessing contemporary vagrant status
+
+Use last_20yr_records when:
+  • Examining mid-term trends
+  • Identifying established patterns
+  • Long-term trend analysis
+
+MAINTENANCE NOTES
+─────────────────────────────────────────────────────────────────────────────
+
+Updated: November 10, 2026
+Next Update: When new Dutch records discovered or annually
+Boundary Years: 2006, 2016, 2026 (update when year changes)
+
+To update annually:
+  1. Change current_year variable to 2027 (next year)
+  2. Re-run population script
+  3. Recalculate all temporal fields
+  4. Document any new records found
+
+═══════════════════════════════════════════════════════════════════════════════
+Quick Reference | Next Dutch Firsts Temporal Extension | Nov 10, 2026
+═══════════════════════════════════════════════════════════════════════════════
