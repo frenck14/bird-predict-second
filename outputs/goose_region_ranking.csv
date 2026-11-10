@@ -1,33 +1,33 @@
 date,horizon_days,rank,region,score,rating,top_site
-2026-11-10,1,1,Texel,6.6,Poor,Texel Midden (Oosterend)
-2026-11-10,1,2,Zeeland,6.5,Poor,Oosterschelde (Neeltje Jans)
-2026-11-10,1,3,Lauwersmeer,5.6,Poor,Lauwersmeer National Park
-2026-11-10,1,4,Noord-Holland,5.3,Poor,Anna Paulowna Polder
-2026-11-10,1,5,IJsselmeergebied,4.8,Poor,Hoorn & Enkhuizen (Markermeer)
-2026-11-10,1,6,Friesland,4.7,Poor,Ameland
-2026-11-10,1,7,Flevoland,4.5,Poor,Oostvaardersplassen
-2026-11-10,1,8,Groningen,4.1,Poor,Eemshaven & Delfzijl
-2026-11-12,3,1,Texel,11.7,Poor,Texel Midden (Oosterend)
-2026-11-12,3,2,Zeeland,11.3,Poor,Oosterschelde (Neeltje Jans)
-2026-11-12,3,3,Lauwersmeer,9.8,Poor,Lauwersmeer National Park
-2026-11-12,3,4,Noord-Holland,9.3,Poor,Anna Paulowna Polder
-2026-11-12,3,5,IJsselmeergebied,8.5,Poor,Wieringermeer
-2026-11-12,3,6,Friesland,8.3,Poor,Ameland
-2026-11-12,3,7,Flevoland,8.1,Poor,Oostvaardersplassen
-2026-11-12,3,8,Groningen,7.3,Poor,Oldambt & Dollard
-2026-11-16,7,1,Texel,12.2,Poor,Texel Midden (Oosterend)
-2026-11-16,7,2,Zeeland,11.9,Poor,Oosterschelde (Neeltje Jans)
-2026-11-16,7,3,Lauwersmeer,10.2,Poor,Lauwersmeer National Park
-2026-11-16,7,4,Noord-Holland,9.6,Poor,Anna Paulowna Polder
-2026-11-16,7,5,Friesland,9.0,Poor,Ameland
-2026-11-16,7,6,IJsselmeergebied,8.8,Poor,Makkum & Workum coast
-2026-11-16,7,7,Flevoland,8.0,Poor,Oostvaardersplassen
-2026-11-16,7,8,Groningen,7.5,Poor,Oldambt & Dollard
-2026-11-23,14,1,Texel,14.0,Poor,Texel Midden (Oosterend)
-2026-11-23,14,2,Zeeland,13.6,Poor,Oosterschelde (Neeltje Jans)
-2026-11-23,14,3,Lauwersmeer,11.7,Poor,Lauwersmeer National Park
-2026-11-23,14,4,Noord-Holland,11.1,Poor,Anna Paulowna Polder
-2026-11-23,14,5,Friesland,10.1,Poor,Ameland
-2026-11-23,14,6,IJsselmeergebied,10.1,Poor,Makkum & Workum coast
-2026-11-23,14,7,Flevoland,9.4,Poor,Oostvaardersplassen
-2026-11-23,14,8,Groningen,8.6,Poor,Pieterburen & Noordpolder
+2026-11-11,1,1,Texel,9.6,Poor,Texel Midden (Oosterend)
+2026-11-11,1,2,Zeeland,9.2,Poor,Oosterschelde (Neeltje Jans)
+2026-11-11,1,3,Lauwersmeer,8.0,Poor,Lauwersmeer National Park
+2026-11-11,1,4,Noord-Holland,7.7,Poor,Anna Paulowna Polder
+2026-11-11,1,5,IJsselmeergebied,7.0,Poor,Wieringermeer
+2026-11-11,1,6,Flevoland,6.7,Poor,Oostvaardersplassen
+2026-11-11,1,7,Friesland,6.6,Poor,Ameland
+2026-11-11,1,8,Groningen,6.0,Poor,Oldambt & Dollard
+2026-11-13,3,1,Texel,6.9,Poor,Texel Midden (Oosterend)
+2026-11-13,3,2,Zeeland,6.6,Poor,Oosterschelde (Neeltje Jans)
+2026-11-13,3,3,Lauwersmeer,5.7,Poor,Lauwersmeer National Park
+2026-11-13,3,4,Noord-Holland,5.5,Poor,Anna Paulowna Polder
+2026-11-13,3,5,IJsselmeergebied,5.0,Poor,Wieringermeer
+2026-11-13,3,6,Flevoland,4.9,Poor,Oostvaardersplassen
+2026-11-13,3,7,Friesland,4.7,Poor,Ameland
+2026-11-13,3,8,Groningen,4.3,Poor,Eemshaven & Delfzijl
+2026-11-17,7,1,Texel,16.2,Poor,Texel Midden (Oosterend)
+2026-11-17,7,2,Zeeland,15.6,Poor,Oosterschelde (Neeltje Jans)
+2026-11-17,7,3,Lauwersmeer,13.4,Poor,Lauwersmeer National Park
+2026-11-17,7,4,Noord-Holland,12.9,Poor,Anna Paulowna Polder
+2026-11-17,7,5,IJsselmeergebied,11.7,Poor,Wieringermeer
+2026-11-17,7,6,Friesland,11.2,Poor,Ameland
+2026-11-17,7,7,Flevoland,11.2,Poor,Oostvaardersplassen
+2026-11-17,7,8,Groningen,10.0,Poor,Oldambt & Dollard
+2026-11-24,14,1,Texel,2.1,Poor,Texel Midden (Oosterend)
+2026-11-24,14,2,Zeeland,2.0,Poor,Oosterschelde (Neeltje Jans)
+2026-11-24,14,3,Lauwersmeer,1.8,Poor,Lauwersmeer National Park
+2026-11-24,14,4,Noord-Holland,1.7,Poor,Anna Paulowna Polder
+2026-11-24,14,5,IJsselmeergebied,1.6,Poor,Hoorn & Enkhuizen (Markermeer)
+2026-11-24,14,6,Flevoland,1.5,Poor,Oostvaardersplassen
+2026-11-24,14,7,Friesland,1.4,Poor,Ameland
+2026-11-24,14,8,Groningen,1.3,Poor,Eemshaven & Delfzijl

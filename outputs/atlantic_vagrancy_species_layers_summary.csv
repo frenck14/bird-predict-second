@@ -1,11 +1,11 @@
 species,slug,records,records_since_start,record_years,countries,occupied_cells,seasonal_peak,top_cell,top_probability,positive_anomaly_rows,status,data_quality
-Yellow-browed Warbler,yellow_browed_warbler,68647,65446,27,"BE,DK,GB,IE,NL",1343,10-09,3720000-3350000,0.001652682604601038,280,OK,sufficient
-Red-eyed Vireo,red_eyed_vireo,1440,1049,23,"BE,DK,GB,IE,NL",53,10-22,3150000-3100000,0.0013703196418493,280,OK,sufficient
-Blackpoll Warbler,blackpoll_warbler,674,464,11,"DK,GB,IE,NL",15,10-20,3160000-3100000,0.00147867190681225,280,OK,sufficient
-American Redstart,american_redstart,65,13,1,GB,2,09-09,3270000-3890000,0.0011531896363620986,280,OK,sparse
-Blackburnian Warbler,blackburnian_warbler,120,116,3,GB,3,10-17,3150000-3110000,0.001227362137090137,280,OK,sparse
-Northern Parula,northern_parula,156,9,4,"GB,IE",4,09-30,3160000-3110000,0.0013204334491435574,280,OK,sparse
-Tennessee Warbler,tennessee_warbler,51,39,5,"GB,IE,NL",6,09-30,3000000-3570000,0.0009568921342167651,280,OK,sparse
-Bobolink,bobolink,260,89,10,"GB,IE,NL",14,10-11,3160000-3100000,0.014117714835953268,280,OK,sparse
-American Robin,american_robin,733,679,11,"GB,NL",29,04-20,3150000-3110000,0.002283135647207399,280,OK,sufficient
-Dark-eyed Junco,dark_eyed_junco,1924,1764,17,"BE,DK,GB,IE,NL",32,02-09,3680000-3120000,0.0005900220150085056,280,OK,sufficient
+Yellow-browed Warbler,yellow_browed_warbler,68647,65446,27,"BE,DK,GB,IE,NL",1343,10-09,3720000-3350000,0.0012005323702440906,180,OK,sufficient
+Red-eyed Vireo,red_eyed_vireo,1440,1049,23,"BE,DK,GB,IE,NL",53,10-22,3150000-3100000,0.00108827942893643,180,OK,sufficient
+Blackpoll Warbler,blackpoll_warbler,674,464,11,"DK,GB,IE,NL",15,10-20,3160000-3100000,0.001174330549738226,180,OK,sufficient
+American Redstart,american_redstart,65,13,1,GB,2,09-09,3270000-3890000,0.0009158392834695795,180,OK,sparse
+Blackburnian Warbler,blackburnian_warbler,120,116,3,GB,3,10-17,3150000-3110000,0.0009747455446585101,180,OK,sparse
+Northern Parula,northern_parula,156,9,4,"GB,IE",4,09-30,3160000-3110000,0.0010486608497001638,180,OK,sparse
+Tennessee Warbler,tennessee_warbler,51,39,5,"GB,IE,NL",6,09-30,3000000-3570000,0.0007599438799357925,180,OK,sparse
+Bobolink,bobolink,260,89,10,"GB,IE,NL",14,10-11,3160000-3100000,0.004204498581118703,180,OK,sparse
+American Robin,american_robin,733,679,11,"GB,NL",29,04-20,3150000-3110000,0.0019643205419493195,180,OK,sufficient
+Dark-eyed Junco,dark_eyed_junco,1924,1764,17,"BE,DK,GB,IE,NL",32,02-09,3680000-3120000,0.0004685832428752368,180,OK,sufficient

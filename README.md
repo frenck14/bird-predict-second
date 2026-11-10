@@ -558,6 +558,41 @@ completed run. It is not the illustrative watchlist score or an independently
 trained species probability. Dashboard cards show forecast dates and identify
 available leading species signals; a previous-day change is shown only when the
 same product has a previous forecast date, not as a revision of yesterday's run.
+
+The **Rare Birds** page has three top-level views—Atmospheric Indices,
+Forecasts, and Hotspots—with a secondary selector in each view. Atmospheric
+The Atlantic Index and Eastern Drift Index show transparent 0–100 component
+scores, component contributions and sub-signal explanations. They are
+experimental heuristic indices: four Dutch coastal weather stations and the
+preceding ten complete years of GB, IE, NL, BE and DK event summaries are
+equally weighted. Scandinavian blocking, Siberian/Atlantic transport pathways,
+Azores arrivals and hurricane remnants are explicitly labelled proxies because
+the current inputs do not cover those regions or feeds. These indices are
+separate from the learned bird-record event forecasts. The Next Dutch Firsts
+ranking uses illustrative historical records and is not a calibrated multi-year
+forecast. Named hotspot tables show unavailable when a requested site is not
+present in the current location forecast.
+
+The transport score uses positive cosine alignment with 90° easterly or 270°
+westerly winds, scaled by wind speed capped at 15 m/s. Persistence and
+continuation are trailing and forward three-day means; station connectivity
+measures directional agreement across the four coastal stations. Cyclone
+support combines daily-maximum-pressure, wind-speed and station pressure
+gradient proxies. Historical monthly activity uses log-scaled event or species
+counts over the ten complete years before the forecast year. Sub-signals are
+equally weighted inside each component; components are equally weighted inside
+their index, and contribution is component score times component weight. The
+dashboard's calculation expander describes these formulas and the limitations
+of each regional proxy.
+
+Rare Birds forecasts, hotspots, Seawatch Day Rating, Migration, and Species
+Explorer views show a status badge and confidence label. Confidence reflects
+model validation and data limitations; Seawatch Day Rating uses its forecast
+lead-time confidence. Experimental means a product is exploratory or lacks a
+validated forecast model, and low-confidence hotspot scores use heuristic
+suitability. Species Explorer labels its historical summaries as descriptive
+and identifies the separate forecast layers as model outputs.
+
 When the current run skipped a product or its output does not match that run,
 the card shows unavailable rather than an older score.
 

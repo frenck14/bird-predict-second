@@ -128,6 +128,60 @@ def _seawatching_script(directory: str) -> None:
         app.show_seawatching()
 
 
+def _rare_birds_script() -> None:
+    from unittest.mock import patch
+
+    import streamlit as st
+
+    import app
+
+    with patch.multiple(
+        app,
+        forecast_ready=lambda: True,
+        forecast_panel=lambda title, *_: st.write(title),
+        show_species_leaderboard=lambda *_: st.write("Atlantic species ranking"),
+        show_eastern_target_species=lambda: st.write("Eastern species ranking"),
+        show_next_dutch_firsts=lambda: st.write("Next Dutch Firsts view"),
+        show_rare_hotspot_sites=lambda *_: st.write("Requested site outlook"),
+        show_atlantic_location_forecasts=lambda: st.write("Atlantic hotspot map"),
+        show_eastern_hotspots=lambda: st.write("Eastern hotspot map"),
+    ):
+        app.show_rare_birds()
+
+
+def _rare_hotspot_sites_script(path: str) -> None:
+    from pathlib import Path
+
+    import app
+
+    app.show_rare_hotspot_sites(
+        Path(path),
+        ("Texel", "Maasvlakte", "IJmuiden"),
+    )
+
+
+def _atmospheric_index_script(directory: str, family: str) -> None:
+    from pathlib import Path
+    from unittest.mock import patch
+
+    import app
+
+    root = Path(directory)
+    with patch.multiple(
+        app,
+        WEATHER_FORECAST_FILE=root / "weather.csv",
+        EASTERN_EVENTS_FILE=root / "eastern_events.csv",
+        ATLANTIC_EVENTS_FILE=root / "atlantic_events.csv",
+    ):
+        app.show_atmospheric_index(family)
+
+
+def _prediction_status_script() -> None:
+    import app
+
+    app.show_prediction_status("Hotspot Prediction Model", "Low")
+
+
 def _write_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data), encoding="utf-8")
 
@@ -147,6 +201,137 @@ def test_sidebar_navigation_routes_to_each_page(tmp_path: Path) -> None:
         at.sidebar.radio[0].set_value(label).run()
         assert not at.exception
         assert any(item.value == content for item in at.markdown)
+
+
+def test_rare_birds_has_nested_views_for_all_three_sections() -> None:
+    at = AppTest.from_function(_rare_birds_script).run()
+    assert not at.exception
+    assert at.radio[0].options == ["Atmospheric Indices", "Forecasts", "Hotspots"]
+    assert at.segmented_control[0].options == [
+        "Atlantic Index",
+        "Eastern Drift Index",
+        "Blocking Index",
+    ]
+
+    at.segmented_control[0].set_value("🧭 Blocking Index").run()
+    assert not at.exception
+    assert any("Scandinavian pressure field" in item.value for item in at.info)
+    assert any("Forecast Model" in item.value for item in at.markdown)
+    assert any("Confidence: Experimental" in item.value for item in at.markdown)
+
+    at.radio[0].set_value("Forecasts").run()
+    assert not at.exception
+    assert at.segmented_control[0].options == [
+        "Atlantic Vagrant Watch",
+        "Eastern Vagrant Watch",
+        "Next Dutch Firsts",
+    ]
+    at.segmented_control[0].set_value("🌏 Eastern Vagrant Watch").run()
+    assert not at.exception
+    assert any("Finland, Sweden" in item.value for item in at.info)
+    assert any(item.value == "Eastern species ranking" for item in at.markdown)
+    assert any("Confidence: Medium" in item.value for item in at.markdown)
+
+    at.segmented_control[0].set_value("⭐ Next Dutch Firsts").run()
+    assert not at.exception
+    assert any(item.value == "Next Dutch Firsts view" for item in at.markdown)
+
+    at.radio[0].set_value("Hotspots").run()
+    assert not at.exception
+    assert at.segmented_control[0].options == [
+        "Atlantic Hotspots",
+        "Eastern Hotspots",
+    ]
+    at.segmented_control[0].set_value("🌏 Eastern Hotspots").run()
+    assert not at.exception
+    assert any(item.value == "Requested site outlook" for item in at.markdown)
+    assert any(item.value == "Eastern hotspot map" for item in at.markdown)
+    assert any("Hotspot Prediction Model" in item.value for item in at.markdown)
+    assert any("Confidence: Low" in item.value for item in at.markdown)
+
+
+def test_prediction_status_shows_category_description_and_confidence() -> None:
+    at = AppTest.from_function(_prediction_status_script).run()
+    assert not at.exception
+    status = at.markdown[0].value
+    assert "📍 Hotspot Prediction Model" in status
+    assert "Confidence: Low" in status
+    assert "Forecasts where rarity arrivals are most likely." in status
+
+
+def test_rare_hotspot_site_table_shows_requested_horizons_and_missing_sites(
+    tmp_path: Path,
+) -> None:
+    dates = pd.date_range("2026-01-01", periods=14)
+    pd.DataFrame(
+        [
+            {"date": date, "location": "Texel", "forecast_probability": 0.2}
+            for date in dates
+        ]
+        + [
+            {"date": date, "location": "Maasvlakte", "forecast_probability": 0.1}
+            for date in dates
+        ]
+    ).to_csv(tmp_path / "locations.csv", index=False)
+    at = AppTest.from_function(
+        _rare_hotspot_sites_script, args=(str(tmp_path / "locations.csv"),)
+    ).run()
+    assert not at.exception
+    table = at.dataframe[0].value
+    assert table["Site"].tolist() == ["Texel", "Maasvlakte", "IJmuiden"]
+    assert table.iloc[0, 1:].tolist() == ["20.0%", "20.0%", "20.0%", "20.0%"]
+    assert table.iloc[2, 1:].tolist() == ["Unavailable"] * 4
+
+
+def test_atmospheric_index_ui_displays_composite_component_and_signal_scores(
+    tmp_path: Path,
+) -> None:
+    dates = pd.date_range("2026-01-01", periods=14)
+    weather_rows = []
+    for date in dates:
+        for station in (225, 235, 242, 310):
+            weather_rows.append(
+                {
+                    "date": date,
+                    "station_id": station,
+                    "DDVEC": 90,
+                    "FG": 100,
+                    "FHX": 150,
+                    "TG": 50,
+                    "TN": 20,
+                    "TX": 80,
+                    "RH": 0,
+                    "PX": 10000,
+                }
+            )
+    pd.DataFrame(weather_rows).to_csv(tmp_path / "weather.csv", index=False)
+    events = pd.DataFrame(
+        [
+            {"date": pd.Timestamp(year, month, 10), "count": month, "species_count": 1}
+            for year in range(2016, 2026)
+            for month in range(1, 13)
+        ]
+    )
+    events.to_csv(tmp_path / "eastern_events.csv", index=False)
+    events.to_csv(tmp_path / "atlantic_events.csv", index=False)
+
+    at = AppTest.from_function(
+        _atmospheric_index_script,
+        args=(str(tmp_path), "Eastern"),
+        default_timeout=30,
+    ).run()
+    assert not at.exception
+    metrics = {metric.label: metric.value for metric in at.metric}
+    assert metrics["Eastern Drift Index · 01 Jan"] != "Unavailable"
+    assert metrics["Component score"] != "0/100"
+    assert "Contribution to index" in metrics
+    assert len(at.dataframe) == 3
+    assert set(at.dataframe[0].value["Driver"]) == {
+        "Wind direction",
+        "Wind speed",
+        "Persistence",
+        "Transport connectivity",
+    }
 
 
 def test_dashboard_uses_product_values_and_compares_forecast_dates(tmp_path: Path) -> None:

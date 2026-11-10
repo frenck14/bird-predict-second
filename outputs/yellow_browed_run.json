@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T08:27:14.651153+00:00",
+  "generated_at": "2026-11-10T12:41:25.451221+00:00",
   "species": "Yellow-browed Warbler",
   "model_name": "XGBoost",
   "weather_source": "Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)",
@@ -8,9 +8,9 @@
   "location_forecast_csv": "outputs/yellow_browed_location_forecast.csv",
   "forecast_plot": "outputs/yellow_browed_forecast.png",
   "daily_report": "outputs/yellow_browed_report.md",
-  "forecast_start": "2026-11-10",
-  "forecast_end": "2026-11-23",
-  "mean_probability": 0.25663477182388306,
+  "forecast_start": "2026-11-11",
+  "forecast_end": "2026-11-24",
+  "mean_probability": 0.25013500452041626,
   "location_cells": 240,
   "atlantic_vagrancy": {
     "product": "Atlantic Vagrancy Index",
@@ -28,9 +28,9 @@
     ],
     "forecast_csv": "outputs/atlantic_vagrancy_forecast.csv",
     "forecast_plot": "outputs/atlantic_vagrancy_forecast.png",
-    "forecast_start": "2026-11-10",
-    "forecast_end": "2026-11-23",
-    "mean_probability": 0.028358792001649147,
+    "forecast_start": "2026-11-11",
+    "forecast_end": "2026-11-24",
+    "mean_probability": 0.02368131141345427,
     "location_forecast_csv": "outputs/atlantic_vagrancy_location_forecast.csv",
     "location_cells": 123,
     "location_forecast_simple_csv": "outputs/atlantic_location_forecast.csv",
@@ -46,8 +46,8 @@
         "occupied_cells": 1343,
         "seasonal_peak": "10-09",
         "top_cell": "3720000-3350000",
-        "top_probability": 0.001652682604601038,
-        "positive_anomaly_rows": 280,
+        "top_probability": 0.0012005323702440906,
+        "positive_anomaly_rows": 180,
         "status": "OK",
         "data_quality": "sufficient"
       },
@@ -61,8 +61,8 @@
         "occupied_cells": 53,
         "seasonal_peak": "10-22",
         "top_cell": "3150000-3100000",
-        "top_probability": 0.0013703196418493,
-        "positive_anomaly_rows": 280,
+        "top_probability": 0.00108827942893643,
+        "positive_anomaly_rows": 180,
         "status": "OK",
         "data_quality": "sufficient"
       },
@@ -76,8 +76,8 @@
         "occupied_cells": 15,
         "seasonal_peak": "10-20",
         "top_cell": "3160000-3100000",
-        "top_probability": 0.00147867190681225,
-        "positive_anomaly_rows": 280,
+        "top_probability": 0.001174330549738226,
+        "positive_anomaly_rows": 180,
         "status": "OK",
         "data_quality": "sufficient"
       },
@@ -91,8 +91,8 @@
         "occupied_cells": 2,
         "seasonal_peak": "09-09",
         "top_cell": "3270000-3890000",
-        "top_probability": 0.0011531896363620986,
-        "positive_anomaly_rows": 280,
+        "top_probability": 0.0009158392834695795,
+        "positive_anomaly_rows": 180,
         "status": "OK",
         "data_quality": "sparse"
       },
@@ -106,8 +106,8 @@
         "occupied_cells": 3,
         "seasonal_peak": "10-17",
         "top_cell": "3150000-3110000",
-        "top_probability": 0.001227362137090137,
-        "positive_anomaly_rows": 280,
+        "top_probability": 0.0009747455446585101,
+        "positive_anomaly_rows": 180,
         "status": "OK",
         "data_quality": "sparse"
       },
@@ -121,8 +121,8 @@
         "occupied_cells": 4,
         "seasonal_peak": "09-30",
         "top_cell": "3160000-3110000",
-        "top_probability": 0.0013204334491435574,
-        "positive_anomaly_rows": 280,
+        "top_probability": 0.0010486608497001638,
+        "positive_anomaly_rows": 180,
         "status": "OK",
         "data_quality": "sparse"
       },
@@ -136,8 +136,8 @@
         "occupied_cells": 6,
         "seasonal_peak": "09-30",
         "top_cell": "3000000-3570000",
-        "top_probability": 0.0009568921342167651,
-        "positive_anomaly_rows": 280,
+        "top_probability": 0.0007599438799357925,
+        "positive_anomaly_rows": 180,
         "status": "OK",
         "data_quality": "sparse"
       },
@@ -151,8 +151,8 @@
         "occupied_cells": 14,
         "seasonal_peak": "10-11",
         "top_cell": "3160000-3100000",
-        "top_probability": 0.014117714835953268,
-        "positive_anomaly_rows": 280,
+        "top_probability": 0.004204498581118703,
+        "positive_anomaly_rows": 180,
         "status": "OK",
         "data_quality": "sparse"
       },
@@ -166,8 +166,8 @@
         "occupied_cells": 29,
         "seasonal_peak": "04-20",
         "top_cell": "3150000-3110000",
-        "top_probability": 0.002283135647207399,
-        "positive_anomaly_rows": 280,
+        "top_probability": 0.0019643205419493195,
+        "positive_anomaly_rows": 180,
         "status": "OK",
         "data_quality": "sufficient"
       },
@@ -181,8 +181,8 @@
         "occupied_cells": 32,
         "seasonal_peak": "02-09",
         "top_cell": "3680000-3120000",
-        "top_probability": 0.0005900220150085056,
-        "positive_anomaly_rows": 280,
+        "top_probability": 0.0004685832428752368,
+        "positive_anomaly_rows": 180,
         "status": "OK",
         "data_quality": "sufficient"
       }
@@ -210,74 +210,74 @@
     ],
     "forecast_csv": "outputs/seabird_forecast.csv",
     "forecast_plot": "outputs/seabird_forecast.png",
-    "forecast_start": "2026-11-10",
-    "forecast_end": "2026-11-23",
-    "mean_probability": 0.05549421147635432,
+    "forecast_start": "2026-11-11",
+    "forecast_end": "2026-11-24",
+    "mean_probability": 0.04198862777434207,
     "strongest_location": "Fair Isle",
-    "strongest_probability": 0.0341273712010568,
+    "strongest_probability": 0.037454770133568585,
     "top10_locations": [
       {
         "rank": 1,
         "location": "Fair Isle",
         "country": "GB",
-        "probability": 0.0341273712010568
+        "probability": 0.037454770133568585
       },
       {
         "rank": 2,
         "location": "Scilly Isles",
         "country": "GB",
-        "probability": 0.03273056995524287
+        "probability": 0.03592178157502931
       },
       {
         "rank": 3,
         "location": "Scilly Isles (SW)",
         "country": "GB",
-        "probability": 0.031426752970660894
+        "probability": 0.034490843189354636
       },
       {
         "rank": 4,
         "location": "Scilly Isles (N)",
         "country": "GB",
-        "probability": 0.030540563778050908
+        "probability": 0.03351825106356465
       },
       {
         "rank": 5,
         "location": "Fair Isle (S)",
         "country": "GB",
-        "probability": 0.029728426783626204
+        "probability": 0.03262693118240713
       },
       {
         "rank": 6,
         "location": "Shetland",
         "country": "GB",
-        "probability": 0.028171091353996598
+        "probability": 0.030917756450078705
       },
       {
         "rank": 7,
         "location": "Scilly Isles (NW)",
         "country": "GB",
-        "probability": 0.028019426264287
+        "probability": 0.03075130410193581
       },
       {
         "rank": 8,
         "location": "North Ronaldsay",
         "country": "GB",
-        "probability": 0.025712588343650693
+        "probability": 0.028219550819686027
       },
       {
         "rank": 9,
         "location": "Shetland (W)",
         "country": "GB",
-        "probability": 0.02541562476830659
+        "probability": 0.027893633467686422
       },
       {
         "rank": 10,
         "location": "Outer Hebrides",
         "country": "GB",
-        "probability": 0.025205875568765797
+        "probability": 0.027663433842634224
       }
     ],
-    "generated_at": "2026-11-09T08:27:14.651092+00:00",
+    "generated_at": "2026-11-10T12:41:25.451176+00:00",
     "location_forecast_csv": "outputs/seabird_location_forecast.csv",
     "location_forecast_detail_csv": "outputs/seabird_location_forecast_detail.csv",
     "location_forecast_simple_csv": "outputs/seabird_location_forecast.csv",
@@ -291,72 +291,72 @@
       "location_forecast_csv": "outputs/storm_petrel_location_forecast.csv",
       "hotspots_csv": "outputs/storm_petrel_hotspots.csv",
       "map": "outputs/storm_petrel_location_forecast.png",
-      "forecast_start": "2026-11-10",
-      "forecast_end": "2026-11-23",
-      "mean_probability": 0.03198754552325981
+      "forecast_start": "2026-11-11",
+      "forecast_end": "2026-11-24",
+      "mean_probability": 0.02166953549096406
     },
     "Northern Fulmar": {
       "forecast_csv": "outputs/fulmar_forecast.csv",
       "location_forecast_csv": "outputs/fulmar_location_forecast.csv",
       "hotspots_csv": "outputs/fulmar_hotspots.csv",
       "map": "outputs/fulmar_location_forecast.png",
-      "forecast_start": "2026-11-10",
-      "forecast_end": "2026-11-23",
-      "mean_probability": 0.0351844894523466
+      "forecast_start": "2026-11-11",
+      "forecast_end": "2026-11-24",
+      "mean_probability": 0.03336399711399711
     },
     "Sooty Shearwater": {
       "forecast_csv": "outputs/sooty_shearwater_forecast.csv",
       "location_forecast_csv": "outputs/sooty_shearwater_location_forecast.csv",
       "hotspots_csv": "outputs/sooty_shearwater_hotspots.csv",
       "map": "outputs/sooty_shearwater_location_forecast.png",
-      "forecast_start": "2026-11-10",
-      "forecast_end": "2026-11-23",
-      "mean_probability": 0.11252746856318285
+      "forecast_start": "2026-11-11",
+      "forecast_end": "2026-11-24",
+      "mean_probability": 0.10028558280343992
     },
     "Manx Shearwater": {
       "forecast_csv": "outputs/manx_shearwater_forecast.csv",
       "location_forecast_csv": "outputs/manx_shearwater_location_forecast.csv",
       "hotspots_csv": "outputs/manx_shearwater_hotspots.csv",
       "map": "outputs/manx_shearwater_location_forecast.png",
-      "forecast_start": "2026-11-10",
-      "forecast_end": "2026-11-23",
-      "mean_probability": 0.01660998789570218
+      "forecast_start": "2026-11-11",
+      "forecast_end": "2026-11-24",
+      "mean_probability": 0.014166477702191987
     },
     "Great Shearwater": {
       "forecast_csv": "outputs/great_shearwater_forecast.csv",
       "location_forecast_csv": "outputs/great_shearwater_location_forecast.csv",
       "hotspots_csv": "outputs/great_shearwater_hotspots.csv",
       "map": "outputs/great_shearwater_location_forecast.png",
-      "forecast_start": "2026-11-10",
-      "forecast_end": "2026-11-23",
-      "mean_probability": 0.02810456606885178
+      "forecast_start": "2026-11-11",
+      "forecast_end": "2026-11-24",
+      "mean_probability": 0.028856005106005108
     }
   },
   "rarity_index": {
     "csv": "outputs/rarity_index.csv",
     "json": "outputs/rarity_index.json",
-    "generated_at": "2026-11-09T08:25:37.541727+00:00",
-    "tomorrow_score": 23.8,
+    "generated_at": "2026-11-10T12:40:21.622576+00:00",
+    "tomorrow_score": 35.4,
     "tomorrow_leading_species": "Sooty Shearwater",
     "horizons": [
       {
-        "date": "2026-11-10",
-        "rarity_index": 23.8,
+        "date": "2026-11-11",
+        "rarity_index": 35.4,
         "leading_rarity_species": "Sooty Shearwater"
       },
       {
-        "date": "2026-11-12",
-        "rarity_index": 31.9,
+        "date": "2026-11-13",
+        "rarity_index": 26.3,
         "leading_rarity_species": "Sooty Shearwater"
       },
       {
-        "date": "2026-11-16",
-        "rarity_index": 31.7,
+        "date": "2026-11-17",
+        "rarity_index": 14.4,
         "leading_rarity_species": "Sooty Shearwater"
       },
       {
-        "date": "2026-11-23",
-        "rarity_index": 27.8,
+        "date": "2026-11-24",
+        "rarity_index": 9.6,
         "leading_rarity_species": "Sooty Shearwater"
       }
     ]
@@ -365,40 +365,40 @@
     "rating_csv": "outputs/seawatch_day_rating.csv",
     "hotspots_csv": "outputs/seawatch_day_hotspots.csv",
     "rating_json": "outputs/seawatch_day_rating.json",
-    "generated_at": "2026-11-09T08:25:47.472626+00:00",
-    "tomorrow_score": 8,
+    "generated_at": "2026-11-10T12:40:26.885969+00:00",
+    "tomorrow_score": 9,
     "tomorrow_rating": "Poor",
     "tomorrow_best_coast": "Wadden islands",
     "coast_ranking_csv": "outputs/dutch_coast_ranking.csv",
     "historical_percentiles_csv": "outputs/historical_percentiles.csv",
     "historical_percentiles": [
       {
-        "date": "2026-11-10",
-        "seawatch_percentile": 45.5,
+        "date": "2026-11-11",
+        "seawatch_percentile": 46.9,
         "seawatch_label": "Common Conditions",
-        "rarity_percentile": 68.2,
+        "rarity_percentile": 76.9,
+        "rarity_label": "Strong"
+      },
+      {
+        "date": "2026-11-13",
+        "seawatch_percentile": 62.1,
+        "seawatch_label": "Above Average",
+        "rarity_percentile": 70.5,
         "rarity_label": "Above Average"
       },
       {
-        "date": "2026-11-12",
-        "seawatch_percentile": 43.0,
+        "date": "2026-11-17",
+        "seawatch_percentile": 41.3,
         "seawatch_label": "Common Conditions",
-        "rarity_percentile": 75.0,
+        "rarity_percentile": 55.0,
         "rarity_label": "Above Average"
       },
       {
-        "date": "2026-11-16",
-        "seawatch_percentile": 59.5,
+        "date": "2026-11-24",
+        "seawatch_percentile": 58.3,
         "seawatch_label": "Above Average",
-        "rarity_percentile": 74.8,
-        "rarity_label": "Above Average"
-      },
-      {
-        "date": "2026-11-23",
-        "seawatch_percentile": 50.3,
-        "seawatch_label": "Above Average",
-        "rarity_percentile": 71.8,
-        "rarity_label": "Above Average"
+        "rarity_percentile": 46.3,
+        "rarity_label": "Common Conditions"
       }
     ],
     "target_species_csv": "outputs/target_species.csv",
@@ -406,25 +406,25 @@
     "recommendation": "STAY HOME",
     "recommendations": [
       {
-        "date": "2026-11-10",
+        "date": "2026-11-11",
         "decision": "STAY HOME",
         "best_coast": "Delta Coast",
         "best_site": "Neeltje Jans"
       },
       {
-        "date": "2026-11-12",
+        "date": "2026-11-13",
         "decision": "STAY HOME",
         "best_coast": "Delta Coast",
         "best_site": "Neeltje Jans"
       },
       {
-        "date": "2026-11-16",
+        "date": "2026-11-17",
         "decision": "STAY HOME",
         "best_coast": "Delta Coast",
         "best_site": "Neeltje Jans"
       },
       {
-        "date": "2026-11-23",
+        "date": "2026-11-24",
         "decision": "STAY HOME",
         "best_coast": "Delta Coast",
         "best_site": "Neeltje Jans"
@@ -432,26 +432,26 @@
     ],
     "horizons": [
       {
-        "date": "2026-11-10",
-        "score": 8,
+        "date": "2026-11-11",
+        "score": 9,
         "rating": "Poor",
         "best_coast": "Wadden islands"
       },
       {
-        "date": "2026-11-12",
+        "date": "2026-11-13",
+        "score": 13,
+        "rating": "Poor",
+        "best_coast": "Wadden islands"
+      },
+      {
+        "date": "2026-11-17",
         "score": 7,
         "rating": "Poor",
         "best_coast": "Wadden islands"
       },
       {
-        "date": "2026-11-16",
+        "date": "2026-11-24",
         "score": 12,
-        "rating": "Poor",
-        "best_coast": "Wadden islands"
-      },
-      {
-        "date": "2026-11-23",
-        "score": 10,
         "rating": "Poor",
         "best_coast": "Wadden islands"
       }
@@ -477,9 +477,9 @@
     ],
     "forecast_csv": "outputs/eastern_vagrancy_forecast.csv",
     "forecast_plot": "outputs/eastern_vagrancy_forecast.png",
-    "forecast_start": "2026-11-10",
-    "forecast_end": "2026-11-23",
-    "mean_probability": 0.15275988297416868,
+    "forecast_start": "2026-11-11",
+    "forecast_end": "2026-11-24",
+    "mean_probability": 0.12809135639492783,
     "location_forecast_csv": "outputs/eastern_vagrancy_location_forecast.csv",
     "location_cells": 1579,
     "location_forecast_simple_csv": "outputs/eastern_location_forecast.csv",
@@ -487,70 +487,70 @@
   },
   "eastern_hotspots": {
     "strongest_location": "Shetland Mainland",
-    "strongest_probability": 0.12526222536887507,
+    "strongest_probability": 0.13346086001940607,
     "top10_locations": [
       {
         "rank": 1,
         "location": "Shetland Mainland",
         "country": "GB",
-        "probability": 0.12526222536887507
+        "probability": 0.13346086001940607
       },
       {
         "rank": 2,
         "location": "Fair Isle",
         "country": "GB",
-        "probability": 0.1228095304016414
+        "probability": 0.13084763181969689
       },
       {
         "rank": 3,
         "location": "Shetland Mainland (S)",
         "country": "GB",
-        "probability": 0.12169634594412053
+        "probability": 0.12966158746655315
       },
       {
         "rank": 4,
         "location": "Shetland Mainland (NE)",
         "country": "GB",
-        "probability": 0.1185665724283009
+        "probability": 0.12632696472727808
       },
       {
         "rank": 5,
         "location": "Shetland Mainland (W)",
         "country": "GB",
-        "probability": 0.11666443429659981
+        "probability": 0.12430032828372971
       },
       {
         "rank": 6,
         "location": "Shetland Mainland (SE)",
         "country": "GB",
-        "probability": 0.11562577788767445
+        "probability": 0.12319368997204687
       },
       {
         "rank": 7,
         "location": "Shetland Mainland (N)",
         "country": "GB",
-        "probability": 0.11382648239094162
+        "probability": 0.12127662739619167
       },
       {
         "rank": 8,
         "location": "Shetland Mainland (SW)",
         "country": "GB",
-        "probability": 0.11381986167218289
+        "probability": 0.1212695733396564
       },
       {
         "rank": 9,
         "location": "North Norfolk coast",
         "country": "GB",
-        "probability": 0.11148574980552199
+        "probability": 0.1187826897146153
       },
       {
         "rank": 10,
         "location": "Unst",
         "country": "GB",
-        "probability": 0.11127805229020253
+        "probability": 0.11856139802881935
       }
     ],
-    "generated_at": "2026-11-09T08:27:14.720851+00:00",
+    "generated_at": "2026-11-10T12:41:25.479995+00:00",
     "species_layers": [
       {
         "species": "Yellow-browed Warbler",
@@ -559,7 +559,7 @@
         "records_since_start": 65446,
         "record_years": 27,
         "top_cell": "3670000-3430000",
-        "top_probability": 0.003612774998149704,
+        "top_probability": 0.0035207938124090852,
         "status": "OK",
         "data_quality": "sufficient"
       },
@@ -570,7 +570,7 @@
         "records_since_start": 12022,
         "record_years": 27,
         "top_cell": "4190000-3600000",
-        "top_probability": 0.032033248542019235,
+        "top_probability": 0.033113967171617506,
         "status": "OK",
         "data_quality": "sufficient"
       },
@@ -581,7 +581,7 @@
         "records_since_start": 10480,
         "record_years": 27,
         "top_cell": "3670000-3430000",
-        "top_probability": 0.056755831184702295,
+        "top_probability": 0.057592588365842516,
         "status": "OK",
         "data_quality": "sufficient"
       },
@@ -592,7 +592,7 @@
         "records_since_start": 2611,
         "record_years": 27,
         "top_cell": "3670000-3430000",
-        "top_probability": 0.016634737014069135,
+        "top_probability": 0.017606523168199988,
         "status": "OK",
         "data_quality": "sufficient"
       },
@@ -603,7 +603,7 @@
         "records_since_start": 1341,
         "record_years": 10,
         "top_cell": "3660000-3430000",
-        "top_probability": 0.0012867193277718487,
+        "top_probability": 0.0013709373882055695,
         "status": "OK",
         "data_quality": "sufficient"
       },
@@ -614,7 +614,7 @@
         "records_since_start": 9283,
         "record_years": 27,
         "top_cell": "4200000-3600000",
-        "top_probability": 0.050823858384152584,
+        "top_probability": 0.052324536751327616,
         "status": "OK",
         "data_quality": "sufficient"
       },
@@ -625,7 +625,7 @@
         "records_since_start": 6221,
         "record_years": 26,
         "top_cell": "3660000-4100000",
-        "top_probability": 0.004907743977661566,
+        "top_probability": 0.0048995809271692664,
         "status": "OK",
         "data_quality": "sufficient"
       },
@@ -636,7 +636,7 @@
         "records_since_start": 4107,
         "record_years": 26,
         "top_cell": "3660000-4100000",
-        "top_probability": 0.01503472608677036,
+        "top_probability": 0.013106270908588912,
         "status": "OK",
         "data_quality": "sufficient"
       },
@@ -647,7 +647,7 @@
         "records_since_start": 2408,
         "record_years": 27,
         "top_cell": "3660000-4100000",
-        "top_probability": 0.002456190608032828,
+        "top_probability": 0.0026169526363939376,
         "status": "OK",
         "data_quality": "sufficient"
       }
@@ -655,175 +655,175 @@
   },
   "atlantic_hotspots": {
     "strongest_location": "Scilly Isles",
-    "strongest_probability": 0.07147784924481611,
+    "strongest_probability": 0.05676622488806693,
     "top10_locations": [
       {
         "rank": 1,
         "location": "Scilly Isles",
         "country": "GB",
-        "probability": 0.07147784924481611
+        "probability": 0.05676622488806693
       },
       {
         "rank": 2,
         "location": "Fair Isle",
         "country": "GB",
-        "probability": 0.06991340866421736
+        "probability": 0.055523778637087615
       },
       {
         "rank": 3,
         "location": "Scilly Isles (SW)",
         "country": "GB",
-        "probability": 0.06625788739925226
+        "probability": 0.05262063949114906
       },
       {
         "rank": 4,
         "location": "Shetland Mainland",
         "country": "GB",
-        "probability": 0.06535150063211582
+        "probability": 0.05190080592589156
       },
       {
         "rank": 5,
         "location": "Scilly Isles (N)",
         "country": "GB",
-        "probability": 0.0646895404132647
+        "probability": 0.05137509085405786
       },
       {
         "rank": 6,
         "location": "Scilly Isles (NW)",
         "country": "GB",
-        "probability": 0.060166692879121256
+        "probability": 0.047783139179934896
       },
       {
         "rank": 7,
         "location": "Shetland Mainland (N)",
         "country": "GB",
-        "probability": 0.05954891271251799
+        "probability": 0.0472925109889736
       },
       {
         "rank": 8,
         "location": "Uists",
         "country": "GB",
-        "probability": 0.05917159817817879
+        "probability": 0.046992855614110894
       },
       {
         "rank": 9,
         "location": "Lewis",
         "country": "GB",
-        "probability": 0.058026747851834586
+        "probability": 0.04608363923763822
       },
       {
         "rank": 10,
         "location": "Shetland Mainland (S)",
         "country": "GB",
-        "probability": 0.05747589254408172
+        "probability": 0.04564616138105662
       }
     ],
-    "generated_at": "2026-11-09T08:27:14.731199+00:00"
+    "generated_at": "2026-11-10T12:41:25.489575+00:00"
   },
   "seabird_hotspots": {
     "strongest_location": "Fair Isle",
-    "strongest_probability": 0.0341273712010568,
+    "strongest_probability": 0.037454770133568585,
     "top10_locations": [
       {
         "rank": 1,
         "location": "Fair Isle",
         "country": "GB",
-        "probability": 0.0341273712010568
+        "probability": 0.037454770133568585
       },
       {
         "rank": 2,
         "location": "Scilly Isles",
         "country": "GB",
-        "probability": 0.03273056995524287
+        "probability": 0.03592178157502931
       },
       {
         "rank": 3,
         "location": "Scilly Isles (SW)",
         "country": "GB",
-        "probability": 0.031426752970660894
+        "probability": 0.034490843189354636
       },
       {
         "rank": 4,
         "location": "Scilly Isles (N)",
         "country": "GB",
-        "probability": 0.030540563778050908
+        "probability": 0.03351825106356465
       },
       {
         "rank": 5,
         "location": "Fair Isle (S)",
         "country": "GB",
-        "probability": 0.029728426783626204
+        "probability": 0.03262693118240713
       },
       {
         "rank": 6,
         "location": "Shetland",
         "country": "GB",
-        "probability": 0.028171091353996598
+        "probability": 0.030917756450078705
       },
       {
         "rank": 7,
         "location": "Scilly Isles (NW)",
         "country": "GB",
-        "probability": 0.028019426264287
+        "probability": 0.03075130410193581
       },
       {
         "rank": 8,
         "location": "North Ronaldsay",
         "country": "GB",
-        "probability": 0.025712588343650693
+        "probability": 0.028219550819686027
       },
       {
         "rank": 9,
         "location": "Shetland (W)",
         "country": "GB",
-        "probability": 0.02541562476830659
+        "probability": 0.027893633467686422
       },
       {
         "rank": 10,
         "location": "Outer Hebrides",
         "country": "GB",
-        "probability": 0.025205875568765797
+        "probability": 0.027663433842634224
       }
     ],
-    "generated_at": "2026-11-09T08:27:14.651092+00:00",
+    "generated_at": "2026-11-10T12:41:25.451176+00:00",
     "best_dutch_site": {
       "location": "Texel (NW)",
       "country": "NL",
-      "probability": 0.018661520411694502,
+      "probability": 0.02048100784690007,
       "risk_level": "LOW",
-      "rationale": "Strong SSE airflow at 3.3 m/s favouring an exposed Dutch seawatching site."
+      "rationale": "Strong SE airflow at 3.5 m/s favouring an exposed Dutch seawatching site."
     }
   },
   "goose_module": {
     "status": "ok",
     "json": "outputs/goose_module.json",
-    "generated_at": "2026-11-09T08:25:59.661849+00:00",
-    "tomorrow_score": 6,
+    "generated_at": "2026-11-10T12:40:36.993045+00:00",
+    "tomorrow_score": 9,
     "tomorrow_rating": "Poor",
     "tomorrow_decision": "STAY HOME",
     "tomorrow_best_region": "Texel",
     "horizons": [
       {
-        "date": "2026-11-10",
+        "date": "2026-11-11",
+        "score": 9,
+        "rating": "Poor",
+        "decision": "STAY HOME"
+      },
+      {
+        "date": "2026-11-13",
         "score": 6,
         "rating": "Poor",
         "decision": "STAY HOME"
       },
       {
-        "date": "2026-11-12",
-        "score": 11,
+        "date": "2026-11-17",
+        "score": 15,
         "rating": "Poor",
         "decision": "STAY HOME"
       },
       {
-        "date": "2026-11-16",
-        "score": 11,
-        "rating": "Poor",
-        "decision": "STAY HOME"
-      },
-      {
-        "date": "2026-11-23",
-        "score": 13,
+        "date": "2026-11-24",
+        "score": 2,
         "rating": "Poor",
         "decision": "STAY HOME"
       }
@@ -832,7 +832,7 @@
   "birding_opportunity_index": {
     "csv": "outputs/birding_opportunity_index.csv",
     "json": "outputs/birding_opportunity_index.json",
-    "tomorrow_score": 67.2,
+    "tomorrow_score": 67.4,
     "tomorrow_category": "Good"
   }
 }

@@ -12,6 +12,11 @@ import pandas as pd
 import pydeck as pdk
 import streamlit as st
 
+from src.atmospheric_indices import (
+    ComponentScore,
+    SignalScore,
+    calculate_atmospheric_indices,
+)
 from src.forecast_atlantic_locations import (
     ATLANTIC_LOCATION_FORECAST_FILE,
     LOCATION_MAP_FILE as ATLANTIC_LOCATION_MAP_FILE,
@@ -52,7 +57,7 @@ from src.next_dutch_firsts import (
     load_ranked,
     timeline,
 )
-from src.predict_yellow_browed import risk_category
+from src.predict_yellow_browed import load_weather_forecast, risk_category
 from src.run_daily_forecast import RUN_METADATA, run_daily_forecast
 from src.seabird_decision_support import (
     DECISION_SUPPORT_FILE,
@@ -68,6 +73,9 @@ from src.predict_eastern_vagrancy import risk_level as eastern_risk_level
 from src.predict_seabird import risk_level as seabird_risk_level
 from src.rarity_index import RARITY_INDEX_JSON_OUTPUT
 from src.goose_module import MODULE_JSON_OUTPUT as GOOSE_JSON_OUTPUT
+from src.download_open_meteo_forecast import (
+    DEFAULT_FORECAST_FILE as WEATHER_FORECAST_FILE,
+)
 from src.forecast_seabird_species import (
     species_output_paths as seabird_species_output_paths,
 )
@@ -86,6 +94,8 @@ EASTERN_LOCATION_FORECAST_FILE = ROOT / "outputs/eastern_vagrancy_location_forec
 EASTERN_LOCATION_MAP_FILE = ROOT / "outputs/eastern_location_forecast.png"
 ATLANTIC_FORECAST_FILE = ROOT / "outputs/atlantic_vagrancy_forecast.csv"
 ATLANTIC_PLOT_FILE = ROOT / "outputs/atlantic_vagrancy_forecast.png"
+ATLANTIC_EVENTS_FILE = ROOT / "outputs/atlantic_vagrancy_events.csv"
+EASTERN_EVENTS_FILE = ROOT / "outputs/eastern_vagrancy_events.csv"
 SEABIRD_FORECAST_FILE = ROOT / "outputs/seabird_forecast.csv"
 SEABIRD_PLOT_FILE = ROOT / "outputs/seabird_forecast.png"
 SEABIRD_LOCATION_FORECAST_FILE = ROOT / "outputs/seabird_location_forecast_detail.csv"
@@ -102,6 +112,25 @@ ATLANTIC_VAGRANCY_DESCRIPTION = (
     "Nearctic trans-Atlantic passerines recorded in the United Kingdom, "
     "Ireland, Netherlands, Belgium, and Denmark."
 )
+MODEL_STATUS = {
+    "Forecast Model": (
+        "✅",
+        "Driven by weather forecasts and predictive modelling.",
+    ),
+    "Statistical Risk Model": (
+        "📊",
+        "Generated from historical records, trends and environmental predictors.",
+    ),
+    "Hotspot Prediction Model": (
+        "📍",
+        "Forecasts where rarity arrivals are most likely.",
+    ),
+    "Descriptive Analytics": (
+        "📚",
+        "Historical patterns and observations. No forecast component.",
+    ),
+}
+MODEL_CONFIDENCE = ("High", "Medium", "Low", "Experimental")
 FORECAST_HORIZONS = {
     1: "Tomorrow",
     3: "+3 days",
@@ -1321,6 +1350,7 @@ def show_percentile_context(item: dict[str, object]) -> None:
 def show_seawatch_day_rating() -> None:
     st.subheader("🔥 Seawatch Day Rating")
     if not RATING_JSON_OUTPUT.is_file():
+        show_prediction_status("Forecast Model", "Experimental")
         st.info("No Seawatch Day Rating is available yet. Run the daily forecast.")
         return
     document = json.loads(RATING_JSON_OUTPUT.read_text(encoding="utf-8"))
@@ -1328,6 +1358,9 @@ def show_seawatch_day_rating() -> None:
     if not horizons:
         raise ValueError("Seawatch Day Rating JSON contains no forecast horizons.")
     tomorrow = horizons[0]
+    show_prediction_status(
+        "Forecast Model", str(tomorrow.get("confidence", "Experimental"))
+    )
     metrics = st.columns(4)
     metrics[0].metric("Score", f"{tomorrow['score']}/100")
     metrics[1].metric("Rating", tomorrow["rating"])
@@ -1605,6 +1638,7 @@ def show_goose_horizon(horizon: dict[str, object], document: dict[str, object]) 
 
 def show_goose_forecast(path: Path | None = None) -> None:
     st.header("🪿 Goose Forecast")
+    show_prediction_status("Forecast Model", "Experimental")
     path = path or GOOSE_JSON_OUTPUT
     if not path.is_file():
         st.info(
@@ -1699,8 +1733,12 @@ def show_score_breakdown(candidate: Candidate) -> None:
 
 
 def show_next_dutch_firsts() -> None:
-    st.subheader("⭐ Next Dutch Firsts · Atlantic Vagrant Watch")
-    st.caption("North American vagrants most likely to produce the next major Dutch rarity")
+    st.subheader("⭐ Next Dutch Firsts")
+    show_prediction_status("Statistical Risk Model", "Experimental")
+    st.caption(
+        "Trend-based candidates for a Dutch first or an exceptionally rare "
+        "record, ranked using historical rarity and recent western-European records."
+    )
     st.markdown(
         '<span style="background:#d9822b;color:#fff;padding:4px 12px;border-radius:12px;'
         'font-weight:700;letter-spacing:0.05em;">DEMO DATA</span>',
@@ -1710,6 +1748,11 @@ def show_next_dutch_firsts() -> None:
     st.info(
         "Many North American vagrants first appear on Corvo (Azores), then Ireland, "
         "then the UK before reaching northwestern mainland Europe."
+    )
+    st.caption(
+        "This is a historical rarity and momentum ranking, not a calibrated "
+        "multi-year probability forecast. The bundled candidate records are "
+        "illustrative demo data."
     )
     with st.expander("How the score works and what the filters mean"):
         st.markdown(
@@ -1870,6 +1913,188 @@ def forecast_panel(title: str, path: Path, plot: Path) -> None:
         display["date"] = display["date"].dt.strftime("%Y-%m-%d")
         display["probability"] = display["probability"].map(lambda p: f"{p:.1%}")
         st.dataframe(display, width="stretch", hide_index=True)
+
+
+def show_atmospheric_index(family: str) -> None:
+    if family == "Eastern":
+        score_column = "eastern_drift_index"
+        component_column = "eastern_components"
+        title = "Eastern Drift Index"
+    elif family == "Atlantic":
+        score_column = "atlantic_index"
+        component_column = "atlantic_components"
+        title = "Atlantic Index"
+    else:
+        raise ValueError(f"Unknown atmospheric index family: {family}.")
+
+    missing_paths = [
+        path
+        for path in (
+            WEATHER_FORECAST_FILE,
+            EASTERN_EVENTS_FILE,
+            ATLANTIC_EVENTS_FILE,
+        )
+        if not path.is_file()
+    ]
+    if missing_paths:
+        st.info(
+            "Atmospheric index inputs are unavailable: "
+            + ", ".join(str(path) for path in missing_paths)
+            + ". Run the daily forecast and build the occurrence summaries."
+        )
+        return
+
+    weather, _ = load_weather_forecast(WEATHER_FORECAST_FILE)
+    eastern_events = pd.read_csv(EASTERN_EVENTS_FILE, parse_dates=["date"])
+    atlantic_events = pd.read_csv(ATLANTIC_EVENTS_FILE, parse_dates=["date"])
+    forecasts = calculate_atmospheric_indices(
+        weather, eastern_events, atlantic_events
+    )
+
+    st.caption(
+        "Exploratory 0–100 heuristic from four Dutch coastal weather stations "
+        "and the preceding 10 complete years of GB, IE, NL, BE and DK event "
+        "summaries. Components are equally weighted. Regional pathways, "
+        "blocking, Azores arrivals and hurricane remnants are proxies, not "
+        "directly observed signals."
+    )
+    with st.expander("How these scores are calculated"):
+        st.markdown(
+            "- Wind direction alignment is the positive cosine toward the "
+            "target bearing (90° easterly, 270° westerly); directional "
+            "transport also scales by wind speed, capped at 15 m/s.\n"
+            "- Persistence and continuation use trailing and forward three-day "
+            "means. Connectivity measures the share of stations aligned with "
+            "the target direction, scaled by wind strength.\n"
+            "- Cyclone support averages a coastal low-pressure proxy (daily "
+            "maximum pressure scaled from 1020 to 980 hPa), wind speed and "
+            "four-station pressure gradient (scaled to 20 hPa).\n"
+            "- Historical activity scores are log-scaled monthly counts from "
+            "the 10 complete years before the forecast year, relative to the "
+            "busiest month. They are historical seasonality, not live arrivals.\n"
+            "- Sub-signals are equally weighted within each component. The "
+            "Eastern index equally weights its three components; the Atlantic "
+            "index equally weights its four. Contribution = component score × "
+            "component weight."
+        )
+    selected_date = st.selectbox(
+        "Forecast date",
+        [forecast["date"] for forecast in forecasts],
+        format_func=lambda date: pd.Timestamp(date).strftime("%a, %d %b %Y"),
+        key=f"{family.lower()}_atmospheric_index_date",
+    )
+    forecast = next(
+        item for item in forecasts if item["date"] == pd.Timestamp(selected_date)
+    )
+    score = float(forecast[score_column])
+    st.metric(f"{title} · {selected_date:%d %b}", f"{score:.0f}/100")
+    st.progress(score / 100.0, text=f"Composite score: {score:.1f} / 100")
+    trend = pd.DataFrame(
+        {
+            "Eastern Drift Index": [item["eastern_drift_index"] for item in forecasts],
+            "Atlantic Index": [item["atlantic_index"] for item in forecasts],
+        },
+        index=pd.DatetimeIndex([item["date"] for item in forecasts], name="Date"),
+    )
+    st.line_chart(trend[[title]], y=title, width="stretch")
+    components = forecast[component_column]
+    if not isinstance(components, tuple):
+        raise TypeError(f"{title} components have an unexpected type.")
+    component_columns = st.columns(len(components))
+    for column, component in zip(component_columns, components):
+        if not isinstance(component, ComponentScore):
+            raise TypeError(f"{title} contains an invalid component.")
+        with column.container(border=True):
+            st.subheader(component.name)
+            st.metric("Component score", f"{component.score:.0f}/100")
+            st.progress(component.score / 100.0)
+            st.metric(
+                "Contribution to index",
+                f"{component.contribution:.1f} points",
+                f"{component.weight:.0%} weight",
+            )
+            st.caption(component.explanation)
+            signal_rows = [
+                {
+                    "Driver": signal.name,
+                    "Score": f"{signal.score:.0f}/100",
+                    "Explanation": signal.explanation,
+                }
+                for signal in component.signals
+                if isinstance(signal, SignalScore)
+            ]
+            if len(signal_rows) != len(component.signals):
+                raise TypeError(f"{component.name} contains an invalid signal.")
+            st.dataframe(
+                pd.DataFrame(signal_rows),
+                width="stretch",
+                hide_index=True,
+            )
+
+
+def show_prediction_status(model: str, confidence: str) -> None:
+    if model not in MODEL_STATUS:
+        raise ValueError(f"Unknown prediction model category: {model}.")
+    if confidence not in MODEL_CONFIDENCE:
+        raise ValueError(f"Unknown model confidence level: {confidence}.")
+    icon, description = MODEL_STATUS[model]
+    st.markdown(
+        f'<div role="status" style="border:1px solid #d0d7de;border-radius:8px;'
+        f'padding:0.65rem 0.85rem;margin:-0.35rem 0 0.75rem 0;">'
+        f'<span style="font-weight:700;">{icon} {model}</span>'
+        f'<span style="margin-left:1rem;font-weight:600;">'
+        f'Confidence: {confidence}</span><br/>'
+        f'<span style="font-size:0.9rem;">{description}</span>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+
+def show_rare_hotspot_sites(path: Path, sites: tuple[str, ...]) -> None:
+    st.markdown("**Requested site outlook**")
+    if not path.is_file():
+        st.info("Site-level forecasts are unavailable. Run the daily forecast.")
+        return
+    frame = pd.read_csv(path, parse_dates=["date"])
+    required = {"date", "location", "forecast_probability"}
+    missing = required.difference(frame.columns)
+    if missing:
+        raise ValueError(
+            f"Hotspot forecast is missing required columns: {sorted(missing)}."
+        )
+    if frame.empty or frame["date"].isna().any():
+        raise ValueError(f"Hotspot forecast contains no valid dates: {path}.")
+    available_dates = set(frame["date"].dt.date)
+    first_date = frame["date"].min().date()
+    horizon_dates = {
+        horizon: first_date + timedelta(days=horizon - 1)
+        for horizon in FORECAST_HORIZONS
+    }
+    missing_dates = [
+        date for date in horizon_dates.values() if date not in available_dates
+    ]
+    if missing_dates:
+        raise ValueError(
+            f"Hotspot forecast is missing requested horizon dates: {missing_dates}."
+        )
+    rows = []
+    for site in sites:
+        row: dict[str, str] = {"Site": site}
+        site_rows = frame.loc[frame["location"].eq(site)]
+        for horizon, label in FORECAST_HORIZONS.items():
+            date = horizon_dates[horizon]
+            values = site_rows.loc[
+                site_rows["date"].dt.date.eq(date), "forecast_probability"
+            ]
+            row[f"{label} · {date:%b %d}"] = (
+                f"{values.max():.1%}" if not values.empty else "Unavailable"
+            )
+        rows.append(row)
+    st.dataframe(pd.DataFrame(rows), width="stretch", hide_index=True)
+    st.caption(
+        "Unavailable means the current forecast has no exact matching site; "
+        "available cell probabilities use heuristic site suitability."
+    )
 
 
 def forecast_ready() -> bool:
@@ -2136,40 +2361,152 @@ def show_dashboard() -> None:
 def show_rare_birds() -> None:
     st.title("🌍 Rare Birds")
     section = st.radio(
-        "Explore rare birds", ["Atmospheric indices", "Forecasts", "Hotspots"],
+        "Explore rare birds", ["Atmospheric Indices", "Forecasts", "Hotspots"],
         horizontal=True, key="rare_section",
     )
     if section == "Forecasts":
-        show_next_dutch_firsts()
-        if forecast_ready():
-            st.info("The seabird Rarity Index is available in Seawatching under Day rating.")
-            with st.container(border=True):
-                show_eastern_target_species()
-        return
-    if not forecast_ready():
-        return
-    if section == "Atmospheric indices":
-        st.caption("These are bird-record event models informed by weather, not direct measurements of airflow.")
-        left, right = st.columns(2)
-        with left.container(border=True):
-            forecast_panel("North Sea · Eastern Vagrancy Index", EASTERN_FORECAST_FILE, EASTERN_PLOT_FILE)
-            st.caption("Guild: " + ", ".join(EASTERN_VAGRANCY_SPECIES))
-        with right.container(border=True):
-            forecast_panel("Atlantic Vagrancy Index", ATLANTIC_FORECAST_FILE, ATLANTIC_PLOT_FILE)
-            st.caption(ATLANTIC_VAGRANCY_DESCRIPTION)
-    else:
-        choice = st.radio(
-            "Hotspot map", ["Atlantic", "Eastern / Dutch coast and Wadden", "Yellow-browed Warbler"],
-            horizontal=True, key="rare_hotspots",
+        view = st.segmented_control(
+            "Forecasts",
+            [
+                "🌊 Atlantic Vagrant Watch",
+                "🌏 Eastern Vagrant Watch",
+                "⭐ Next Dutch Firsts",
+            ],
+            default="🌊 Atlantic Vagrant Watch",
+            key="rare_forecast_view",
         )
-        with st.container(border=True):
-            if choice == "Atlantic":
+        if view == "🌊 Atlantic Vagrant Watch":
+            st.subheader("🌊 Atlantic Vagrant Watch")
+            show_prediction_status("Forecast Model", "Medium")
+            st.caption(
+                "North American vagrants and their short-term rarity outlook. "
+                "Corvo (Azores), Ireland and UK tracking is shown separately in "
+                "Next Dutch Firsts; Corvo demo records are not live forecast inputs."
+            )
+            st.caption(
+                "See Atlantic Index for the weather and historical-record "
+                "component scores behind the transport outlook."
+            )
+            if forecast_ready():
+                forecast_panel(
+                    "Atlantic Vagrancy Forecast · 1–14 days",
+                    ATLANTIC_FORECAST_FILE,
+                    ATLANTIC_PLOT_FILE,
+                )
+                st.caption(ATLANTIC_VAGRANCY_DESCRIPTION)
+                species = {
+                    str(item["species"]): str(item["slug"])
+                    for item in SPECIES_LAYERS
+                    if not item.get("profile", {}).get("eastern", False)
+                }
+                show_species_leaderboard("Atlantic vagrants", species)
+        elif view == "🌏 Eastern Vagrant Watch":
+            st.subheader("🌏 Eastern Vagrant Watch")
+            show_prediction_status("Forecast Model", "Medium")
+            st.caption(
+                "Siberian and East Asian vagrants, with the short-term Eastern "
+                "Vagrancy forecast and species ranking. Easterly drift and "
+                "Scandinavian blocking proxies are detailed in Eastern Drift Index."
+            )
+            st.info(
+                "This forecast's occurrence training set covers Great Britain, "
+                "Ireland, the Netherlands, Belgium and Denmark. Finland, Sweden, "
+                "Norway and Germany source observations are not currently included."
+            )
+            if forecast_ready():
+                forecast_panel(
+                    "Eastern Vagrancy Forecast · 1–14 days",
+                    EASTERN_FORECAST_FILE,
+                    EASTERN_PLOT_FILE,
+                )
+                show_eastern_target_species()
+        else:
+            show_next_dutch_firsts()
+        return
+
+    if section == "Atmospheric Indices":
+        view = st.segmented_control(
+            "Atmospheric indices",
+            ["🌊 Atlantic Index", "🌏 Eastern Drift Index", "🧭 Blocking Index"],
+            default="🌊 Atlantic Index",
+            key="rare_atmospheric_view",
+        )
+        if view == "🌊 Atlantic Index":
+            st.subheader("🌊 Atlantic Index")
+            show_prediction_status("Forecast Model", "Experimental")
+            st.caption(
+                "Atlantic vagrancy event probability; this is a weather-informed "
+                "bird-record forecast, not a direct airflow measurement."
+            )
+            if forecast_ready():
+                show_atmospheric_index("Atlantic")
+                with st.expander("Learned Atlantic Vagrancy event forecast"):
+                    forecast_panel(
+                        "Atlantic Vagrancy Forecast · 1–14 days",
+                        ATLANTIC_FORECAST_FILE,
+                        ATLANTIC_PLOT_FILE,
+                    )
+        elif view == "🌏 Eastern Drift Index":
+            st.subheader("🌏 Eastern Drift Index")
+            show_prediction_status("Forecast Model", "Experimental")
+            st.caption(
+                "Eastern-vagrant event probability; it is not a direct easterly "
+                "airflow or Siberian drift measurement."
+            )
+            if forecast_ready():
+                show_atmospheric_index("Eastern")
+                with st.expander("Learned Eastern Vagrancy event forecast"):
+                    forecast_panel(
+                        "Eastern Vagrancy Forecast · 1–14 days",
+                        EASTERN_FORECAST_FILE,
+                        EASTERN_PLOT_FILE,
+                    )
+        else:
+            st.subheader("🧭 Blocking Index")
+            show_prediction_status("Forecast Model", "Experimental")
+            st.info(
+                "The current weather feed covers four Dutch coastal stations, "
+                "not the Scandinavian pressure field needed to calculate a "
+                "standalone blocking index. The Eastern Drift Index displays "
+                "its explicitly labelled local easterly-persistence proxy."
+            )
+            st.caption(
+                "A Scandinavian blocking strength, persistence forecast and "
+                "independent rarity-impact score cannot be derived from the "
+                "available inputs."
+            )
+        return
+
+    view = st.segmented_control(
+        "Hotspots",
+        ["🌊 Atlantic Hotspots", "🌏 Eastern Hotspots"],
+        default="🌊 Atlantic Hotspots",
+        key="rare_hotspot_view",
+    )
+    if view == "🌊 Atlantic Hotspots":
+        st.subheader("🌊 Atlantic Hotspots")
+        show_prediction_status("Hotspot Prediction Model", "Low")
+        st.caption(
+            "Priority Dutch Atlantic sites: Texel, Maasvlakte, IJmuiden, "
+            "Schiermonnikoog and Eemshaven."
+        )
+        if forecast_ready():
+            show_rare_hotspot_sites(
+                ATLANTIC_LOCATION_FORECAST_FILE,
+                ("Texel", "Maasvlakte", "IJmuiden", "Schiermonnikoog", "Eemshaven"),
+            )
+            with st.container(border=True):
                 show_atlantic_location_forecasts()
-            elif choice == "Eastern / Dutch coast and Wadden":
-                st.caption("Explore Dutch coastal and Wadden sites in the Eastern grid and rankings.")
+    else:
+        st.subheader("🌏 Eastern Hotspots")
+        show_prediction_status("Hotspot Prediction Model", "Low")
+        st.caption("Priority sites: Texel and Schiermonnikoog.")
+        if forecast_ready():
+            show_rare_hotspot_sites(
+                EASTERN_LOCATION_FORECAST_FILE, ("Texel", "Schiermonnikoog")
+            )
+            with st.container(border=True):
                 show_eastern_hotspots()
-            else:
-                show_location_forecasts()
 
 
 def show_seawatching() -> None:
@@ -2235,6 +2572,7 @@ def show_seawatching() -> None:
 
 def show_migration() -> None:
     st.title("🪿 Migration")
+    show_prediction_status("Forecast Model", "Experimental")
     if not forecast_ready():
         return
     section = st.radio(
@@ -2648,6 +2986,11 @@ def show_family_dutch_recommendations(group: str) -> None:
 
 def show_species_explorer() -> None:
     st.title("🎯 Species Explorer")
+    show_prediction_status("Descriptive Analytics", "Low")
+    st.caption(
+        "Historical summaries are descriptive and affected by observer effort. "
+        "Species forecast layers below are separate model outputs."
+    )
     if not forecast_ready():
         return
     eastern = {str(item["species"]): str(item["slug"]) for item in EASTERN_SPECIES_LAYERS}
@@ -2731,8 +3074,9 @@ def show_species_explorer() -> None:
             "Suitability weights are heuristic, not independently validated."
         )
         st.caption(
-            "Individual atmospheric driver attribution is not available for this "
-            "species layer. See Methods for the shared predictors."
+            "The species layer does not attribute its score to individual "
+            "weather drivers. The Atlantic and Eastern atmospheric-index pages "
+            "show separate, explicitly labelled weather and historical-record proxies."
         )
     if species == "Yellow-browed Warbler":
         with st.expander("Yellow-browed Warbler national forecast and 10 km outlook"):

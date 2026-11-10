@@ -1,21 +1,21 @@
 date,horizon_days,label,species,probability,activity_score,european_percentile,historical_label
-2026-11-10,1,Tomorrow,Lesser White-fronted Goose,0.059103174603174616,5.9,2.0,Common Conditions
-2026-11-10,1,Tomorrow,Red-breasted Goose,0.05459523809523811,5.5,2.5,Common Conditions
-2026-11-10,1,Tomorrow,Snow Goose,0.09602645502645503,9.6,8.0,Common Conditions
-2026-11-10,1,Tomorrow,Ross's Goose,0.2640094627594627,26.4,64.4,Above Average
-2026-11-10,1,Tomorrow,Black Brant,0.12073148148148147,12.1,27.5,Common Conditions
-2026-11-12,3,+3 days,Lesser White-fronted Goose,0.1108743386243386,11.1,20.4,Common Conditions
-2026-11-12,3,+3 days,Red-breasted Goose,0.09970238095238096,10.0,13.7,Common Conditions
-2026-11-12,3,+3 days,Snow Goose,0.145234126984127,14.5,23.0,Common Conditions
-2026-11-12,3,+3 days,Ross's Goose,0.2109603174603175,21.1,35.3,Common Conditions
-2026-11-12,3,+3 days,Black Brant,0.11489947089947088,11.5,25.4,Common Conditions
-2026-11-16,7,+7 days,Lesser White-fronted Goose,0.1270555555555556,12.7,27.2,Common Conditions
-2026-11-16,7,+7 days,Red-breasted Goose,0.14801322751322754,14.8,29.4,Common Conditions
-2026-11-16,7,+7 days,Snow Goose,0.103515873015873,10.4,9.5,Common Conditions
-2026-11-16,7,+7 days,Ross's Goose,0.28545622895622896,28.5,73.4,Above Average
-2026-11-16,7,+7 days,Black Brant,0.180936507936508,18.1,47.7,Common Conditions
-2026-11-23,14,+14 days,Lesser White-fronted Goose,0.20537698412698419,20.5,52.9,Above Average
-2026-11-23,14,+14 days,Red-breasted Goose,0.156010582010582,15.6,32.1,Common Conditions
-2026-11-23,14,+14 days,Snow Goose,0.10044444444444443,10.0,8.9,Common Conditions
-2026-11-23,14,+14 days,Ross's Goose,0.2357018999518999,23.6,49.4,Common Conditions
-2026-11-23,14,+14 days,Black Brant,0.1384007936507937,13.8,33.9,Common Conditions
+2026-11-11,1,Tomorrow,Lesser White-fronted Goose,0.07711874236874235,7.7,6.7,Common Conditions
+2026-11-11,1,Tomorrow,Red-breasted Goose,0.07247222222222222,7.2,6.3,Common Conditions
+2026-11-11,1,Tomorrow,Snow Goose,0.1411819384319385,14.1,21.6,Common Conditions
+2026-11-11,1,Tomorrow,Ross's Goose,0.1875802808302808,18.8,22.4,Common Conditions
+2026-11-11,1,Tomorrow,Black Brant,0.12326575276575279,12.3,28.1,Common Conditions
+2026-11-13,3,+3 days,Lesser White-fronted Goose,0.11656481481481479,11.7,22.8,Common Conditions
+2026-11-13,3,+3 days,Red-breasted Goose,0.08355555555555556,8.4,8.8,Common Conditions
+2026-11-13,3,+3 days,Snow Goose,0.1383001443001443,13.8,20.3,Common Conditions
+2026-11-13,3,+3 days,Ross's Goose,0.1535396825396826,15.4,9.9,Common Conditions
+2026-11-13,3,+3 days,Black Brant,0.08523280423280422,8.5,14.4,Common Conditions
+2026-11-17,7,+7 days,Lesser White-fronted Goose,0.10203835978835976,10.2,16.9,Common Conditions
+2026-11-17,7,+7 days,Red-breasted Goose,0.09036507936507934,9.0,10.8,Common Conditions
+2026-11-17,7,+7 days,Snow Goose,0.13744973544973546,13.7,20.1,Common Conditions
+2026-11-17,7,+7 days,Ross's Goose,0.208420634920635,20.8,34.0,Common Conditions
+2026-11-17,7,+7 days,Black Brant,0.19040608465608472,19.0,50.3,Above Average
+2026-11-24,14,+14 days,Lesser White-fronted Goose,0.07652886002886003,7.7,6.4,Common Conditions
+2026-11-24,14,+14 days,Red-breasted Goose,0.06966666666666667,7.0,5.6,Common Conditions
+2026-11-24,14,+14 days,Snow Goose,0.08191582491582487,8.2,4.3,Common Conditions
+2026-11-24,14,+14 days,Ross's Goose,0.20353968253968263,20.4,31.1,Common Conditions
+2026-11-24,14,+14 days,Black Brant,0.08114021164021164,8.1,13.1,Common Conditions

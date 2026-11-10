@@ -1,5 +1,5 @@
 date,horizon_days,label,probability,score,category,historical_percentile,historical_label
-2026-11-10,1,Tomorrow,0.05573809523809525,6,Quiet,14.1,Common Conditions
-2026-11-12,3,+3 days,0.106760582010582,11,Quiet,28.6,Common Conditions
-2026-11-16,7,+7 days,0.06111375661375659,6,Quiet,15.6,Common Conditions
-2026-11-23,14,+14 days,0.09500733525733526,10,Quiet,25.7,Common Conditions
+2026-11-11,1,Tomorrow,0.10575925925925925,11,Quiet,28.3,Common Conditions
+2026-11-13,3,+3 days,0.08186507936507935,8,Quiet,22.4,Common Conditions
+2026-11-17,7,+7 days,0.15799074074074074,16,Quiet,39.1,Common Conditions
+2026-11-24,14,+14 days,0.026851851851851852,3,Quiet,4.6,Common Conditions
