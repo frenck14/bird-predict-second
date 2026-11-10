@@ -1,7 +1,8 @@
 """Extended source adapters for external data feeds.
 
-These are template/placeholder adapters for common bird observation platforms.
-Actual implementation requires API keys and authentication.
+The eBird adapter is implemented in next_dutch_firsts_ebird. Other adapters
+in this module are templates requiring their own data access integration.
+The eBird adapter uses its own refresh workflow, not the SourceRegistry API.
 """
 
 from __future__ import annotations
@@ -12,14 +13,16 @@ from typing import Any
 
 import pandas as pd
 
-from next_dutch_firsts_live_data import (
-    Observation,
-    DataQuality,
-    SourceAdapter,
-    SourceType,
-    SourceUnavailableError,
-    LIVE_DATA_DIR,
-)
+if __package__:
+    from .next_dutch_firsts_live_data import (
+        Observation, DataQuality, SourceAdapter, SourceType, SourceUnavailableError, LIVE_DATA_DIR,
+    )
+    from .next_dutch_firsts_ebird import EBirdAdapter as eBirdAdapter
+else:
+    from next_dutch_firsts_live_data import (
+        Observation, DataQuality, SourceAdapter, SourceType, SourceUnavailableError, LIVE_DATA_DIR,
+    )
+    from next_dutch_firsts_ebird import EBirdAdapter as eBirdAdapter
 
 logger = logging.getLogger(__name__)
 
@@ -109,94 +112,6 @@ class ObservationOrgAdapter(SourceAdapter):
         
         df.to_parquet(filepath)
         logger.info(f"Loaded {len(df)} Observation.org records to {filepath}")
-
-
-class eBirdAdapter(SourceAdapter):
-    """eBird data feed (global bird observations).
-    
-    Requires eBird API key.
-    Placeholder for live feed integration.
-    """
-    
-    def __init__(self, api_key: str | None = None):
-        super().__init__("eBird", SourceType.EUROPEAN_OCCURRENCE)
-        self.metadata.priority = 2
-        self.api_key = api_key
-        self.api_base = "https://api.ebird.org/v2"
-    
-    def fetch(self) -> dict[str, Any]:
-        """Fetch recent European observations from eBird API.
-        
-        Requires: api_key set in __init__
-        
-        Returns:
-            API response as dict.
-        
-        Raises:
-            SourceUnavailableError: If API unavailable or api_key not set.
-        """
-        if not self.api_key:
-            raise SourceUnavailableError("eBird API key not configured")
-        
-        logger.info(f"Fetching from eBird (API base: {self.api_base})")
-        
-        # TODO: Implement actual HTTP request
-        # Example:
-        # regions = ["NL", "GB", "IE", "FR", "ES", "PT", "BE", "DE", "DK"]
-        # observations = []
-        # for region in regions:
-        #     response = requests.get(
-        #         f"{self.api_base}/data/obs/{region}/recent",
-        #         params={"key": self.api_key, "sort": "date", "maxResults": 500},
-        #     )
-        #     observations.extend(response.json())
-        # return {"results": observations}
-        
-        raise SourceUnavailableError("eBird adapter not yet fully implemented")
-    
-    def validate(self, raw_data: Any) -> bool:
-        """Validate API response."""
-        return isinstance(raw_data, dict) and "results" in raw_data
-    
-    def transform(self, raw_data: dict) -> list[Observation]:
-        """Convert eBird API response to Observation objects."""
-        observations = []
-        
-        for record in raw_data.get("results", []):
-            try:
-                # eBird uses different field names
-                obs = Observation(
-                    species_name=record.get("comName", ""),
-                    scientific_name=record.get("sciName", ""),
-                    location=record.get("locName", ""),
-                    country=record.get("countryCode", ""),
-                    observation_date=datetime.fromisoformat(record.get("obsDt", "")),
-                    source="eBird",
-                    quality=DataQuality.PROVISIONAL,
-                    confidence_score=0.75,
-                    record_url=record.get("url"),
-                    notes=record.get("obsRemarks"),
-                )
-                observations.append(obs)
-            except (KeyError, ValueError) as e:
-                logger.warning(f"Skipping malformed eBird record: {e}")
-        
-        return observations
-    
-    def load(self, observations: list[Observation]) -> None:
-        """Persist to european_occurrences.parquet."""
-        filepath = LIVE_DATA_DIR / "european_occurrences.parquet"
-        
-        if filepath.exists():
-            existing = pd.read_parquet(filepath)
-            new_df = pd.DataFrame([o.to_dict() for o in observations])
-            df = pd.concat([existing, new_df], ignore_index=True)
-            df = df.drop_duplicates(subset=["species_name", "observation_date"], keep="last")
-        else:
-            df = pd.DataFrame([o.to_dict() for o in observations])
-        
-        df.to_parquet(filepath)
-        logger.info(f"Loaded {len(df)} eBird records to {filepath}")
 
 
 class BirdGuidesAdapter(SourceAdapter):

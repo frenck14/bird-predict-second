@@ -3,8 +3,161 @@
 ║                    Transparent Actuarial Model                           ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 
-Generated: 2026-11-10 15:29:18 UTC
+Generated: 2026-11-10 21:14:06 UTC
 Total species analyzed: 50
+
+NEAR-TERM OPPORTUNITY (experimental score, not a probability)
+Weather is a pooled pathway signal. Long-term probabilities are unchanged.
+Red-flanked Bluetail: Baseline Total Score 27.08; Weather Support 29.99; Near-Term Opportunity Score 22.08
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+American Golden Plover: Baseline Total Score 27.18; Weather Support 19.06; Near-Term Opportunity Score 19.44
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Baird's Sandpiper: Baseline Total Score 26.05; Weather Support 19.06; Near-Term Opportunity Score 18.31
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Black-faced Bunting: Baseline Total Score 22.60; Weather Support 29.99; Near-Term Opportunity Score 17.60
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Brown Shrike: Baseline Total Score 22.45; Weather Support 29.99; Near-Term Opportunity Score 17.45
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Falcated Duck: Baseline Total Score 20.55; Weather Support 29.99; Near-Term Opportunity Score 15.55
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Black-throated Thrush: Baseline Total Score 20.22; Weather Support 29.99; Near-Term Opportunity Score 15.22
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Dusky Thrush: Baseline Total Score 20.18; Weather Support 29.99; Near-Term Opportunity Score 15.18
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Rufous-tailed Robin: Baseline Total Score 18.87; Weather Support 29.99; Near-Term Opportunity Score 13.87
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Lanceolated Warbler: Baseline Total Score 12.00; Weather Support 29.99; Near-Term Opportunity Score 7.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Yellow-breasted Bunting: Baseline Total Score 12.00; Weather Support 29.99; Near-Term Opportunity Score 7.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Oriental Turtle Dove: Baseline Total Score 12.00; Weather Support 29.99; Near-Term Opportunity Score 7.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+White's Thrush: Baseline Total Score 12.00; Weather Support 29.99; Near-Term Opportunity Score 7.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Eyebrowed Thrush: Baseline Total Score 12.00; Weather Support 29.99; Near-Term Opportunity Score 7.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Wilson's Phalarope: Baseline Total Score 14.00; Weather Support 19.06; Near-Term Opportunity Score 6.26
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Bufflehead: Baseline Total Score 14.00; Weather Support 19.06; Near-Term Opportunity Score 6.26
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Siberian Accentor: Baseline Total Score 10.00; Weather Support 29.99; Near-Term Opportunity Score 5.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Stejneger's Stonechat: Baseline Total Score 10.00; Weather Support 29.99; Near-Term Opportunity Score 5.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Two-barred Greenish Warbler: Baseline Total Score 10.00; Weather Support 29.99; Near-Term Opportunity Score 5.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Siberian Thrush: Baseline Total Score 10.00; Weather Support 29.99; Near-Term Opportunity Score 5.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Long-toed Stint: Baseline Total Score 10.00; Weather Support 29.99; Near-Term Opportunity Score 5.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Northern Hawk-Owl: Baseline Total Score 10.00; Weather Support 29.99; Near-Term Opportunity Score 5.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Upland Sandpiper: Baseline Total Score 10.00; Weather Support 19.06; Near-Term Opportunity Score 2.26
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Harlequin Duck: Baseline Total Score 10.00; Weather Support 19.06; Near-Term Opportunity Score 2.26
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Yellow-billed Cuckoo: Baseline Total Score 10.00; Weather Support 19.06; Near-Term Opportunity Score 2.26
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Black-and-white Warbler: Baseline Total Score 10.00; Weather Support 19.06; Near-Term Opportunity Score 2.26
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Common Nighthawk: Baseline Total Score 8.00; Weather Support 19.06; Near-Term Opportunity Score 0.26
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Black-billed Cuckoo: Baseline Total Score 8.00; Weather Support 19.06; Near-Term Opportunity Score 0.26
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Western Tanager: Baseline Total Score 0.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Blue Grosbeak: Baseline Total Score 2.24; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Black-throated Gray Warbler: Baseline Total Score 0.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Swainson's Hawk: Baseline Total Score 0.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Cassin's Sparrow: Baseline Total Score 0.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Brewer's Sparrow: Baseline Total Score 0.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+MacGillivray's Warbler: Baseline Total Score 0.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Townsend's Warbler: Baseline Total Score 0.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Nashville Warbler: Baseline Total Score 0.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Virginia Rail: Baseline Total Score 0.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Yellow Rail: Baseline Total Score 0.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Cedar Waxwing: Baseline Total Score 6.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Summer Tanager: Baseline Total Score 0.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Painted Bunting: Baseline Total Score 6.64; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Mississippi Kite: Baseline Total Score 0.00; Weather Support 19.06; Near-Term Opportunity Score 0.00
+  Source: Atlantic Vagrancy Index; date: 2026-11-11; raw probability: 0.0381; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Atlantic Vagrancy Index probability 0.0381 on 2026-11-11; scaled against the 0.20 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Thick-billed Warbler: Baseline Total Score 0.00; Weather Support 29.99; Near-Term Opportunity Score 0.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Siberian Rubythroat: Baseline Total Score 0.00; Weather Support 29.99; Near-Term Opportunity Score 0.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Pale Thrush: Baseline Total Score 2.08; Weather Support 29.99; Near-Term Opportunity Score 0.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Japanese Robin: Baseline Total Score 0.00; Weather Support 29.99; Near-Term Opportunity Score 0.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Mugimaki Flycatcher: Baseline Total Score 2.40; Weather Support 29.99; Near-Term Opportunity Score 0.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Siberian Blue Robin: Baseline Total Score 0.00; Weather Support 29.99; Near-Term Opportunity Score 0.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
+Eastern Buzzard: Baseline Total Score 0.00; Weather Support 29.99; Near-Term Opportunity Score 0.00
+  Source: Eastern Vagrancy Index; date: 2026-11-11; raw probability: 0.1500; weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations)
+  available: Eastern Vagrancy Index probability 0.1500 on 2026-11-11; scaled against the 0.50 high-risk threshold. Pooled pathway signal; not species-specific or calibrated.
 
 ═══════════════════════════════════════════════════════════════════════════
 MOST LIKELY WITHIN 1 YEAR
@@ -12,11 +165,11 @@ MOST LIKELY WITHIN 1 YEAR
 
 Rank  Species                        1-Yr     5-Yr     Conf
 ───────────────────────────────────────────────────────────────────────────
-1     American Golden Plover         4.8%     12.0%    Medium
-2     Baird's Sandpiper              4.8%     12.0%    Medium
-3     Wilson's Phalarope             4.8%     12.0%    Medium
-4     Bufflehead                     4.8%     12.0%    Medium
-5     Brown Shrike                   4.8%     12.0%    Medium
+1     American Golden Plover         7.4%     18.6%    Medium
+2     Red-flanked Bluetail           7.4%     18.5%    Medium
+3     Baird's Sandpiper              7.2%     18.0%    Medium
+4     Brown Shrike                   6.5%     16.2%    Medium
+5     Black-faced Bunting            6.5%     16.3%    Medium
 
 ═══════════════════════════════════════════════════════════════════════════
 MOST LIKELY WITHIN 5 YEARS
@@ -24,11 +177,11 @@ MOST LIKELY WITHIN 5 YEARS
 
 Rank  Species                        5-Yr     10-Yr    Conf
 ───────────────────────────────────────────────────────────────────────────
-1     American Golden Plover         12.0%    27.6%    Medium
-2     Baird's Sandpiper              12.0%    27.6%    Medium
-3     Wilson's Phalarope             12.0%    27.6%    Medium
-4     Bufflehead                     12.0%    27.6%    Medium
-5     Brown Shrike                   12.0%    27.6%    Medium
+1     American Golden Plover         18.6%    38.1%    Medium
+2     Red-flanked Bluetail           18.5%    38.1%    Medium
+3     Baird's Sandpiper              18.0%    37.2%    Medium
+4     Black-faced Bunting            16.3%    32.1%    Medium
+5     Brown Shrike                   16.2%    34.4%    Medium
 
 ═══════════════════════════════════════════════════════════════════════════
 MOST LIKELY WITHIN 10 YEARS
@@ -36,11 +189,11 @@ MOST LIKELY WITHIN 10 YEARS
 
 Rank  Species                        10-Yr    Conf
 ───────────────────────────────────────────────────────────────────────────
-1     American Golden Plover         27.6%    Medium
-2     Baird's Sandpiper              27.6%    Medium
-3     Wilson's Phalarope             27.6%    Medium
-4     Bufflehead                     27.6%    Medium
-5     Brown Shrike                   27.6%    Medium
+1     American Golden Plover         38.1%    Medium
+2     Red-flanked Bluetail           38.1%    Medium
+3     Baird's Sandpiper              37.2%    Medium
+4     Brown Shrike                   34.4%    Medium
+5     Black-faced Bunting            32.1%    Medium
 
 ═══════════════════════════════════════════════════════════════════════════
 STRONGEST ATLANTIC CANDIDATES
@@ -48,8 +201,8 @@ STRONGEST ATLANTIC CANDIDATES
 
 Rank  Species                        1-Yr     5-Yr     10-Yr
 ───────────────────────────────────────────────────────────────────────────
-1     American Golden Plover         4.8%     12.0%    27.6%
-2     Baird's Sandpiper              4.8%     12.0%    27.6%
+1     American Golden Plover         7.4%     18.6%    38.1%
+2     Baird's Sandpiper              7.2%     18.0%    37.2%
 3     Wilson's Phalarope             4.8%     12.0%    27.6%
 4     Bufflehead                     4.8%     12.0%    27.6%
 5     Upland Sandpiper               4.0%     10.0%    22.0%
@@ -60,8 +213,8 @@ STRONGEST EASTERN CANDIDATES
 
 Rank  Species                        1-Yr     5-Yr     10-Yr
 ───────────────────────────────────────────────────────────────────────────
-1     Brown Shrike                   4.8%     12.0%    27.6%
-2     Red-flanked Bluetail           4.8%     12.0%    27.6%
-3     Lanceolated Warbler            4.4%     11.0%    24.8%
-4     Yellow-breasted Bunting        4.4%     11.0%    24.8%
-5     Oriental Turtle Dove           4.4%     11.0%    24.8%
+1     Red-flanked Bluetail           7.4%     18.5%    38.1%
+2     Black-faced Bunting            6.5%     16.3%    32.1%
+3     Brown Shrike                   6.5%     16.2%    34.4%
+4     Falcated Duck                  6.1%     15.3%    31.6%
+5     Black-throated Thrush          6.0%     15.1%    31.4%

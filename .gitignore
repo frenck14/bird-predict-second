@@ -8,3 +8,4 @@ data/raw/
 .ipynb_checkpoints/
 
 logs/
+.env

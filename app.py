@@ -57,6 +57,7 @@ from src.next_dutch_firsts import (
     load_ranked,
     timeline,
 )
+from src.next_dutch_firsts_probability_dashboard import ProbabilityDashboard
 from src.predict_yellow_browed import load_weather_forecast, risk_category
 from src.run_daily_forecast import RUN_METADATA, run_daily_forecast
 from src.seabird_decision_support import (
@@ -100,6 +101,7 @@ SEABIRD_FORECAST_FILE = ROOT / "outputs/seabird_forecast.csv"
 SEABIRD_PLOT_FILE = ROOT / "outputs/seabird_forecast.png"
 SEABIRD_LOCATION_FORECAST_FILE = ROOT / "outputs/seabird_location_forecast_detail.csv"
 SEABIRD_LOCATION_MAP_FILE = ROOT / "outputs/seabird_location_forecast.png"
+NEXT_DUTCH_FIRSTS_PROBABILITIES = ROOT / "outputs/next_dutch_firsts/probabilities.csv"
 EASTERN_VAGRANCY_SPECIES = (
     "Yellow-browed Warbler",
     "Red-flanked Bluetail",
@@ -1732,9 +1734,106 @@ def show_score_breakdown(candidate: Candidate) -> None:
     st.markdown("Breakdown:\n" + "\n".join(lines))
 
 
+def load_next_dutch_firsts_probabilities(path: Path) -> pd.DataFrame:
+    """Load probability forecasts and apply the shared weather freshness checks."""
+    if not path.is_file():
+        raise FileNotFoundError(f"Probability forecast not found: {path}")
+    dashboard = ProbabilityDashboard(str(path))
+    frame = dashboard.df
+    required = {
+        "species", "probability_1yr", "probability_5yr", "probability_10yr",
+        "baseline_total_score", "weather_support", "near_term_opportunity_score",
+        "weather_status", "weather_generated_at", "weather_forecast_date",
+    }
+    if frame is None or frame.empty:
+        raise ValueError("Probability forecast contains no species.")
+    missing = required.difference(frame.columns)
+    if missing:
+        raise ValueError(f"Probability forecast is missing columns: {', '.join(sorted(missing))}.")
+    if frame["species"].isna().any() or frame["species"].astype(str).str.strip().eq("").any() or frame["species"].duplicated().any():
+        raise ValueError("Probability forecast has missing or duplicate species.")
+    for column in ("probability_1yr", "probability_5yr", "probability_10yr"):
+        if frame[column].isna().any() or not frame[column].between(0, 1).all():
+            raise ValueError(f"{column} must contain probabilities between 0 and 1.")
+    if not frame["weather_status"].isin(["available", "neutral", "unavailable"]).all():
+        raise ValueError("Probability forecast contains invalid weather statuses.")
+    for column in ("baseline_total_score", "weather_support", "near_term_opportunity_score"):
+        values = pd.to_numeric(frame[column], errors="raise")
+        if not values.dropna().between(0, 100).all():
+            raise ValueError(f"{column} must contain scores between 0 and 100.")
+        if column == "baseline_total_score" and values.isna().any():
+            raise ValueError("Baseline scores must not be missing.")
+        if column != "baseline_total_score" and values[frame["weather_status"].isin(["available", "neutral"])].isna().any():
+            raise ValueError(f"{column} is missing for an available or neutral forecast.")
+    result = dashboard.get_opportunity_table()
+    result.loc[result["weather_status"].eq("unavailable"), ["weather_support", "near_term_opportunity_score"]] = float("nan")
+    return result
+
+
+def show_next_dutch_firsts_probabilities() -> None:
+    """Show the probability-engine candidates independently of demo filters."""
+    st.subheader("Probability-engine forecasts")
+    st.caption(
+        "Near-term opportunity is an experimental score, not a probability. "
+        "Weather Support is a pooled pathway signal; long-term estimates use "
+        "the separate probability model."
+    )
+    try:
+        frame = load_next_dutch_firsts_probabilities(NEXT_DUTCH_FIRSTS_PROBABILITIES)
+    except (OSError, ValueError, KeyError, pd.errors.ParserError) as exc:
+        st.error(f"Next Dutch Firsts probability forecasts are unavailable: {exc}")
+        return
+
+    sort = st.radio(
+        "Sort probability forecasts",
+        ("Near-Term Opportunity", "Long-Term Probability"),
+        horizontal=True,
+        key="firsts_probability_sort",
+    )
+    sort_column = "near_term_opportunity_score"
+    if sort == "Long-Term Probability":
+        horizon = st.selectbox(
+            "Long-term probability horizon",
+            ("1 year", "5 years", "10 years"),
+            index=1,
+            key="firsts_probability_horizon",
+        )
+        sort_column = {
+            "1 year": "probability_1yr",
+            "5 years": "probability_5yr",
+            "10 years": "probability_10yr",
+        }[horizon]
+    frame = frame.sort_values(sort_column, ascending=False, na_position="last", kind="stable")
+    unavailable = int(frame["weather_status"].eq("unavailable").sum())
+    if unavailable:
+        st.warning(
+            f"Weather Support and near-term scores are unavailable for {unavailable} species. "
+            "Generate a fresh forecast and refresh the probability output."
+        )
+    columns = [
+        "species", "probability_1yr", "probability_5yr", "probability_10yr",
+        "baseline_total_score", "weather_support", "near_term_opportunity_score", "weather_status",
+    ]
+    st.dataframe(
+        frame[columns],
+        column_config={
+            "probability_1yr": st.column_config.NumberColumn("probability_1yr", format="percent"),
+            "probability_5yr": st.column_config.NumberColumn("probability_5yr", format="percent"),
+            "probability_10yr": st.column_config.NumberColumn("probability_10yr", format="percent"),
+            "baseline_total_score": st.column_config.NumberColumn("baseline_total_score", format="%.2f"),
+            "weather_support": st.column_config.NumberColumn("weather_support", format="%.2f"),
+            "near_term_opportunity_score": st.column_config.NumberColumn("near_term_opportunity_score", format="%.2f"),
+        },
+        width="stretch",
+        hide_index=True,
+    )
+
+
 def show_next_dutch_firsts() -> None:
     st.subheader("⭐ Next Dutch Firsts")
     show_prediction_status("Statistical Risk Model", "Experimental")
+    show_next_dutch_firsts_probabilities()
+    st.subheader("Illustrative demo ranking")
     st.caption(
         "Trend-based candidates for a Dutch first or an exceptionally rare "
         "record, ranked using historical rarity and recent western-European records."

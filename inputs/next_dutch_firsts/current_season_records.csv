@@ -1,1 +1,86 @@
-species,country,date,location,source
+species,country,observation_date,location,observation_count,source
+American Golden Plover,United Kingdom,2026-11-09,Cemlyn NWWT NR,1.0,eBird
+American Golden Plover,United Kingdom,2026-11-07,Cemlyn NWWT NR--Tern Colony,1.0,eBird
+American Golden Plover,United Kingdom,2026-11-02,Pool of Virkie,2.0,eBird
+American Golden Plover,United Kingdom,2026-10-21,St Mary's--Pungies Lane,1.0,eBird
+American Golden Plover,United Kingdom,2026-10-20,"Craig yr lwrch GB-Wales (53.4138,-4.5212)",1.0,eBird
+American Golden Plover,United Kingdom,2026-10-19,"Anglesey National Landscape, Cemaes Bay GB-Wales 53.41193, -4.52125",1.0,eBird
+American Golden Plover,United Kingdom,2026-10-18,"3 Saint Andrew's Street, England, GB (50.212, -5.48)",1.0,eBird
+American Golden Plover,United Kingdom,2026-10-16,Kynance Farm and Jollytown area,1.0,eBird
+American Golden Plover,United Kingdom,2026-10-12,Levenwick--Midway Stores Area,,eBird
+American Golden Plover,Ireland,2026-11-05,Lady's Island Lake--general area,1.0,eBird
+Baird's Sandpiper,United Kingdom,2026-11-05,Abberton Reservoir--Visitor Centre,1.0,eBird
+Baird's Sandpiper,United Kingdom,2026-11-05,Abberton Reservoir,1.0,eBird
+Baird's Sandpiper,United Kingdom,2026-11-04,Abberton Reservoir,1.0,eBird
+Baird's Sandpiper,United Kingdom,2026-11-01,Myroe Levels,1.0,eBird
+Baird's Sandpiper,United Kingdom,2026-11-01,Abberton Reservoir--West End (General),,eBird
+Baird's Sandpiper,United Kingdom,2026-10-29,"Abberton Reservoir viewpoint RVPW+3X, Colchester CO5 7NJ",1.0,eBird
+Baird's Sandpiper,United Kingdom,2026-10-29,"Abberton Reservoir, Island Hide",1.0,eBird
+Baird's Sandpiper,United Kingdom,2026-10-28,Island hide Abberton,1.0,eBird
+Baird's Sandpiper,United Kingdom,2026-10-13,Drift Reservoir,1.0,eBird
+Brown Shrike,United Kingdom,2026-11-05,Braemore,1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-10,Warham Greens,1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-09,"Holkham NNR--Warham, Peddars Way and Norfolk Coast Path",1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-09,Holkham NNR--Stiffkey Marshes,1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-09,Warham Greens (B-f B),1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-08,"Norfolk Coast Path, England, GB (52.957, 0.901)",1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-08,"Norfolk Coast Path, England, GB (52.957, 0.916)",1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-08,Afon Dysynni Estuary,1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-08,Tonfanau Marsh and Pool,1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-08,"Peddar's Way and Norfolk Coast Path, Wells-Next-The-Sea GB-England 52.95609, 0.90747",1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-08,"Peddar's Way and Norfolk Coast Path, Wells-Next-The-Sea GB-England 52.95676, 0.90118",1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-08,"Norfolk Coast Path, England, GB (52.956, 0.9)",1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-08,Warham Greens,1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-08,Black-faced bunting location,1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-07,Warham Greens and Salt Marsh,1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-07,"Norfolk Coast Path, England, GB (52.957, 0.911)",1.0,eBird
+Black-faced Bunting,United Kingdom,2026-11-06,"Norfolk Coast Path Warham Greens, England, GB (52.957, 0.892)",1.0,eBird
+Black-faced Bunting,United Kingdom,2026-10-19,Spurn Bird Observatory Recording Area,1.0,eBird
+Black-faced Bunting,United Kingdom,2026-10-19,Spurn Point NNR,1.0,eBird
+Black-faced Bunting,United Kingdom,2026-10-19,Spurn Point--Chalk Bank,1.0,eBird
+Black-faced Bunting,United Kingdom,2026-10-19,Spurn Point--Spurn Triangle,,eBird
+Black-faced Bunting,United Kingdom,2026-10-19,Kilnsea--Spurn Bird Observatory,1.0,eBird
+Red-flanked Bluetail,United Kingdom,2026-11-01,Swining,1.0,eBird
+Red-flanked Bluetail,United Kingdom,2026-10-19,Halligarth,1.0,eBird
+Red-flanked Bluetail,United Kingdom,2026-10-19,Buness,1.0,eBird
+Red-flanked Bluetail,United Kingdom,2026-10-19,Baltasound,1.0,eBird
+Red-flanked Bluetail,United Kingdom,2026-10-19,Buness,1.0,eBird
+Red-flanked Bluetail,United Kingdom,2026-10-19,Spurn Point NNR,1.0,eBird
+Red-flanked Bluetail,United Kingdom,2026-10-19,Spurn Bird Observatory Recording Area,1.0,eBird
+Red-flanked Bluetail,United Kingdom,2026-10-13,Muckle Flugga Shore Station,1.0,eBird
+Red-flanked Bluetail,United Kingdom,2026-10-13,Burrafirth,1.0,eBird
+Red-flanked Bluetail,Germany,2026-11-04,Helgoland (gesamt),1.0,eBird
+Red-flanked Bluetail,Germany,2026-11-03,Helgoland--Fanggarten,1.0,eBird
+Red-flanked Bluetail,Germany,2026-11-03,Helgoland--Mittelland,1.0,eBird
+Red-flanked Bluetail,Germany,2026-10-27,Helgoland--Kurgelände,1.0,eBird
+Red-flanked Bluetail,Germany,2026-10-27,Helgoland--Kurpark,1.0,eBird
+Red-flanked Bluetail,Germany,2026-10-27,Helgoland - AWI  and  Aquarium,1.0,eBird
+Red-flanked Bluetail,Germany,2026-10-27,Helgoland--Große Treppe,1.0,eBird
+Red-flanked Bluetail,Germany,2026-10-27,Helgoland Düne--Nordostmole,1.0,eBird
+Red-flanked Bluetail,Germany,2026-10-26,Helgoland - Oberland,1.0,eBird
+Red-flanked Bluetail,Germany,2026-10-23,Greifswalder Oie (NSG),1.0,eBird
+Red-flanked Bluetail,Germany,2026-10-12,Helgoland--Ostklippe/Jägerstieg,1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-27,"South Landing Local Nature Reserve, Bridlington GB-England (54.1079,-0.1149)",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-27,Flamborough--South Landing LNR,1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-27,"Sculpture Trail, South Landing Flamborough, England, GB (54.106",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-27,Flamborough Head,1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-26,"South Landing Local Nature Reserve, Bridlington GB-England (54.1080,-0.1147)",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-25,"Flamborough, South Landing",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-24,"Sculpture Trail, Flamborough, England, GB (54.108, -0.115)",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-24,"Sculpture Trail, Flamborough, England, GB (54.108, -0.115)",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-23,"South Landing Local Nature Reserve, Bridlington GB-England (54.1079,-0.1152)",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-23,"South Landing Local Nature Reserve, Bridlington GB-England 54.10688, -0.11936",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-23,"South Landing Local Nature Reserve, Bridlington GB-England 54.10769, -0.11563",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-23,"South Landing Local Nature Reserve, Bridlington GB-England (54.1079,-0.1150)",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-23,"Sculpture Trail, Flamborough, England, GB (54.108, -0.115)",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-23,Flamborough Head--Bird Observatory Recording Area,1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-22,"South Landing Local Nature Reserve, Bridlington GB-England (54.1078,-0.1150)",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-22,"Flamborough, South Landing",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-22,Red Tailed Robin twitch,1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-21,"Sculpture Trail, Flamborough, England, GB (54.108, -0.115)",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-21,Flamborough Head--Whelkie Wynds,1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-21,"Flamborough Head, Whale Bridge",1.0,eBird
+Rufous-tailed Robin,United Kingdom,2026-10-21,"Sculpture Trail, Flamborough, England, GB (54.108, -0.115)",1.0,eBird
+Black-throated Thrush,United Kingdom,2026-10-25,Finstown,1.0,eBird
+Dusky Thrush,United Kingdom,2026-10-23,NRBO Census Area F,1.0,eBird
+Falcated Duck,United Kingdom,2026-11-10,Connaught Water,2.0,eBird

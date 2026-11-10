@@ -7,11 +7,17 @@ Shows 1yr/5yr/10yr probabilities instead of static scores.
 
 import pandas as pd
 import json
+from html import escape
 from pathlib import Path
 from datetime import datetime
 from dataclasses import dataclass
 from typing import Optional, List, Dict
 from enum import Enum
+
+if __package__:
+    from .next_dutch_firsts_weather import MAX_FORECAST_AGE
+else:
+    from next_dutch_firsts_weather import MAX_FORECAST_AGE
 
 
 class TableType(Enum):
@@ -60,8 +66,97 @@ class ProbabilityDashboard:
             # Parse probability strings back to floats
             for col in ['probability_1yr', 'probability_5yr', 'probability_10yr']:
                 if col in self.df.columns:
-                    self.df[col] = self.df[col].str.rstrip('%').astype(float) / 100.0
+                    text = self.df[col].astype(str).str.strip()
+                    values = pd.to_numeric(text.str.removesuffix('%'), errors='raise')
+                    self.df[col] = values.where(~text.str.endswith('%'), values / 100.0)
             self.df['confidence_score'] = pd.to_numeric(self.df['confidence_score'], errors='coerce')
+
+    def get_opportunity_table(self) -> pd.DataFrame:
+        """Return all species, with stale saved weather explicitly unavailable."""
+        if self.df is None or self.df.empty:
+            return pd.DataFrame()
+        frame = self.df.copy()
+        defaults = {
+            'baseline_total_score': frame['total_score'] if 'total_score' in frame else None,
+            'weather_support': None,
+            'near_term_opportunity_score': None,
+            'weather_source': None,
+            'weather_forecast_date': None,
+            'weather_generated_at': None,
+            'weather_input_source': None,
+            'weather_raw_probability': None,
+            'weather_status': 'unavailable',
+            'weather_explanation': 'Weather Support is not present in this saved forecast; regenerate it.',
+        }
+        for column, default in defaults.items():
+            if column not in frame:
+                frame[column] = default
+        for column in ('baseline_total_score', 'weather_support', 'near_term_opportunity_score', 'weather_raw_probability'):
+            frame[column] = pd.to_numeric(frame[column], errors='coerce')
+        now = pd.Timestamp.now(tz='UTC')
+        generated = pd.to_datetime(frame['weather_generated_at'], utc=True, errors='coerce')
+        dates = pd.to_datetime(frame['weather_forecast_date'], errors='coerce', utc=True)
+        available = frame['weather_status'].eq('available')
+        stale = available & (
+            generated.isna() | dates.isna() | (generated > now)
+            | (now - generated > MAX_FORECAST_AGE)
+            | (dates < now.normalize())
+        )
+        frame.loc[stale, ['weather_support', 'near_term_opportunity_score']] = float('nan')
+        frame.loc[stale, 'weather_status'] = 'unavailable'
+        frame.loc[stale, 'weather_explanation'] = 'Saved weather forecast is stale or has invalid dates; regenerate it.'
+        return frame.sort_values('near_term_opportunity_score', ascending=False, na_position='last', kind='stable')
+
+    @staticmethod
+    def _value(value, suffix: str = '') -> str:
+        return 'Unavailable' if pd.isna(value) else f'{float(value):.2f}{suffix}'
+
+    def _opportunity_text(self) -> str:
+        frame = self.get_opportunity_table()
+        lines = [
+            "NEAR-TERM OPPORTUNITY (experimental score, not a probability)",
+            "Weather is a pooled pathway signal. Long-term probabilities are unchanged.",
+        ]
+        for _, row in frame.iterrows():
+            lines.append(
+                f"{row['species']}: Baseline Total Score {self._value(row['baseline_total_score'])}; "
+                f"Weather Support {self._value(row['weather_support'])}; "
+                f"Near-Term Opportunity Score {self._value(row['near_term_opportunity_score'])}"
+            )
+            raw = row['weather_raw_probability']
+            raw_text = 'Unavailable' if pd.isna(raw) else f'{float(raw):.4f}'
+            source = row['weather_source'] if pd.notna(row['weather_source']) else 'Unavailable'
+            date = row['weather_forecast_date'] if pd.notna(row['weather_forecast_date']) else 'Unavailable'
+            input_source = row['weather_input_source'] if pd.notna(row['weather_input_source']) else 'Unavailable'
+            lines.append(f"  Source: {source}; date: {date}; raw probability: {raw_text}; weather input: {input_source}")
+            lines.append(f"  {row['weather_status']}: {row['weather_explanation']}")
+        return '\n'.join(lines)
+
+    def _opportunity_html(self) -> str:
+        frame = self.get_opportunity_table()
+        html = (
+            '<div class="section"><h2 class="section-title">Near-Term Opportunity</h2>'
+            '<p>Experimental score, not a probability. Weather is a pooled pathway signal; '
+            'long-term probabilities are unchanged.</p><table><thead><tr>'
+            '<th>Species</th><th>Baseline Total Score</th><th>Weather Support</th>'
+            '<th>Near-Term Opportunity Score</th><th>Weather provenance and explanation</th>'
+            '</tr></thead><tbody>'
+        )
+        for _, row in frame.iterrows():
+            raw = row['weather_raw_probability']
+            raw_text = 'Unavailable' if pd.isna(raw) else f'{float(raw):.4f}'
+            def text(column):
+                return escape(str(row[column])) if pd.notna(row[column]) else 'Unavailable'
+            html += (
+                f'<tr><td>{text("species")}</td>'
+                f'<td>{self._value(row["baseline_total_score"])}</td>'
+                f'<td>{self._value(row["weather_support"])}</td>'
+                f'<td>{self._value(row["near_term_opportunity_score"])}</td>'
+                f'<td>{text("weather_status")}: {text("weather_source")}; date: '
+                f'{text("weather_forecast_date")}; raw probability: {raw_text}; '
+                f'weather input: {text("weather_input_source")}<br>{text("weather_explanation")}</td></tr>'
+            )
+        return html + '</tbody></table></div>'
     
     def get_table(self, table_type: TableType, limit: int = 10) -> pd.DataFrame:
         """Get a specific dashboard table."""
@@ -145,6 +240,8 @@ class ProbabilityDashboard:
         output.append("")
         output.append(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}")
         output.append(f"Total species analyzed: {len(self.df) if self.df is not None else 0}")
+        output.append("")
+        output.append(self._opportunity_text())
         output.append("")
         
         # Table 1: Most likely within 1 year
@@ -241,7 +338,7 @@ class ProbabilityDashboard:
                 )
         output.append("")
         
-        return "\n".join(output)
+        return "\n".join(line.rstrip() for line in output)
     
     def render_html_dashboard(self, output_path: Optional[str] = None) -> str:
         """Render dashboard as HTML."""
@@ -340,6 +437,8 @@ class ProbabilityDashboard:
         <div class="content">
 """
         
+        html += self._opportunity_html()
+
         # Add tables
         tables = [
             (TableType.BY_1YR, "Most Likely Within 1 Year", ['species', 'probability_1yr', 'probability_5yr', 'confidence']),

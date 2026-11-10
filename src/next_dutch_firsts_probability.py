@@ -16,6 +16,11 @@ from pathlib import Path
 from datetime import datetime, timedelta
 from enum import Enum
 
+if __package__:
+    from .next_dutch_firsts_weather import load_weather_support, weather_for_pathway
+else:
+    from next_dutch_firsts_weather import load_weather_support, weather_for_pathway
+
 
 class ConfidenceLevel(Enum):
     """Confidence in probability estimate."""
@@ -28,12 +33,14 @@ class ConfidenceLevel(Enum):
 class FactorAnalysis:
     """Results of a probability factor calculation."""
     factor_name: str
-    raw_score: float
-    normalized_score: float  # 0.0 to 1.0
-    contribution: float      # contribution to final probability
+    raw_score: Optional[float]
+    normalized_score: Optional[float]  # 0.0 to 1.0
+    contribution: float      # factor weight
     details: Dict = field(default_factory=dict)
 
     def __repr__(self):
+        if self.normalized_score is None:
+            return f"{self.factor_name}: unavailable"
         return f"{self.factor_name}: {self.normalized_score:.2f} (contrib: {self.contribution:.2%})"
 
 
@@ -56,8 +63,18 @@ class ProbabilityOutput:
         """Weighted factor score on a 0-100 scale, not a probability."""
         return 100.0 * sum(
             factor.normalized_score * factor.contribution
-            for factor in self.factor_breakdown.values()
+            for name, factor in self.factor_breakdown.items()
+            if name != 'Weather Support'
         )
+
+    @property
+    def near_term_opportunity_score(self) -> Optional[float]:
+        """Experimental score, not a probability."""
+        weather = self.factor_breakdown.get('Weather Support')
+        if weather is None or weather.normalized_score is None:
+            return None
+        adjustment = 0.25 * (100.0 * weather.normalized_score - 50.0)
+        return min(100.0, max(0.0, self.total_score + adjustment))
 
     def to_dict(self, formatted: bool = False):
         """Convert to dict for CSV export.
@@ -65,6 +82,23 @@ class ProbabilityOutput:
         Args:
             formatted: If True, return formatted strings. If False, return numeric values.
         """
+        weather = self.factor_breakdown.get('Weather Support')
+        weather_details = weather.details if weather else {}
+        additional = {
+            'baseline_total_score': self.total_score,
+            'weather_support': (
+                100.0 * weather.normalized_score
+                if weather and weather.normalized_score is not None else None
+            ),
+            'near_term_opportunity_score': self.near_term_opportunity_score,
+            'weather_source': weather_details.get('source'),
+            'weather_forecast_date': weather_details.get('forecast_date'),
+            'weather_generated_at': weather_details.get('generated_at'),
+            'weather_input_source': weather_details.get('weather_source'),
+            'weather_raw_probability': weather.raw_score if weather else None,
+            'weather_status': weather_details.get('status', 'unavailable'),
+            'weather_explanation': weather_details.get('explanation', 'Weather Support not calculated.'),
+        }
         if formatted:
             return {
                 'species': self.species,
@@ -77,6 +111,7 @@ class ProbabilityOutput:
                 'confidence': self.confidence.value,
                 'confidence_score': f"{self.confidence_score:.2f}",
                 'key_drivers': ' | '.join(self.key_drivers),
+                **additional,
             }
         else:
             return {
@@ -90,6 +125,7 @@ class ProbabilityOutput:
                 'confidence': self.confidence.value,
                 'confidence_score': self.confidence_score,
                 'key_drivers': ' | '.join(self.key_drivers),
+                **additional,
             }
 
 
@@ -105,8 +141,34 @@ class ProbabilityModel:
     5. Expansion Factor - Climate/range suitability
     """
 
-    def __init__(self):
+    def __init__(self, weather_output_dir: Optional[Path] = None):
         self.current_year = datetime.now().year
+        self.weather_output_dir = weather_output_dir
+        self._weather_snapshot = None
+
+    def calculate_weather_support_factor(self, pathway: str) -> FactorAnalysis:
+        if self._weather_snapshot is None:
+            self._weather_snapshot = (
+                load_weather_support(self.weather_output_dir)
+                if self.weather_output_dir is not None else load_weather_support()
+            )
+        weather = weather_for_pathway(pathway, self._weather_snapshot)
+        return FactorAnalysis(
+            factor_name='Weather Support',
+            raw_score=weather.raw_probability,
+            normalized_score=(
+                weather.scaled_score / 100.0 if weather.scaled_score is not None else None
+            ),
+            contribution=0.25,
+            details={
+                'source': weather.source,
+                'forecast_date': weather.forecast_date,
+                'generated_at': weather.generated_at,
+                'weather_source': weather.weather_source,
+                'status': weather.status,
+                'explanation': weather.explanation,
+            },
+        )
         
     def load_data(self, base_path: str) -> Tuple[pd.DataFrame, ...]:
         """Load all data sources."""
@@ -316,19 +378,20 @@ class ProbabilityModel:
         details['num_records'] = num_records
         details['num_countries'] = num_countries
         
-        # Recency scoring
-        try:
-            species_records['date'] = pd.to_datetime(species_records['date'], errors='coerce')
-            most_recent = species_records['date'].max()
-            if pd.notna(most_recent):
-                days_ago = (datetime.now() - most_recent).days
-                # 0 days = 1.0, 30 days = 0.5, 365+ days = 0.0
-                recency_score = max(0.0, 1.0 - (days_ago / 365.0))
-                details['days_since_record'] = days_ago
-            else:
-                recency_score = 0.3
-        except:
-            recency_score = 0.3
+        # eBird reports presence-only observations without an individual count.
+        # The factor counts observation records, not the number of birds.
+        date_column = 'observation_date' if 'observation_date' in species_records.columns else 'date'
+        if date_column not in species_records.columns:
+            raise ValueError("Current activity records require observation_date or date.")
+        dates = pd.to_datetime(species_records[date_column], format='mixed', utc=True, errors='raise')
+        if dates.isna().any():
+            raise ValueError(f"Missing observation date for {species}.")
+        today = pd.Timestamp.now(tz='Europe/Amsterdam').date()
+        if dates.dt.date.gt(today).any():
+            raise ValueError(f"Future observation date for {species}.")
+        days_ago = (today - dates.dt.date.max()).days
+        recency_score = max(0.0, 1.0 - (days_ago / 365.0))
+        details['days_since_record'] = days_ago
         
         # Combined: record count + country diversity + recency
         record_score = min(1.0, num_records / 10.0)
@@ -713,6 +776,9 @@ class ProbabilityModel:
         
         # Convert to probabilities
         prob_1yr, prob_5yr, prob_10yr = self.convert_factors_to_probabilities(factors, pathway)
+
+        # Weather is operational only; baseline probabilities and drivers stay unchanged.
+        factors['Weather Support'] = self.calculate_weather_support_factor(pathway)
         
         return ProbabilityOutput(
             species=species,
