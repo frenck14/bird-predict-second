@@ -1,51 +1,51 @@
-species,scientific_name,pathway,probability_1yr,probability_5yr,probability_10yr,confidence,confidence_score,key_drivers
-Western Tanager,Piranga ludoviciana,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Blue Grosbeak,Passerina caerulea,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Black-throated Gray Warbler,Setophaga nigrescens,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Common Nighthawk,Chordeiles minor,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Swainson's Hawk,Buteo swainsoni,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Cassin's Sparrow,Peucaea cassinii,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Brewer's Sparrow,Spizella breweri,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-MacGillivray's Warbler,Geothlypis tolmiei,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Townsend's Warbler,Setophaga townsendi,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Nashville Warbler,Leiothlypis ruficapilla,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Virginia Rail,Rallus limicola,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Yellow Rail,Coturnicops noveboracensis,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Cedar Waxwing,Bombycilla cedrorum,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Summer Tanager,Piranga rubra,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Painted Bunting,Passerina ciris,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-American Golden Plover,Pluvialis dominica,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Baird's Sandpiper,Calidris bairdii,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Wilson's Phalarope,Phalaropus tricolor,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Upland Sandpiper,Bartramia longicauda,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Bufflehead,Bucephala albeola,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Harlequin Duck,Histrionicus histrionicus,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Yellow-billed Cuckoo,Coccyzus americanus,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Black-billed Cuckoo,Coccyzus erythropthalmus,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Mississippi Kite,Ictinia mississippiensis,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Brown Shrike,Lanius cristatus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Thick-billed Warbler,Arundinax aedon,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Siberian Rubythroat,Calliope calliope,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Lanceolated Warbler,Locustella lanceolata,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Black-faced Bunting,Emberiza spodocephala,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Yellow-breasted Bunting,Emberiza aureola,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Siberian Accentor,Prunella montanella,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Oriental Turtle Dove,Streptopelia orientalis,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-White's Thrush,Zoothera aurea,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Stejneger's Stonechat,Saxicola stejnegeri,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Pale Thrush,Turdus pallidus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Japanese Robin,Larvivora akahige,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Mugimaki Flycatcher,Ficedula mugimaki,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Red-flanked Bluetail,Tarsiger cyanurus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Two-barred Greenish Warbler,Phylloscopus plumbeitarsus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Siberian Blue Robin,Larvivora cyane,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Rufous-tailed Robin,Larvivora sibilans,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Siberian Thrush,Geokichla sibirica,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Eyebrowed Thrush,Turdus obscurus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Black-throated Thrush,Turdus atrogularis,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Dusky Thrush,Turdus eunomus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Long-toed Stint,Calidris subminuta,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Falcated Duck,Mareca falcata,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Eastern Buzzard,Buteo japonicus,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Northern Hawk-Owl,Surnia ulula,Eastern,2.0%,5.0%,8.0%,Low,0.30,Limited available data
-Black-and-white Warbler,Mniotilta varia,Atlantic,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+species,scientific_name,pathway,total_score,probability_1yr,probability_5yr,probability_10yr,confidence,confidence_score,key_drivers
+Western Tanager,Piranga ludoviciana,Atlantic,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Blue Grosbeak,Passerina caerulea,Atlantic,2.24,2.4%,6.1%,11.1%,Medium,0.60,Limited available data
+Black-throated Gray Warbler,Setophaga nigrescens,Atlantic,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Common Nighthawk,Chordeiles minor,Atlantic,8.000000000000002,3.6%,9.0%,19.2%,Medium,0.60,Present in Europe (2 countries)
+Swainson's Hawk,Buteo swainsoni,Atlantic,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Cassin's Sparrow,Peucaea cassinii,Atlantic,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Brewer's Sparrow,Spizella breweri,Atlantic,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+MacGillivray's Warbler,Geothlypis tolmiei,Atlantic,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Townsend's Warbler,Setophaga townsendi,Atlantic,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Nashville Warbler,Leiothlypis ruficapilla,Atlantic,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Virginia Rail,Rallus limicola,Atlantic,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Yellow Rail,Coturnicops noveboracensis,Atlantic,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Cedar Waxwing,Bombycilla cedrorum,Atlantic,6.000000000000001,3.2%,8.0%,16.4%,Medium,0.60,Present in Europe (1 countries)
+Summer Tanager,Piranga rubra,Atlantic,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Painted Bunting,Passerina ciris,Atlantic,6.64,3.3%,8.3%,17.3%,Medium,0.60,Present in Europe (3 countries)
+American Golden Plover,Pluvialis dominica,Atlantic,13.999999999999998,4.8%,12.0%,27.6%,Medium,0.60,Present in Europe (5 countries)
+Baird's Sandpiper,Calidris bairdii,Atlantic,13.999999999999998,4.8%,12.0%,27.6%,Medium,0.60,Present in Europe (5 countries)
+Wilson's Phalarope,Phalaropus tricolor,Atlantic,13.999999999999998,4.8%,12.0%,27.6%,Medium,0.60,Present in Europe (5 countries)
+Upland Sandpiper,Bartramia longicauda,Atlantic,10.0,4.0%,10.0%,22.0%,Medium,0.60,Present in Europe (3 countries)
+Bufflehead,Bucephala albeola,Atlantic,13.999999999999998,4.8%,12.0%,27.6%,Medium,0.60,Present in Europe (5 countries)
+Harlequin Duck,Histrionicus histrionicus,Atlantic,10.0,4.0%,10.0%,22.0%,Medium,0.60,Present in Europe (3 countries)
+Yellow-billed Cuckoo,Coccyzus americanus,Atlantic,10.0,4.0%,10.0%,22.0%,Medium,0.60,Present in Europe (3 countries)
+Black-billed Cuckoo,Coccyzus erythropthalmus,Atlantic,8.000000000000002,3.6%,9.0%,19.2%,Medium,0.60,Present in Europe (2 countries)
+Mississippi Kite,Ictinia mississippiensis,Atlantic,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Brown Shrike,Lanius cristatus,Eastern,13.999999999999998,4.8%,12.0%,27.6%,Medium,0.60,Present in Europe (5 countries)
+Thick-billed Warbler,Arundinax aedon,Eastern,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Siberian Rubythroat,Calliope calliope,Eastern,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Lanceolated Warbler,Locustella lanceolata,Eastern,12.000000000000002,4.4%,11.0%,24.8%,Medium,0.60,Present in Europe (4 countries)
+Black-faced Bunting,Emberiza spodocephala,Eastern,10.0,4.0%,10.0%,22.0%,Medium,0.60,Present in Europe (3 countries)
+Yellow-breasted Bunting,Emberiza aureola,Eastern,12.000000000000002,4.4%,11.0%,24.8%,Medium,0.60,Present in Europe (4 countries)
+Siberian Accentor,Prunella montanella,Eastern,10.0,4.0%,10.0%,22.0%,Medium,0.60,Present in Europe (3 countries)
+Oriental Turtle Dove,Streptopelia orientalis,Eastern,12.000000000000002,4.4%,11.0%,24.8%,Medium,0.60,Present in Europe (4 countries)
+White's Thrush,Zoothera aurea,Eastern,12.000000000000002,4.4%,11.0%,24.8%,Medium,0.60,Present in Europe (4 countries)
+Stejneger's Stonechat,Saxicola stejnegeri,Eastern,10.0,4.0%,10.0%,22.0%,Medium,0.60,Present in Europe (3 countries)
+Pale Thrush,Turdus pallidus,Eastern,2.08,2.4%,6.0%,10.9%,Medium,0.60,Limited available data
+Japanese Robin,Larvivora akahige,Eastern,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Mugimaki Flycatcher,Ficedula mugimaki,Eastern,2.4000000000000004,2.5%,6.2%,11.4%,Medium,0.60,Limited available data
+Red-flanked Bluetail,Tarsiger cyanurus,Eastern,13.999999999999998,4.8%,12.0%,27.6%,Medium,0.60,Present in Europe (5 countries)
+Two-barred Greenish Warbler,Phylloscopus plumbeitarsus,Eastern,10.0,4.0%,10.0%,22.0%,Medium,0.60,Present in Europe (3 countries)
+Siberian Blue Robin,Larvivora cyane,Eastern,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Rufous-tailed Robin,Larvivora sibilans,Eastern,6.5600000000000005,3.3%,8.3%,17.2%,Medium,0.60,Present in Europe (2 countries)
+Siberian Thrush,Geokichla sibirica,Eastern,10.0,4.0%,10.0%,22.0%,Medium,0.60,Present in Europe (3 countries)
+Eyebrowed Thrush,Turdus obscurus,Eastern,12.000000000000002,4.4%,11.0%,24.8%,Medium,0.60,Present in Europe (4 countries)
+Black-throated Thrush,Turdus atrogularis,Eastern,12.000000000000002,4.4%,11.0%,24.8%,Medium,0.60,Present in Europe (4 countries)
+Dusky Thrush,Turdus eunomus,Eastern,12.000000000000002,4.4%,11.0%,24.8%,Medium,0.60,Present in Europe (4 countries)
+Long-toed Stint,Calidris subminuta,Eastern,10.0,4.0%,10.0%,22.0%,Medium,0.60,Present in Europe (3 countries)
+Falcated Duck,Mareca falcata,Eastern,12.000000000000002,4.4%,11.0%,24.8%,Medium,0.60,Present in Europe (4 countries)
+Eastern Buzzard,Buteo japonicus,Eastern,0.0,2.0%,5.0%,8.0%,Low,0.30,Limited available data
+Northern Hawk-Owl,Surnia ulula,Eastern,10.0,4.0%,10.0%,22.0%,Medium,0.60,Present in Europe (3 countries)
+Black-and-white Warbler,Mniotilta varia,Atlantic,10.0,4.0%,10.0%,22.0%,Medium,0.60,Present in Europe (3 countries)

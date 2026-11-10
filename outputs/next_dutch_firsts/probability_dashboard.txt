@@ -3,65 +3,65 @@
 ║                    Transparent Actuarial Model                           ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 
-Generated: 2026-11-10 12:27:38 UTC
+Generated: 2026-11-10 15:29:18 UTC
 Total species analyzed: 50
 
 ═══════════════════════════════════════════════════════════════════════════
 MOST LIKELY WITHIN 1 YEAR
 ═══════════════════════════════════════════════════════════════════════════
 
-Rank  Species                        1-Yr     5-Yr     Conf    
+Rank  Species                        1-Yr     5-Yr     Conf
 ───────────────────────────────────────────────────────────────────────────
-1     Western Tanager                2.0%     5.0%     Low     
-2     Blue Grosbeak                  2.0%     5.0%     Low     
-3     Black-throated Gray Warbler    2.0%     5.0%     Low     
-4     Common Nighthawk               2.0%     5.0%     Low     
-5     Swainson's Hawk                2.0%     5.0%     Low     
+1     American Golden Plover         4.8%     12.0%    Medium
+2     Baird's Sandpiper              4.8%     12.0%    Medium
+3     Wilson's Phalarope             4.8%     12.0%    Medium
+4     Bufflehead                     4.8%     12.0%    Medium
+5     Brown Shrike                   4.8%     12.0%    Medium
 
 ═══════════════════════════════════════════════════════════════════════════
 MOST LIKELY WITHIN 5 YEARS
 ═══════════════════════════════════════════════════════════════════════════
 
-Rank  Species                        5-Yr     10-Yr    Conf    
+Rank  Species                        5-Yr     10-Yr    Conf
 ───────────────────────────────────────────────────────────────────────────
-1     Western Tanager                5.0%     8.0%     Low     
-2     Blue Grosbeak                  5.0%     8.0%     Low     
-3     Black-throated Gray Warbler    5.0%     8.0%     Low     
-4     Common Nighthawk               5.0%     8.0%     Low     
-5     Swainson's Hawk                5.0%     8.0%     Low     
+1     American Golden Plover         12.0%    27.6%    Medium
+2     Baird's Sandpiper              12.0%    27.6%    Medium
+3     Wilson's Phalarope             12.0%    27.6%    Medium
+4     Bufflehead                     12.0%    27.6%    Medium
+5     Brown Shrike                   12.0%    27.6%    Medium
 
 ═══════════════════════════════════════════════════════════════════════════
 MOST LIKELY WITHIN 10 YEARS
 ═══════════════════════════════════════════════════════════════════════════
 
-Rank  Species                        10-Yr    Conf    
+Rank  Species                        10-Yr    Conf
 ───────────────────────────────────────────────────────────────────────────
-1     Western Tanager                8.0%     Low     
-2     Blue Grosbeak                  8.0%     Low     
-3     Black-throated Gray Warbler    8.0%     Low     
-4     Common Nighthawk               8.0%     Low     
-5     Swainson's Hawk                8.0%     Low     
+1     American Golden Plover         27.6%    Medium
+2     Baird's Sandpiper              27.6%    Medium
+3     Wilson's Phalarope             27.6%    Medium
+4     Bufflehead                     27.6%    Medium
+5     Brown Shrike                   27.6%    Medium
 
 ═══════════════════════════════════════════════════════════════════════════
 STRONGEST ATLANTIC CANDIDATES
 ═══════════════════════════════════════════════════════════════════════════
 
-Rank  Species                        1-Yr     5-Yr     10-Yr   
+Rank  Species                        1-Yr     5-Yr     10-Yr
 ───────────────────────────────────────────────────────────────────────────
-1     Western Tanager                2.0%     5.0%     8.0%    
-2     Blue Grosbeak                  2.0%     5.0%     8.0%    
-3     Black-throated Gray Warbler    2.0%     5.0%     8.0%    
-4     Common Nighthawk               2.0%     5.0%     8.0%    
-5     Swainson's Hawk                2.0%     5.0%     8.0%    
+1     American Golden Plover         4.8%     12.0%    27.6%
+2     Baird's Sandpiper              4.8%     12.0%    27.6%
+3     Wilson's Phalarope             4.8%     12.0%    27.6%
+4     Bufflehead                     4.8%     12.0%    27.6%
+5     Upland Sandpiper               4.0%     10.0%    22.0%
 
 ═══════════════════════════════════════════════════════════════════════════
 STRONGEST EASTERN CANDIDATES
 ═══════════════════════════════════════════════════════════════════════════
 
-Rank  Species                        1-Yr     5-Yr     10-Yr   
+Rank  Species                        1-Yr     5-Yr     10-Yr
 ───────────────────────────────────────────────────────────────────────────
-1     Brown Shrike                   2.0%     5.0%     8.0%    
-2     Thick-billed Warbler           2.0%     5.0%     8.0%    
-3     Siberian Rubythroat            2.0%     5.0%     8.0%    
-4     Lanceolated Warbler            2.0%     5.0%     8.0%    
-5     Black-faced Bunting            2.0%     5.0%     8.0%    
+1     Brown Shrike                   4.8%     12.0%    27.6%
+2     Red-flanked Bluetail           4.8%     12.0%    27.6%
+3     Lanceolated Warbler            4.4%     11.0%    24.8%
+4     Yellow-breasted Bunting        4.4%     11.0%    24.8%
+5     Oriental Turtle Dove           4.4%     11.0%    24.8%

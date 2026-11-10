@@ -44,8 +44,17 @@ dutch_opportunity = (1.0 - has_dutch_record) * recency_score
 **Question**: How strong is the species' presence and trend in Western Europe?
 
 **Inputs**:
-- Record counts in UK, Ireland, Belgium, Germany, Denmark
-- Western European trend (increasing/stable/decreasing)
+- `western_europe_occurrences.csv`: record counts in the United Kingdom,
+  Ireland, Belgium, Germany, and Denmark, matched by species.
+- `species_master.csv`: Western European trend (increasing/stable/decreasing).
+
+Counts are summed across rows, so periods for a species and country must not
+overlap. Each country with at least one record counts once for diversity.
+Blank counts and rows marked `manual_review_required` do not contribute;
+invalid nonblank counts fail explicitly. The current GBIF data represent
+observation records, not distinct birds or accepted national rarity records.
+Consequently, intensity can reflect reporting effort and the score is not a
+calibrated probability.
 
 **Logic**:
 - Presence in multiple neighboring countries = stronger signal
@@ -71,7 +80,12 @@ european_momentum = (0.5 * country_diversity +
 
 **Range**: 0.0–1.0 (higher = stronger momentum)
 
-**Weight**: 20% of final probability
+**Weight**: 20% of the diagnostic total score
+
+The exported `total_score` is a diagnostic on a 0–100 scale: the sum of each
+normalized factor multiplied by its stated weight, times 100. It is not a
+probability and is not an input to the separate probability formulas below.
+European Momentum directly affects both this score and those formulas.
 
 
 ### Factor 3: Current Activity Factor
@@ -403,6 +417,7 @@ Columns:
 - **species**: Common name
 - **scientific_name**: Binomial nomenclature
 - **pathway**: Atlantic or Eastern
+- **total_score**: Weighted factor score from 0 to 100 (not a probability)
 - **probability_1yr**: 1-year probability (formatted as percentage)
 - **probability_5yr**: 5-year probability (formatted as percentage)
 - **probability_10yr**: 10-year probability (formatted as percentage)
@@ -410,10 +425,14 @@ Columns:
 - **confidence_score**: Numeric 0.0-1.0
 - **key_drivers**: Top 3-4 contributing factors
 
+`probability_comparison.csv` compares the previously saved and regenerated
+5-year probabilities for each species. Its `change` column is the difference
+between the displayed percentages, in percentage points (`pp`).
+
 ### Example Row
 
 ```
-Western Tanager,Piranga ludoviciana,Atlantic,4.2%,16.8%,32.5%,Medium,0.62,No Dutch records yet | Increasing in Europe (2 countries) | Strong Atlantic pathway
+Example Species,Example scientific name,Atlantic,25.00,4.2%,16.8%,32.5%,Medium,0.62,Increasing in Europe (2 countries)
 ```
 
 ## Usage Examples

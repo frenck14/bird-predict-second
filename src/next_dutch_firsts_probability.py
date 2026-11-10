@@ -51,6 +51,14 @@ class ProbabilityOutput:
     key_drivers: List[str]
     factor_breakdown: Dict[str, FactorAnalysis] = field(default_factory=dict)
 
+    @property
+    def total_score(self) -> float:
+        """Weighted factor score on a 0-100 scale, not a probability."""
+        return 100.0 * sum(
+            factor.normalized_score * factor.contribution
+            for factor in self.factor_breakdown.values()
+        )
+
     def to_dict(self, formatted: bool = False):
         """Convert to dict for CSV export.
         
@@ -62,6 +70,7 @@ class ProbabilityOutput:
                 'species': self.species,
                 'scientific_name': self.scientific_name,
                 'pathway': self.pathway,
+                'total_score': f"{self.total_score:.2f}",
                 'probability_1yr': f"{self.probability_1yr:.1%}",
                 'probability_5yr': f"{self.probability_5yr:.1%}",
                 'probability_10yr': f"{self.probability_10yr:.1%}",
@@ -74,6 +83,7 @@ class ProbabilityOutput:
                 'species': self.species,
                 'scientific_name': self.scientific_name,
                 'pathway': self.pathway,
+                'total_score': self.total_score,
                 'probability_1yr': self.probability_1yr,
                 'probability_5yr': self.probability_5yr,
                 'probability_10yr': self.probability_10yr,
@@ -187,8 +197,8 @@ class ProbabilityModel:
         European Momentum Factor: How strong is the species' presence in surrounding countries?
         
         Inputs:
-        - UK records, Ireland records, Belgium records, Germany records, Denmark records
-        - Western European trend
+        - Western European occurrence counts for the five neighboring countries
+        - Western European trend from the species master
         
         Logic:
         - Established presence in nearby countries increases probability of Dutch occurrence
@@ -197,44 +207,36 @@ class ProbabilityModel:
         
         Range: 0.0-1.0 (higher = stronger momentum)
         """
-        details = {}
-        
         species_row = species_master_df[species_master_df['species'] == species]
-        if species_row.empty:
-            return FactorAnalysis(
-                factor_name='European Momentum',
-                raw_score=0.0,
-                normalized_score=0.0,
-                contribution=0.20,
-                details=details
-            )
-        
-        row = species_row.iloc[0]
-        
-        # Count neighboring country records
-        neighbor_records = 0
-        neighbors_with_records = 0
-        
-        for country in ['uk_records', 'ireland_records', 'belgium_records', 
-                        'germany_records', 'denmark_records']:
-            value = row.get(country, 0)
-            if pd.notna(value) and value != '':
-                try:
-                    record_count = int(value) if isinstance(value, (int, float)) else 0
-                    neighbor_records += record_count
-                    if record_count > 0:
-                        neighbors_with_records += 1
-                except (ValueError, TypeError):
-                    pass
-        
-        details['neighbors_with_records'] = neighbors_with_records
-        details['total_neighbor_records'] = neighbor_records
-        
-        # Presence in N neighboring countries (max 5)
+        countries = ['United Kingdom', 'Ireland', 'Belgium', 'Germany', 'Denmark']
+        occurrences = western_europe_df[
+            (western_europe_df['species'] == species)
+            & western_europe_df['country'].isin(countries)
+        ].copy()
+        if 'source' in occurrences.columns:
+            occurrences = occurrences[occurrences['source'] != 'manual_review_required']
+        values = occurrences['record_count']
+        present = values.notna() & values.astype(str).str.strip().ne('')
+        counts = pd.to_numeric(values[present], errors='raise')
+        if ((counts < 0) | ~np.isfinite(counts) | (counts % 1 != 0)).any():
+            raise ValueError(f"Invalid European occurrence count for {species}")
+        occurrences = occurrences.loc[present].copy()
+        occurrences['record_count'] = counts
+        neighbor_records = int(counts.sum())
+        neighbors_with_records = occurrences.loc[
+            occurrences['record_count'] > 0, 'country'
+        ].nunique()
         country_diversity = neighbors_with_records / 5.0
+        details = {
+            'neighbor_records': neighbor_records,
+            'total_neighbor_records': neighbor_records,
+            'neighbors_with_records': neighbors_with_records,
+            'country_diversity': country_diversity,
+        }
         
         # Trend signal
-        trend = row.get('western_europe_trend', '').lower() if pd.notna(row.get('western_europe_trend')) else ''
+        trend_value = species_row.iloc[0].get('western_europe_trend', '') if not species_row.empty else ''
+        trend = str(trend_value).lower() if pd.notna(trend_value) else ''
         trend_score = 0.0
         if 'increas' in trend or 'expanding' in trend or 'strong' in trend.lower():
             trend_score = 1.0
