@@ -19,6 +19,7 @@ from .train_seabird_species_models import CLASSIFICATION_THRESHOLD
 ROOT = Path(__file__).resolve().parents[1]
 CSV_PATH = ROOT / "outputs/seabird_validation/rolling_event_validation.csv"
 SUMMARY_PATH = ROOT / "outputs/seabird_validation/event_validation_summary.md"
+PREDICTIONS_PATH = ROOT / "outputs/seabird_validation/rolling_event_predictions.csv"
 
 
 def load_observations(path: Path = ROOT / OBSERVATIONS_FILE) -> pd.DataFrame:
@@ -77,7 +78,10 @@ def summarize_rows(rows: pd.DataFrame, species: str, year: str) -> dict[str, obj
 
 
 def evaluate_rolling(
-    weather: pd.DataFrame, occurrences: pd.DataFrame, observations: pd.DataFrame
+    weather: pd.DataFrame,
+    occurrences: pd.DataFrame,
+    observations: pd.DataFrame,
+    predictions: list[pd.DataFrame] | None = None,
 ) -> pd.DataFrame:
     weather = weather.sort_values("date").reset_index(drop=True)
     dates = pd.DatetimeIndex(pd.to_datetime(weather["date"], errors="raise")).normalize()
@@ -151,6 +155,8 @@ def evaluate_rolling(
                     ),
                 }
             )
+            if predictions is not None:
+                predictions.append(rows.assign(species=species))
             summaries.append(summarize_rows(rows, species, str(year)))
             species_rows[species].append(rows)
     for species, frames in species_rows.items():
@@ -240,7 +246,11 @@ def main() -> None:
     observations = load_observations()
     weather = load_historical_weather()
     occurrences = load_cached_occurrences()
-    summary = evaluate_rolling(weather, occurrences, observations)
+    predictions: list[pd.DataFrame] = []
+    summary = evaluate_rolling(weather, occurrences, observations, predictions)
+    pd.concat(predictions, ignore_index=True).to_csv(
+        PREDICTIONS_PATH, index=False, date_format="%Y-%m-%d"
+    )
     CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
     summary.to_csv(CSV_PATH, index=False)
     write_summary(summary)
