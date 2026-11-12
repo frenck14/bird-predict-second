@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import json
 import math
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 import numpy as np
@@ -187,12 +187,19 @@ def build_decision_support(
     weather: pd.DataFrame | None = None,
     history: pd.DataFrame | None = None,
     issued_on: date | None = None,
+    analysis_date: date | None = None,
 ) -> dict[str, object]:
     """One record per horizon; `locations` is the detailed hotspot forecast."""
-    issued_on = issued_on or date.today()
+    issued_on = analysis_date or issued_on or date.today()
     forecast = forecast.assign(date=pd.to_datetime(forecast["date"]).dt.normalize())
     locations = locations.assign(date=pd.to_datetime(locations["date"]).dt.normalize())
     first = forecast["date"].min()
+    if analysis_date is not None and first.date() != (
+        analysis_date + timedelta(days=1)
+    ):
+        raise ValueError(
+            "Seabird decision support must begin the day after analysis_date."
+        )
     engineered = _build_seabird_features(weather) if weather is not None else None
     horizons = []
     for horizon, label in HORIZONS.items():

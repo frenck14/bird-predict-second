@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from datetime import date, timedelta
 from pathlib import Path
 from typing import TypedDict
 
@@ -28,6 +29,7 @@ if __package__:
         SPECIES_NAMES,
         model_path,
     )
+    from .predict_seabird import analysis_predictor_dates
 else:
     import build_seabird_dataset as dataset
     import forecast_atlantic_locations as framework
@@ -47,6 +49,7 @@ else:
         SPECIES_NAMES,
         model_path,
     )
+    from predict_seabird import analysis_predictor_dates
 
 
 LOGGER = logging.getLogger(__name__)
@@ -111,8 +114,12 @@ def predict_species_forecasts(
     weather: pd.DataFrame,
     predictor_dates: pd.DatetimeIndex,
     model_paths: dict[str, Path] = SPECIES_MODEL_PATHS,
+    analysis_date: date | None = None,
 ) -> dict[str, pd.DataFrame]:
     """Apply the independently trained species models to common weather."""
+    predictor_dates = analysis_predictor_dates(
+        weather, predictor_dates, analysis_date
+    )
     forecasts: dict[str, pd.DataFrame] = {}
     for species in SPECIES_NAMES:
         path = model_paths[species]
@@ -204,6 +211,7 @@ def build_species_location_forecast(
     *,
     daily_counts_path: Path = SPECIES_COUNTS_FILE,
     output_directory: Path = OUTPUTS,
+    analysis_date: date | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Create one species' cell-level forecast and its horizon top-10 table."""
     if species not in SPECIES_PROFILES:
@@ -216,6 +224,12 @@ def build_species_location_forecast(
     cells = _species_cells(species_records, species)
     curve = species_framework.seasonal_curve(species_records["date"])
     target_dates = pd.to_datetime(national_forecast["date"]).dt.normalize()
+    if analysis_date is not None and target_dates.min().date() != (
+        analysis_date + timedelta(days=1)
+    ):
+        raise ValueError(
+            "Species location forecast must begin the day after analysis_date."
+        )
     weights = {
         pd.Timestamp(day): float(
             curve[species_framework._calendar_day_number(pd.Timestamp(day)) - 1]
@@ -230,7 +244,14 @@ def build_species_location_forecast(
         risk_function=risk_level,
         sites=SPECIES_LOCATION_SITES,
     )
-    horizons = framework.top_hotspots(detailed, TOP_N)
+    if analysis_date is not None:
+        horizons = {
+            1: detailed.sort_values(
+                ["rank", "location"], ascending=[True, True]
+            ).head(TOP_N)
+        }
+    else:
+        horizons = framework.top_hotspots(detailed, TOP_N)
     hotspots = pd.concat(
         [
             frame.assign(horizon_days=horizon, horizon=framework.HORIZONS[horizon])
@@ -245,9 +266,10 @@ def build_species_location_forecast(
     )
     detailed.to_csv(paths["detail"], index=False, date_format="%Y-%m-%d")
     hotspots.to_csv(paths["hotspots"], index=False, date_format="%Y-%m-%d")
-    framework.save_location_map(
-        detailed, paths["map"], title=f"{species} seawatch hotspots"
-    )
+    if analysis_date is None:
+        framework.save_location_map(
+            detailed, paths["map"], title=f"{species} seawatch hotspots"
+        )
     return detailed, hotspots
 
 
@@ -257,6 +279,7 @@ def build_all_species_location_forecasts(
     *,
     daily_counts_path: Path = SPECIES_COUNTS_FILE,
     output_directory: Path = OUTPUTS,
+    analysis_date: date | None = None,
 ) -> dict[str, pd.DataFrame]:
     """Write each requested species' forecast, location CSV, top-10 CSV and map."""
     occurrences = occurrences if occurrences is not None else dataset.load_all_occurrences()
@@ -271,6 +294,7 @@ def build_all_species_location_forecasts(
             forecasts[species],
             daily_counts_path=daily_counts_path,
             output_directory=output_directory,
+            analysis_date=analysis_date,
         )
         built[species] = result
     return built
@@ -284,9 +308,12 @@ def generate_species_products(
     model_paths: dict[str, Path] = SPECIES_MODEL_PATHS,
     daily_counts_path: Path = SPECIES_COUNTS_FILE,
     output_directory: Path = OUTPUTS,
+    analysis_date: date | None = None,
 ) -> dict[str, pd.DataFrame]:
     """Predict species event probabilities and write their hotspot products."""
-    forecasts = predict_species_forecasts(weather, predictor_dates, model_paths)
+    forecasts = predict_species_forecasts(
+        weather, predictor_dates, model_paths, analysis_date
+    )
     for species, forecast in forecasts.items():
         output = species_output_paths(species, output_directory)["forecast"]
         output.parent.mkdir(parents=True, exist_ok=True)
@@ -296,5 +323,6 @@ def generate_species_products(
         occurrences,
         daily_counts_path=daily_counts_path,
         output_directory=output_directory,
+        analysis_date=analysis_date,
     )
     return forecasts

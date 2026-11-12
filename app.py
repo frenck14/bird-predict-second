@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from datetime import timedelta
+from datetime import date, timedelta
 from math import asin, cos, radians, sin, sqrt
 from pathlib import Path
 
@@ -82,6 +82,26 @@ from src.forecast_seabird_species import (
 )
 from src.train_seabird_species_models import SPECIES_NAMES as SEABIRD_SPECIES_NAMES
 from src.build_seabird_dataset import SEABIRD_SPECIES
+from src.seabird_backtest import (
+    analysis_date_bounds as seabird_backtest_date_bounds,
+    build_seabird_backtest,
+    load_historical_weather as load_seabird_backtest_weather,
+)
+from src.seabird_observation_validation import (
+    OBSERVATIONS_FILE as SEABIRD_OBSERVATIONS_FILE,
+    ObservationsUnavailable,
+    build_validation_report as build_seabird_observation_report,
+    load_observation_records as load_seabird_observation_records,
+)
+from src.seabird_validation import (
+    DataLeakageError,
+    STRICT_VALIDATION_HOLDOUT_WINDOWS,
+    StrictValidationUnavailable,
+    build_historical_forecast,
+    evaluate_forecast,
+    load_historical_weather as load_seabird_validation_weather,
+    load_validation_observations,
+)
 
 
 ROOT = Path(__file__).resolve().parent
@@ -2608,15 +2628,295 @@ def show_rare_birds() -> None:
                 show_eastern_hotspots()
 
 
+def show_seabird_observation_validation(result: dict[str, object]) -> None:
+    st.markdown("### Forecast evaluation vs observations")
+    try:
+        records = load_seabird_observation_records()
+    except ObservationsUnavailable as error:
+        st.warning(str(error))
+        return
+    st.caption(f"Loaded {len(records)} records from `{SEABIRD_OBSERVATIONS_FILE}`.")
+    validation = build_seabird_observation_report(result, records)
+    target_dates = pd.to_datetime(result["target_dates"])
+    st.markdown(
+        f"Holdout window {target_dates[0]:%Y-%m-%d} to {target_dates[-1]:%Y-%m-%d}: "
+        f"**{validation['observation_count']}** observations available"
+    )
+    if validation["observation_count"] == 0:
+        st.warning("No observations in the holdout window; metrics are not meaningful.")
+    metrics = validation["metrics"]
+    columns = st.columns(4)
+    columns[0].metric("Hit Rate", f"{metrics['hit_rate']:.0%}")
+    columns[1].metric("Precision", f"{metrics['precision']:.2f}")
+    columns[2].metric("Recall", f"{metrics['recall']:.2f}")
+    columns[3].metric("F1 Score", f"{metrics['f1']:.2f}")
+    matches = validation["matches"]
+    left, right = st.columns(2)
+    with left:
+        st.markdown("**Predicted Species**")
+        for row in matches.loc[matches["predicted"]].itertuples():
+            st.write(f"{row.outcome[:1]} {row.species} ({row.max_probability:.0%})")
+    with right:
+        st.markdown("**Observed Species**")
+        for row in matches.loc[matches["observed"]].itertuples():
+            st.write(f"{row.outcome[:1]} {row.species} ({row.observation_days} days)")
+    st.dataframe(matches, width="stretch", hide_index=True)
+    st.caption(
+        "Predicted = peak daily probability >= 0.20. Hit Rate = share of days "
+        "with a prediction where a predicted species was observed that day."
+    )
+    st.caption(f"Report written to `{validation['report_path']}`.")
+
+
+def with_forecast_day(hotspots: pd.DataFrame, analysis_date: date) -> pd.DataFrame:
+    """Return hotspots with an integer ``forecast_day`` lead-time column."""
+    frame = hotspots.copy()
+    if "forecast_day" in frame:
+        return frame
+    if "horizon_days" in frame:
+        frame["forecast_day"] = frame["horizon_days"].astype(int)
+    elif "horizon" in frame and frame["horizon"].isin(FORECAST_HORIZONS.values()).all():
+        by_label = {label: days for days, label in FORECAST_HORIZONS.items()}
+        frame["forecast_day"] = frame["horizon"].map(by_label).astype(int)
+    else:
+        frame["forecast_day"] = (
+            pd.to_datetime(frame["date"]) - pd.Timestamp(analysis_date)
+        ).dt.days.astype(int)
+    return frame
+
+
+def show_seabird_backtest() -> None:
+    st.subheader("🧪 Backtest")
+    st.info("Strict Cutoff Hindcast")
+    st.warning(
+        "This backtest trains point-in-time models using only weather and "
+        "occurrence records dated on or before the selected analysis date. "
+        "Post-date weather, occurrence, and hotspot records are excluded from "
+        "forecast inputs. The 14-day window uses only the same-day weather "
+        "snapshot; no archived forecast issuances are available for replay."
+    )
+    weather = load_seabird_backtest_weather()
+    earliest, latest = seabird_backtest_date_bounds(weather)
+    default_date = min(max(date.today() - timedelta(days=14), earliest), latest)
+    with st.form("seabird_backtest_form"):
+        analysis_date = st.date_input(
+            "Historical Date",
+            value=default_date,
+            min_value=earliest,
+            max_value=latest,
+            key="seabird_backtest_analysis_date",
+        )
+        run_backtest = st.form_submit_button("Run Backtest")
+    if run_backtest:
+        try:
+            with st.spinner("Training cutoff-safe historical seabird forecasts..."):
+                result = build_seabird_backtest(analysis_date, weather)
+        except (DataLeakageError, StrictValidationUnavailable) as error:
+            st.error(str(error))
+            return
+        st.session_state["seabird_backtest_result"] = result
+
+    result = st.session_state.get("seabird_backtest_result")
+    if result is None:
+        return
+    if result["analysis_date"] != analysis_date:
+        st.info("Select Run Backtest to generate results for the selected date.")
+        return
+
+    st.markdown(f"**Strict Cutoff Hindcast · Analysis date {analysis_date:%Y-%m-%d}**")
+    rating = result["rating"]
+    tomorrow = rating.loc[rating["forecast_day"].eq(1)].iloc[0]
+    metrics = st.columns(4)
+    metrics[0].metric("Seawatch Day Rating", f"{tomorrow['score']}/100")
+    metrics[1].metric("Rating", tomorrow["rating"])
+    metrics[2].metric("Best coast", tomorrow["best_coast"])
+    metrics[3].metric(
+        "Forecast date",
+        pd.Timestamp(tomorrow["date"]).strftime("%Y-%m-%d"),
+    )
+    st.dataframe(
+        rating[["date", "forecast_day", "score", "rating", "best_coast"]],
+        width="stretch",
+        hide_index=True,
+    )
+
+    show_seabird_observation_validation(result)
+
+    st.markdown("**Forecast species**")
+    species = result["species"]
+    st.dataframe(
+        species[["species", "date", "probability", "risk_level"]].sort_values(
+            ["date", "species"]
+        ),
+        width="stretch",
+        hide_index=True,
+    )
+
+    st.markdown("**Forecast hotspots**")
+    all_hotspots = with_forecast_day(result["hotspots"], analysis_date)
+    hotspot_dates = {
+        int(day): pd.Timestamp(frame["date"].iloc[0])
+        for day, frame in all_hotspots.groupby("forecast_day")
+    }
+    horizon = st.selectbox(
+        "Hotspot forecast horizon",
+        options=sorted(hotspot_dates),
+        format_func=lambda days: (
+            f"{FORECAST_HORIZONS[days]} · {hotspot_dates[days]:%b %d, %Y}"
+        ),
+        key="seabird_backtest_hotspot_horizon",
+    )
+    hotspots = all_hotspots.loc[all_hotspots["forecast_day"].eq(horizon)]
+    st.dataframe(
+        hotspots[["rank", "location", "country", "score", "rating"]],
+        width="stretch",
+        hide_index=True,
+    )
+
+
+def show_seabird_strict_validation() -> None:
+    st.subheader("🧪 Strict Cutoff Validation")
+    st.info("Strict Cutoff Validation")
+    st.warning(
+        "Models, weather features, occurrence history, and hotspot suitability "
+        "use only records dated on or before the selected analysis date. "
+        "Historical observed weather through that date is the available-weather "
+        "proxy because archived forecast issuances are unavailable; realized "
+        "weather after the analysis date is never used. Later occurrence records "
+        "are isolated to the evaluation outcome."
+    )
+    weather = load_seabird_validation_weather()
+    dates = pd.to_datetime(weather["date"]).dt.date
+    earliest = dates.min() + timedelta(days=5 * 365)
+    latest = dates.max()
+    if earliest > latest:
+        raise ValueError("Historical weather does not span a strict validation window.")
+    default_date = min(max(date.today() - timedelta(days=14), earliest), latest)
+    with st.form("seabird_strict_validation_form"):
+        holdout_days = st.selectbox(
+            "Holdout window",
+            options=STRICT_VALIDATION_HOLDOUT_WINDOWS,
+            format_func=lambda days: f"{days} day" + ("" if days == 1 else "s"),
+            key="seabird_validation_holdout_days",
+        )
+        analysis_date = st.date_input(
+            "Historical analysis date / data cutoff",
+            value=default_date,
+            min_value=earliest,
+            max_value=latest,
+            key="seabird_validation_analysis_date",
+        )
+        run_validation = st.form_submit_button("Run Strict Cutoff Validation")
+    if run_validation:
+        try:
+            with st.spinner("Training point-in-time models and evaluating the holdout..."):
+                result = build_historical_forecast(
+                    analysis_date,
+                    data_cutoff_date=analysis_date,
+                    holdout_days=holdout_days,
+                )
+                observations = load_validation_observations(
+                    result["target_dates"]
+                )
+                metrics = evaluate_forecast(
+                    result,
+                    observations,
+                    data_cutoff_date=analysis_date,
+                )
+        except DataLeakageError as error:
+            st.error(str(error))
+            return
+        except StrictValidationUnavailable as error:
+            st.error(str(error))
+            return
+        st.session_state["seabird_strict_validation_result"] = {
+            "analysis_date": analysis_date,
+            "holdout_days": holdout_days,
+            "result": result,
+            "observations": observations,
+            "metrics": metrics,
+        }
+
+    validation = st.session_state.get("seabird_strict_validation_result")
+    if validation is None:
+        return
+    if (
+        validation["analysis_date"] != analysis_date
+        or validation.get("holdout_days", 1) != holdout_days
+    ):
+        st.info("Select Run Strict Cutoff Validation to generate results for this selection.")
+        return
+    result = validation["result"]
+    rating = result["rating"]
+    issue_date = result["analysis_date"]
+    target_date = result["target_date"]
+    st.markdown(
+        f"**Validation mode:** Strict Cutoff Validation  \n"
+        f"**Analysis date / data cutoff:** {issue_date:%Y-%m-%d}  \n"
+        f"**Evaluation window:** {target_date:%Y-%m-%d} through "
+        f"{result['target_dates'][-1]:%Y-%m-%d} ({holdout_days} days)"
+    )
+    st.markdown("**Forecast day ratings**")
+    st.dataframe(
+        rating[["date", "forecast_day", "score", "rating", "best_coast"]],
+        width="stretch",
+        hide_index=True,
+    )
+    st.markdown("**Forecast species**")
+    forecast_rows = [
+        {
+            "Species": product,
+            "Forecast date": row.date,
+            "Probability": float(row.probability),
+            "Risk": row.risk_level,
+        }
+        for product, frame in result["forecasts"].items()
+        if product != "General Seabird Index"
+        for row in frame.itertuples(index=False)
+    ]
+    st.dataframe(pd.DataFrame(forecast_rows), width="stretch", hide_index=True)
+
+    st.markdown("**Forecast hotspots**")
+    st.dataframe(
+        result["hotspots"][
+            ["date", "horizon", "rank", "location", "country", "score", "rating"]
+        ],
+        width="stretch",
+        hide_index=True,
+    )
+
+    st.markdown("**Holdout evaluation**")
+    st.dataframe(validation["metrics"], width="stretch", hide_index=True)
+    st.caption(
+        "Each forecast lead is trained using only examples whose targets and "
+        "weather inputs were available by the analysis date. The selected "
+        "post-date occurrence window is used only for scoring. Changing the "
+        "cutoff or window creates a separate point-in-time run."
+    )
+
+
 def show_seawatching() -> None:
     st.title("🌊 Seawatching")
-    if not forecast_ready():
-        return
     section = st.radio(
         "Explore seawatching",
-        ["Day rating", "Species & sites", "Hotspot map", "Environmental drivers"],
+        [
+            "Day rating",
+            "Species & sites",
+            "Hotspot map",
+            "Environmental drivers",
+            "🧪 Strict Cutoff Validation",
+            "🧪 Backtest",
+        ],
         horizontal=True, key="seawatch_section",
     )
+    if section == "🧪 Strict Cutoff Validation":
+        show_seabird_strict_validation()
+        return
+    if section == "🧪 Backtest":
+        show_seabird_backtest()
+        return
+    if not forecast_ready():
+        return
     if section == "Day rating":
         with st.container(border=True):
             show_seawatch_day_rating()

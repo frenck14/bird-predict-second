@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from datetime import date
 from pathlib import Path
 
 import joblib
@@ -50,13 +51,37 @@ def _feature_builder(weather: pd.DataFrame) -> pd.DataFrame:
     return add_seabird_features(add_coastal_features(weather))
 
 
+def analysis_predictor_dates(
+    weather: pd.DataFrame,
+    predictor_dates: pd.DatetimeIndex,
+    analysis_date: date | None,
+) -> pd.DatetimeIndex:
+    if analysis_date is None:
+        return predictor_dates
+    requested = pd.date_range(
+        pd.Timestamp(analysis_date), periods=len(predictor_dates), freq="D"
+    )
+    available = pd.DatetimeIndex(pd.to_datetime(weather["date"]).dt.normalize())
+    missing = requested.difference(available)
+    if len(missing):
+        raise ValueError(
+            "Historical weather is missing analysis-window dates: "
+            f"{missing.strftime('%Y-%m-%d').tolist()}"
+        )
+    return requested
+
+
 def make_predictions(
     weather: pd.DataFrame,
     predictor_dates: pd.DatetimeIndex,
     artifact: dict[str, object],
+    analysis_date: date | None = None,
 ) -> pd.DataFrame:
     if artifact.get("species") != "Seabird Index":
         raise ValueError("Saved model artifact is not for the Seabird Index.")
+    predictor_dates = analysis_predictor_dates(
+        weather, predictor_dates, analysis_date
+    )
     shared_predictions = make_shared_predictions(
         weather,
         predictor_dates,

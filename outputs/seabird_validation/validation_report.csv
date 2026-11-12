@@ -1,0 +1,6 @@
+analysis_date,window_start,window_end,species,max_probability,predicted,observed,observation_days,outcome
+2024-10-15,2024-10-16,2024-10-29,European Storm-petrel,0.0437,False,True,6,⚠ observed but missed
+2024-10-15,2024-10-16,2024-10-29,Northern Fulmar,0.0337,False,True,9,⚠ observed but missed
+2024-10-15,2024-10-16,2024-10-29,Sooty Shearwater,0.2,True,False,0,❌ predicted but absent
+2024-10-15,2024-10-16,2024-10-29,Manx Shearwater,0.0359,False,True,14,⚠ observed but missed
+2024-10-15,2024-10-16,2024-10-29,Great Shearwater,0.0133,False,False,0,correctly absent

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import math
-from datetime import date, datetime, timezone
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 from typing import TypedDict
 
@@ -189,6 +189,8 @@ def _weather_conditions(
 def _probability_maps(
     general_forecast: pd.DataFrame,
     species_forecasts: dict[str, pd.DataFrame],
+    *,
+    allow_partial_horizon: bool = False,
 ) -> dict[pd.Timestamp, dict[str, float]]:
     # Keep the public weight order stable; it is also the output component order.
     frames = {
@@ -209,9 +211,16 @@ def _probability_maps(
     expected_dates = pd.date_range(
         ordered_dates[0], periods=len(ordered_dates), freq="D"
     )
-    if len(ordered_dates) != 14 or not ordered_dates.equals(expected_dates):
+    valid_length = (
+        1 <= len(ordered_dates) <= 14
+        if allow_partial_horizon
+        else len(ordered_dates) == 14
+    )
+    if not valid_length or not ordered_dates.equals(expected_dates):
         raise ValueError(
-            "All fourteenth-day rating forecasts require 14 consecutive dates."
+            "Rating forecasts require 14 consecutive dates."
+            if not allow_partial_horizon
+            else "Strict cutoff validation requires 1 to 14 consecutive forecast dates."
         )
     result: dict[pd.Timestamp, dict[str, float]] = {}
     for target in sorted(base_dates):
@@ -373,9 +382,14 @@ def build_rating_products(
     species_locations: dict[str, pd.DataFrame],
     weather: pd.DataFrame | None = None,
     generated_at: datetime | None = None,
+    analysis_date: date | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, object]]:
     """Build all-date ratings, four horizon hotspot lists and dashboard JSON."""
-    probabilities_by_date = _probability_maps(general_forecast, species_forecasts)
+    probabilities_by_date = _probability_maps(
+        general_forecast,
+        species_forecasts,
+        allow_partial_horizon=analysis_date is not None,
+    )
     if set(species_locations) != set(RATING_WEIGHTS) - {"General Seabird Index"}:
         raise ValueError("Species location forecasts must match the rating species.")
     locations = general_locations.copy()
@@ -410,6 +424,12 @@ def build_rating_products(
     hotspot_frames: list[pd.DataFrame] = []
     horizon_details: list[dict[str, object]] = []
     origin = min(probabilities_by_date)
+    if analysis_date is not None and origin.date() != (
+        analysis_date + timedelta(days=1)
+    ):
+        raise ValueError(
+            "Seawatch rating must begin the day after analysis_date."
+        )
     date_to_offset = {
         target: (target - origin).days for target in probabilities_by_date
     }
@@ -543,7 +563,11 @@ def build_rating_products(
 
     rating_frame = pd.concat(rating_frames, ignore_index=True)
     hotspots_frame = pd.concat(hotspot_frames, ignore_index=True)
-    generated_at = generated_at or datetime.now(timezone.utc)
+    generated_at = generated_at or (
+        datetime.combine(analysis_date, time.min, tzinfo=timezone.utc)
+        if analysis_date is not None
+        else datetime.now(timezone.utc)
+    )
     document: dict[str, object] = {
         "product": "Seawatch Day Rating",
         "generated_at": generated_at.isoformat(),

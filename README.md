@@ -256,6 +256,59 @@ exploratory, not a reliable event probability. Sooty Shearwater's P90 threshold
 is also one record/day, so its positive-day prevalence is below 10% because
 many dates have no qualifying records.
 
+### Strict Cutoff Validation
+
+The Seawatching page's primary validation framework is **Strict Cutoff
+Validation**. Select an analysis date and a 1-, 3-, 7-, or 14-day holdout
+window. Each lead-specific model is fitted only on weather and occurrence
+records dated on or before that analysis date; occurrence records after the
+date are isolated to the holdout scores. Weather features, occurrence history,
+and hotspot history are all checked against the cutoff before forecasting.
+Predictions use only the same-day weather snapshot available at the cutoff,
+with known calendar features for each target date. If required cutoff inputs or
+holdout observations are unavailable, the page reports “Strict validation
+unavailable for this date.” rather than substituting future weather.
+
+Archived weather-forecast issuances are not available, so historical observed
+weather through the analysis date is used as the available-weather proxy.
+Realized weather observations after the analysis date never enter the model.
+This is a strict cutoff hindcast, not a replay of the exact forecast issued
+then, and the frozen weather snapshot can limit forecast accuracy. Archived
+forecast products may support a future, stricter forecast-replay mode.
+
+To audit the Backtest species-presence metrics at thresholds 0.05, 0.10,
+0.15 and 0.20, run:
+
+```bash
+python -m src.seabird_threshold_analysis 2024-10-15
+```
+
+The command rebuilds the strict-cutoff 14-day hindcast, reads
+`validation/seabirds/observations.csv`, and writes
+`outputs/seabird_validation/threshold_analysis.csv`. A species is predicted
+when its maximum daily probability in the window meets the threshold, and is
+observed if it appears at least once. Precision, recall and F1 use those
+window-level species sets; undefined ratios are reported as zero, as in the
+Backtest. All tied maximum-F1 thresholds are marked. The model probability
+is for a high-count influx event, not simple presence, so this comparison is
+not a direct measure of influx-event skill. Selecting a threshold on the same
+window being evaluated can overfit; verify it on other independent windows.
+
+For rolling, event-aligned evaluation across the available years:
+
+```bash
+python -m src.rolling_seabird_event_validation
+```
+
+This fits one expanding-window, cutoff-safe model per species and calendar
+year, then scores daily one-day-ahead forecasts using the previous day's
+observed weather. It follows the existing five-calendar-year minimum, including
+partial years; this is not daily model refitting or archived forecast replay.
+The evaluation uses `validation/seabirds/observations.csv` counts and each
+year's training-derived P90 count threshold. It writes annual and pooled
+results to `outputs/seabird_validation/rolling_event_validation.csv` and a
+methodology summary to `outputs/seabird_validation/event_validation_summary.md`.
+
 The daily runner writes independent 14-day probability forecasts and location
 rankings for European Storm-petrel, Northern Fulmar, Sooty Shearwater, Manx
 Shearwater and Great Shearwater. Per species, it produces

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import math
+from datetime import date, timedelta
 from pathlib import Path
 
 import numpy as np
@@ -138,6 +139,7 @@ def _best_dutch_rationale(weather: pd.DataFrame | None, target_date: pd.Timestam
 def build_seabird_location_forecast(
     national_forecast: pd.DataFrame,
     *,
+    analysis_date: date | None = None,
     output_path: Path = SEABIRD_LOCATION_FORECAST_FILE,
     daily_counts_path: Path = SEABIRD_DAILY_COUNTS_FILE,
     simple_output_path: Path | None = None,
@@ -147,6 +149,12 @@ def build_seabird_location_forecast(
 ) -> pd.DataFrame:
     if not daily_counts_path.is_file():
         raise FileNotFoundError(f"Daily counts not found: {daily_counts_path}")
+    if analysis_date is not None:
+        first_target = pd.to_datetime(national_forecast["date"]).min().date()
+        if first_target != analysis_date + timedelta(days=1):
+            raise ValueError(
+                "Seabird location forecast must begin the day after analysis_date."
+            )
     cells = framework.add_suitability(
         framework.build_grid(
             load_all_occurrences() if occurrences is None else occurrences,
@@ -188,9 +196,15 @@ def build_seabird_location_forecast(
 
 
 def best_dutch_site(
-    result: pd.DataFrame, weather: pd.DataFrame | None = None
+    result: pd.DataFrame,
+    weather: pd.DataFrame | None = None,
+    analysis_date: date | None = None,
 ) -> dict[str, object]:
-    tomorrow_date = framework.horizon_dates(result["date"])[1]
+    tomorrow_date = (
+        pd.Timestamp(analysis_date + timedelta(days=1))
+        if analysis_date is not None
+        else framework.horizon_dates(result["date"])[1]
+    )
     tomorrow = result.loc[pd.to_datetime(result["date"]).dt.normalize().eq(tomorrow_date)]
     dutch = tomorrow.loc[tomorrow["country"].eq("NL")].sort_values("rank")
     if dutch.empty:
