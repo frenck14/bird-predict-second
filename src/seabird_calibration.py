@@ -20,7 +20,14 @@ SUMMARY_PATH = OUT / "calibration_summary.md"
 BIN_EDGES = np.linspace(0.0, 1.0, 11)
 # Tolerances for the verdicts: ECE and mean signed gap (predicted - observed).
 WELL_CALIBRATED_ECE = 0.03
-MIN_EVENTS_FOR_VERDICT = 20
+MIN_EVENTS_UNCERTAIN = 50
+STRONG_ECE = 0.10
+STRONG_SLOPE_GAP = 0.5
+OPERATING_THRESHOLD = 0.20
+CHECK_PROBABILITIES = (0.20, 0.50, 0.80)
+CHECK_HALF_WIDTH = 0.05
+MIN_CHECK_FORECASTS = 20
+THRESHOLD_GRID = (0.10, 0.15, 0.20, 0.25, 0.30, 0.40, 0.50)
 SPECIES_ORDER = [
     "Northern Fulmar",
     "Manx Shearwater",
@@ -126,16 +133,56 @@ def _slope_gap(populated: pd.DataFrame) -> float:
 
 
 def classify(metrics: dict[str, float]) -> str:
-    if metrics.get("event_days", MIN_EVENTS_FOR_VERDICT) < MIN_EVENTS_FOR_VERDICT:
-        return "insufficient events"
+    """Five-level calibration class from ECE and the reliability slope.
+
+    Over/underconfident refer to stated probabilities being higher/lower than
+    the observed event frequency (slope below/above 1). Strength is "strongly"
+    when ECE >= 0.10 or the slope is at least 0.5 from 1.
+    """
     slope = metrics["weighted_slope_gap"]
-    if metrics["ece"] <= WELL_CALIBRATED_ECE and (np.isnan(slope) or 0.8 <= slope <= 1.2):
+    ece = metrics["ece"]
+    if ece <= WELL_CALIBRATED_ECE and (np.isnan(slope) or abs(slope - 1) <= 0.2):
         return "well calibrated"
-    if not np.isnan(slope) and slope < 1:
-        return "overconfident"
-    if not np.isnan(slope) and slope > 1:
-        return "underconfident"
-    return "miscalibrated"
+    if np.isnan(slope) or slope == 1:
+        return "strongly overconfident" if ece >= STRONG_ECE else "mildly overconfident"
+    strong = ece >= STRONG_ECE or abs(slope - 1) >= STRONG_SLOPE_GAP
+    direction = "overconfident" if slope < 1 else "underconfident"
+    return f"{'strongly' if strong else 'mildly'} {direction}"
+
+
+def probability_check(
+    probability: pd.Series, actual: pd.Series, target: float,
+    half_width: float = CHECK_HALF_WIDTH,
+) -> dict[str, float]:
+    """Observed event frequency among forecasts within target +/- half_width."""
+    mask = (probability - target).abs() <= half_width + 1e-12
+    count = int(mask.sum())
+    return {
+        "target": target,
+        "forecast_count": count,
+        "observed_event_frequency": float(actual[mask].mean()) if count else np.nan,
+    }
+
+
+def threshold_table(probability: pd.Series, actual: pd.Series) -> pd.DataFrame:
+    """Diagnostic only: precision/recall/F1 at fixed cutoffs. Nothing is changed."""
+    y = actual.to_numpy(bool)
+    rows = []
+    for cutoff in THRESHOLD_GRID:
+        flagged = probability.to_numpy() >= cutoff - 1e-12
+        tp = int((flagged & y).sum())
+        fp = int((flagged & ~y).sum())
+        fn = int((~flagged & y).sum())
+        rows.append(
+            {
+                "threshold": cutoff,
+                "flagged_days": int(flagged.sum()),
+                "precision": tp / (tp + fp) if tp + fp else 0.0,
+                "recall": tp / (tp + fn) if tp + fn else 0.0,
+                "f1": 2 * tp / (2 * tp + fp + fn) if 2 * tp + fp + fn else 0.0,
+            }
+        )
+    return pd.DataFrame(rows)
 
 
 def analyse(predictions: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -149,6 +196,7 @@ def analyse(predictions: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
         metrics["start_date"] = part["date"].min()
         metrics["end_date"] = part["date"].max()
         metrics["verdict"] = classify(metrics)
+        metrics["uncertain"] = metrics["event_days"] < MIN_EVENTS_UNCERTAIN
         metric_rows.append({"species": species, **metrics})
         bin_frames.append(
             calibration_bins(part["probability"], actual).assign(species=species)
@@ -161,125 +209,156 @@ def analyse(predictions: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     )
 
 
+def slug(species: str) -> str:
+    return species.lower().replace(" ", "_").replace("-", "_")
+
+
 def write_figures(predictions: pd.DataFrame, bins: pd.DataFrame, out: Path = OUT) -> None:
     import matplotlib
 
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    fig, axes = plt.subplots(1, 5, figsize=(22, 4.5), sharex=True, sharey=True)
-    for ax, species in zip(axes, SPECIES_ORDER):
-        part = bins.loc[bins["species"].eq(species) & bins["forecast_count"].gt(0)]
-        ax.plot([0, 1], [0, 1], "k--", lw=1, label="perfect")
-        ax.plot(
-            part["mean_predicted_probability"],
-            part["observed_event_frequency"],
-            "o-",
-            label="model",
+    for species in SPECIES_ORDER:
+        part = bins.loc[bins["species"].eq(species)]
+        used = part.loc[part["forecast_count"].gt(0)]
+        fig, (ax, counts) = plt.subplots(
+            2, 1, figsize=(5.5, 6.5), sharex=True, height_ratios=(3, 1)
         )
-        ax.set_title(species)
-        ax.set_xlabel("Mean predicted probability")
-    axes[0].set_ylabel("Observed event frequency")
-    axes[0].legend()
-    fig.tight_layout()
-    fig.savefig(out / "calibration_reliability.png", dpi=110)
-    plt.close(fig)
+        ax.plot([0, 1], [0, 1], "k--", lw=1, label="Perfect calibration")
+        ax.plot(
+            used["mean_predicted_probability"], used["observed_event_frequency"],
+            "o-", label="Model",
+        )
+        ax.set_ylabel("Observed event frequency")
+        ax.set_xlim(0, 1)
+        ax.set_ylim(0, 1)
+        ax.legend(loc="upper left")
+        events = int(
+            predictions.loc[predictions["species"].eq(species), "actual_event"].sum()
+        )
+        flag = " (uncertain: <50 events)" if events < MIN_EVENTS_UNCERTAIN else ""
+        ax.set_title(f"{species}{flag}")
+        centres = (part["bin_lower"] + part["bin_upper"]) / 2
+        counts.bar(centres, part["forecast_count"], width=0.09, color="#888888")
+        counts.set_yscale("log")
+        counts.set_ylabel("Forecasts (log)")
+        counts.set_xlabel("Predicted probability")
+        for x, n in zip(centres, part["forecast_count"]):
+            if n:
+                counts.text(x, n, str(int(n)), ha="center", va="bottom", fontsize=7)
+        fig.tight_layout()
+        fig.savefig(out / f"calibration_reliability_{slug(species)}.png", dpi=110)
+        plt.close(fig)
 
-    fig, axes = plt.subplots(1, 5, figsize=(22, 4.5), sharex=True)
-    for ax, species in zip(axes, SPECIES_ORDER):
-        part = predictions.loc[predictions["species"].eq(species), "probability"]
-        ax.hist(part, bins=BIN_EDGES, color="#4477aa")
-        ax.set_yscale("log")
-        ax.set_title(species)
-        ax.set_xlabel("Predicted probability")
-    axes[0].set_ylabel("Forecast days (log)")
-    fig.tight_layout()
-    fig.savefig(out / "calibration_histograms.png", dpi=110)
-    plt.close(fig)
+        rows = predictions.loc[predictions["species"].eq(species)]
+        fig, ax = plt.subplots(figsize=(6, 4))
+        for flagged, label, colour in ((True, "Event days", "#cc3311"), (False, "Non-event days", "#4477aa")):
+            values = rows.loc[rows["actual_event"].astype(bool).eq(flagged), "probability"]
+            ax.hist(
+                values, bins=BIN_EDGES, weights=np.full(len(values), 1 / max(len(values), 1)),
+                alpha=0.6, label=f"{label} (n={len(values)})", color=colour,
+            )
+        ax.axvline(OPERATING_THRESHOLD, color="k", ls=":", lw=1, label="0.20 cutoff")
+        ax.set_xlabel("Forecast probability")
+        ax.set_ylabel("Share of days in group")
+        ax.set_title(f"{species}{flag}")
+        ax.legend()
+        fig.tight_layout()
+        fig.savefig(out / f"calibration_histogram_{slug(species)}.png", dpi=110)
+        plt.close(fig)
 
 
 def _pct(value: float) -> str:
     return "n/a" if pd.isna(value) else f"{value:.1%}"
 
 
-def answer_lines(metrics: pd.DataFrame) -> list[str]:
-    under = metrics.loc[metrics["verdict"].eq("underconfident"), "species"].tolist()
-    over = metrics.loc[metrics["verdict"].eq("overconfident"), "species"].tolist()
-    thin = metrics.loc[metrics["verdict"].eq("insufficient events"), "species"].tolist()
-    return [
-        "**No: a stated probability of X% should not be read as an X% chance of an",
-        "influx event, for any of the five species.** Ranking is informative but the",
-        "absolute values are not calibrated:",
-        "",
-        f"- Underconfident (observed event frequency exceeds the stated probability): {', '.join(under) or 'none'}.",
-        "  Event rates rise with the forecast, but a 10-20% forecast verified roughly",
-        "  22-42% of the time, so read these as lower bounds. Northern Fulmar has",
-        "  negative Brier skill and little resolution, so even the ordering is weak.",
-        f"- Overconfident (stated probability exceeds observed frequency): {', '.join(over) or 'none'}.",
-        "  Sooty Shearwater forecasts of 10-60% verified 1-12% of the time, and",
-        "  its Brier score is worse than a constant prevalence forecast.",
-        f"- Insufficient events for a verdict: {', '.join(thin) or 'none'}.",
-        "  Great Shearwater has too few events to say anything beyond that its",
-        "  near-zero forecasts are close to its near-zero base rate.",
-        "",
-        "European Storm-petrel is the closest to usable (ECE about 0.05, positive",
-        "skill), and Manx Shearwater has the best resolution, but both still",
-        "understate event frequency at 10-50%. Quoting these raw values as",
-        "percentage chances would mislead. Any such use would need a separate,",
-        "out-of-sample recalibration step, which this analysis deliberately did not",
-        "perform. Event labels are GBIF record counts against a per-year P90",
-        "threshold, so the 'event frequency' itself depends on reporting effort.",
-    ]
+def explain(row: pd.Series) -> str:
+    text = (
+        f"Mean forecast {_pct(row['mean_predicted_probability'])} against an event rate of "
+        f"{_pct(row['event_prevalence'])}; ECE {row['ece']:.3f}, slope {row['weighted_slope_gap']:.2f}. "
+    )
+    if row["verdict"].endswith("underconfident"):
+        text += "Observed frequency exceeds the stated probability, so forecasts are too low."
+    elif row["verdict"].endswith("overconfident"):
+        text += "Stated probabilities exceed the observed frequency, so forecasts are too high."
+    else:
+        text += "Stated probabilities match observed frequency closely."
+    if row["uncertain"]:
+        text += f" Only {int(row['event_days'])} event days: treat as uncertain."
+    return text
 
 
-def write_summary(metrics: pd.DataFrame, bins: pd.DataFrame, path: Path = SUMMARY_PATH) -> None:
+def write_summary(
+    metrics: pd.DataFrame,
+    bins: pd.DataFrame,
+    predictions: pd.DataFrame,
+    path: Path = SUMMARY_PATH,
+) -> None:
+    metrics = metrics.copy()
     lines = [
         "# Seabird probability calibration",
         "",
         "## Method",
         "",
-        "Raw one-day-ahead probabilities from the rolling strict-cutoff event",
-        "validation (annual expanding-window fits, "
-        f"{metrics['start_date'].min()} through {metrics['end_date'].max()}) are",
-        "pooled per species and compared with aligned influx-event labels. No model",
-        "was refit for this analysis, thresholds are unchanged, and probabilities",
-        "are neither recalibrated nor thresholded. Ten equal-width bins are used;",
-        "the last bin includes 1.00. ECE and MCE are the count-weighted and maximum",
-        "absolute gap between mean predicted probability and observed frequency",
-        "over non-empty bins. The Brier decomposition (reliability, resolution,",
-        "uncertainty) uses the same bins and so carries a small within-bin residual",
-        "(`decomposition_residual` in the CSV). Brier Skill Score is relative to a",
-        "constant forecast of the pooled event prevalence, which is an in-sample,",
-        "hindsight baseline and therefore a demanding one (the annual",
-        "training-prevalence baseline in the rolling validation is the fairer",
-        "operational comparison). Labels are GBIF record counts at or above each",
-        "year's training P90 threshold, so event definitions carry reporting",
-        "effort and are not proven absence.",
+        "Raw one-day-ahead probabilities stored from the rolling strict-cutoff event",
+        f"validation ({metrics['start_date'].min()} through {metrics['end_date'].max()}) are pooled per",
+        "species and compared with the aligned influx-event labels described in",
+        "`target_alignment_report.md` (record count at or above that year's",
+        "training-only P90 threshold; not presence). No model was refit, thresholds",
+        "are unchanged and probabilities are neither recalibrated nor thresholded",
+        "for the calibration metrics. Ten equal-width bins are used and the last",
+        "includes 1.00. ECE and MCE are the count-weighted and maximum absolute gap",
+        "between mean forecast and observed frequency over non-empty bins. The Brier",
+        "decomposition uses the same bins, so it has a small within-bin residual",
+        "(`decomposition_residual`). Brier Skill Score is against a constant forecast",
+        "of the pooled event prevalence (an in-sample hindsight baseline).",
         "",
-        "## Metrics",
+        "Overconfident means stated probabilities exceed observed frequency;",
+        "underconfident means they fall below it (reliability slope below/above 1).",
+        "Well calibrated needs ECE <= 0.03 and a slope within 0.8-1.2; the strength",
+        "is strong when ECE >= 0.10 or the slope is at least 0.5 from 1.",
+        f"Species with fewer than {MIN_EVENTS_UNCERTAIN} event days are flagged uncertain and",
+        "are reported separately.",
         "",
-        "| Species | Days | Events | Prevalence | Mean forecast | Brier | BSS vs prevalence | Reliability | Resolution | Uncertainty | ECE | MCE | Slope | Verdict |",
-        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|",
     ]
-    for r in metrics.itertuples(index=False):
-        lines.append(
+    columns = (
+        "| Species | Days | Events | Prevalence | Mean forecast | Brier | BSS | Reliability | "
+        "Resolution | Uncertainty | ECE | MCE | Slope | Class |\n"
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|"
+    ).split("\n")
+
+    def metric_row(r) -> str:
+        return (
             f"| {r.species} | {r.forecast_days} | {r.event_days} | {_pct(r.event_prevalence)} | "
-            f"{_pct(r.mean_predicted_probability)} | {r.brier_score:.4f} | "
-            f"{r.brier_skill_score:+.3f} | {r.reliability:.4f} | {r.resolution:.4f} | "
-            f"{r.uncertainty:.4f} | {r.ece:.3f} | {r.mce:.3f} | "
-            f"{r.weighted_slope_gap:.2f} | {r.verdict} |"
+            f"{_pct(r.mean_predicted_probability)} | {r.brier_score:.4f} | {r.brier_skill_score:+.3f} | "
+            f"{r.reliability:.4f} | {r.resolution:.4f} | {r.uncertainty:.4f} | {r.ece:.3f} | "
+            f"{r.mce:.3f} | {r.weighted_slope_gap:.2f} | {r.verdict} |"
         )
+
+    ordinary = metrics.loc[~metrics["uncertain"]]
+    rare = metrics.loc[metrics["uncertain"]]
+    lines += ["## Metrics: species with at least 50 event days", "", *columns]
+    lines += [metric_row(r) for r in ordinary.itertuples(index=False)]
     lines += [
         "",
-        "Slope is the count-weighted regression slope of observed frequency on",
-        "predicted probability across bins: below 1 means high forecasts verify",
-        "less often than stated (overconfident), above 1 means they verify more",
-        "often (underconfident). A species is called well calibrated only if",
-        f"ECE <= {WELL_CALIBRATED_ECE} and slope is within 0.8-1.2.",
+        f"## Metrics: rare-event species (fewer than {MIN_EVENTS_UNCERTAIN} event days, uncertain)",
         "",
-        "## Calibration bins",
+        *columns,
+    ]
+    lines += [metric_row(r) for r in rare.itertuples(index=False)]
+    lines += [
+        "",
+        "With so few events, bin frequencies and the slope for these species swing",
+        "on a handful of days. Their classes are provisional.",
+        "",
+        "## Interpretation by species",
         "",
     ]
+    for r in metrics.itertuples(index=False):
+        flag = " (uncertain)" if r.uncertain else ""
+        lines.append(f"- **{r.species}** is {r.verdict}{flag}. {explain(pd.Series(r._asdict()))}")
+    lines += ["", "## Calibration bins", ""]
     for species in SPECIES_ORDER:
         lines += [
             f"### {species}",
@@ -287,36 +366,109 @@ def write_summary(metrics: pd.DataFrame, bins: pd.DataFrame, path: Path = SUMMAR
             "| Bin | Forecasts | Mean predicted | Observed frequency |",
             "|---|---:|---:|---:|",
         ]
-        part = bins.loc[bins["species"].eq(species)]
-        for r in part.itertuples(index=False):
+        for r in bins.loc[bins["species"].eq(species)].itertuples(index=False):
             lines.append(
                 f"| {r.bin} | {r.forecast_count} | {_pct(r.mean_predicted_probability)} | "
                 f"{_pct(r.observed_event_frequency)} |"
             )
         lines.append("")
-    groups = {
-        label: metrics.loc[metrics["verdict"].eq(label), "species"].tolist()
-        for label in (
-            "well calibrated",
-            "overconfident",
-            "underconfident",
-            "miscalibrated",
-            "insufficient events",
+
+    lines += [
+        "## Does a stated X% mean an X% chance?",
+        "",
+        f"Observed event frequency among forecasts within +/-{CHECK_HALF_WIDTH:.0%} of X "
+        f"(`n/a` where fewer than {MIN_CHECK_FORECASTS} forecasts exist).",
+        "",
+        "| Species | " + " | ".join(f"Forecast ~{x:.0%}" for x in CHECK_PROBABILITIES) + " |",
+        "|---|" + "---:|" * len(CHECK_PROBABILITIES),
+    ]
+    for species in SPECIES_ORDER:
+        part = predictions.loc[predictions["species"].eq(species)]
+        cells = []
+        for x in CHECK_PROBABILITIES:
+            c = probability_check(part["probability"], part["actual_event"].astype(int), x)
+            cells.append(
+                "n/a (n=%d)" % c["forecast_count"]
+                if c["forecast_count"] < MIN_CHECK_FORECASTS
+                else f"{_pct(c['observed_event_frequency'])} (n={c['forecast_count']})"
+            )
+        lines.append(f"| {species} | " + " | ".join(cells) + " |")
+    lines += ["", *answer_lines(metrics), ""]
+
+    lines += [
+        "## Is the 0.20 threshold reasonable?",
+        "",
+        "Diagnostic only: the threshold was not changed. F1 at each cutoff:",
+        "",
+        "| Species | " + " | ".join(f"{t:.2f}" for t in THRESHOLD_GRID) + " | Best cutoff |",
+        "|---|" + "---:|" * (len(THRESHOLD_GRID) + 1),
+    ]
+    for species in SPECIES_ORDER:
+        part = predictions.loc[predictions["species"].eq(species)]
+        table = threshold_table(part["probability"], part["actual_event"].astype(int))
+        best = table.loc[table["f1"].idxmax()]
+        lines.append(
+            f"| {species} | " + " | ".join(f"{v:.3f}" for v in table["f1"]) + f" | {best['threshold']:.2f} |"
         )
-    }
-    lines += ["## Classification", ""]
-    for label, names in groups.items():
-        lines.append(f"- {label.capitalize()}: {', '.join(names) or 'none'}")
     lines += [
         "",
-        "## Answer",
+        *threshold_lines(predictions),
         "",
-        *answer_lines(metrics),
-        "",
-        "Figures: `calibration_reliability.png`, `calibration_histograms.png`.",
+        "Figures per species: `calibration_reliability_<species>.png` (with forecast",
+        "counts per bin) and `calibration_histogram_<species>.png` (event versus",
+        "non-event days).",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def threshold_lines(predictions: pd.DataFrame) -> list[str]:
+    near, away = [], []
+    for species in SPECIES_ORDER:
+        part = predictions.loc[predictions["species"].eq(species)]
+        table = threshold_table(part["probability"], part["actual_event"].astype(int))
+        events = int(part["actual_event"].sum())
+        if events < MIN_EVENTS_UNCERTAIN:
+            continue
+        best = table.loc[table["f1"].idxmax()]
+        at = table.loc[table["threshold"].eq(OPERATING_THRESHOLD)].iloc[0]
+        gain = best["f1"] - at["f1"]
+        (near if gain <= 0.02 else away).append(f"{species} (best {best['threshold']:.2f}, F1 gain {gain:+.3f})")
+    return [
+        f"- Within 0.02 F1 of the best cutoff at 0.20: {', '.join(near) or 'none'}.",
+        f"- Clearly better at a different cutoff: {', '.join(away) or 'none'}.",
+        "- Rare-event species (Sooty, Great Shearwater) have too few events for a",
+        "  reliable cutoff choice; F1 stays very low at every cutoff.",
+        "- Because probabilities are systematically low or high rather than",
+        "  calibrated, 0.20 is best read as an alert level tuned to F1, not as a",
+        "  20% event chance.",
+    ]
+
+
+def answer_lines(metrics: pd.DataFrame) -> list[str]:
+    def names(pattern: str, uncertain: bool | None = None) -> str:
+        sel = metrics["verdict"].str.contains(pattern)
+        if uncertain is not None:
+            sel &= metrics["uncertain"].eq(uncertain)
+        return ", ".join(metrics.loc[sel, "species"]) or "none"
+
+    return [
+        "**No: for none of the five species can a stated X% be read as an X%",
+        "chance of an influx event.** The probabilities rank days usefully for the",
+        "three common species but their absolute level is off, and it differs by",
+        "species:",
+        "",
+        f"- Trustworthy as probabilities: {names('well calibrated')}.",
+        f"- Need calibration, underconfident (true chance higher than stated): {names('underconfident', False)}.",
+        f"- Need calibration, overconfident (true chance lower than stated): {names('overconfident', False)}.",
+        f"- Uncertain (<{MIN_EVENTS_UNCERTAIN} events): {names('.', True)}.",
+        "",
+        "European Storm-petrel is the closest to usable (mildly underconfident);",
+        "Manx Shearwater and Northern Fulmar are strongly underconfident, and",
+        "Northern Fulmar also lacks skill. Sooty Shearwater is strongly",
+        "overconfident. Any use of the numbers as percentage chances would need a",
+        "separate out-of-sample recalibration, which this analysis did not perform.",
+    ]
 
 
 def main() -> None:
@@ -328,9 +480,11 @@ def main() -> None:
     )
     metrics.to_csv(METRICS_PATH, index=False)
     bins.to_csv(BINS_PATH, index=False)
+    for old in OUT.glob("calibration_*.png"):
+        old.unlink()
     write_figures(predictions, bins)
-    write_summary(metrics, bins)
-    print(metrics.drop(columns=["start_date", "end_date"]).round(4).to_string(index=False))
+    write_summary(metrics, bins, predictions)
+    print(metrics[["species", "event_days", "ece", "weighted_slope_gap", "verdict", "uncertain"]].to_string(index=False))
 
 
 if __name__ == "__main__":

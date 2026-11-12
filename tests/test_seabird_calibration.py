@@ -70,13 +70,48 @@ def test_mce_is_worst_populated_bin_and_ece_is_count_weighted() -> None:
     assert m["ece"] == pytest.approx(0.8 * 0.05 + 0.2 * 0.85)
 
 
-def test_classification_labels() -> None:
-    base = {"ece": 0.01, "weighted_slope_gap": 1.0}
-    assert cal.classify(base) == "well calibrated"
-    assert cal.classify({"ece": 0.1, "weighted_slope_gap": 0.4}) == "overconfident"
-    assert cal.classify({"ece": 0.1, "weighted_slope_gap": 1.6}) == "underconfident"
+def test_classification_levels() -> None:
+    assert cal.classify({"ece": 0.01, "weighted_slope_gap": 1.0}) == "well calibrated"
+    assert cal.classify({"ece": 0.06, "weighted_slope_gap": 0.8}) == "mildly overconfident"
+    assert cal.classify({"ece": 0.06, "weighted_slope_gap": 0.3}) == "strongly overconfident"
+    assert cal.classify({"ece": 0.06, "weighted_slope_gap": 1.22}) == "mildly underconfident"
+    assert cal.classify({"ece": 0.13, "weighted_slope_gap": 1.3}) == "strongly underconfident"
 
 
-def test_rare_events_get_insufficient_verdict() -> None:
-    metrics = {"event_days": 5, "ece": 0.0, "weighted_slope_gap": 1.0}
-    assert cal.classify(metrics) == "insufficient events"
+def test_probability_check_uses_window_around_target() -> None:
+    p = _series([0.14, 0.16, 0.20, 0.24, 0.26, 0.9])
+    y = _series([0, 1, 1, 0, 1, 1])
+    c = cal.probability_check(p, y, 0.20)
+    assert c["forecast_count"] == 3  # 0.16, 0.20, 0.24
+    assert c["observed_event_frequency"] == pytest.approx(2 / 3)
+    assert cal.probability_check(p, y, 0.5)["forecast_count"] == 0
+
+
+def test_threshold_table_counts() -> None:
+    p = _series([0.1, 0.3, 0.3, 0.6])
+    y = _series([0, 1, 0, 1])
+    row = cal.threshold_table(p, y).set_index("threshold").loc[0.30]
+    assert row["flagged_days"] == 3
+    assert row["precision"] == pytest.approx(2 / 3)
+    assert row["recall"] == pytest.approx(1.0)
+    assert row["f1"] == pytest.approx(0.8)
+
+
+def test_analyse_flags_species_with_fewer_than_50_events() -> None:
+    rng = np.random.default_rng(0)
+    frames = []
+    for i, species in enumerate(cal.SPECIES_ORDER):
+        n = 400
+        p = rng.uniform(0, 1, n)
+        events = 60 if i < 3 else 10
+        y = np.zeros(n, dtype=bool)
+        y[:events] = True
+        frames.append(
+            pd.DataFrame(
+                {"species": species, "date": pd.date_range("2020-01-01", periods=n),
+                 "probability": p, "actual_event": y}
+            )
+        )
+    metrics, bins = cal.analyse(pd.concat(frames))
+    assert metrics["uncertain"].tolist() == [False, False, False, True, True]
+    assert len(bins) == 50

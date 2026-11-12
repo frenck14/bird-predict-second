@@ -68,6 +68,8 @@ from src.seabird_decision_support import (
     recommended_coast,
 )
 from src.seawatch_day_rating import RATING_JSON_OUTPUT, RATING_OUTPUT
+from src.validation_dashboard import show_validation_dashboard
+from src.validation_insights import show_validation_insights
 from src.seabird_guidance import DUTCH_COAST_REGIONS, build_recommendations
 from src.predict_atlantic_vagrancy import risk_level as atlantic_risk_level
 from src.predict_eastern_vagrancy import risk_level as eastern_risk_level
@@ -2895,6 +2897,14 @@ def show_seabird_strict_validation() -> None:
     )
 
 
+def show_validation() -> None:
+    show_validation_dashboard()
+
+
+def show_validation_insights_page() -> None:
+    show_validation_insights()
+
+
 def show_seawatching() -> None:
     st.title("🌊 Seawatching")
     section = st.radio(
@@ -3562,6 +3572,8 @@ def main() -> None:
         "🏠 Dashboard": show_dashboard,
         "🌍 Rare Birds": show_rare_birds,
         "🌊 Seawatching": show_seawatching,
+        "📈 Validation": show_validation,
+        "🔍 Validation Insights": show_validation_insights_page,
         "🪿 Migration": show_migration,
         "🎯 Species Explorer": show_species_explorer,
         "🧪 Methods": show_methods,
