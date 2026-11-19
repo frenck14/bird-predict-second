@@ -70,6 +70,11 @@ from src.seabird_decision_support import (
 from src.seawatch_day_rating import RATING_JSON_OUTPUT, RATING_OUTPUT
 from src.validation_dashboard import show_validation_dashboard
 from src.validation_insights import show_validation_insights
+from src.validation_benchmarks_dashboard import show_validation_benchmarks
+from src.atlantic_ship_assistance_audit import (
+    TARGET_COUNTRIES,
+    deduplicate_ship_assistance_events,
+)
 from src.seabird_guidance import DUTCH_COAST_REGIONS, build_recommendations
 from src.predict_atlantic_vagrancy import risk_level as atlantic_risk_level
 from src.predict_eastern_vagrancy import risk_level as eastern_risk_level
@@ -118,6 +123,12 @@ EASTERN_LOCATION_MAP_FILE = ROOT / "outputs/eastern_location_forecast.png"
 ATLANTIC_FORECAST_FILE = ROOT / "outputs/atlantic_vagrancy_forecast.csv"
 ATLANTIC_PLOT_FILE = ROOT / "outputs/atlantic_vagrancy_forecast.png"
 ATLANTIC_EVENTS_FILE = ROOT / "outputs/atlantic_vagrancy_events.csv"
+SHIP_ASSISTANCE_AUDIT_FILE = (
+    ROOT / "outputs/atlantic_vagrancy/ship_assistance_audit.csv"
+)
+SHIP_ASSISTANCE_SUMMARY_FILE = (
+    ROOT / "outputs/atlantic_vagrancy/ship_assistance_summary.md"
+)
 EASTERN_EVENTS_FILE = ROOT / "outputs/eastern_vagrancy_events.csv"
 SEABIRD_FORECAST_FILE = ROOT / "outputs/seabird_forecast.csv"
 SEABIRD_PLOT_FILE = ROOT / "outputs/seabird_forecast.png"
@@ -2897,14 +2908,6 @@ def show_seabird_strict_validation() -> None:
     )
 
 
-def show_validation() -> None:
-    show_validation_dashboard()
-
-
-def show_validation_insights_page() -> None:
-    show_validation_insights()
-
-
 def show_seawatching() -> None:
     st.title("🌊 Seawatching")
     section = st.radio(
@@ -3502,50 +3505,557 @@ def show_species_explorer() -> None:
             show_location_forecasts()
 
 
-def show_methods() -> None:
-    st.title("🧪 Methods")
-    with st.container(border=True):
-        st.subheader("🧪 About the Models")
-        st.write(
-            "Forecasts estimate events in reported GBIF records, not abundance. "
-            "Eastern and Atlantic guild models and seabird models use weather and "
-            "seasonal features. Location layers combine forecasts with historical "
-            "occurrence and heuristic suitability; they are not independently validated."
+SHIP_ASSISTANCE_REGIONS = {
+    "Netherlands": {"NL"},
+    "Netherlands + Belgium": {"NL", "BE"},
+    "Belgium": {"BE"},
+    "Atlantic (all records)": None,
+    "UK": {"GB"},
+    "Ireland": {"IE"},
+    "Iceland": {"IS"},
+}
+
+
+def _ship_assistance_events(
+    observations: pd.DataFrame, country_codes: set[str] | None = None
+) -> pd.DataFrame:
+    records = observations.copy()
+    if country_codes is not None:
+        records = records.loc[records["countryCode"].isin(country_codes)].copy()
+    events = deduplicate_ship_assistance_events(records)
+    country_codes = events["countryCode"].astype("string")
+    countries = country_codes.map(TARGET_COUNTRIES).fillna(country_codes)
+    events["country"] = (
+        events["country"].fillna(countries) if "country" in events else countries
+    )
+    return events
+
+
+def _ship_assistance_region_comparison(
+    observations: pd.DataFrame,
+) -> pd.DataFrame:
+    rows = []
+    for region, country_codes in SHIP_ASSISTANCE_REGIONS.items():
+        events = _ship_assistance_events(observations, country_codes)
+        interpretations = events["preliminary_interpretation"]
+        rows.append(
+            {
+                "Region": region,
+                "Observations": int(events["observation_count"].sum()),
+                "Events": len(events),
+                "Species": int(events["species"].nunique()),
+                "Weather Supported %": (
+                    interpretations.eq("weather_supported").mean() * 100
+                    if not events.empty
+                    else float("nan")
+                ),
+                "Possible Ship Assistance %": (
+                    interpretations.eq("possible_ship_assisted").mean() * 100
+                    if not events.empty
+                    else float("nan")
+                ),
+                "Mean Natural Arrival Index": events[
+                    "weather_support_score"
+                ].mean(),
+                "Mean Ship Assistance Index": events[
+                    "possible_ship_assistance_score"
+                ].mean(),
+            }
         )
-        st.warning(
-            "Open-Meteo grid forecasts are a source-mismatched proxy for the KNMI "
-            "station observations used in training. Daily next-day probabilities "
-            "are not separately calibrated; observer effort affects records."
+    return pd.DataFrame(rows).sort_values(
+        "Possible Ship Assistance %",
+        ascending=False,
+        na_position="last",
+        kind="stable",
+    ).reset_index(drop=True)
+
+
+def _ship_assistance_map(events: pd.DataFrame) -> pdk.Deck:
+    events = deduplicate_ship_assistance_events(events)
+    country_codes = events.get(
+        "countryCode", pd.Series("Unknown", index=events.index)
+    ).astype("string")
+    countries = country_codes.map(TARGET_COUNTRIES).fillna(country_codes)
+    events["country"] = (
+        events["country"].fillna(countries)
+        if "country" in events
+        else countries
+    )
+    events["locality"] = (
+        events["location"].fillna("")
+        if "location" in events
+        else pd.Series(
+            events.apply(
+                lambda row: (
+                    f"{row['decimalLatitude']:.2f}, "
+                    f"{row['decimalLongitude']:.2f}"
+                ),
+                axis=1,
+            ),
+            index=events.index,
         )
-        st.write("Atlantic Vagrant Watch uses illustrative demo records, not verified live observations.")
-    with st.container(border=True):
-        st.subheader("📊 Model Performance")
-        evaluation_files = {
-            "Eastern Vagrancy": "eastern_vagrancy_evaluation.csv",
-            "Atlantic Vagrancy": "atlantic_vagrancy_evaluation.csv",
-            "Seabird": "seabird_evaluation.csv",
-            "Seabird species": "seabird_species_evaluation.csv",
-            "Goose": "goose_model_evaluation.csv",
+    )
+    colors = {
+        "weather_supported": [38, 166, 91, 220],
+        "ambiguous": [242, 193, 24, 220],
+        "possible_ship_assisted": [220, 53, 69, 220],
+    }
+    unknown_interpretations = set(events["preliminary_interpretation"]) - set(colors)
+    if unknown_interpretations:
+        raise ValueError(
+            "Ship-assistance map has unsupported interpretations: "
+            + ", ".join(sorted(str(value) for value in unknown_interpretations))
+        )
+    map_data = [
+        {
+            "event_id": row.event_id,
+            "decimalLatitude": float(row.decimalLatitude),
+            "decimalLongitude": float(row.decimalLongitude),
+            "species": str(row.species),
+            "date": pd.Timestamp(row.date).strftime("%Y-%m-%d"),
+            "country": str(row.country),
+            "locality": str(row.locality),
+            "observation_count": int(row.observation_count),
+            "weather_support_score": float(row.weather_support_score),
+            "possible_ship_assistance_score": float(
+                row.possible_ship_assistance_score
+            ),
+            "marker_color": colors[row.preliminary_interpretation],
         }
-        name = st.selectbox("Evaluation", list(evaluation_files), key="methods_evaluation")
-        path = ROOT / "outputs" / evaluation_files[name]
-        if path.is_file():
-            st.dataframe(pd.read_csv(path), width="stretch", hide_index=True)
-        else:
-            st.info(f"No {name} evaluation is available.")
-    with st.container(border=True):
-        st.subheader("🌦 Atmospheric Predictors")
-        st.write(
-            "The shared weather inputs include coastal wind direction and speed, "
-            "gusts, temperature, precipitation and pressure, with derived and lagged "
-            "features. The seawatch rating shows its available weather drivers."
+        for row in events.itertuples(index=False)
+    ]
+    if not map_data:
+        raise ValueError("The ship-assistance map requires at least one event.")
+    center_latitude = float(events["decimalLatitude"].mean())
+    center_longitude = float(events["decimalLongitude"].mean())
+    layer = pdk.Layer(
+        "ScatterplotLayer",
+        data=map_data,
+        get_position="[decimalLongitude, decimalLatitude]",
+        get_fill_color="marker_color",
+        get_radius=8,
+        radius_units="pixels",
+        radius_min_pixels=4,
+        radius_max_pixels=10,
+        stroked=True,
+        get_line_color=[255, 255, 255, 220],
+        line_width_min_pixels=1,
+        pickable=True,
+        auto_highlight=True,
+    )
+    return pdk.Deck(
+        layers=[layer],
+        initial_view_state=pdk.ViewState(
+            latitude=center_latitude,
+            longitude=center_longitude,
+            zoom=6 if len(map_data) < 100 else 4,
+            pitch=0,
+        ),
+        tooltip={
+            "html": (
+                "<b>{species}</b><br/>Date: {date}<br/>"
+                "Country: {country}<br/>Locality: {locality}<br/>"
+                "Observation count: {observation_count}<br/>"
+                "Weather support score: {weather_support_score}<br/>"
+                "Possible ship assistance score: "
+                "{possible_ship_assistance_score}"
+            ),
+            "style": {"backgroundColor": "#1f2937", "color": "white"},
+        },
+    )
+
+
+def _show_ship_assistance_dashboard() -> None:
+    st.title("🛳 Ship Assistance Audit")
+    region = st.selectbox("Region", list(SHIP_ASSISTANCE_REGIONS), index=0)
+    st.caption(
+        "Netherlands + Belgium is the primary Low Countries view, reflecting "
+        "their shared North Sea flyway and shipping corridor, comparable "
+        "weather and observer effort, and connected Atlantic vagrant arrivals."
+    )
+    st.write(
+        "Explore whether Atlantic vagrants are more consistent with "
+        "weather-supported natural arrivals or potential ship-assisted arrivals."
+    )
+    st.info(
+        "Events represent unique species-date-location combinations. Multiple "
+        "observers of the same bird are merged into a single event. One bird is "
+        "counted once regardless of the number of observations."
+    )
+    if not SHIP_ASSISTANCE_AUDIT_FILE.is_file():
+        st.info(
+            "No ship-assistance audit data is available at "
+            f"`{SHIP_ASSISTANCE_AUDIT_FILE}`."
         )
-        st.subheader("🗂 Training Data")
-        st.write(
-            "Models use dated bird-record counts and KNMI coastal station observations; "
-            "training windows, targets and evaluation vary by product. Goose models "
-            "are trained on winter days. Historical reporting is not detection-corrected."
+        return
+
+    observations = pd.read_csv(SHIP_ASSISTANCE_AUDIT_FILE)
+    required_columns = {
+        "species",
+        "date",
+        "countryCode",
+        "location",
+        "decimalLatitude",
+        "decimalLongitude",
+        "weather_support_score",
+        "possible_ship_assistance_score",
+        "preliminary_interpretation",
+    }
+    missing_columns = sorted(required_columns - set(observations.columns))
+    if missing_columns:
+        st.error(
+            "The ship-assistance audit is missing expected columns: "
+            + ", ".join(missing_columns)
         )
+        return
+    events = _ship_assistance_events(
+        observations, SHIP_ASSISTANCE_REGIONS[region]
+    )
+
+    cards = st.columns(4)
+    cards[0].metric("Region", region)
+    cards[1].metric("Observations", f"{int(events['observation_count'].sum()):,}")
+    cards[2].metric("Events", f"{len(events):,}")
+    cards[3].metric("Species", events["species"].nunique())
+    if events.empty:
+        st.info("No matching events are available in the saved audit.")
+        return
+
+    (
+        ranking_tab,
+        recent_tab,
+        candidates_tab,
+        profile_tab,
+        map_tab,
+        comparison_tab,
+    ) = st.tabs(
+        [
+            "Species Ranking",
+            "Recent Atlantic Events",
+            "Top Ship Assistance Candidates",
+            "Species Profile",
+            "Map",
+            "🌍 Ship Assistance by Region",
+        ]
+    )
+    with ranking_tab:
+        ranking = (
+            events.groupby("species", as_index=False)
+            .agg(
+                **{
+                    "Event Count": ("event_id", "size"),
+                    "Observation Count": ("observation_count", "sum"),
+                    "Natural Arrival Index": ("weather_support_score", "mean"),
+                    "Ship Assistance Index": (
+                        "possible_ship_assistance_score",
+                        "mean",
+                    ),
+                    "Weather Supported %": (
+                        "preliminary_interpretation",
+                        lambda labels: labels.eq("weather_supported").mean() * 100,
+                    ),
+                    "Possible Ship Assistance %": (
+                        "preliminary_interpretation",
+                        lambda labels: labels.eq("possible_ship_assisted").mean()
+                        * 100,
+                    ),
+                }
+            )
+            .rename(columns={"species": "Species"})
+        )
+        sort_column = st.selectbox(
+            "Sort column",
+            [
+                "Ship Assistance Index",
+                "Natural Arrival Index",
+                "Event Count",
+                "Weather Supported %",
+                "Possible Ship Assistance %",
+                "Species",
+            ],
+            key="ship_assistance_sort",
+        )
+        minimum_events = st.number_input(
+            "Minimum events",
+            min_value=1,
+            max_value=max(10, int(ranking["Event Count"].max())),
+            value=10,
+            step=1,
+            key="ship_assistance_min_events",
+        )
+        species_search = st.text_input(
+            "Species search", key="ship_assistance_species_search"
+        )
+        ranking = ranking.loc[ranking["Event Count"] >= minimum_events]
+        if species_search:
+            ranking = ranking.loc[
+                ranking["Species"].str.contains(
+                    species_search, case=False, na=False, regex=False
+                )
+            ]
+        ranking = ranking.sort_values(
+            sort_column, ascending=False, na_position="last", kind="stable"
+        ).reset_index(drop=True)
+        ranking.insert(0, "Rank", range(1, len(ranking) + 1))
+        st.dataframe(
+            ranking,
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "Natural Arrival Index": st.column_config.NumberColumn(format="%.3f"),
+                "Ship Assistance Index": st.column_config.NumberColumn(format="%.3f"),
+                "Weather Supported %": st.column_config.NumberColumn(format="%.2f%%"),
+                "Possible Ship Assistance %": st.column_config.NumberColumn(
+                    format="%.2f%%"
+                ),
+            },
+        )
+
+    with recent_tab:
+        latest = (
+            events.sort_values("date", ascending=False, kind="stable")
+            .head(100)
+            .loc[
+                :,
+                [
+                    "date",
+                    "species",
+                    "country",
+                    "location",
+                    "observation_count",
+                    "weather_support_score",
+                    "possible_ship_assistance_score",
+                    "classification",
+                ],
+            ]
+            .rename(
+                columns={
+                    "location": "locality",
+                    "weather_support_score": "weather support score",
+                    "possible_ship_assistance_score": "ship assistance score",
+                }
+            )
+            .reset_index(drop=True)
+        )
+        st.dataframe(
+            latest,
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "date": st.column_config.DateColumn(format="YYYY-MM-DD"),
+                "weather support score": st.column_config.NumberColumn(format="%.3f"),
+                "ship assistance score": st.column_config.NumberColumn(format="%.3f"),
+            },
+        )
+
+    with candidates_tab:
+        candidates = events.sort_values(
+            "possible_ship_assistance_score", ascending=False, kind="stable"
+        ).head(100)
+        candidates = candidates.loc[
+            :,
+            [
+                "species",
+                "date",
+                "country",
+                "location",
+                "possible_ship_assistance_score",
+                "weather_support_score",
+                "observation_count",
+                "classification",
+            ],
+        ].rename(
+            columns={
+                "location": "locality",
+                "possible_ship_assistance_score": "ship assistance score",
+                "weather_support_score": "weather support score",
+            }
+        )
+        candidates.insert(0, "Rank", range(1, len(candidates) + 1))
+        st.dataframe(
+            candidates,
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "date": st.column_config.DateColumn(format="YYYY-MM-DD"),
+                "ship assistance score": st.column_config.NumberColumn(
+                    format="%.3f"
+                ),
+                "weather support score": st.column_config.NumberColumn(format="%.3f"),
+            },
+        )
+
+    with profile_tab:
+        species = st.selectbox(
+            "Species",
+            sorted(events["species"].unique()),
+            key="ship_assistance_profile",
+        )
+        profile = events.loc[events["species"].eq(species)].copy()
+        profile_cards = st.columns(2)
+        profile_cards[0].metric("Event count", len(profile))
+        profile_cards[1].metric(
+            "Observation count", int(profile["observation_count"].sum())
+        )
+        bin_edges = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+        bin_labels = ["0.0–0.2", "0.2–0.4", "0.4–0.6", "0.6–0.8", "0.8–1.0"]
+        distributions = pd.DataFrame(
+            {
+                "Weather Support": pd.cut(
+                    profile["weather_support_score"],
+                    bins=bin_edges,
+                    labels=bin_labels,
+                    include_lowest=True,
+                )
+                .value_counts(sort=False)
+                .reindex(bin_labels, fill_value=0),
+                "Ship Assistance": pd.cut(
+                    profile["possible_ship_assistance_score"],
+                    bins=bin_edges,
+                    labels=bin_labels,
+                    include_lowest=True,
+                )
+                .value_counts(sort=False)
+                .reindex(bin_labels, fill_value=0),
+            }
+        )
+        st.subheader("Event score distributions")
+        st.bar_chart(distributions)
+        st.subheader("Event interpretations")
+        interpretation_counts = (
+            profile["classification"]
+            .value_counts()
+            .rename_axis("Interpretation")
+            .rename("Events")
+            .reset_index()
+        )
+        st.dataframe(interpretation_counts, width="stretch", hide_index=True)
+
+    with map_tab:
+        st.pydeck_chart(_ship_assistance_map(events), width="stretch")
+
+    with comparison_tab:
+        comparison = _ship_assistance_region_comparison(observations)
+        st.dataframe(
+            comparison,
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "Weather Supported %": st.column_config.NumberColumn(format="%.2f%%"),
+                "Possible Ship Assistance %": st.column_config.NumberColumn(
+                    format="%.2f%%"
+                ),
+                "Mean Natural Arrival Index": st.column_config.NumberColumn(
+                    format="%.3f"
+                ),
+                "Mean Ship Assistance Index": st.column_config.NumberColumn(
+                    format="%.3f"
+                ),
+            },
+        )
+        selected_stats = comparison.loc[comparison["Region"].eq(region)].iloc[0]
+        atlantic_stats = comparison.loc[
+            comparison["Region"].eq("Atlantic (all records)")
+        ].iloc[0]
+        st.markdown(
+            f"**{region}** contains {int(selected_stats['Species'])} Atlantic "
+            f"vagrant species and {int(selected_stats['Events']):,} events. "
+            "Possible Ship Assistance was identified in "
+            f"{selected_stats['Possible Ship Assistance %']:.1f}% of events, "
+            "compared with "
+            f"{atlantic_stats['Possible Ship Assistance %']:.1f}% across the "
+            "full Atlantic dataset."
+        )
+        st.caption(
+            "These indices and interpretations are screening indicators, not "
+            "causal classifications."
+        )
+
+
+def show_ship_assistance_audit() -> None:
+    _show_ship_assistance_dashboard()
+
+
+def show_methods() -> None:
+    st.title("🔬 Methods")
+    forecasting_tab, validation_tab, data_sources_tab = st.tabs(
+        ["Forecasting", "Validation", "Data Sources"]
+    )
+    with forecasting_tab:
+        with st.container(border=True):
+            st.subheader("🧪 About the Models")
+            st.write(
+                "Forecasts estimate events in reported GBIF records, not abundance. "
+                "Eastern and Atlantic guild models and seabird models use weather and "
+                "seasonal features. Location layers combine forecasts with historical "
+                "occurrence and heuristic suitability; they are not independently validated."
+            )
+            st.warning(
+                "Open-Meteo grid forecasts are a source-mismatched proxy for the KNMI "
+                "station observations used in training. Daily next-day probabilities "
+                "are not separately calibrated; observer effort affects records."
+            )
+            st.write(
+                "Atlantic Vagrant Watch uses illustrative demo records, not verified "
+                "live observations."
+            )
+        with st.container(border=True):
+            st.subheader("📊 Model Performance")
+            evaluation_files = {
+                "Eastern Vagrancy": "eastern_vagrancy_evaluation.csv",
+                "Atlantic Vagrancy": "atlantic_vagrancy_evaluation.csv",
+                "Seabird": "seabird_evaluation.csv",
+                "Seabird species": "seabird_species_evaluation.csv",
+                "Goose": "goose_model_evaluation.csv",
+            }
+            name = st.selectbox(
+                "Evaluation", list(evaluation_files), key="methods_evaluation"
+            )
+            path = ROOT / "outputs" / evaluation_files[name]
+            if path.is_file():
+                st.dataframe(pd.read_csv(path), width="stretch", hide_index=True)
+            else:
+                st.info(f"No {name} evaluation is available.")
+        with st.container(border=True):
+            st.subheader("🌦 Atmospheric Predictors")
+            st.write(
+                "The shared weather inputs include coastal wind direction and speed, "
+                "gusts, temperature, precipitation and pressure, with derived and lagged "
+                "features. The seawatch rating shows its available weather drivers."
+            )
+            st.subheader("🗂 Training Approach")
+            st.write(
+                "Models use dated bird-record counts and KNMI coastal station observations; "
+                "training windows, targets and evaluation vary by product. Goose models "
+                "are trained on winter days. Historical reporting is not detection-corrected."
+            )
+            st.subheader("🔄 Daily Forecasting Workflow")
+            st.write(
+                "The daily workflow downloads the current Open-Meteo forecast, loads "
+                "the deployed model artifacts, generates national and location forecasts, "
+                "then refreshes charts, reports, indices, recommendations and metadata. "
+                "Model training is a separate offline process."
+            )
+            st.subheader("🧭 Model Explanations")
+            st.write(
+                "Guild forecasts estimate weather-linked event risk. Species layers "
+                "combine those forecasts with historical occupancy and seasonality. "
+                "Hotspot scores add heuristic coastal, regional and site suitability."
+            )
+        if REPORT_FILE.is_file() and read_last_run() is not None:
+            with st.expander("Daily Yellow-browed Warbler report"):
+                st.markdown(REPORT_FILE.read_text(encoding="utf-8"))
+    with validation_tab:
+        overview_tab, insights_tab, benchmarks_tab = st.tabs(
+            ["Overview", "Insights", "Benchmarks"]
+        )
+        with overview_tab:
+            show_validation_dashboard()
+        with insights_tab:
+            show_validation_insights()
+        with benchmarks_tab:
+            show_validation_benchmarks()
+    with data_sources_tab:
         st.subheader("📚 Data Sources")
         st.write(
             "GBIF provides occurrence records, KNMI provides historical station "
@@ -3555,9 +4065,6 @@ def show_methods() -> None:
         )
         for name, status, purpose in PLANNED_SOURCES:
             st.markdown(f"- `{status}` **{name}**: {purpose}")
-    if REPORT_FILE.is_file() and read_last_run() is not None:
-        with st.expander("Daily Yellow-browed Warbler report"):
-            st.markdown(REPORT_FILE.read_text(encoding="utf-8"))
 
 
 def main() -> None:
@@ -3572,11 +4079,10 @@ def main() -> None:
         "🏠 Dashboard": show_dashboard,
         "🌍 Rare Birds": show_rare_birds,
         "🌊 Seawatching": show_seawatching,
-        "📈 Validation": show_validation,
-        "🔍 Validation Insights": show_validation_insights_page,
-        "🪿 Migration": show_migration,
+        "🦆 Migration": show_migration,
         "🎯 Species Explorer": show_species_explorer,
-        "🧪 Methods": show_methods,
+        "🛳 Ship Assistance Audit": show_ship_assistance_audit,
+        "🔬 Methods": show_methods,
     }
     selected = st.sidebar.radio("Navigation", list(pages))
     st.sidebar.divider()

@@ -121,15 +121,18 @@ Build the North Sea Nearctic guild dataset:
 python src/build_atlantic_vagrancy_dataset.py
 ```
 
-The editable `ATLANTIC_VAGRANCY_SPECIES` registry includes five core and four
-optional Nearctic passerines; Dark-eyed Junco is explicitly excluded. Each
-species is queried separately for GB, IE, NL, BE, and DK. GBIF
+The editable `ATLANTIC_VAGRANCY_SPECIES` registry includes a fixed 30-species
+Nearctic passerine guild. Each species is queried separately for GB, IE, NL,
+BE, and DK. GBIF
 `HUMAN_OBSERVATION` records with coordinates and no geospatial issue are
 cached in raw form by species and country. Local validation requires the
 expected ISO country code, accepted species taxon, in-range coordinates, and a
-complete valid calendar date, and excludes records explicitly marked
-captive/managed. Records without an explicit captive designation are treated
-as wild observations; GBIF does not guarantee this field is populated.
+complete valid calendar date from 1941 onward, and excludes records explicitly
+marked captive/managed. Records without an explicit captive designation are
+treated as wild observations; GBIF does not guarantee this field is populated.
+The registry replaces Connecticut Warbler, Prothonotary Warbler, and Nashville
+Warbler (no post-1940 records) with Common Yellowthroat, Canada Warbler, and
+Cape May Warbler.
 Duplicate GBIF keys (or exact observation tuples when keys are absent) are
 removed. Page progress is logged while fetching and cache totals reported.
 
@@ -597,9 +600,33 @@ streamlit run app.py
 ```
 
 The Dutch BirdCast sidebar separates the dashboard, Rare Birds, Seawatching,
-Migration, Species Explorer and Methods pages. Use the sidebar forecast button
-to refresh the existing daily products. Forecast dates and a stale-output warning
-are shown so previously generated data is not mistaken for current conditions.
+Validation, Validation Insights, Validation Benchmarks, Migration, Species
+Explorer, the Ship Assistance Audit, and Methods pages. Validation Benchmarks
+displays saved weather, persistence, eBird and eastern migration-weather
+analyses without retraining models or downloading data. Use the sidebar
+forecast button to refresh the existing daily products. Forecast dates and a
+stale-output warning are shown so previously generated data is not mistaken
+for current conditions.
+The Ship Assistance Audit follows Species Explorer and defaults to Netherlands
+records from the saved audit. Its region selector also offers Netherlands +
+Belgium, Belgium, Atlantic (all records), UK, Ireland, and Iceland. Region
+filtering precedes event deduplication and regional metric aggregation. The
+Netherlands + Belgium view is the primary Low Countries analysis, reflecting
+their shared North Sea flyway and shipping corridor, comparable weather and
+observer effort, and connected Atlantic vagrant arrivals. The selected region
+drives the summary metrics, ranking, recent events, candidates, species profile,
+and map. A comparison tab ranks regions by Possible Ship Assistance %. The
+ranking defaults to a 10-event minimum; this threshold can be lowered manually,
+and species search and sorting are available. An event is one species, date,
+and location rounded to two decimal degrees; repeated GBIF observations are
+retained in an observation count rather than counted as separate birds. The
+page does not fetch weather or rerun ERA5 analysis.
+Run `python -m src.atlantic_ship_assistance_audit` to rebuild the Atlantic
+audit, event table, species coverage summary, and event-based species weather
+support reports for the full Atlantic Vagrancy species registry. Species
+without eligible events retain zero counts and blank scores in the species
+weather support CSV. The audit uses GBIF, ERA5, and EMODnet and may take
+substantial time to run.
 Atlantic Vagrant Watch uses explicitly labelled illustrative demo data. The
 Species Explorer lists the species with existing forecast layers; independent
 skua, auk, duck and swan forecasts, and dedicated fetch and visibility products,

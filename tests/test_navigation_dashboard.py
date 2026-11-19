@@ -101,13 +101,45 @@ def _navigation_script(directory: str) -> None:
         show_dashboard=lambda: st.write("dashboard page"),
         show_rare_birds=lambda: st.write("rare birds page"),
         show_seawatching=lambda: st.write("seawatching page"),
-        show_validation=lambda: st.write("validation page"),
-        show_validation_insights_page=lambda: st.write("validation insights page"),
         show_migration=lambda: st.write("migration page"),
         show_species_explorer=lambda: st.write("species explorer page"),
+        show_ship_assistance_audit=lambda: st.write("ship assistance audit page"),
         show_methods=lambda: st.write("methods page"),
     ):
         app.main()
+
+
+def _methods_script() -> None:
+    from pathlib import Path
+    from unittest.mock import patch
+
+    import streamlit as st
+
+    import app
+
+    with patch.multiple(
+        app,
+        show_validation_dashboard=lambda: st.write("validation overview"),
+        show_validation_insights=lambda: st.write("validation insights"),
+        show_validation_benchmarks=lambda: st.write("validation benchmarks"),
+        REPORT_FILE=Path("missing-report.md"),
+    ):
+        app.show_methods()
+
+
+def _ship_assistance_script(directory: str) -> None:
+    from pathlib import Path
+    from unittest.mock import patch
+
+    import app
+
+    root = Path(directory)
+    with patch.multiple(
+        app,
+        SHIP_ASSISTANCE_AUDIT_FILE=root / "audit.csv",
+        SHIP_ASSISTANCE_SUMMARY_FILE=root / "summary.md",
+    ):
+        app.show_ship_assistance_audit()
 
 
 def _seawatching_script(directory: str) -> None:
@@ -189,22 +221,481 @@ def _write_json(path: Path, data: dict) -> None:
 
 
 def test_sidebar_navigation_routes_to_each_page(tmp_path: Path) -> None:
-    at = AppTest.from_function(_navigation_script, args=(str(tmp_path),)).run()
+    at = AppTest.from_function(
+        _navigation_script, args=(str(tmp_path),), default_timeout=30
+    ).run()
     pages = {
         "🏠 Dashboard": "dashboard page",
         "🌍 Rare Birds": "rare birds page",
         "🌊 Seawatching": "seawatching page",
-        "📈 Validation": "validation page",
-        "🔍 Validation Insights": "validation insights page",
-        "🪿 Migration": "migration page",
+        "🦆 Migration": "migration page",
         "🎯 Species Explorer": "species explorer page",
-        "🧪 Methods": "methods page",
+        "🛳 Ship Assistance Audit": "ship assistance audit page",
+        "🔬 Methods": "methods page",
     }
     assert at.sidebar.radio[0].options == list(pages)
+    options = at.sidebar.radio[0].options
+    assert options.count("Ship Assistance Audit 🇳🇱") == 0
     for label, content in pages.items():
         at.sidebar.radio[0].set_value(label).run()
         assert not at.exception
         assert any(item.value == content for item in at.markdown)
+
+
+def test_methods_groups_validation_content_in_nested_tabs() -> None:
+    at = AppTest.from_function(_methods_script, default_timeout=30).run()
+
+    assert not at.exception
+    assert [tab.label for tab in at.tabs] == [
+        "Forecasting",
+        "Validation",
+        "Overview",
+        "Insights",
+        "Benchmarks",
+        "Data Sources",
+    ]
+    assert any(item.value == "validation overview" for item in at.markdown)
+    assert any(item.value == "validation insights" for item in at.markdown)
+    assert any(item.value == "validation benchmarks" for item in at.markdown)
+
+
+def test_ship_assistance_page_uses_saved_event_audit(tmp_path: Path) -> None:
+    pd.DataFrame(
+        [
+            {
+                "key": 1,
+                "species": "Red-eyed Vireo",
+                "date": "2026-01-01",
+                "country": "Netherlands",
+                "countryCode": "NL",
+                "location": "52, 5",
+                "decimalLatitude": 52.0,
+                "decimalLongitude": 5.0,
+                "weather_support_score": 0.2,
+                "possible_ship_assistance_score": 0.7,
+                "nearest_requested_harbour": "IJmuiden",
+                "nearest_requested_harbour_distance_km": 5.0,
+                "distance_to_emodnet_route_cell_km": 1.0,
+                "preliminary_interpretation": "possible_ship_assisted",
+            },
+            {
+                "key": 2,
+                "species": "Red-eyed Vireo",
+                "date": "2026-01-01",
+                "country": "Netherlands",
+                "countryCode": "NL",
+                "location": "52.001, 5.001",
+                "decimalLatitude": 52.001,
+                "decimalLongitude": 5.001,
+                "weather_support_score": 0.6,
+                "possible_ship_assistance_score": 0.5,
+                "nearest_requested_harbour": "IJmuiden",
+                "nearest_requested_harbour_distance_km": 7.0,
+                "distance_to_emodnet_route_cell_km": 3.0,
+                "preliminary_interpretation": "weather_supported",
+            },
+            {
+                "key": 3,
+                "species": "Blackpoll Warbler",
+                "date": "2026-01-02",
+                "country": "Belgium",
+                "countryCode": "BE",
+                "location": "51, 3",
+                "decimalLatitude": 51.0,
+                "decimalLongitude": 3.0,
+                "weather_support_score": 0.8,
+                "possible_ship_assistance_score": 0.3,
+                "nearest_requested_harbour": "Zeebrugge",
+                "nearest_requested_harbour_distance_km": 8.0,
+                "distance_to_emodnet_route_cell_km": 2.0,
+                "preliminary_interpretation": "weather_supported",
+            },
+        ]
+    ).to_csv(tmp_path / "audit.csv", index=False)
+
+    at = AppTest.from_function(
+        _ship_assistance_script, args=(str(tmp_path),), default_timeout=30
+    ).run()
+
+    assert not at.exception
+    assert [metric.value for metric in at.metric[:4]] == [
+        "Netherlands",
+        "2",
+        "1",
+        "1",
+    ]
+    assert at.selectbox[0].value == "Netherlands"
+    at.selectbox[0].set_value("Atlantic (all records)").run()
+    assert [metric.value for metric in at.metric[:4]] == [
+        "Atlantic (all records)",
+        "3",
+        "2",
+        "2",
+    ]
+    assert [tab.label for tab in at.tabs] == [
+        "Species Ranking",
+        "Recent Atlantic Events",
+        "Top Ship Assistance Candidates",
+        "Species Profile",
+        "Map",
+        "🌍 Ship Assistance by Region",
+    ]
+    assert at.number_input[0].value == 10
+    at.number_input[0].set_value(1).run()
+    ranking = at.dataframe[0].value
+    assert "Possible Ship Assistance %" in ranking.columns
+    assert "Ship Assisted %" not in ranking.columns
+    assert ranking["Species"].tolist() == ["Red-eyed Vireo", "Blackpoll Warbler"]
+    assert ranking["Event Count"].tolist() == [1, 1]
+    assert ranking["Observation Count"].tolist() == [2, 1]
+    assert ranking["Natural Arrival Index"].iloc[0] == 0.4
+    assert ranking["Ship Assistance Index"].iloc[0] == 0.6
+    latest = at.dataframe[1].value
+    assert len(latest) == 2
+    assert latest["species"].tolist() == ["Blackpoll Warbler", "Red-eyed Vireo"]
+    assert latest["country"].tolist() == ["Belgium", "Netherlands"]
+    assert latest["locality"].tolist() == ["51, 3", "52, 5"]
+    assert latest["observation_count"].tolist() == [1, 2]
+    candidates = at.dataframe[2].value
+    assert len(candidates) == 2
+    assert candidates["species"].tolist() == ["Red-eyed Vireo", "Blackpoll Warbler"]
+    assert candidates["country"].tolist() == ["Netherlands", "Belgium"]
+    assert candidates["locality"].tolist() == ["52, 5", "51, 3"]
+    assert candidates["classification"].tolist() == ["Ambiguous", "Weather-supported"]
+    import app
+
+    comparison = app._ship_assistance_region_comparison(
+        pd.read_csv(tmp_path / "audit.csv")
+    )
+    assert comparison.columns.tolist() == [
+        "Region",
+        "Observations",
+        "Events",
+        "Species",
+        "Weather Supported %",
+        "Possible Ship Assistance %",
+        "Mean Natural Arrival Index",
+        "Mean Ship Assistance Index",
+    ]
+    assert comparison["Possible Ship Assistance %"].dropna().is_monotonic_decreasing
+    comparison_by_region = comparison.set_index("Region")
+    assert comparison_by_region.loc["Belgium", "Observations"] == 1
+    assert comparison_by_region.loc["Netherlands + Belgium", "Observations"] == 3
+
+
+def test_ship_assistance_page_handles_missing_outputs(tmp_path: Path) -> None:
+    at = AppTest.from_function(
+        _ship_assistance_script, args=(str(tmp_path),), default_timeout=30
+    ).run()
+
+    assert not at.exception
+    assert any("No ship-assistance audit data is available" in item.value for item in at.info)
+
+
+def test_ship_assistance_page_filters_each_selected_region(
+    tmp_path: Path,
+) -> None:
+    pd.DataFrame(
+        [
+            {
+                "species": "Red-eyed Vireo",
+                "date": "2026-01-03",
+                "countryCode": "NL",
+                "location": "Texel",
+                "decimalLatitude": 53.15,
+                "decimalLongitude": 4.85,
+                "weather_support_score": 0.30,
+                "possible_ship_assistance_score": 0.75,
+                "preliminary_interpretation": "possible_ship_assisted",
+            },
+            {
+                "species": "Red-eyed Vireo",
+                "date": "2026-01-03",
+                "countryCode": "NL",
+                "location": "Texel duplicate observer",
+                "decimalLatitude": 53.151,
+                "decimalLongitude": 4.849,
+                "weather_support_score": 0.50,
+                "possible_ship_assistance_score": 0.55,
+                "preliminary_interpretation": "ambiguous",
+            },
+            {
+                "species": "Blackpoll Warbler",
+                "date": "2026-01-02",
+                "countryCode": "NL",
+                "location": "IJmuiden",
+                "decimalLatitude": 52.46,
+                "decimalLongitude": 4.58,
+                "weather_support_score": 0.65,
+                "possible_ship_assistance_score": 0.25,
+                "preliminary_interpretation": "weather_supported",
+            },
+            {
+                "species": "Red-eyed Vireo",
+                "date": "2026-01-01",
+                "countryCode": "NL",
+                "location": "Maasvlakte",
+                "decimalLatitude": 51.95,
+                "decimalLongitude": 4.02,
+                "weather_support_score": 0.40,
+                "possible_ship_assistance_score": 0.45,
+                "preliminary_interpretation": "ambiguous",
+            },
+            {
+                "species": "Blackpoll Warbler",
+                "date": "2026-01-04",
+                "countryCode": "BE",
+                "location": "Zeebrugge",
+                "decimalLatitude": 51.36,
+                "decimalLongitude": 3.19,
+                "weather_support_score": 0.95,
+                "possible_ship_assistance_score": 0.05,
+                "preliminary_interpretation": "weather_supported",
+            },
+            {
+                "species": "Red-eyed Vireo",
+                "date": "2026-01-05",
+                "countryCode": "GB",
+                "location": "Scilly",
+                "decimalLatitude": 49.9,
+                "decimalLongitude": -6.3,
+                "weather_support_score": 0.35,
+                "possible_ship_assistance_score": 0.65,
+                "preliminary_interpretation": "possible_ship_assisted",
+            },
+            {
+                "species": "Red-eyed Vireo",
+                "date": "2026-01-06",
+                "countryCode": "IE",
+                "location": "Cork",
+                "decimalLatitude": 51.9,
+                "decimalLongitude": -8.5,
+                "weather_support_score": 0.45,
+                "possible_ship_assistance_score": 0.55,
+                "preliminary_interpretation": "ambiguous",
+            },
+            {
+                "species": "Red-eyed Vireo",
+                "date": "2026-01-07",
+                "countryCode": "IS",
+                "location": "Reykjavik",
+                "decimalLatitude": 64.1,
+                "decimalLongitude": -21.9,
+                "weather_support_score": 0.55,
+                "possible_ship_assistance_score": 0.45,
+                "preliminary_interpretation": "weather_supported",
+            },
+        ]
+    ).to_csv(tmp_path / "audit.csv", index=False)
+    at = AppTest.from_function(
+        _ship_assistance_script, args=(str(tmp_path),), default_timeout=30
+    ).run()
+
+    assert not at.exception
+    assert at.title[0].value == "🛳 Ship Assistance Audit"
+    assert at.selectbox[0].options == [
+        "Netherlands",
+        "Netherlands + Belgium",
+        "Belgium",
+        "Atlantic (all records)",
+        "UK",
+        "Ireland",
+        "Iceland",
+    ]
+    assert at.selectbox[0].value == "Netherlands"
+    assert [metric.value for metric in at.metric[:4]] == [
+        "Netherlands",
+        "4",
+        "3",
+        "2",
+    ]
+    assert [tab.label for tab in at.tabs] == [
+        "Species Ranking",
+        "Recent Atlantic Events",
+        "Top Ship Assistance Candidates",
+        "Species Profile",
+        "Map",
+        "🌍 Ship Assistance by Region",
+    ]
+    assert at.selectbox[1].value == "Ship Assistance Index"
+    assert at.number_input[0].value == 10
+    at.number_input[0].set_value(1).run()
+    ranking = at.dataframe[0].value
+    assert ranking["Species"].tolist() == ["Red-eyed Vireo", "Blackpoll Warbler"]
+    assert ranking["Event Count"].tolist() == [2, 1]
+    assert ranking["Observation Count"].tolist() == [3, 1]
+    assert ranking["Rank"].tolist() == [1, 2]
+    assert ranking["Natural Arrival Index"].round(3).tolist() == [0.4, 0.65]
+    assert ranking["Ship Assistance Index"].round(3).tolist() == [0.55, 0.25]
+    at.selectbox[1].set_value("Natural Arrival Index").run()
+    assert at.dataframe[0].value["Species"].tolist() == [
+        "Blackpoll Warbler",
+        "Red-eyed Vireo",
+    ]
+    at.selectbox[1].set_value("Ship Assistance Index").run()
+    latest = at.dataframe[1].value
+    assert latest["locality"].tolist() == [
+        "Texel",
+        "IJmuiden",
+        "Maasvlakte",
+    ]
+    assert latest.columns.tolist() == [
+        "date",
+        "species",
+        "country",
+        "locality",
+        "observation_count",
+        "weather support score",
+        "ship assistance score",
+        "classification",
+    ]
+    assert latest["observation_count"].tolist() == [2, 1, 1]
+    assert set(latest["country"]) == {"Netherlands"}
+    assert set(at.dataframe[2].value["country"]) == {"Netherlands"}
+    assert latest["classification"].tolist() == ["Ambiguous", "Weather-supported", "Ambiguous"]
+    assert len(at.dataframe[2].value) == 3
+
+    at.selectbox[0].set_value("Belgium").run()
+    assert [metric.value for metric in at.metric[:4]] == ["Belgium", "1", "1", "1"]
+    at.number_input[0].set_value(1).run()
+    assert at.dataframe[0].value["Species"].tolist() == ["Blackpoll Warbler"]
+    assert set(at.dataframe[1].value["country"]) == {"Belgium"}
+
+    at.selectbox[0].set_value("Netherlands + Belgium").run()
+    assert [metric.value for metric in at.metric[:4]] == [
+        "Netherlands + Belgium",
+        "5",
+        "4",
+        "2",
+    ]
+    assert set(at.dataframe[1].value["country"]) == {"Netherlands", "Belgium"}
+    import app
+
+    comparison = app._ship_assistance_region_comparison(
+        pd.read_csv(tmp_path / "audit.csv")
+    ).set_index("Region")
+    low_countries = comparison.loc["Netherlands + Belgium"]
+    netherlands = comparison.loc["Netherlands"]
+    belgium = comparison.loc["Belgium"]
+    assert low_countries["Observations"] >= netherlands["Observations"]
+    assert low_countries["Observations"] >= belgium["Observations"]
+
+    at.number_input[0].set_value(2).run()
+    assert at.dataframe[0].value["Species"].tolist() == [
+        "Red-eyed Vireo",
+        "Blackpoll Warbler",
+    ]
+    at.number_input[0].set_value(1)
+    at.text_input[0].set_value("blackpoll").run()
+    assert at.dataframe[0].value["Species"].tolist() == ["Blackpoll Warbler"]
+
+    at.selectbox[0].set_value("Atlantic (all records)").run()
+    assert [metric.value for metric in at.metric[:4]] == [
+        "Atlantic (all records)",
+        "8",
+        "7",
+        "2",
+    ]
+    assert len(at.dataframe[1].value) == 7
+    assert set(at.dataframe[1].value["country"]) == {
+        "Netherlands",
+        "Belgium",
+        "United Kingdom",
+        "Ireland",
+        "IS",
+    }
+
+    for region, expected_country in [
+        ("UK", "United Kingdom"),
+        ("Ireland", "Ireland"),
+        ("Iceland", "IS"),
+    ]:
+        at.selectbox[0].set_value(region).run()
+        assert [metric.value for metric in at.metric[:4]] == [
+            region,
+            "1",
+            "1",
+            "1",
+        ]
+        assert set(at.dataframe[1].value["country"]) == {expected_country}
+
+
+def test_ship_assistance_map_has_one_marker_per_event() -> None:
+    import app
+    from src.atlantic_ship_assistance_audit import deduplicate_ship_assistance_events
+
+    observations = pd.DataFrame(
+        [
+            {
+                "species": "Blackpoll Warbler",
+                "date": "2020-10-27",
+                "decimalLatitude": 53.151,
+                "decimalLongitude": 4.849,
+                "weather_support_score": 0.4,
+                "possible_ship_assistance_score": 0.5,
+                "preliminary_interpretation": "ambiguous",
+            }
+            for _ in range(3)
+        ]
+    )
+    events = deduplicate_ship_assistance_events(observations)
+
+    deck = app._ship_assistance_map(events)
+
+    assert len(deck.layers) == 1
+    assert deck.layers[0].type == "ScatterplotLayer"
+    assert len(deck.layers[0].data) == 1
+    marker = deck.layers[0].data[0]
+    assert marker["event_id"] == "Blackpoll Warbler|2020-10-27|53.15|4.85"
+    assert marker["observation_count"] == 3
+    assert marker["marker_color"] == [242, 193, 24, 220]
+    assert {key for key in marker if "polygon" in key or "geometry" in key} == set()
+    assert "Country: {country}" in deck._tooltip["html"]
+    assert "Locality: {locality}" in deck._tooltip["html"]
+    assert "Weather support score: {weather_support_score}" in deck._tooltip["html"]
+    assert (
+        "Possible ship assistance score: {possible_ship_assistance_score}"
+        in deck._tooltip["html"]
+    )
+
+
+def test_dutch_ship_assistance_events_filter_before_deduplication() -> None:
+    import app
+
+    observations = pd.DataFrame(
+        [
+            {
+                "species": "Red-eyed Vireo",
+                "date": "2020-10-27",
+                "countryCode": "NL",
+                "location": "Dutch coast",
+                "decimalLatitude": 51.361,
+                "decimalLongitude": 3.191,
+                "weather_support_score": 0.4,
+                "possible_ship_assistance_score": 0.5,
+                "preliminary_interpretation": "ambiguous",
+            },
+            {
+                "species": "Red-eyed Vireo",
+                "date": "2020-10-27",
+                "countryCode": "BE",
+                "location": "Zeebrugge",
+                "decimalLatitude": 51.359,
+                "decimalLongitude": 3.189,
+                "weather_support_score": 0.4,
+                "possible_ship_assistance_score": 0.5,
+                "preliminary_interpretation": "ambiguous",
+            },
+        ]
+    )
+
+    events = app._ship_assistance_events(observations, {"NL"})
+
+    assert len(events) == 1
+    assert events["countryCode"].eq("NL").all()
+    assert events["observation_count"].tolist() == [1]
+    assert events["country"].tolist() == ["Netherlands"]
+    assert events["classification"].tolist() == ["Ambiguous"]
 
 
 def test_rare_birds_has_nested_views_for_all_three_sections() -> None:
