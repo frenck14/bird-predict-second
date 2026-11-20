@@ -2,10 +2,10 @@
 
 ## Scope
 
-The audit contains **2,830 unique events** from **9,927 GBIF observations** for 30 species in the project's Atlantic Vagrancy Index. Event dates span 1955-01-16 to 2022-12-02. Each event is one species, date, and location rounded to two decimal degrees. Multiple GBIF observations of the same event are merged and counted in `observation_count`.
+The audit contains **3,198 unique events** from **11,582 GBIF observations** for 30 species in the project's Atlantic Vagrancy Index. Event dates span 1955-01-16 to 2026-10-01. Each event is one species, date, and location rounded to two decimal degrees. Multiple GBIF observations of the same event are merged and counted in `observation_count`.
 Records before 1940 are omitted because the configured ERA5 archive begins in 1940.
 
-**Partial cache-only rebuild:** 1,655 occurrence records across 24 species were omitted because their complete ERA5 route-weather data were not present in the local cache. No weather requests were made during this rebuild. The species and counts are listed in the coverage table below.
+**Weather unavailable:** 12 events (17 GBIF observations) are retained with null weather fields and classified as `weather unavailable`.
 
 These are **screening indicators, not causal classifications or probabilities**. The audit does not build or apply a predictive model, does not identify ships, and cannot prove that any individual bird was carried by a vessel.
 
@@ -41,86 +41,86 @@ The following are the highest Ship Assistance Indicator events among those with 
 | American Robin | 2014-04-27 | 52.53000, 4.63000 | Netherlands | 0.23 | 0.84 | IJmuiden (8 km) | 2.0 | 1 |
 | American Robin | 2014-04-27 | 52.54000, 4.63000 | Netherlands | 0.23 | 0.84 | IJmuiden (9 km) | 2.2 | 1 |
 | White-throated Sparrow | 1967-09-28 | 51.90000, 4.40000 | Netherlands | 0.17 | 0.83 | Rotterdam (6 km) | 21.2 | 1 |
-| Indigo Bunting | 2019-04-01 | 52.50000, 4.90000 | Netherlands | 0.06 | 0.83 | IJmuiden (22 km) | 20.2 | 1 |
 | Rose-breasted Grosbeak | 2016-05-12 | 52.03000, 4.77000 | Netherlands | 0.01 | 0.83 | Rotterdam (24 km) | 31.9 | 1 |
 | Baltimore Oriole | 2010-04-14 | 52.60000, 4.75000 | Netherlands | 0.15 | 0.83 | IJmuiden (19 km) | 8.9 | 1 |
-| White-throated Sparrow | 2021-01-06 | 51.65000, 4.30000 | Netherlands | 0.01 | 0.82 | Rotterdam (31 km) | 26.4 | 1 |
 | Baltimore Oriole | 2010-04-13 | 52.60000, 4.75000 | Netherlands | 0.19 | 0.82 | IJmuiden (19 km) | 8.9 | 1 |
 | Baltimore Oriole | 2010-04-11 | 52.60000, 4.75000 | Netherlands | 0.23 | 0.81 | IJmuiden (19 km) | 8.9 | 3 |
-| Dark-eyed Junco | 2015-04-09 | 53.25000, 6.55000 | Netherlands | 0.09 | 0.81 | Eemshaven (30 km) | 21.0 | 1 |
 | Baltimore Oriole | 2010-04-12 | 52.60000, 4.75000 | Netherlands | 0.24 | 0.80 | IJmuiden (19 km) | 8.9 | 2 |
 | Dark-eyed Junco | 2015-09-02 | 53.25000, 6.59000 | Netherlands | 0.12 | 0.80 | Eemshaven (28 km) | 21.0 | 1 |
+| Indigo Bunting | 1983-06-08 | 52.90000, 5.00000 | Netherlands | 0.05 | 0.80 | IJmuiden (56 km) | 5.0 | 1 |
+| Indigo Bunting | 1983-06-25 | 52.90000, 5.00000 | Netherlands | 0.05 | 0.80 | IJmuiden (56 km) | 5.0 | 3 |
 | Dark-eyed Junco | 2021-05-01 | 51.98000, 4.07000 | Netherlands | 0.26 | 0.80 | Rotterdam (30 km) | 1.0 | 1 |
 | Baltimore Oriole | 2010-04-10 | 52.60000, 4.75000 | Netherlands | 0.26 | 0.80 | IJmuiden (19 km) | 8.9 | 4 |
-| Dark-eyed Junco | 2015-04-10 | 53.20000, 6.55000 | Netherlands | 0.09 | 0.80 | Eemshaven (34 km) | 26.0 | 2 |
-| Dark-eyed Junco | 2015-04-09 | 53.20000, 6.55000 | Netherlands | 0.09 | 0.79 | Eemshaven (34 km) | 26.0 | 1 |
+| Indigo Bunting | 1983-06-19 | 52.90000, 5.00000 | Netherlands | 0.07 | 0.80 | IJmuiden (56 km) | 5.0 | 1 |
+| Indigo Bunting | 1983-06-10 | 52.90000, 5.00000 | Netherlands | 0.08 | 0.79 | IJmuiden (56 km) | 5.0 | 1 |
 | Grey-cheeked Thrush | 2018-11-20 | 52.05000, 4.20000 | Netherlands | 0.31 | 0.79 | Rotterdam (25 km) | 1.0 | 7 |
+| Baltimore Oriole | 2010-04-05 | 52.60000, 4.75000 | Netherlands | 0.29 | 0.79 | IJmuiden (19 km) | 8.9 | 6 |
 
 ## Species coverage
 
 Registry species processed: **30**; with events: **30**; without events: **0**; skipped: **0** (included among species without events).
 
-| Species | Events | Excluded observations | Status | Reason |
-|---|---:|---:|---|---|
-| Red-eyed Vireo | 431 | 101 | partially processed | 101 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Yellow-throated Vireo | 17 | 0 | processed | — |
-| American Robin | 196 | 3 | partially processed | 3 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Veery | 24 | 34 | partially processed | 34 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Grey-cheeked Thrush | 159 | 16 | partially processed | 16 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Swainson's Thrush | 141 | 21 | partially processed | 21 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Hermit Thrush | 40 | 0 | processed | — |
-| White-throated Sparrow | 208 | 284 | partially processed | 284 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Dark-eyed Junco | 289 | 30 | partially processed | 30 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Indigo Bunting | 46 | 358 | partially processed | 358 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Bobolink | 134 | 20 | partially processed | 20 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Scarlet Tanager | 32 | 37 | partially processed | 37 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Rose-breasted Grosbeak | 112 | 1 | partially processed | 1 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Baltimore Oriole | 179 | 8 | partially processed | 8 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Cedar Waxwing | 72 | 1 | partially processed | 1 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Northern Waterthrush | 66 | 258 | partially processed | 258 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Blackpoll Warbler | 195 | 1 | partially processed | 1 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Ovenbird | 12 | 1 | partially processed | 1 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Common Yellowthroat | 96 | 0 | processed | — |
-| Black-and-white Warbler | 72 | 36 | partially processed | 36 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Canada Warbler | 5 | 61 | partially processed | 61 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| American Redstart | 34 | 0 | processed | — |
-| Yellow-rumped Warbler | 127 | 153 | partially processed | 153 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Blue-winged Warbler | 5 | 0 | processed | — |
-| Tennessee Warbler | 20 | 8 | partially processed | 8 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Cape May Warbler | 14 | 33 | partially processed | 33 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Magnolia Warbler | 2 | 169 | partially processed | 169 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Blackburnian Warbler | 20 | 16 | partially processed | 16 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
-| Wilson's Warbler | 8 | 0 | processed | — |
-| Northern Parula | 74 | 5 | partially processed | 5 occurrence records excluded because their ERA5 route-weather data are missing from the local cache. |
+| Species | Events | Weather-unavailable events | Excluded observations | Status | Reason |
+|---|---:|---:|---:|---|---|
+| Red-eyed Vireo | 468 | 1 | 0 | partially processed | 1 events retained with null ERA5 route-weather data and classified as weather unavailable. |
+| Yellow-throated Vireo | 17 | 0 | 0 | processed | — |
+| American Robin | 199 | 1 | 0 | partially processed | 1 events retained with null ERA5 route-weather data and classified as weather unavailable. |
+| Veery | 30 | 0 | 0 | processed | — |
+| Grey-cheeked Thrush | 169 | 0 | 0 | processed | — |
+| Swainson's Thrush | 153 | 0 | 0 | processed | — |
+| Hermit Thrush | 40 | 0 | 0 | processed | — |
+| White-throated Sparrow | 277 | 4 | 0 | partially processed | 4 events retained with null ERA5 route-weather data and classified as weather unavailable. |
+| Dark-eyed Junco | 298 | 3 | 0 | partially processed | 3 events retained with null ERA5 route-weather data and classified as weather unavailable. |
+| Indigo Bunting | 80 | 0 | 0 | processed | — |
+| Bobolink | 145 | 0 | 0 | processed | — |
+| Scarlet Tanager | 37 | 0 | 0 | processed | — |
+| Rose-breasted Grosbeak | 113 | 0 | 0 | processed | — |
+| Baltimore Oriole | 185 | 0 | 0 | processed | — |
+| Cedar Waxwing | 73 | 0 | 0 | processed | — |
+| Northern Waterthrush | 97 | 0 | 0 | processed | — |
+| Blackpoll Warbler | 196 | 1 | 0 | partially processed | 1 events retained with null ERA5 route-weather data and classified as weather unavailable. |
+| Ovenbird | 13 | 0 | 0 | processed | — |
+| Common Yellowthroat | 96 | 0 | 0 | processed | — |
+| Black-and-white Warbler | 83 | 1 | 0 | partially processed | 1 events retained with null ERA5 route-weather data and classified as weather unavailable. |
+| Canada Warbler | 9 | 0 | 0 | processed | — |
+| American Redstart | 34 | 0 | 0 | processed | — |
+| Yellow-rumped Warbler | 181 | 1 | 0 | partially processed | 1 events retained with null ERA5 route-weather data and classified as weather unavailable. |
+| Blue-winged Warbler | 5 | 0 | 0 | processed | — |
+| Tennessee Warbler | 25 | 0 | 0 | processed | — |
+| Cape May Warbler | 32 | 0 | 0 | processed | — |
+| Magnolia Warbler | 35 | 0 | 0 | processed | — |
+| Blackburnian Warbler | 22 | 0 | 0 | processed | — |
+| Wilson's Warbler | 8 | 0 | 0 | processed | — |
+| Northern Parula | 78 | 0 | 0 | processed | — |
 
 ## Rarity events
 
-The audit contains **2,830 events**, where one event is a unique species, date, and location rounded to two decimal degrees.
+The audit contains **3,198 events**, where one event is a unique species, date, and location rounded to two decimal degrees.
 
 ### Top 10 species by event count
 
 | Species | Events |
 |---|---:|
-| Red-eyed Vireo | 431 |
-| Dark-eyed Junco | 289 |
-| White-throated Sparrow | 208 |
-| American Robin | 196 |
-| Blackpoll Warbler | 195 |
-| Baltimore Oriole | 179 |
-| Grey-cheeked Thrush | 159 |
-| Swainson's Thrush | 141 |
-| Bobolink | 134 |
-| Yellow-rumped Warbler | 127 |
+| Red-eyed Vireo | 468 |
+| Dark-eyed Junco | 298 |
+| White-throated Sparrow | 277 |
+| American Robin | 199 |
+| Blackpoll Warbler | 196 |
+| Baltimore Oriole | 185 |
+| Yellow-rumped Warbler | 181 |
+| Grey-cheeked Thrush | 169 |
+| Swainson's Thrush | 153 |
+| Bobolink | 145 |
 
 ## Country breakdown
 
 | Country | Events |
 |---|---:|
-| United Kingdom (GB) | 2290 |
-| Ireland (IE) | 169 |
-| Netherlands (NL) | 284 |
-| Belgium (BE) | 29 |
-| Denmark (DK) | 58 |
+| United Kingdom (GB) | 2528 |
+| Ireland (IE) | 200 |
+| Netherlands (NL) | 289 |
+| Belgium (BE) | 32 |
+| Denmark (DK) | 149 |
 
 ## Data and method sources
 

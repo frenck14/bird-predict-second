@@ -632,11 +632,16 @@ def _interpret_ship_assistance(frame: pd.DataFrame) -> pd.Series:
     return pd.Series(
         np.select(
             [
+                frame["weather_support_score"].isna(),
                 frame["weather_support_score"].ge(0.60),
                 frame["weather_support_score"].lt(0.35)
                 & frame["possible_ship_assistance_score"].ge(0.60),
             ],
-            ["weather_supported", "possible_ship_assisted"],
+            [
+                "weather unavailable",
+                "weather_supported",
+                "possible_ship_assisted",
+            ],
             default="ambiguous",
         ),
         index=frame.index,
@@ -758,6 +763,7 @@ def deduplicate_ship_assistance_events(df: pd.DataFrame) -> pd.DataFrame:
                 "weather_supported": "Weather-supported",
                 "possible_ship_assisted": "Possible ship-assisted",
                 "ambiguous": "Ambiguous",
+                "weather unavailable": "weather unavailable",
             }
         )
     return grouped
@@ -768,6 +774,7 @@ def _species_coverage(
     events: pd.DataFrame,
     excluded_observations: dict[str, int] | None = None,
     *,
+    weather_unavailable_events: dict[str, int] | None = None,
     allow_incomplete: bool = False,
 ) -> pd.DataFrame:
     species_names = [str(item["species"]) for item in ATLANTIC_VAGRANCY_SPECIES]
@@ -786,11 +793,18 @@ def _species_coverage(
         event_count = int(event_counts.get(species, 0))
         record_count = int(record_counts.get(species, 0))
         excluded_count = int((excluded_observations or {}).get(species, 0))
+        unavailable_count = int((weather_unavailable_events or {}).get(species, 0))
         if excluded_count:
             status = "partially processed" if event_count else "excluded"
             reason = (
                 f"{excluded_count:,} occurrence records excluded because their "
                 "ERA5 route-weather data are missing from the local cache."
+            )
+        elif unavailable_count:
+            status = "partially processed" if event_count else "excluded"
+            reason = (
+                f"{unavailable_count:,} events retained with null ERA5 route-weather "
+                "data and classified as weather unavailable."
             )
         elif event_count:
             status, reason = "processed", ""
@@ -803,6 +817,7 @@ def _species_coverage(
                 "species": species,
                 "events": event_count,
                 "excluded_observations": excluded_count,
+                "weather_unavailable_events": unavailable_count,
                 "status": status,
                 "reason": reason,
             }
@@ -819,8 +834,8 @@ def _build_summary(frame: pd.DataFrame, coverage: pd.DataFrame) -> str:
         SPECIES_ORDER, fill_value=0
     )
     coverage_lines = [
-        f"| {row.species} | {row.events} | {row.excluded_observations} | "
-        f"{row.status} | {row.reason or '—'} |"
+        f"| {row.species} | {row.events} | {row.weather_unavailable_events} | "
+        f"{row.excluded_observations} | {row.status} | {row.reason or '—'} |"
         for row in coverage.itertuples(index=False)
     ]
     species_events = species_counts
@@ -857,6 +872,12 @@ def _build_summary(frame: pd.DataFrame, coverage: pd.DataFrame) -> str:
     without_events = len(coverage) - with_events
     excluded_observations = int(coverage["excluded_observations"].sum())
     excluded_species = coverage.loc[coverage["excluded_observations"].gt(0)]
+    weather_unavailable_events = int(
+        coverage["weather_unavailable_events"].sum()
+    )
+    weather_unavailable_observations = int(
+        frame.loc[frame["weather_support_score"].isna(), "observation_count"].sum()
+    )
     return "\n".join(
         [
             "# Atlantic vagrancy ship-assistance feasibility audit",
@@ -871,6 +892,16 @@ def _build_summary(frame: pd.DataFrame, coverage: pd.DataFrame) -> str:
             "Multiple GBIF observations of the same event are merged and counted in "
             "`observation_count`.",
             "Records before 1940 are omitted because the configured ERA5 archive begins in 1940.",
+            *(
+                [
+                    "",
+                    f"**Weather unavailable:** {weather_unavailable_events:,} events "
+                    f"({weather_unavailable_observations:,} GBIF observations) are retained "
+                    "with null weather fields and classified as `weather unavailable`.",
+                ]
+                if weather_unavailable_events
+                else []
+            ),
             *(
                 [
                     "",
@@ -957,8 +988,8 @@ def _build_summary(frame: pd.DataFrame, coverage: pd.DataFrame) -> str:
             f"without events: **{without_events}**; skipped: **{skipped}** "
             "(included among species without events).",
             "",
-            "| Species | Events | Excluded observations | Status | Reason |",
-            "|---|---:|---:|---|---|",
+            "| Species | Events | Weather-unavailable events | Excluded observations | Status | Reason |",
+            "|---|---:|---:|---:|---|---|",
             count_text,
             "",
             "## Rarity events",
@@ -1045,17 +1076,12 @@ def run_audit(
     else:
         weather = _collect_weather_scores(records)
     if cache_only:
-        weather_available = weather["weather_support_score"].notna()
-        missing_weather_count = int((~weather_available).sum())
+        missing_weather_count = int(weather["weather_support_score"].isna().sum())
         if missing_weather_count:
             LOGGER.warning(
-                "Excluding %s events without complete cached ERA5 route-weather data",
+                "Retaining %s events with unavailable cached ERA5 route-weather data",
                 f"{missing_weather_count:,}",
             )
-            records = records.loc[weather_available].reset_index(drop=True)
-            weather = weather.loc[weather_available].reset_index(drop=True)
-        if records.empty:
-            raise ValueError("No occurrence events have complete cached ERA5 weather data.")
     context = _arrival_context(records)
     features = pd.concat([records, weather, context], axis=1)
 
@@ -1193,6 +1219,7 @@ def _species_weather_support(events: pd.DataFrame) -> pd.DataFrame:
         ("weather_supported", "weather_supported_pct"),
         ("possible_ship_assisted", "possible_ship_assisted_pct"),
         ("ambiguous", "ambiguous_pct"),
+        ("weather unavailable", "weather_unavailable_pct"),
     ):
         metrics[column] = grouped["preliminary_interpretation"].apply(
             lambda values: 100.0 * values.eq(label).mean()
@@ -1215,6 +1242,7 @@ def _species_weather_support(events: pd.DataFrame) -> pd.DataFrame:
             "p95_weather_support_score", "max_weather_support_score",
             "mean_tailwind_corridor_score", "mean_storm_track_support_score",
             "weather_supported_pct", "possible_ship_assisted_pct", "ambiguous_pct",
+            "weather_unavailable_pct",
             "natural_arrival_index", "mean_possible_ship_assistance_score",
             "ship_assistance_index", "natural_arrival_rank", "ship_assistance_rank",
         ]
@@ -1233,7 +1261,7 @@ def _weather_support_summary(
         f"| {row.species} | {row.event_count} | {row.observation_count} | "
         f"{row.natural_arrival_index:.3f} | {row.ship_assistance_index:.3f} | "
         f"{row.weather_supported_pct:.2f}% | {row.possible_ship_assisted_pct:.2f}% | "
-        f"{row.ambiguous_pct:.2f}% |"
+        f"{row.ambiguous_pct:.2f}% | {row.weather_unavailable_pct:.2f}% |"
         for row in ranked.itertuples(index=False)
     ]
     ship_ranked = ranked.sort_values("ship_assistance_rank", kind="stable")
@@ -1247,6 +1275,11 @@ def _weather_support_summary(
         if coverage is not None
         else 0
     )
+    weather_unavailable_events = (
+        int(coverage["weather_unavailable_events"].sum())
+        if coverage is not None
+        else 0
+    )
     exclusion_note = (
         [
             "",
@@ -1255,6 +1288,15 @@ def _weather_support_summary(
             "summary coverage table for species-level counts and reasons.",
         ]
         if excluded_observations
+        else []
+    )
+    weather_unavailable_note = (
+        [
+            "",
+            f"**Weather unavailable:** {weather_unavailable_events:,} events are retained "
+            "with null weather fields and included in the species coverage table.",
+        ]
+        if weather_unavailable_events
         else []
     )
     return "\n".join(
@@ -1267,9 +1309,11 @@ def _weather_support_summary(
             "",
             "The Natural Arrival Index is the mean event-level weather support score; "
             "the Ship Assistance Index is the mean event-level ship assistance score. "
-            "Classification percentages use events, not observations, as the denominator.",
+            "Classification percentages use events, not observations, as the denominator. "
+            "Weather-unavailable events are retained and reported separately.",
             "These indicators are screening heuristics, not probabilities or evidence of causation.",
             *exclusion_note,
+            *weather_unavailable_note,
             "",
             "## Most ship-assistance-associated species",
             "",
@@ -1279,8 +1323,8 @@ def _weather_support_summary(
             "",
             "## Species weather support",
             "",
-            "| Species | Events | Observations | Natural arrival index | Ship assistance index | Weather-supported | Possible ship-assisted | Ambiguous |",
-            "|---|---:|---:|---:|---:|---:|---:|---:|",
+            "| Species | Events | Observations | Natural arrival index | Ship assistance index | Weather-supported | Possible ship-assisted | Ambiguous | Weather unavailable |",
+            "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
             *lines,
             "",
         ]
@@ -1290,6 +1334,7 @@ def _weather_support_summary(
 def main(*, cache_only: bool = False) -> None:
     logging.basicConfig(level=logging.INFO, format="%(message)s")
     records = load_all_occurrences(ATLANTIC_VAGRANCY_SPECIES)
+    records = records.drop_duplicates(subset=["key"]).reset_index(drop=True)
     if cache_only:
         result = run_audit(records, cache_only=True)
     else:
@@ -1305,10 +1350,18 @@ def main(*, cache_only: bool = False) -> None:
         )
         for species in SPECIES_ORDER
     }
+    weather_unavailable_events = (
+        result.loc[result["weather_support_score"].isna()]
+        .groupby("species")
+        .size()
+        .astype(int)
+        .to_dict()
+    )
     coverage = _species_coverage(
         records,
         result,
         excluded_observations if cache_only else None,
+        weather_unavailable_events=weather_unavailable_events,
         allow_incomplete=cache_only,
     )
     weather_support = _species_weather_support(result)

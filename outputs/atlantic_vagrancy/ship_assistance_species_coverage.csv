@@ -1,31 +1,31 @@
-species,events,excluded_observations,status,reason
-Red-eyed Vireo,431,101,partially processed,101 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Yellow-throated Vireo,17,0,processed,
-American Robin,196,3,partially processed,3 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Veery,24,34,partially processed,34 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Grey-cheeked Thrush,159,16,partially processed,16 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Swainson's Thrush,141,21,partially processed,21 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Hermit Thrush,40,0,processed,
-White-throated Sparrow,208,284,partially processed,284 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Dark-eyed Junco,289,30,partially processed,30 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Indigo Bunting,46,358,partially processed,358 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Bobolink,134,20,partially processed,20 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Scarlet Tanager,32,37,partially processed,37 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Rose-breasted Grosbeak,112,1,partially processed,1 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Baltimore Oriole,179,8,partially processed,8 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Cedar Waxwing,72,1,partially processed,1 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Northern Waterthrush,66,258,partially processed,258 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Blackpoll Warbler,195,1,partially processed,1 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Ovenbird,12,1,partially processed,1 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Common Yellowthroat,96,0,processed,
-Black-and-white Warbler,72,36,partially processed,36 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Canada Warbler,5,61,partially processed,61 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-American Redstart,34,0,processed,
-Yellow-rumped Warbler,127,153,partially processed,153 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Blue-winged Warbler,5,0,processed,
-Tennessee Warbler,20,8,partially processed,8 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Cape May Warbler,14,33,partially processed,33 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Magnolia Warbler,2,169,partially processed,169 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Blackburnian Warbler,20,16,partially processed,16 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
-Wilson's Warbler,8,0,processed,
-Northern Parula,74,5,partially processed,5 occurrence records excluded because their ERA5 route-weather data are missing from the local cache.
+species,events,excluded_observations,weather_unavailable_events,status,reason
+Red-eyed Vireo,468,0,1,partially processed,1 events retained with null ERA5 route-weather data and classified as weather unavailable.
+Yellow-throated Vireo,17,0,0,processed,
+American Robin,199,0,1,partially processed,1 events retained with null ERA5 route-weather data and classified as weather unavailable.
+Veery,30,0,0,processed,
+Grey-cheeked Thrush,169,0,0,processed,
+Swainson's Thrush,153,0,0,processed,
+Hermit Thrush,40,0,0,processed,
+White-throated Sparrow,277,0,4,partially processed,4 events retained with null ERA5 route-weather data and classified as weather unavailable.
+Dark-eyed Junco,298,0,3,partially processed,3 events retained with null ERA5 route-weather data and classified as weather unavailable.
+Indigo Bunting,80,0,0,processed,
+Bobolink,145,0,0,processed,
+Scarlet Tanager,37,0,0,processed,
+Rose-breasted Grosbeak,113,0,0,processed,
+Baltimore Oriole,185,0,0,processed,
+Cedar Waxwing,73,0,0,processed,
+Northern Waterthrush,97,0,0,processed,
+Blackpoll Warbler,196,0,1,partially processed,1 events retained with null ERA5 route-weather data and classified as weather unavailable.
+Ovenbird,13,0,0,processed,
+Common Yellowthroat,96,0,0,processed,
+Black-and-white Warbler,83,0,1,partially processed,1 events retained with null ERA5 route-weather data and classified as weather unavailable.
+Canada Warbler,9,0,0,processed,
+American Redstart,34,0,0,processed,
+Yellow-rumped Warbler,181,0,1,partially processed,1 events retained with null ERA5 route-weather data and classified as weather unavailable.
+Blue-winged Warbler,5,0,0,processed,
+Tennessee Warbler,25,0,0,processed,
+Cape May Warbler,32,0,0,processed,
+Magnolia Warbler,35,0,0,processed,
+Blackburnian Warbler,22,0,0,processed,
+Wilson's Warbler,8,0,0,processed,
+Northern Parula,78,0,0,processed,

@@ -334,6 +334,69 @@ def test_run_audit_omits_records_before_weather_archive(monkeypatch) -> None:
     assert result.loc[0, "observation_count"] == 1
 
 
+def test_cache_only_run_audit_retains_weather_unavailable_events(monkeypatch) -> None:
+    species = str(audit.ATLANTIC_VAGRANCY_SPECIES[-1]["species"])
+    records = pd.DataFrame(
+        {
+            "key": [1, 2],
+            "date": pd.to_datetime(["2020-10-01", "2020-10-02"]),
+            "species": [species, species],
+            "countryCode": ["NL", "NL"],
+            "decimalLatitude": [52.0, 52.1],
+            "decimalLongitude": [4.0, 4.1],
+        }
+    )
+    available_weather = {column: 0.0 for column in audit.WEATHER_SCORE_COLUMNS}
+    available_weather["transatlantic_tailwind_corridor_present"] = False
+    available_weather["major_low_pressure_on_route"] = False
+    available_weather["minimum_route_pressure_hpa"] = 1015.0
+    weather = pd.DataFrame(
+        [available_weather, {column: np.nan for column in audit.WEATHER_SCORE_COLUMNS}]
+    )
+    monkeypatch.setattr(
+        audit,
+        "_collect_weather_scores",
+        lambda _records, *, cache_only=False: weather,
+    )
+    monkeypatch.setattr(
+        audit,
+        "_arrival_context",
+        lambda frame: pd.DataFrame(
+            {
+                "simultaneous_species_within_100km": [1] * len(frame),
+                "arrival_isolation_score": [1.0] * len(frame),
+                "species_observed_common_months": ["10"] * len(frame),
+                "outside_observed_common_season": [False] * len(frame),
+            },
+            index=frame.index,
+        ),
+    )
+    monkeypatch.setattr(
+        audit,
+        "_fetch_feature_collection",
+        lambda *_args, **_kwargs: [
+            {
+                "geometry": {"coordinates": [4.5, 52.0]},
+                "properties": {"portname": "Test Port"},
+            }
+        ],
+    )
+    monkeypatch.setattr(
+        audit,
+        "_route_density_distance",
+        lambda frame: np.ones(len(frame)),
+    )
+
+    result = audit.run_audit(records, cache_only=True)
+
+    unavailable = result.loc[result["weather_support_score"].isna()]
+    assert len(result) == 2
+    assert len(unavailable) == 1
+    assert unavailable.iloc[0]["classification"] == "weather unavailable"
+    assert pd.isna(unavailable.iloc[0]["tailwind_corridor_score"])
+    assert pd.isna(unavailable.iloc[0]["possible_ship_assistance_score"])
+
+
 def test_arrival_context_counts_nearby_simultaneous_species() -> None:
     records = pd.DataFrame(
         {
@@ -423,9 +486,37 @@ def test_weather_summary_counts_events_not_observations_and_includes_registry() 
     assert pd.isna(metrics.loc[absent, "natural_arrival_index"])
 
 
+def test_species_weather_support_reports_unavailable_events() -> None:
+    species = str(audit.ATLANTIC_VAGRANCY_SPECIES[-1]["species"])
+    events = pd.DataFrame(
+        {
+            "species": [species, species],
+            "date": ["2020-10-01", "2020-10-02"],
+            "decimalLatitude": [52.0, 52.1],
+            "decimalLongitude": [4.0, 4.1],
+            "weather_support_score": [0.8, np.nan],
+            "possible_ship_assistance_score": [0.4, np.nan],
+            "tailwind_corridor_score": [0.6, np.nan],
+            "storm_track_support_score": [0.4, np.nan],
+        }
+    )
+
+    metrics = audit._species_weather_support(events).set_index("species")
+
+    assert metrics.loc[species, "event_count"] == 2
+    assert metrics.loc[species, "weather_supported_pct"] == 50
+    assert metrics.loc[species, "weather_unavailable_pct"] == 50
+
+
 def test_main_writes_registry_wide_reports(monkeypatch, tmp_path) -> None:
     species = str(audit.ATLANTIC_VAGRANCY_SPECIES[-1]["species"])
-    records = pd.DataFrame({"species": [species], "date": ["2020-10-01"]})
+    records = pd.DataFrame(
+        {
+            "key": [1, 1],
+            "species": [species, species],
+            "date": ["2020-10-01", "2020-10-01"],
+        }
+    )
     events = audit.deduplicate_ship_assistance_events(
         pd.DataFrame(
             {
@@ -436,8 +527,8 @@ def test_main_writes_registry_wide_reports(monkeypatch, tmp_path) -> None:
                 "countryCode": ["NL"],
                 "country": ["Netherlands"],
                 "location": ["52, 4"],
-                "weather_support_score": [0.2],
-                "possible_ship_assistance_score": [0.8],
+                "weather_support_score": [np.nan],
+                "possible_ship_assistance_score": [np.nan],
                 "tailwind_corridor_score": [0.2],
                 "storm_track_support_score": [0.3],
                 "nearest_requested_harbour": ["Rotterdam"],
@@ -447,7 +538,11 @@ def test_main_writes_registry_wide_reports(monkeypatch, tmp_path) -> None:
         )
     )
     monkeypatch.setattr(audit, "load_all_occurrences", lambda registry: records)
-    monkeypatch.setattr(audit, "run_audit", lambda input_records: events)
+    monkeypatch.setattr(
+        audit,
+        "run_audit",
+        lambda input_records, *, cache_only=False: events,
+    )
     monkeypatch.setattr(audit, "ROOT", tmp_path)
     monkeypatch.setattr(audit, "OUTPUT_DIRECTORY", tmp_path)
     for constant, filename in (
@@ -460,14 +555,18 @@ def test_main_writes_registry_wide_reports(monkeypatch, tmp_path) -> None:
     ):
         monkeypatch.setattr(audit, constant, tmp_path / filename)
 
-    audit.main()
+    audit.main(cache_only=True)
 
     metrics = pd.read_csv(tmp_path / "species_weather_support.csv")
     assert set(metrics["species"]) == {
         str(item["species"]) for item in audit.ATLANTIC_VAGRANCY_SPECIES
     }
     assert len(pd.read_csv(tmp_path / "ship_assistance_events.csv")) == 1
+    coverage = pd.read_csv(tmp_path / "ship_assistance_species_coverage.csv")
+    assert coverage["excluded_observations"].sum() == 0
+    assert coverage["weather_unavailable_events"].sum() == 1
     summary = (tmp_path / "ship_assistance_summary.md").read_text()
+    assert "**Weather unavailable:** 1 events" in summary
     assert (
         f"Registry species processed: **{len(audit.ATLANTIC_VAGRANCY_SPECIES)}**; "
         "with events: **1**"
