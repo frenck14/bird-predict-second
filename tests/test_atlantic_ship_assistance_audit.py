@@ -268,6 +268,102 @@ def test_deduplicate_ship_assistance_events_merges_blackpoll_observations() -> N
     ] == 9
 
 
+def test_arrival_events_merge_the_american_robin_netherlands_example() -> None:
+    observation_clusters = pd.DataFrame(
+        {
+            "species": ["American Robin"] * 5,
+            "country": ["Netherlands"] * 5,
+            "countryCode": ["NL"] * 5,
+            "date": ["2014-04-27"] * 5,
+            "decimalLatitude": [52.50, 52.53, 52.53, 52.53, 52.54],
+            "decimalLongitude": [4.60, 4.61, 4.62, 4.63, 4.63],
+            "observation_count": [283, 2, 3, 1, 1],
+            "record_count": [1] * 5,
+            "weather_support_score": [0.2, 0.4, 0.6, 0.8, 1.0],
+            "possible_ship_assistance_score": [0.8, 0.6, 0.4, 0.2, 0.0],
+        }
+    )
+
+    arrivals = audit.build_arrival_events(observation_clusters)
+
+    assert len(arrivals) == 1
+    arrival = arrivals.iloc[0]
+    assert arrival["species"] == "American Robin"
+    assert arrival["country"] == "Netherlands"
+    assert arrival["first_date"] == pd.Timestamp("2014-04-27")
+    assert arrival["last_date"] == pd.Timestamp("2014-04-27")
+    assert arrival["duration_days"] == 1
+    assert arrival["observation_count"] == 290
+    assert arrival["record_count"] == 5
+    assert np.isclose(arrival["centroid_latitude"], 52.526)
+    assert np.isclose(arrival["centroid_longitude"], 4.62)
+    assert np.isclose(
+        arrival["weather_support_score"],
+        np.average(
+            observation_clusters["weather_support_score"],
+            weights=observation_clusters["observation_count"],
+        ),
+    )
+    assert np.isclose(
+        arrival["ship_assistance_score"],
+        np.average(
+            observation_clusters["possible_ship_assistance_score"],
+            weights=observation_clusters["observation_count"],
+        ),
+    )
+    assert arrival["preliminary_interpretation"] == "possible_ship_assisted"
+    assert arrival["classification"] == "possible_ship_assisted"
+    assert arrival["classification_label"] == "Possible ship-assisted"
+    comparison = audit.arrival_event_species_comparison(
+        observation_clusters, arrivals
+    ).set_index("species")
+    assert comparison.loc["American Robin", "observation_cluster_count"] == 5
+    assert comparison.loc["American Robin", "arrival_event_count"] == 1
+    assert comparison.loc["American Robin", "reduction_pct"] == 80
+
+
+def test_arrival_events_require_same_country_and_pairwise_spatial_temporal_limits() -> None:
+    observation_clusters = pd.DataFrame(
+        {
+            "species": ["Dark-eyed Junco"] * 5,
+            "country": [
+                "Netherlands",
+                "Netherlands",
+                "Belgium",
+                "Netherlands",
+                "Netherlands",
+            ],
+            "countryCode": ["NL", "NL", "BE", "NL", "NL"],
+            "date": [
+                "2015-02-01",
+                "2015-02-08",
+                "2015-02-01",
+                "2015-02-01",
+                "2015-02-09",
+            ],
+            "decimalLatitude": [53.20, 53.20, 53.20, 53.20, 53.20],
+            "decimalLongitude": [6.55, 6.55, 6.55, 6.72, 6.55],
+            "observation_count": [1] * 5,
+            "weather_support_score": [0.7] * 5,
+            "possible_ship_assistance_score": [0.2] * 5,
+        }
+    )
+
+    arrivals = audit.build_arrival_events(observation_clusters)
+
+    assert len(arrivals) == 4
+    assert arrivals.groupby("country").size().to_dict() == {
+        "Belgium": 1,
+        "Netherlands": 3,
+    }
+
+    unavailable_cluster = observation_clusters.iloc[[0]].copy()
+    unavailable_cluster["weather_support_score"] = np.nan
+    unavailable_cluster["possible_ship_assistance_score"] = np.nan
+    unavailable = audit.build_arrival_events(unavailable_cluster).iloc[0]
+    assert unavailable["classification"] == "weather unavailable"
+
+
 def test_run_audit_omits_records_before_weather_archive(monkeypatch) -> None:
     records = pd.DataFrame(
         {
@@ -548,6 +644,11 @@ def test_main_writes_registry_wide_reports(monkeypatch, tmp_path) -> None:
     for constant, filename in (
         ("AUDIT_OUTPUT", "ship_assistance_audit.csv"),
         ("EVENTS_OUTPUT", "ship_assistance_events.csv"),
+        ("ARRIVAL_EVENTS_OUTPUT", "ship_assistance_arrival_events.csv"),
+        (
+            "ARRIVAL_EVENT_COMPARISON_OUTPUT",
+            "ship_assistance_arrival_event_comparison.csv",
+        ),
         ("SUMMARY_OUTPUT", "ship_assistance_summary.md"),
         ("WEATHER_SUPPORT_OUTPUT", "species_weather_support.csv"),
         ("WEATHER_SUPPORT_SUMMARY_OUTPUT", "species_weather_support.md"),
@@ -562,6 +663,12 @@ def test_main_writes_registry_wide_reports(monkeypatch, tmp_path) -> None:
         str(item["species"]) for item in audit.ATLANTIC_VAGRANCY_SPECIES
     }
     assert len(pd.read_csv(tmp_path / "ship_assistance_events.csv")) == 1
+    assert len(pd.read_csv(tmp_path / "ship_assistance_arrival_events.csv")) == 1
+    arrival_comparison = pd.read_csv(
+        tmp_path / "ship_assistance_arrival_event_comparison.csv"
+    ).set_index("species")
+    assert arrival_comparison.loc[species, "observation_cluster_count"] == 1
+    assert arrival_comparison.loc[species, "arrival_event_count"] == 1
     coverage = pd.read_csv(tmp_path / "ship_assistance_species_coverage.csv")
     assert coverage["excluded_observations"].sum() == 0
     assert coverage["weather_unavailable_events"].sum() == 1

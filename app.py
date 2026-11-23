@@ -73,6 +73,8 @@ from src.validation_insights import show_validation_insights
 from src.validation_benchmarks_dashboard import show_validation_benchmarks
 from src.atlantic_ship_assistance_audit import (
     TARGET_COUNTRIES,
+    arrival_event_species_comparison,
+    build_arrival_events,
     deduplicate_ship_assistance_events,
 )
 from src.seabird_guidance import DUTCH_COAST_REGIONS, build_recommendations
@@ -3514,10 +3516,14 @@ SHIP_ASSISTANCE_REGIONS = {
     "Ireland": {"IE"},
     "Iceland": {"IS"},
 }
+OBSERVATION_CLUSTERS = "Observation Clusters"
+ARRIVAL_EVENTS = "Arrival Events"
 
 
 def _ship_assistance_events(
-    observations: pd.DataFrame, country_codes: set[str] | None = None
+    observations: pd.DataFrame,
+    country_codes: set[str] | None = None,
+    event_type: str = OBSERVATION_CLUSTERS,
 ) -> pd.DataFrame:
     records = observations.copy()
     if country_codes is not None:
@@ -3528,15 +3534,22 @@ def _ship_assistance_events(
     events["country"] = (
         events["country"].fillna(countries) if "country" in events else countries
     )
+    if event_type == ARRIVAL_EVENTS:
+        return build_arrival_events(events)
+    if event_type != OBSERVATION_CLUSTERS:
+        raise ValueError(f"Unsupported ship-assistance event type: {event_type}")
     return events
 
 
 def _ship_assistance_region_comparison(
     observations: pd.DataFrame,
+    event_type: str = OBSERVATION_CLUSTERS,
 ) -> pd.DataFrame:
     rows = []
     for region, country_codes in SHIP_ASSISTANCE_REGIONS.items():
-        events = _ship_assistance_events(observations, country_codes)
+        events = _ship_assistance_events(
+            observations, country_codes, event_type
+        )
         interpretations = events["preliminary_interpretation"]
         rows.append(
             {
@@ -3571,7 +3584,12 @@ def _ship_assistance_region_comparison(
 
 
 def _ship_assistance_map(events: pd.DataFrame) -> pdk.Deck:
-    events = deduplicate_ship_assistance_events(events)
+    if "arrival_event_id" in events:
+        events = events.copy()
+        events["event_id"] = events["arrival_event_id"]
+        events["date"] = events["first_date"]
+    else:
+        events = deduplicate_ship_assistance_events(events)
     country_codes = events.get(
         "countryCode", pd.Series("Unknown", index=events.index)
     ).astype("string")
@@ -3614,6 +3632,11 @@ def _ship_assistance_map(events: pd.DataFrame) -> pdk.Deck:
             "decimalLongitude": float(row.decimalLongitude),
             "species": str(row.species),
             "date": pd.Timestamp(row.date).strftime("%Y-%m-%d"),
+            "last_date": pd.Timestamp(
+                getattr(row, "last_date", row.date)
+            ).strftime("%Y-%m-%d"),
+            "duration_days": int(getattr(row, "duration_days", 1)),
+            "record_count": int(getattr(row, "record_count", 1)),
             "country": str(row.country),
             "locality": str(row.locality),
             "observation_count": int(row.observation_count),
@@ -3656,6 +3679,8 @@ def _ship_assistance_map(events: pd.DataFrame) -> pdk.Deck:
         tooltip={
             "html": (
                 "<b>{species}</b><br/>Date: {date}<br/>"
+                "Last seen: {last_date}<br/>Duration: {duration_days} day(s)<br/>"
+                "Observation clusters: {record_count}<br/>"
                 "Country: {country}<br/>Locality: {locality}<br/>"
                 "Observation count: {observation_count}<br/>"
                 "Weather support score: {weather_support_score}<br/>"
@@ -3670,6 +3695,11 @@ def _ship_assistance_map(events: pd.DataFrame) -> pdk.Deck:
 def _show_ship_assistance_dashboard() -> None:
     st.title("🛳 Ship Assistance Audit")
     region = st.selectbox("Region", list(SHIP_ASSISTANCE_REGIONS), index=0)
+    event_type = st.radio(
+        "Event Type",
+        [OBSERVATION_CLUSTERS, ARRIVAL_EVENTS],
+        horizontal=True,
+    )
     st.caption(
         "Netherlands + Belgium is the primary Low Countries view, reflecting "
         "their shared North Sea flyway and shipping corridor, comparable "
@@ -3680,9 +3710,9 @@ def _show_ship_assistance_dashboard() -> None:
         "weather-supported natural arrivals or potential ship-assisted arrivals."
     )
     st.info(
-        "Events represent unique species-date-location combinations. Multiple "
-        "observers of the same bird are merged into a single event. One bird is "
-        "counted once regardless of the number of observations."
+        "Observation Clusters represent unique species-date-location combinations. "
+        "Arrival Events further group clusters for the same species and country "
+        "within 10 km and 7 days. Observation counts preserve observer reports."
     )
     if not SHIP_ASSISTANCE_AUDIT_FILE.is_file():
         st.info(
@@ -3710,15 +3740,24 @@ def _show_ship_assistance_dashboard() -> None:
             + ", ".join(missing_columns)
         )
         return
-    events = _ship_assistance_events(
-        observations, SHIP_ASSISTANCE_REGIONS[region]
+    observation_clusters = _ship_assistance_events(
+        observations,
+        SHIP_ASSISTANCE_REGIONS[region],
+        OBSERVATION_CLUSTERS,
+    )
+    arrival_events = build_arrival_events(observation_clusters)
+    events = (
+        observation_clusters
+        if event_type == OBSERVATION_CLUSTERS
+        else arrival_events
     )
 
-    cards = st.columns(4)
+    cards = st.columns(5)
     cards[0].metric("Region", region)
     cards[1].metric("Observations", f"{int(events['observation_count'].sum()):,}")
-    cards[2].metric("Events", f"{len(events):,}")
+    cards[2].metric("Observation Clusters", f"{len(observation_clusters):,}")
     cards[3].metric("Species", events["species"].nunique())
+    cards[4].metric("Arrival Events", f"{len(arrival_events):,}")
     if events.empty:
         st.info("No matching events are available in the saved audit.")
         return
@@ -3814,63 +3853,121 @@ def _show_ship_assistance_dashboard() -> None:
         )
 
     with recent_tab:
-        latest = (
-            events.sort_values("date", ascending=False, kind="stable")
-            .head(100)
-            .loc[
-                :,
-                [
-                    "date",
-                    "species",
-                    "country",
-                    "location",
-                    "observation_count",
-                    "weather_support_score",
-                    "possible_ship_assistance_score",
-                    "classification",
-                ],
-            ]
-            .rename(
-                columns={
-                    "location": "locality",
-                    "weather_support_score": "weather support score",
-                    "possible_ship_assistance_score": "ship assistance score",
-                }
+        if event_type == ARRIVAL_EVENTS:
+            latest = (
+                events.sort_values("last_date", ascending=False, kind="stable")
+                .head(100)
+                .loc[
+                    :,
+                    [
+                        "first_date",
+                        "last_date",
+                        "duration_days",
+                        "species",
+                        "country",
+                        "location",
+                        "record_count",
+                        "observation_count",
+                        "weather_support_score",
+                        "ship_assistance_score",
+                        "classification_label",
+                    ],
+                ]
+                .rename(
+                    columns={
+                        "first_date": "first seen",
+                        "last_date": "last seen",
+                        "duration_days": "duration days",
+                        "location": "locality",
+                        "record_count": "observation clusters",
+                        "weather_support_score": "weather support score",
+                        "ship_assistance_score": "ship assistance score",
+                        "classification_label": "classification",
+                    }
+                )
+                .reset_index(drop=True)
             )
-            .reset_index(drop=True)
-        )
+        else:
+            latest = (
+                events.sort_values("date", ascending=False, kind="stable")
+                .head(100)
+                .loc[
+                    :,
+                    [
+                        "date",
+                        "species",
+                        "country",
+                        "location",
+                        "observation_count",
+                        "weather_support_score",
+                        "possible_ship_assistance_score",
+                        "classification",
+                    ],
+                ]
+                .rename(
+                    columns={
+                        "location": "locality",
+                        "weather_support_score": "weather support score",
+                        "possible_ship_assistance_score": "ship assistance score",
+                    }
+                )
+                .reset_index(drop=True)
+            )
         st.dataframe(
             latest,
             width="stretch",
             hide_index=True,
             column_config={
                 "date": st.column_config.DateColumn(format="YYYY-MM-DD"),
+                "first seen": st.column_config.DateColumn(format="YYYY-MM-DD"),
+                "last seen": st.column_config.DateColumn(format="YYYY-MM-DD"),
                 "weather support score": st.column_config.NumberColumn(format="%.3f"),
                 "ship assistance score": st.column_config.NumberColumn(format="%.3f"),
             },
         )
 
     with candidates_tab:
+        assistance_column = (
+            "ship_assistance_score"
+            if event_type == ARRIVAL_EVENTS
+            else "possible_ship_assistance_score"
+        )
         candidates = events.sort_values(
-            "possible_ship_assistance_score", ascending=False, kind="stable"
+            assistance_column, ascending=False, kind="stable"
         ).head(100)
+        candidate_columns = [
+            "species",
+            "date" if event_type == OBSERVATION_CLUSTERS else "first_date",
+            "country",
+            "location",
+            assistance_column,
+            "weather_support_score",
+            "observation_count",
+            "classification_label"
+            if event_type == ARRIVAL_EVENTS
+            else "classification",
+        ]
+        if event_type == ARRIVAL_EVENTS:
+            candidate_columns[1:2] = [
+                "first_date",
+                "last_date",
+                "duration_days",
+                "record_count",
+            ]
         candidates = candidates.loc[
             :,
-            [
-                "species",
-                "date",
-                "country",
-                "location",
-                "possible_ship_assistance_score",
-                "weather_support_score",
-                "observation_count",
-                "classification",
-            ],
+            candidate_columns,
         ].rename(
             columns={
                 "location": "locality",
                 "possible_ship_assistance_score": "ship assistance score",
+                "ship_assistance_score": "ship assistance score",
                 "weather_support_score": "weather support score",
+                "first_date": "first seen",
+                "last_date": "last seen",
+                "duration_days": "duration days",
+                "record_count": "observation clusters",
+                "classification_label": "classification",
             }
         )
         candidates.insert(0, "Rank", range(1, len(candidates) + 1))
@@ -3880,6 +3977,8 @@ def _show_ship_assistance_dashboard() -> None:
             hide_index=True,
             column_config={
                 "date": st.column_config.DateColumn(format="YYYY-MM-DD"),
+                "first seen": st.column_config.DateColumn(format="YYYY-MM-DD"),
+                "last seen": st.column_config.DateColumn(format="YYYY-MM-DD"),
                 "ship assistance score": st.column_config.NumberColumn(
                     format="%.3f"
                 ),
@@ -3921,11 +4020,16 @@ def _show_ship_assistance_dashboard() -> None:
                 .reindex(bin_labels, fill_value=0),
             }
         )
-        st.subheader("Event score distributions")
+        st.subheader(f"{event_type} score distributions")
         st.bar_chart(distributions)
-        st.subheader("Event interpretations")
+        st.subheader(f"{event_type} interpretations")
+        classification_column = (
+            "classification_label"
+            if event_type == ARRIVAL_EVENTS
+            else "classification"
+        )
         interpretation_counts = (
-            profile["classification"]
+            profile[classification_column]
             .value_counts()
             .rename_axis("Interpretation")
             .rename("Events")
@@ -3941,7 +4045,10 @@ def _show_ship_assistance_dashboard() -> None:
         st.pydeck_chart(_ship_assistance_map(events), width="stretch")
 
     with comparison_tab:
-        comparison = _ship_assistance_region_comparison(observations)
+        comparison = _ship_assistance_region_comparison(
+            observations, event_type
+        )
+        st.caption(f"Regional metrics below use {event_type.lower()}.")
         st.dataframe(
             comparison,
             width="stretch",
@@ -3971,6 +4078,25 @@ def _show_ship_assistance_dashboard() -> None:
             "compared with "
             f"{atlantic_stats['Possible Ship Assistance %']:.1f}% across the "
             "full Atlantic dataset."
+        )
+        st.subheader("Arrival Event Reduction by Species")
+        species_comparison = arrival_event_species_comparison(
+            observation_clusters, arrival_events
+        ).rename(
+            columns={
+                "species": "Species",
+                "observation_cluster_count": "Observation Clusters",
+                "arrival_event_count": "Arrival Events",
+                "reduction_pct": "Reduction %",
+            }
+        )
+        st.dataframe(
+            species_comparison,
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "Reduction %": st.column_config.NumberColumn(format="%.2f%%"),
+            },
         )
         st.caption(
             "These indices and interpretations are screening indicators, not "

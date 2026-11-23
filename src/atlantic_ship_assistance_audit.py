@@ -31,6 +31,10 @@ from .build_atlantic_vagrancy_dataset import (
 OUTPUT_DIRECTORY = ROOT / "outputs/atlantic_vagrancy"
 AUDIT_OUTPUT = OUTPUT_DIRECTORY / "ship_assistance_audit.csv"
 EVENTS_OUTPUT = OUTPUT_DIRECTORY / "ship_assistance_events.csv"
+ARRIVAL_EVENTS_OUTPUT = OUTPUT_DIRECTORY / "ship_assistance_arrival_events.csv"
+ARRIVAL_EVENT_COMPARISON_OUTPUT = (
+    OUTPUT_DIRECTORY / "ship_assistance_arrival_event_comparison.csv"
+)
 SUMMARY_OUTPUT = OUTPUT_DIRECTORY / "ship_assistance_summary.md"
 WEATHER_SUPPORT_OUTPUT = OUTPUT_DIRECTORY / "species_weather_support.csv"
 WEATHER_SUPPORT_SUMMARY_OUTPUT = OUTPUT_DIRECTORY / "species_weather_support.md"
@@ -769,6 +773,273 @@ def deduplicate_ship_assistance_events(df: pd.DataFrame) -> pd.DataFrame:
     return grouped
 
 
+def build_arrival_events(
+    observation_clusters: pd.DataFrame,
+    *,
+    maximum_distance_km: float = 10.0,
+    maximum_gap_days: int = 7,
+) -> pd.DataFrame:
+    """Group observation clusters into spatially and temporally coherent arrivals."""
+    required = {"species", "date", "decimalLatitude", "decimalLongitude"}
+    missing = required.difference(observation_clusters.columns)
+    if missing:
+        raise ValueError(
+            f"Ship-assistance clusters are missing arrival columns: {sorted(missing)}"
+        )
+    if (
+        "country" not in observation_clusters
+        and "countryCode" not in observation_clusters
+    ):
+        raise ValueError(
+            "Ship-assistance arrival events require a country or countryCode."
+        )
+    if maximum_distance_km <= 0 or maximum_gap_days < 0:
+        raise ValueError(
+            "Arrival-event distance must be positive and the time limit non-negative."
+        )
+
+    output_columns = [
+        "arrival_event_id",
+        "event_id",
+        "species",
+        "country",
+        "countryCode",
+        "first_date",
+        "last_date",
+        "date",
+        "duration_days",
+        "observation_count",
+        "record_count",
+        "centroid_latitude",
+        "centroid_longitude",
+        "decimalLatitude",
+        "decimalLongitude",
+        "location",
+        "weather_support_score",
+        "ship_assistance_score",
+        "possible_ship_assistance_score",
+        "preliminary_interpretation",
+        "classification",
+        "classification_label",
+    ]
+    if observation_clusters.empty:
+        return pd.DataFrame(columns=output_columns)
+
+    events = observation_clusters.copy()
+    country_codes = events.get(
+        "countryCode", pd.Series(pd.NA, index=events.index, dtype="string")
+    ).astype("string")
+    mapped_countries = country_codes.map(TARGET_COUNTRIES).fillna(country_codes)
+    events["country"] = (
+        events["country"].fillna(mapped_countries)
+        if "country" in events
+        else mapped_countries
+    )
+    events["date"] = pd.to_datetime(events["date"], errors="raise").dt.normalize()
+    for column in ("decimalLatitude", "decimalLongitude"):
+        events[column] = pd.to_numeric(events[column], errors="raise")
+    if events[
+        ["species", "country", "date", "decimalLatitude", "decimalLongitude"]
+    ].isna().any().any():
+        raise ValueError("Arrival-event keys and coordinates must not be missing.")
+
+    def positive_integer_counts(column: str, default: int) -> pd.Series:
+        values = pd.to_numeric(
+            events.get(column, pd.Series(default, index=events.index)),
+            errors="raise",
+        )
+        if (
+            values.isna().any()
+            or values.lt(1).any()
+            or not values.mod(1).eq(0).all()
+        ):
+            raise ValueError(
+                f"Arrival-event {column} values must be positive integers."
+            )
+        return values.astype("int64")
+
+    events["observation_count"] = positive_integer_counts("observation_count", 1)
+    events["record_count"] = positive_integer_counts("record_count", 1)
+    for column in ("weather_support_score", "possible_ship_assistance_score"):
+        if column not in events:
+            events[column] = np.nan
+        events[column] = pd.to_numeric(events[column], errors="raise")
+
+    grouped_arrivals: list[dict[str, object]] = []
+    maximum_distance_m = maximum_distance_km * 1000.0
+    for (species, country), group in events.groupby(
+        ["species", "country"], sort=True, dropna=False
+    ):
+        group = group.sort_values(
+            ["date", "decimalLatitude", "decimalLongitude"], kind="stable"
+        )
+        clusters: list[dict[str, object]] = []
+        for record in group.to_dict(orient="records"):
+            record_date = record["date"]
+            latitude = float(record["decimalLatitude"])
+            longitude = float(record["decimalLongitude"])
+            eligible: list[tuple[float, float, int]] = []
+            for cluster_index, cluster in enumerate(clusters):
+                if (record_date - cluster["first_date"]).days > maximum_gap_days:
+                    continue
+                members = cluster["members"]
+                member_latitudes = np.array(
+                    [float(member["decimalLatitude"]) for member in members]
+                )
+                member_longitudes = np.array(
+                    [float(member["decimalLongitude"]) for member in members]
+                )
+                _, _, distances = GEOD.inv(
+                    member_longitudes,
+                    member_latitudes,
+                    np.full(len(members), longitude),
+                    np.full(len(members), latitude),
+                )
+                maximum_member_distance = float(np.max(distances))
+                if maximum_member_distance > maximum_distance_m:
+                    continue
+                centroid_latitude = float(member_latitudes.mean())
+                centroid_longitude = float(member_longitudes.mean())
+                _, _, centroid_distance = GEOD.inv(
+                    centroid_longitude,
+                    centroid_latitude,
+                    longitude,
+                    latitude,
+                )
+                eligible.append(
+                    (
+                        float(centroid_distance),
+                        maximum_member_distance,
+                        cluster_index,
+                    )
+                )
+
+            if eligible:
+                _, _, selected_index = min(eligible)
+                selected = clusters[selected_index]
+                selected["members"].append(record)
+                selected["last_date"] = record_date
+            else:
+                clusters.append(
+                    {
+                        "first_date": record_date,
+                        "last_date": record_date,
+                        "members": [record],
+                    }
+                )
+
+        for sequence, cluster in enumerate(clusters, start=1):
+            members = pd.DataFrame(cluster["members"])
+            weights = members["observation_count"].astype(float)
+
+            def weighted_mean(column: str) -> float:
+                values = members[column]
+                valid = values.notna()
+                if not valid.any():
+                    return float("nan")
+                return float(np.average(values[valid], weights=weights[valid]))
+
+            centroid_latitude = float(members["decimalLatitude"].mean())
+            centroid_longitude = float(members["decimalLongitude"].mean())
+            weather_score = weighted_mean("weather_support_score")
+            assistance_score = weighted_mean("possible_ship_assistance_score")
+            preliminary_interpretation = str(
+                _interpret_ship_assistance(
+                    pd.DataFrame(
+                        {
+                            "weather_support_score": [weather_score],
+                            "possible_ship_assistance_score": [assistance_score],
+                        }
+                    )
+                ).iloc[0]
+            )
+            arrival_event_id = (
+                f"{species}|{country}|"
+                f"{cluster['first_date']:%Y-%m-%d}|{sequence:03d}"
+            )
+            first_date = cluster["first_date"]
+            last_date = cluster["last_date"]
+            grouped_arrivals.append(
+                {
+                    "arrival_event_id": arrival_event_id,
+                    "event_id": arrival_event_id,
+                    "species": species,
+                    "country": country,
+                    "countryCode": members["countryCode"].dropna().iloc[0]
+                    if "countryCode" in members and members["countryCode"].notna().any()
+                    else pd.NA,
+                    "first_date": first_date,
+                    "last_date": last_date,
+                    "date": first_date,
+                    "duration_days": int((last_date - first_date).days) + 1,
+                    "observation_count": int(members["observation_count"].sum()),
+                    "record_count": int(members["record_count"].sum()),
+                    "centroid_latitude": centroid_latitude,
+                    "centroid_longitude": centroid_longitude,
+                    "decimalLatitude": centroid_latitude,
+                    "decimalLongitude": centroid_longitude,
+                    "location": (
+                        f"Arrival centroid {centroid_latitude:.4f}, "
+                        f"{centroid_longitude:.4f}"
+                    ),
+                    "weather_support_score": weather_score,
+                    "ship_assistance_score": assistance_score,
+                    "possible_ship_assistance_score": assistance_score,
+                    "preliminary_interpretation": preliminary_interpretation,
+                    "classification": preliminary_interpretation,
+                    "classification_label": {
+                        "weather_supported": "Weather-supported",
+                        "possible_ship_assisted": "Possible ship-assisted",
+                        "ambiguous": "Ambiguous",
+                        "weather unavailable": "weather unavailable",
+                    }[preliminary_interpretation],
+                }
+            )
+
+    return pd.DataFrame(grouped_arrivals, columns=output_columns).sort_values(
+        ["first_date", "species", "country", "arrival_event_id"],
+        kind="stable",
+        ignore_index=True,
+    )
+
+
+def arrival_event_species_comparison(
+    observation_clusters: pd.DataFrame,
+    arrival_events: pd.DataFrame | None = None,
+) -> pd.DataFrame:
+    """Summarize observation-cluster and arrival-event counts by species."""
+    if arrival_events is None:
+        arrival_events = build_arrival_events(observation_clusters)
+    cluster_counts = observation_clusters.groupby("species").size()
+    arrival_counts = arrival_events.groupby("species").size()
+    species_names = list(
+        dict.fromkeys(
+            [
+                *SPECIES_ORDER,
+                *cluster_counts.index.astype(str),
+                *arrival_counts.index.astype(str),
+            ]
+        )
+    )
+    rows = []
+    for species in species_names:
+        cluster_count = int(cluster_counts.get(species, 0))
+        arrival_count = int(arrival_counts.get(species, 0))
+        rows.append(
+            {
+                "species": species,
+                "observation_cluster_count": cluster_count,
+                "arrival_event_count": arrival_count,
+                "reduction_pct": (
+                    100.0 * (cluster_count - arrival_count) / cluster_count
+                    if cluster_count
+                    else float("nan")
+                ),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
 def _species_coverage(
     records: pd.DataFrame,
     events: pd.DataFrame,
@@ -1364,12 +1635,20 @@ def main(*, cache_only: bool = False) -> None:
         weather_unavailable_events=weather_unavailable_events,
         allow_incomplete=cache_only,
     )
+    arrival_events = build_arrival_events(result)
+    arrival_comparison = arrival_event_species_comparison(
+        result, arrival_events
+    )
     weather_support = _species_weather_support(result)
     audit_species_count = weather_support["species"].nunique()
     assert audit_species_count == len(ATLANTIC_VAGRANCY_SPECIES)
     OUTPUT_DIRECTORY.mkdir(parents=True, exist_ok=True)
     result.to_csv(AUDIT_OUTPUT, index=False, date_format="%Y-%m-%d")
     result.to_csv(EVENTS_OUTPUT, index=False, date_format="%Y-%m-%d")
+    arrival_events.to_csv(
+        ARRIVAL_EVENTS_OUTPUT, index=False, date_format="%Y-%m-%d"
+    )
+    arrival_comparison.to_csv(ARRIVAL_EVENT_COMPARISON_OUTPUT, index=False)
     SUMMARY_OUTPUT.write_text(_build_summary(result, coverage), encoding="utf-8")
     weather_support.to_csv(WEATHER_SUPPORT_OUTPUT, index=False)
     coverage.to_csv(COVERAGE_OUTPUT, index=False)
@@ -1379,6 +1658,16 @@ def main(*, cache_only: bool = False) -> None:
     print(
         f"Wrote {AUDIT_OUTPUT.relative_to(ROOT)} "
         f"({len(result):,} events from {int(result['observation_count'].sum()):,} observations)"
+    )
+    print(
+        f"Wrote {ARRIVAL_EVENTS_OUTPUT.relative_to(ROOT)} "
+        f"({len(arrival_events):,} arrival events from {len(result):,} observation clusters)"
+    )
+    print(f"Wrote {ARRIVAL_EVENT_COMPARISON_OUTPUT.relative_to(ROOT)}")
+    print(
+        arrival_comparison.loc[
+            arrival_comparison["observation_cluster_count"].gt(0)
+        ].to_string(index=False)
     )
     print(f"Wrote {SUMMARY_OUTPUT.relative_to(ROOT)}")
     print(

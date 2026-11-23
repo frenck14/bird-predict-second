@@ -392,6 +392,82 @@ def test_ship_assistance_page_handles_missing_outputs(tmp_path: Path) -> None:
     assert any("No ship-assistance audit data is available" in item.value for item in at.info)
 
 
+def test_ship_assistance_arrival_event_selector_updates_dashboard_views(
+    tmp_path: Path,
+) -> None:
+    pd.DataFrame(
+        [
+            {
+                "species": "American Robin",
+                "date": "2014-04-27",
+                "countryCode": "NL",
+                "country": "Netherlands",
+                "location": f"{latitude:.2f}, {longitude:.2f}",
+                "decimalLatitude": latitude,
+                "decimalLongitude": longitude,
+                "observation_count": count,
+                "weather_support_score": 0.4,
+                "possible_ship_assistance_score": 0.5,
+                "preliminary_interpretation": "ambiguous",
+            }
+            for latitude, longitude, count in [
+                (52.50, 4.60, 283),
+                (52.53, 4.61, 2),
+                (52.53, 4.62, 3),
+                (52.53, 4.63, 1),
+                (52.54, 4.63, 1),
+            ]
+        ]
+    ).to_csv(tmp_path / "audit.csv", index=False)
+    at = AppTest.from_function(
+        _ship_assistance_script, args=(str(tmp_path),), default_timeout=30
+    ).run()
+
+    assert not at.exception
+    assert at.radio[0].label == "Event Type"
+    assert at.radio[0].options == ["Observation Clusters", "Arrival Events"]
+    assert at.radio[0].value == "Observation Clusters"
+    assert [metric.label for metric in at.metric[:5]] == [
+        "Region",
+        "Observations",
+        "Observation Clusters",
+        "Species",
+        "Arrival Events",
+    ]
+    assert [metric.value for metric in at.metric[:5]] == [
+        "Netherlands",
+        "290",
+        "5",
+        "1",
+        "1",
+    ]
+
+    at.radio[0].set_value("Arrival Events").run()
+
+    assert not at.exception
+    assert at.dataframe[1].value["observation clusters"].tolist() == [5]
+    assert at.dataframe[1].value["observation_count"].tolist() == [290]
+    assert len(at.dataframe[2].value) == 1
+    assert at.dataframe[2].value["observation clusters"].tolist() == [5]
+
+    import app
+
+    observations = pd.read_csv(tmp_path / "audit.csv")
+    clusters = app._ship_assistance_events(
+        observations, {"NL"}, app.OBSERVATION_CLUSTERS
+    )
+    arrivals = app.build_arrival_events(clusters)
+    map_deck = app._ship_assistance_map(arrivals)
+    assert len(map_deck.layers[0].data) == 1
+    assert map_deck.layers[0].data[0]["record_count"] == 5
+    assert app._ship_assistance_region_comparison(
+        observations, app.OBSERVATION_CLUSTERS
+    ).set_index("Region").loc["Netherlands", "Events"] == 5
+    assert app._ship_assistance_region_comparison(
+        observations, app.ARRIVAL_EVENTS
+    ).set_index("Region").loc["Netherlands", "Events"] == 1
+
+
 def test_ship_assistance_page_filters_each_selected_region(
     tmp_path: Path,
 ) -> None:

@@ -610,23 +610,36 @@ for current conditions.
 The Ship Assistance Audit follows Species Explorer and defaults to Netherlands
 records from the saved audit. Its region selector also offers Netherlands +
 Belgium, Belgium, Atlantic (all records), UK, Ireland, and Iceland. Region
-filtering precedes event deduplication and regional metric aggregation. The
-Netherlands + Belgium view is the primary Low Countries analysis, reflecting
-their shared North Sea flyway and shipping corridor, comparable weather and
-observer effort, and connected Atlantic vagrant arrivals. The selected region
-drives the summary metrics, ranking, recent events, candidates, species profile,
-and map. A comparison tab ranks regions by Possible Ship Assistance %. The
-ranking defaults to a 10-event minimum; this threshold can be lowered manually,
-and species search and sorting are available. An event is one species, date,
-and location rounded to two decimal degrees; repeated GBIF observations are
-retained in an observation count rather than counted as separate birds. The
-page does not fetch weather or rerun ERA5 analysis.
+filtering precedes event aggregation and regional metric aggregation. The Event
+Type selector defaults to **Observation Clusters**, the existing species-date-
+location events; **Arrival Events** additionally group clusters for the same
+species and country when every cluster is within 10 km of the others and the
+event spans no more than 7 days. Arrival-event coordinates are the centroid,
+scores are weighted by observation count, and the dashboard reports both layer
+counts plus per-species reductions. This is a spatial-temporal arrival proxy,
+not confirmation that records are the same individual. The Netherlands +
+Belgium view is the
+primary Low Countries analysis, reflecting their shared North Sea flyway and
+shipping corridor, comparable weather and observer effort, and connected
+Atlantic vagrant arrivals. The selected region and event type drive the summary
+metrics, ranking, recent events, candidates, species profile, map, and regional
+comparison. The regional tab also reports observation-cluster and arrival-event
+counts and their reduction by species. The ranking defaults to a 10-event
+minimum; this threshold can be lowered manually, and species search and sorting
+are available. An observation cluster is one species, date, and location
+rounded to two decimal degrees; repeated GBIF observations are retained in an
+observation count. Arrival-event outputs are written to
+`outputs/atlantic_vagrancy/ship_assistance_arrival_events.csv` and per-species
+before/after counts to
+`outputs/atlantic_vagrancy/ship_assistance_arrival_event_comparison.csv`.
+Existing event outputs and metrics remain observation-cluster based. The page
+does not fetch weather or rerun ERA5 analysis.
 Run `python -m src.atlantic_ship_assistance_audit` to rebuild the Atlantic
-audit, event table, species coverage summary, and event-based species weather
-support reports for the full Atlantic Vagrancy species registry. Species
-without eligible events retain zero counts and blank scores in the species
-weather support CSV. The audit uses GBIF, ERA5, and EMODnet and may take
-substantial time to run.
+audit, existing event table, arrival-event table, species coverage summary, and
+event-based species weather support reports for the full Atlantic Vagrancy
+species registry. Species without eligible events retain zero counts and blank
+scores in the species weather support CSV. The audit uses GBIF, ERA5, and
+EMODnet and may take substantial time to run.
 Atlantic Vagrant Watch uses explicitly labelled illustrative demo data. The
 Species Explorer lists the species with existing forecast layers; independent
 skua, auk, duck and swan forecasts, and dedicated fetch and visibility products,
