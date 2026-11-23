@@ -3599,6 +3599,7 @@ def _ship_assistance_map(events: pd.DataFrame) -> pdk.Deck:
         "weather_supported": [38, 166, 91, 220],
         "ambiguous": [242, 193, 24, 220],
         "possible_ship_assisted": [220, 53, 69, 220],
+        "weather unavailable": [128, 128, 128, 220],
     }
     unknown_interpretations = set(events["preliminary_interpretation"]) - set(colors)
     if unknown_interpretations:
@@ -3620,6 +3621,7 @@ def _ship_assistance_map(events: pd.DataFrame) -> pdk.Deck:
             "possible_ship_assistance_score": float(
                 row.possible_ship_assistance_score
             ),
+            "interpretation": row.preliminary_interpretation,
             "marker_color": colors[row.preliminary_interpretation],
         }
         for row in events.itertuples(index=False)
@@ -3932,6 +3934,10 @@ def _show_ship_assistance_dashboard() -> None:
         st.dataframe(interpretation_counts, width="stretch", hide_index=True)
 
     with map_tab:
+        st.markdown(
+            ":green[●] Weather-supported · :orange[●] Ambiguous · "
+            ":red[●] Possible ship-assisted · :gray[●] weather unavailable"
+        )
         st.pydeck_chart(_ship_assistance_map(events), width="stretch")
 
     with comparison_tab:

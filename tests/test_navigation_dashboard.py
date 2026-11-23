@@ -659,6 +659,102 @@ def test_ship_assistance_map_has_one_marker_per_event() -> None:
     )
 
 
+def test_ship_assistance_map_renders_all_four_interpretations() -> None:
+    import app
+
+    events = pd.DataFrame(
+        [
+            {
+                "species": f"Bird {interpretation}",
+                "date": "2020-10-27",
+                "decimalLatitude": 53.0 + index,
+                "decimalLongitude": 4.0,
+                "weather_support_score": weather_score,
+                "possible_ship_assistance_score": assistance_score,
+                "preliminary_interpretation": interpretation,
+            }
+            for index, (interpretation, weather_score, assistance_score) in enumerate(
+                [
+                    ("weather_supported", 0.7, 0.2),
+                    ("possible_ship_assisted", 0.2, 0.8),
+                    ("ambiguous", 0.4, 0.5),
+                    ("weather unavailable", float("nan"), 0.5),
+                ]
+            )
+        ]
+    )
+
+    deck = app._ship_assistance_map(events)
+
+    markers = deck.layers[0].data
+    assert len(markers) == 4
+    assert {marker["interpretation"] for marker in markers} == {
+        "weather_supported",
+        "possible_ship_assisted",
+        "ambiguous",
+        "weather unavailable",
+    }
+    unavailable = next(
+        marker
+        for marker in markers
+        if marker["interpretation"] == "weather unavailable"
+    )
+    assert unavailable["marker_color"] == [128, 128, 128, 220]
+
+
+def test_ship_assistance_page_loads_unavailable_weather_in_low_countries(
+    tmp_path: Path,
+) -> None:
+    pd.DataFrame(
+        [
+            {
+                "species": f"Bird {country_code} {interpretation}",
+                "date": "2026-01-01",
+                "countryCode": country_code,
+                "location": "North Sea coast",
+                "decimalLatitude": latitude,
+                "decimalLongitude": longitude,
+                "weather_support_score": weather_score,
+                "possible_ship_assistance_score": assistance_score,
+                "preliminary_interpretation": interpretation,
+            }
+            for (
+                country_code,
+                latitude,
+                longitude,
+                interpretation,
+                weather_score,
+                assistance_score,
+            ) in [
+                ("NL", 52.0, 5.0, "weather unavailable", float("nan"), 0.5),
+                ("BE", 51.0, 3.0, "weather_supported", 0.7, 0.2),
+            ]
+        ]
+    ).to_csv(tmp_path / "audit.csv", index=False)
+    at = AppTest.from_function(
+        _ship_assistance_script, args=(str(tmp_path),), default_timeout=30
+    ).run()
+
+    assert not at.exception
+    assert any("weather unavailable" in item.value for item in at.markdown)
+    assert [metric.value for metric in at.metric[:4]] == [
+        "Netherlands",
+        "1",
+        "1",
+        "1",
+    ]
+
+    at.selectbox[0].set_value("Netherlands + Belgium").run()
+
+    assert not at.exception
+    assert [metric.value for metric in at.metric[:4]] == [
+        "Netherlands + Belgium",
+        "2",
+        "2",
+        "2",
+    ]
+
+
 def test_dutch_ship_assistance_events_filter_before_deduplication() -> None:
     import app
 
