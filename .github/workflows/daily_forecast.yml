@@ -1,0 +1,94 @@
+name: Daily Bird Predict Forecast
+
+on:
+  # GitHub schedules use UTC. Run at both possible Amsterdam offsets and
+  # select the matching one below to keep the local run time at 05:00.
+  schedule:
+    - cron: "0 3 * * *"
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-bird-predict-forecast
+  cancel-in-progress: false
+
+jobs:
+  forecast:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Select the 05:00 Europe/Amsterdam schedule
+        id: schedule
+        env:
+          SCHEDULE: ${{ github.event.schedule }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [[ "$EVENT_NAME" != "schedule" ]]; then
+            echo "Manual dispatch; running forecast."
+            echo "run_forecast=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          amsterdam_offset="$(TZ=Europe/Amsterdam date +%z)"
+          echo "Scheduled cron: $SCHEDULE; Amsterdam UTC offset: $amsterdam_offset"
+
+          if [[ "$SCHEDULE" == "0 3 * * *" && "$amsterdam_offset" == "+0200" ]] ||
+             [[ "$SCHEDULE" == "0 4 * * *" && "$amsterdam_offset" == "+0100" ]]; then
+            echo "This schedule corresponds to 05:00 in Amsterdam."
+            echo "run_forecast=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "This is the non-matching UTC schedule for the current season; skipping."
+            echo "run_forecast=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check out main
+        if: steps.schedule.outputs.run_forecast == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        if: steps.schedule.outputs.run_forecast == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install and verify dependencies
+        if: steps.schedule.outputs.run_forecast == 'true'
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip check
+
+      - name: Run daily forecast
+        if: steps.schedule.outputs.run_forecast == 'true'
+        run: |
+          echo "Forecast start (UTC): $(date -u --iso-8601=seconds)"
+          trap 'echo "Forecast end (UTC): $(date -u --iso-8601=seconds)"' EXIT
+          python src/run_daily_forecast.py
+
+      - name: Commit and push changed forecast files
+        if: steps.schedule.outputs.run_forecast == 'true'
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+          echo "Changed forecast files:"
+          git add -- inputs/open_meteo_forecast_current.csv outputs/
+          git diff --cached --name-only
+
+          if git diff --cached --quiet; then
+            echo "No forecast files changed; nothing to commit."
+            echo "Commit hash: none (no changes)"
+            exit 0
+          fi
+
+          git commit -m "Update daily Bird Predict forecasts"
+          commit_hash="$(git rev-parse HEAD)"
+          echo "Commit hash: $commit_hash"
+          git push origin HEAD:main
