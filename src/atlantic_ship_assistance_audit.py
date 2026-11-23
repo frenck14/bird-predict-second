@@ -777,7 +777,7 @@ def build_arrival_events(
     observation_clusters: pd.DataFrame,
     *,
     maximum_distance_km: float = 10.0,
-    maximum_gap_days: int = 7,
+    maximum_gap_days: int = 3,
 ) -> pd.DataFrame:
     """Group observation clusters into spatially and temporally coherent arrivals."""
     required = {"species", "date", "decimalLatitude", "decimalLongitude"}

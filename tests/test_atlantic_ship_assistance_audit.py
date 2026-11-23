@@ -296,7 +296,7 @@ def test_arrival_events_merge_the_american_robin_netherlands_example() -> None:
     assert arrival["observation_count"] == 290
     assert arrival["record_count"] == 5
     assert np.isclose(arrival["centroid_latitude"], 52.526)
-    assert np.isclose(arrival["centroid_longitude"], 4.62)
+    assert np.isclose(arrival["centroid_longitude"], 4.618)
     assert np.isclose(
         arrival["weather_support_score"],
         np.average(
@@ -322,7 +322,7 @@ def test_arrival_events_merge_the_american_robin_netherlands_example() -> None:
     assert comparison.loc["American Robin", "reduction_pct"] == 80
 
 
-def test_arrival_events_require_same_country_and_pairwise_spatial_temporal_limits() -> None:
+def test_arrival_events_require_same_country_and_pairwise_spatial_three_day_limits() -> None:
     observation_clusters = pd.DataFrame(
         {
             "species": ["Dark-eyed Junco"] * 5,

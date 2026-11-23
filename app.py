@@ -3712,7 +3712,7 @@ def _show_ship_assistance_dashboard() -> None:
     st.info(
         "Observation Clusters represent unique species-date-location combinations. "
         "Arrival Events further group clusters for the same species and country "
-        "within 10 km and 7 days. Observation counts preserve observer reports."
+        "within 10 km and 3 days. Observation counts preserve observer reports."
     )
     if not SHIP_ASSISTANCE_AUDIT_FILE.is_file():
         st.info(

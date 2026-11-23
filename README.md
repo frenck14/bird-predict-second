@@ -614,7 +614,7 @@ filtering precedes event aggregation and regional metric aggregation. The Event
 Type selector defaults to **Observation Clusters**, the existing species-date-
 location events; **Arrival Events** additionally group clusters for the same
 species and country when every cluster is within 10 km of the others and the
-event spans no more than 7 days. Arrival-event coordinates are the centroid,
+event spans no more than 3 days. Arrival-event coordinates are the centroid,
 scores are weighted by observation count, and the dashboard reports both layer
 counts plus per-species reductions. This is a spatial-temporal arrival proxy,
 not confirmation that records are the same individual. The Netherlands +
