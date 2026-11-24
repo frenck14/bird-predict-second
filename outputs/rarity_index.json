@@ -1,7 +1,7 @@
 {
   "product": "Rarity Index",
   "description": "Weighted potential for unusually rare seabird records.",
-  "generated_at": "2026-11-10T12:40:21.622576+00:00",
+  "generated_at": "2026-11-24T10:18:14.830971+00:00",
   "rarity_weights": {
     "Northern Fulmar": 0.5,
     "Manx Shearwater": 1.0,
@@ -30,102 +30,102 @@
     {
       "label": "Tomorrow",
       "forecast_day": 1,
-      "date": "2026-11-11",
-      "rarity_raw": 0.7810790043290032,
-      "rarity_index": 35.4,
+      "date": "2026-11-25",
+      "rarity_raw": 0.49327867965367955,
+      "rarity_index": 22.2,
       "leading_rarity_species": "Sooty Shearwater",
       "species_probabilities": {
-        "Northern Fulmar": 0.035579365079365,
-        "Manx Shearwater": 0.0047777777777777,
-        "European Storm-petrel": 0.0168629148629148,
-        "Sooty Shearwater": 0.1464312169312168,
-        "Great Shearwater": 0.0475820105820105
+        "Northern Fulmar": 0.016755772005772007,
+        "Manx Shearwater": 0.0,
+        "European Storm-petrel": 0.007841269841269842,
+        "Sooty Shearwater": 0.13185052910052908,
+        "Great Shearwater": 0.012277777777777778
       },
       "rarity_contributions": {
-        "Northern Fulmar": 0.0177896825396825,
-        "Manx Shearwater": 0.0047777777777777,
-        "European Storm-petrel": 0.0337258297258296,
-        "Sooty Shearwater": 0.4392936507936504,
-        "Great Shearwater": 0.285492063492063
+        "Northern Fulmar": 0.008377886002886003,
+        "Manx Shearwater": 0.0,
+        "European Storm-petrel": 0.015682539682539683,
+        "Sooty Shearwater": 0.39555158730158724,
+        "Great Shearwater": 0.07366666666666667
       },
-      "historical_percentile": 76.9,
-      "historical_label": "Strong",
-      "historical_rank_text": "Higher than 77% of historical forecast days"
+      "historical_percentile": 66.3,
+      "historical_label": "Above Average",
+      "historical_rank_text": "Higher than 66% of historical forecast days"
     },
     {
       "label": "+3 days",
       "forecast_day": 3,
-      "date": "2026-11-13",
-      "rarity_raw": 0.583046897546897,
-      "rarity_index": 26.3,
+      "date": "2026-11-27",
+      "rarity_raw": 0.3654246031746031,
+      "rarity_index": 16.3,
       "leading_rarity_species": "Sooty Shearwater",
       "species_probabilities": {
-        "Northern Fulmar": 0.0281111111111111,
-        "Manx Shearwater": 0.0092380952380952,
-        "European Storm-petrel": 0.0093888888888888,
-        "Sooty Shearwater": 0.1266637806637806,
-        "Great Shearwater": 0.0268306878306878
+        "Northern Fulmar": 0.009944444444444447,
+        "Manx Shearwater": 0.0,
+        "European Storm-petrel": 0.0019444444444444442,
+        "Sooty Shearwater": 0.09348941798941798,
+        "Great Shearwater": 0.012682539682539684
       },
       "rarity_contributions": {
-        "Northern Fulmar": 0.01405555555555555,
-        "Manx Shearwater": 0.0092380952380952,
-        "European Storm-petrel": 0.0187777777777776,
-        "Sooty Shearwater": 0.37999134199134177,
-        "Great Shearwater": 0.16098412698412679
+        "Northern Fulmar": 0.004972222222222223,
+        "Manx Shearwater": 0.0,
+        "European Storm-petrel": 0.0038888888888888883,
+        "Sooty Shearwater": 0.2804682539682539,
+        "Great Shearwater": 0.0760952380952381
       },
-      "historical_percentile": 70.5,
+      "historical_percentile": 58.2,
       "historical_label": "Above Average",
-      "historical_rank_text": "Higher than 70% of historical forecast days"
+      "historical_rank_text": "Higher than 58% of historical forecast days"
     },
     {
       "label": "+7 days",
       "forecast_day": 7,
-      "date": "2026-11-17",
-      "rarity_raw": 0.32448484848484765,
-      "rarity_index": 14.4,
+      "date": "2026-12-01",
+      "rarity_raw": 0.133399531024531,
+      "rarity_index": 5.6,
       "leading_rarity_species": "Sooty Shearwater",
       "species_probabilities": {
-        "Northern Fulmar": 0.0431760461760461,
-        "Manx Shearwater": 0.0042222222222222,
-        "European Storm-petrel": 0.0114841269841269,
-        "Sooty Shearwater": 0.0503465608465608,
-        "Great Shearwater": 0.0207777777777777
+        "Northern Fulmar": 0.07791017316017312,
+        "Manx Shearwater": 0.0,
+        "European Storm-petrel": 0.0,
+        "Sooty Shearwater": 0.01798148148148148,
+        "Great Shearwater": 0.00675
       },
       "rarity_contributions": {
-        "Northern Fulmar": 0.02158802308802305,
-        "Manx Shearwater": 0.0042222222222222,
-        "European Storm-petrel": 0.0229682539682538,
-        "Sooty Shearwater": 0.1510396825396824,
-        "Great Shearwater": 0.1246666666666662
+        "Northern Fulmar": 0.03895508658008656,
+        "Manx Shearwater": 0.0,
+        "European Storm-petrel": 0.0,
+        "Sooty Shearwater": 0.05394444444444444,
+        "Great Shearwater": 0.0405
       },
-      "historical_percentile": 55.0,
-      "historical_label": "Above Average",
-      "historical_rank_text": "Higher than 55% of historical forecast days"
+      "historical_percentile": 38.0,
+      "historical_label": "Common Conditions",
+      "historical_rank_text": "Higher than 38% of historical forecast days"
     },
     {
       "label": "+14 days",
       "forecast_day": 14,
-      "date": "2026-11-24",
-      "rarity_raw": 0.21945370370370337,
-      "rarity_index": 9.6,
+      "date": "2026-12-08",
+      "rarity_raw": 0.07962896825396826,
+      "rarity_index": 3.2,
       "leading_rarity_species": "Sooty Shearwater",
       "species_probabilities": {
-        "Northern Fulmar": 0.0137566137566137,
-        "Manx Shearwater": 0.0013333333333333,
-        "European Storm-petrel": 0.0133888888888888,
-        "Sooty Shearwater": 0.0520436507936508,
-        "Great Shearwater": 0.0047222222222222
+        "Northern Fulmar": 0.01063888888888889,
+        "Manx Shearwater": 0.0,
+        "European Storm-petrel": 0.0,
+        "Sooty Shearwater": 0.015023809523809524,
+        "Great Shearwater": 0.004873015873015873
       },
       "rarity_contributions": {
-        "Northern Fulmar": 0.00687830687830685,
-        "Manx Shearwater": 0.0013333333333333,
-        "European Storm-petrel": 0.0267777777777776,
-        "Sooty Shearwater": 0.1561309523809524,
-        "Great Shearwater": 0.028333333333333197
+        "Northern Fulmar": 0.005319444444444445,
+        "Manx Shearwater": 0.0,
+        "European Storm-petrel": 0.0,
+        "Sooty Shearwater": 0.045071428571428575,
+        "Great Shearwater": 0.029238095238095237
       },
-      "historical_percentile": 46.3,
+      "historical_percentile": 29.7,
       "historical_label": "Common Conditions",
-      "historical_rank_text": "Higher than 46% of historical forecast days"
+      "historical_rank_text": "Higher than 30% of historical forecast days"
     }
   ],
   "historical_context": {

@@ -1,10 +1,10 @@
 species,slug,records,records_since_start,record_years,top_cell,top_probability,status,data_quality
-Yellow-browed Warbler,eastern_yellow_browed_warbler,68647,65446,27,3670000-3430000,0.0035207938124090852,OK,sufficient
-Pallas's Leaf Warbler,eastern_pallass_leaf_warbler,13563,12022,27,4190000-3600000,0.033113967171617506,OK,sufficient
-Dusky Warbler,eastern_dusky_warbler,11044,10480,27,3670000-3430000,0.057592588365842516,OK,sufficient
-Radde's Warbler,eastern_raddes_warbler,3089,2611,27,3670000-3430000,0.017606523168199988,OK,sufficient
-Two-barred Warbler,eastern_two_barred_warbler,1378,1341,10,3660000-3430000,0.0013709373882055695,OK,sufficient
-Siberian Chiffchaff,eastern_siberian_chiffchaff,9400,9283,27,4200000-3600000,0.052324536751327616,OK,sufficient
-Red-flanked Bluetail,eastern_red_flanked_bluetail,6443,6221,26,3660000-4100000,0.0048995809271692664,OK,sufficient
-Olive-backed Pipit,eastern_olive_backed_pipit,4597,4107,26,3660000-4100000,0.013106270908588912,OK,sufficient
-Rustic Bunting,eastern_rustic_bunting,3117,2408,27,3660000-4100000,0.0026169526363939376,OK,sufficient
+Yellow-browed Warbler,eastern_yellow_browed_warbler,70633,67005,27,3660000-4100000,0.0018901224870535836,OK,sufficient
+Pallas's Leaf Warbler,eastern_pallass_leaf_warbler,13803,12159,27,4200000-3600000,0.008997001930932417,OK,sufficient
+Dusky Warbler,eastern_dusky_warbler,11508,10903,27,3670000-3430000,0.02140885108857082,OK,sufficient
+Radde's Warbler,eastern_raddes_warbler,3175,2664,27,3670000-3430000,0.0014480731785255368,OK,sufficient
+Two-barred Warbler,eastern_two_barred_warbler,1398,1356,10,3660000-3430000,0.026935036060493866,OK,sufficient
+Siberian Chiffchaff,eastern_siberian_chiffchaff,9501,9384,27,4200000-3600000,0.01947493425678688,OK,sufficient
+Red-flanked Bluetail,eastern_red_flanked_bluetail,6495,6258,26,3660000-4100000,0.007773589961012216,OK,sufficient
+Olive-backed Pipit,eastern_olive_backed_pipit,4965,4416,26,3660000-4100000,0.0019264460489187177,OK,sufficient
+Rustic Bunting,eastern_rustic_bunting,1130,706,27,3660000-4100000,0.02611206450051862,OK,sufficient
