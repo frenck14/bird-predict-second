@@ -1,10 +1,10 @@
 species,slug,records,records_since_start,record_years,top_cell,top_probability,status,data_quality
-Yellow-browed Warbler,eastern_yellow_browed_warbler,70633,67005,27,3660000-4100000,0.0018901224870535836,OK,sufficient
-Pallas's Leaf Warbler,eastern_pallass_leaf_warbler,13803,12159,27,4200000-3600000,0.008997001930932417,OK,sufficient
-Dusky Warbler,eastern_dusky_warbler,11508,10903,27,3670000-3430000,0.02140885108857082,OK,sufficient
-Radde's Warbler,eastern_raddes_warbler,3175,2664,27,3670000-3430000,0.0014480731785255368,OK,sufficient
-Two-barred Warbler,eastern_two_barred_warbler,1398,1356,10,3660000-3430000,0.026935036060493866,OK,sufficient
-Siberian Chiffchaff,eastern_siberian_chiffchaff,9501,9384,27,4200000-3600000,0.01947493425678688,OK,sufficient
-Red-flanked Bluetail,eastern_red_flanked_bluetail,6495,6258,26,3660000-4100000,0.007773589961012216,OK,sufficient
-Olive-backed Pipit,eastern_olive_backed_pipit,4965,4416,26,3660000-4100000,0.0019264460489187177,OK,sufficient
-Rustic Bunting,eastern_rustic_bunting,1130,706,27,3660000-4100000,0.02611206450051862,OK,sufficient
+Yellow-browed Warbler,eastern_yellow_browed_warbler,70633,67005,27,3660000-4100000,0.0018718974048433999,OK,sufficient
+Pallas's Leaf Warbler,eastern_pallass_leaf_warbler,13803,12159,27,4200000-3600000,0.008910250357444695,OK,sufficient
+Dusky Warbler,eastern_dusky_warbler,11508,10903,27,3670000-3430000,0.021202421043011704,OK,sufficient
+Radde's Warbler,eastern_raddes_warbler,3175,2664,27,3670000-3430000,0.0014341104576406434,OK,sufficient
+Two-barred Warbler,eastern_two_barred_warbler,1398,1356,10,3660000-3430000,0.026675321015622887,OK,sufficient
+Siberian Chiffchaff,eastern_siberian_chiffchaff,9501,9384,27,4200000-3600000,0.019287151570585862,OK,sufficient
+Red-flanked Bluetail,eastern_red_flanked_bluetail,6495,6258,26,3660000-4100000,0.007698634863087025,OK,sufficient
+Olive-backed Pipit,eastern_olive_backed_pipit,4965,4416,26,3660000-4100000,0.0019078707249090246,OK,sufficient
+Rustic Bunting,eastern_rustic_bunting,1130,706,27,3660000-4100000,0.02586028477435843,OK,sufficient

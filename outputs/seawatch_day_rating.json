@@ -1,6 +1,6 @@
 {
   "product": "Seawatch Day Rating",
-  "generated_at": "2026-11-24T10:18:17.698101+00:00",
+  "generated_at": "2026-11-24T15:21:02.818767+00:00",
   "formula": {
     "weights": {
       "General Seabird Index": 0.4,
@@ -50,7 +50,7 @@
       "confidence": "High",
       "best_coast": {
         "coast": "Wadden islands",
-        "mean_probability": 0.002904903820224017,
+        "mean_probability": 0.0026973601242641075,
         "top_site": "Texel (NW)"
       },
       "top3_dutch_sites": [
@@ -58,25 +58,25 @@
           "location": "Texel (NW)",
           "score": 6,
           "rating": "Poor",
-          "probability": 0.0055900878091261486
+          "probability": 0.005179306217303853
         },
         {
           "location": "Vlieland",
-          "score": 6,
+          "score": 5,
           "rating": "Poor",
-          "probability": 0.005295023419176532
+          "probability": 0.004903819981199842
         },
         {
           "location": "Terschelling",
-          "score": 6,
+          "score": 5,
           "rating": "Poor",
-          "probability": 0.005149559512819305
+          "probability": 0.004768403867046933
         }
       ],
       "drivers": [
         {
           "name": "General Seabird Index",
-          "points": 1.0314814814814814
+          "points": 0.9514814814814816
         },
         {
           "name": "European Storm-petrel",
@@ -84,11 +84,11 @@
         },
         {
           "name": "Manx Shearwater",
-          "points": 0.0
+          "points": 0.06666666666666668
         },
         {
           "name": "Sooty Shearwater",
-          "points": 1.3185052910052908
+          "points": 1.3504497354497351
         },
         {
           "name": "peak_seawatching_season",
@@ -96,10 +96,10 @@
         }
       ],
       "component_points": {
-        "General Seabird Index": 1.0314814814814814,
+        "General Seabird Index": 0.9514814814814816,
         "European Storm-petrel": 0.23523809523809525,
-        "Manx Shearwater": 0.0,
-        "Sooty Shearwater": 1.3185052910052908
+        "Manx Shearwater": 0.06666666666666668,
+        "Sooty Shearwater": 1.3504497354497351
       },
       "weather_bonuses": {
         "strong_westerly_wind": 0,
@@ -108,15 +108,15 @@
         "peak_seawatching_season": 5
       },
       "input_probabilities": {
-        "General Seabird Index": 0.025787037037037035,
+        "General Seabird Index": 0.023787037037037037,
         "European Storm-petrel": 0.007841269841269842,
-        "Manx Shearwater": 0.0,
-        "Sooty Shearwater": 0.13185052910052908
+        "Manx Shearwater": 0.0033333333333333335,
+        "Sooty Shearwater": 0.1350449735449735
       },
       "weather": {
-        "wind_speed_ms": 4.995833333333333,
-        "wind_speed_kt": 9.711131499897622,
-        "wind_direction_degrees": 130.54655162730003,
+        "wind_speed_ms": 4.789583333333333,
+        "wind_speed_kt": 9.31021322696607,
+        "wind_direction_degrees": 130.7818927122067,
         "wind_direction": "SE",
         "minimum_pressure_hpa": 1025.9,
         "wind_change_ms": null
@@ -160,21 +160,21 @@
         },
         {
           "rank": 5,
-          "location": "Fair Isle (S)",
-          "country": "GB",
-          "score": 6,
-          "rating": "Poor",
-          "latitude": 59.471927001650656,
-          "longitude": -1.6066624123044293
-        },
-        {
-          "rank": 6,
           "location": "Scilly Isles (NW)",
           "country": "GB",
           "score": 6,
           "rating": "Poor",
           "latitude": 49.96660807548946,
           "longitude": -6.407280774373756
+        },
+        {
+          "rank": 6,
+          "location": "Fair Isle (S)",
+          "country": "GB",
+          "score": 6,
+          "rating": "Poor",
+          "latitude": 59.471927001650656,
+          "longitude": -1.6066624123044293
         },
         {
           "rank": 7,
@@ -217,8 +217,8 @@
       "coast_ranking": [
         {
           "coast": "Wadden Islands",
-          "score": 5.8,
-          "top_site": "Terschelling",
+          "score": 5.2,
+          "top_site": "Texel",
           "rank": 1
         },
         {
@@ -252,7 +252,7 @@
         {
           "name": "strong_westerly_wind",
           "label": "Strong W-WNW airflow",
-          "detail": "SE 10 kt; needs W-WNW at 20 kt or more",
+          "detail": "SE 9 kt; needs W-WNW at 20 kt or more",
           "points": -10.0
         },
         {
@@ -277,16 +277,16 @@
           "name": "manx_signal",
           "label": "Weak Manx signal",
           "detail": "0% event probability (elevated at 25%)",
-          "points": -5.0
+          "points": -4.933333333333334
         },
         {
           "name": "sooty_signal",
           "label": "Weak Sooty signal",
-          "detail": "13% event probability (elevated at 25%)",
-          "points": -1.1814947089947092
+          "detail": "14% event probability (elevated at 25%)",
+          "points": -1.149550264550265
         }
       ],
-      "historical_percentile": 43.8,
+      "historical_percentile": 43.9,
       "historical_label": "Common Conditions",
       "historical_rank_text": "Higher than 44% of historical forecast days"
     },
@@ -298,7 +298,7 @@
       "confidence": "High",
       "best_coast": {
         "coast": "Wadden islands",
-        "mean_probability": 0.0011867322786167681,
+        "mean_probability": 0.001010544192094201,
         "top_site": "Texel (NW)"
       },
       "top3_dutch_sites": [
@@ -306,29 +306,29 @@
           "location": "Texel (NW)",
           "score": 5,
           "rating": "Poor",
-          "probability": 0.002291779970821642
+          "probability": 0.0019419281637588462
         },
         {
           "location": "Vlieland",
           "score": 5,
           "rating": "Poor",
-          "probability": 0.002171035278668376
+          "probability": 0.001839316603837779
         },
         {
           "location": "Terschelling",
           "score": 5,
           "rating": "Poor",
-          "probability": 0.002111222481967288
+          "probability": 0.0017888460092640814
         }
       ],
       "drivers": [
         {
           "name": "General Seabird Index",
-          "points": 0.42444444444444446
+          "points": 0.3577777777777778
         },
         {
           "name": "European Storm-petrel",
-          "points": 0.05833333333333333
+          "points": 0.09833333333333333
         },
         {
           "name": "Manx Shearwater",
@@ -336,7 +336,7 @@
         },
         {
           "name": "Sooty Shearwater",
-          "points": 0.9348941798941799
+          "points": 0.9654497354497353
         },
         {
           "name": "peak_seawatching_season",
@@ -344,10 +344,10 @@
         }
       ],
       "component_points": {
-        "General Seabird Index": 0.42444444444444446,
-        "European Storm-petrel": 0.05833333333333333,
+        "General Seabird Index": 0.3577777777777778,
+        "European Storm-petrel": 0.09833333333333333,
         "Manx Shearwater": 0.0,
-        "Sooty Shearwater": 0.9348941798941799
+        "Sooty Shearwater": 0.9654497354497353
       },
       "weather_bonuses": {
         "strong_westerly_wind": 0,
@@ -356,37 +356,37 @@
         "peak_seawatching_season": 5
       },
       "input_probabilities": {
-        "General Seabird Index": 0.010611111111111111,
-        "European Storm-petrel": 0.0019444444444444442,
+        "General Seabird Index": 0.008944444444444444,
+        "European Storm-petrel": 0.003277777777777778,
         "Manx Shearwater": 0.0,
-        "Sooty Shearwater": 0.09348941798941798
+        "Sooty Shearwater": 0.09654497354497353
       },
       "weather": {
-        "wind_speed_ms": 6.999374999999999,
-        "wind_speed_kt": 13.605708298668073,
-        "wind_direction_degrees": 86.31601044153369,
+        "wind_speed_ms": 7.034583333333335,
+        "wind_speed_kt": 13.674147882633163,
+        "wind_direction_degrees": 87.62295605759846,
         "wind_direction": "E",
-        "minimum_pressure_hpa": 1021.4,
-        "wind_change_ms": -1.2527083333333362
+        "minimum_pressure_hpa": 1022.2,
+        "wind_change_ms": -1.4956249999999978
       },
       "top10_hotspots": [
         {
           "rank": 1,
-          "location": "Fair Isle",
-          "country": "GB",
-          "score": 5,
-          "rating": "Poor",
-          "latitude": 59.56048458102276,
-          "longitude": -1.6368796943660695
-        },
-        {
-          "rank": 2,
           "location": "Scilly Isles",
           "country": "GB",
           "score": 5,
           "rating": "Poor",
           "latitude": 49.89913376686885,
           "longitude": -6.240444835091222
+        },
+        {
+          "rank": 2,
+          "location": "Fair Isle",
+          "country": "GB",
+          "score": 5,
+          "rating": "Poor",
+          "latitude": 59.56048458102276,
+          "longitude": -1.6368796943660695
         },
         {
           "rank": 3,
@@ -506,7 +506,7 @@
         {
           "name": "deep_atlantic_low",
           "label": "Deep Atlantic low",
-          "detail": "1021 hPa; no deep low (1000 hPa or lower)",
+          "detail": "1022 hPa; no deep low (1000 hPa or lower)",
           "points": -10.0
         },
         {
@@ -519,7 +519,7 @@
           "name": "storm_petrel_signal",
           "label": "Weak Storm-petrel signal",
           "detail": "0% event probability (elevated at 25%)",
-          "points": -7.4416666666666655
+          "points": -7.401666666666666
         },
         {
           "name": "manx_signal",
@@ -530,8 +530,8 @@
         {
           "name": "sooty_signal",
           "label": "Weak Sooty signal",
-          "detail": "9% event probability (elevated at 25%)",
-          "points": -1.5651058201058203
+          "detail": "10% event probability (elevated at 25%)",
+          "points": -1.5345502645502647
         }
       ],
       "historical_percentile": 39.8,
@@ -546,7 +546,7 @@
       "confidence": "Medium",
       "best_coast": {
         "coast": "Wadden islands",
-        "mean_probability": 0.003687255282462287,
+        "mean_probability": 0.004631405557684396,
         "top_site": "Texel (NW)"
       },
       "top3_dutch_sites": [
@@ -554,25 +554,25 @@
           "location": "Texel (NW)",
           "score": 1,
           "rating": "Poor",
-          "probability": 0.007278652607115862
+          "probability": 0.009146787602604347
         },
         {
           "location": "Vlieland",
           "score": 1,
           "rating": "Poor",
-          "probability": 0.006894421632980961
+          "probability": 0.008663356123445945
         },
         {
           "location": "Terschelling",
           "score": 1,
           "rating": "Poor",
-          "probability": 0.00670133916266037
+          "probability": 0.008420423541777008
         }
       ],
       "drivers": [
         {
           "name": "General Seabird Index",
-          "points": 1.3758730158730157
+          "points": 1.7292063492063494
         },
         {
           "name": "European Storm-petrel",
@@ -580,18 +580,18 @@
         },
         {
           "name": "Manx Shearwater",
-          "points": 0.0
+          "points": 0.022222222222222223
         },
         {
           "name": "Sooty Shearwater",
-          "points": 0.17981481481481482
+          "points": 0.13592592592592592
         }
       ],
       "component_points": {
-        "General Seabird Index": 1.3758730158730157,
+        "General Seabird Index": 1.7292063492063494,
         "European Storm-petrel": 0.0,
-        "Manx Shearwater": 0.0,
-        "Sooty Shearwater": 0.17981481481481482
+        "Manx Shearwater": 0.022222222222222223,
+        "Sooty Shearwater": 0.13592592592592592
       },
       "weather_bonuses": {
         "strong_westerly_wind": 0,
@@ -600,25 +600,25 @@
         "peak_seawatching_season": 0
       },
       "input_probabilities": {
-        "General Seabird Index": 0.03439682539682539,
+        "General Seabird Index": 0.04323015873015874,
         "European Storm-petrel": 0.0,
-        "Manx Shearwater": 0.0,
-        "Sooty Shearwater": 0.01798148148148148
+        "Manx Shearwater": 0.0011111111111111111,
+        "Sooty Shearwater": 0.013592592592592592
       },
       "weather": {
-        "wind_speed_ms": 4.988958333333334,
-        "wind_speed_kt": 9.697767557466573,
-        "wind_direction_degrees": 205.71169642665618,
+        "wind_speed_ms": 4.220625,
+        "wind_speed_kt": 8.204245748808422,
+        "wind_direction_degrees": 203.24534719409215,
         "wind_direction": "SSW",
-        "minimum_pressure_hpa": 1028.8,
-        "wind_change_ms": -0.8202083333333334
+        "minimum_pressure_hpa": 1029.1,
+        "wind_change_ms": -0.878541666666667
       },
       "top10_hotspots": [
         {
           "rank": 1,
           "location": "Fair Isle",
           "country": "GB",
-          "score": 1,
+          "score": 2,
           "rating": "Poor",
           "latitude": 59.56048458102276,
           "longitude": -1.6368796943660695
@@ -627,7 +627,7 @@
           "rank": 2,
           "location": "Scilly Isles",
           "country": "GB",
-          "score": 1,
+          "score": 2,
           "rating": "Poor",
           "latitude": 49.89913376686885,
           "longitude": -6.240444835091222
@@ -636,7 +636,7 @@
           "rank": 3,
           "location": "Scilly Isles (SW)",
           "country": "GB",
-          "score": 1,
+          "score": 2,
           "rating": "Poor",
           "latitude": 49.879271879947936,
           "longitude": -6.376755276552173
@@ -737,7 +737,7 @@
         {
           "name": "strong_westerly_wind",
           "label": "Strong W-WNW airflow",
-          "detail": "SSW 10 kt; needs W-WNW at 20 kt or more",
+          "detail": "SSW 8 kt; needs W-WNW at 20 kt or more",
           "points": -10.0
         },
         {
@@ -768,16 +768,16 @@
           "name": "manx_signal",
           "label": "Weak Manx signal",
           "detail": "0% event probability (elevated at 25%)",
-          "points": -5.0
+          "points": -4.977777777777778
         },
         {
           "name": "sooty_signal",
           "label": "Weak Sooty signal",
-          "detail": "2% event probability (elevated at 25%)",
-          "points": -2.3201851851851854
+          "detail": "1% event probability (elevated at 25%)",
+          "points": -2.364074074074074
         }
       ],
-      "historical_percentile": 16.7,
+      "historical_percentile": 17.2,
       "historical_label": "Common Conditions",
       "historical_rank_text": "Higher than 17% of historical forecast days"
     },

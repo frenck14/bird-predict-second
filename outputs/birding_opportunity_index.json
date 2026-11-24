@@ -21,21 +21,21 @@
       "horizon_days": 1,
       "label": "Tomorrow",
       "date": "2026-11-25",
-      "boi_score": 75.3,
-      "historical_percentile": 83.8,
+      "boi_score": 75.6,
+      "historical_percentile": 84.1,
       "rating_category": "Good",
       "recommended_style": "East-coast bush-bashing: migration traps, coastal scrub and headlands for Siberian vagrants",
       "main_module": "Eastern",
       "module_percentiles": {
-        "Atlantic": 79.9,
+        "Atlantic": 80.7,
         "Eastern": 84.1,
-        "Seawatch": 43.8,
+        "Seawatch": 43.9,
         "Goose": null
       },
       "weighted_contributions": {
-        "Atlantic": 32.89,
-        "Eastern": 34.63,
-        "Seawatch": 7.73
+        "Atlantic": 33.23,
+        "Eastern": 34.61,
+        "Seawatch": 7.75
       },
       "best_hotspots": [
         "Shetland Mainland (11%)",
@@ -52,26 +52,26 @@
       "horizon_days": 3,
       "label": "+3 days",
       "date": "2026-11-27",
-      "boi_score": 73.5,
-      "historical_percentile": 82.5,
+      "boi_score": 72.8,
+      "historical_percentile": 81.9,
       "rating_category": "Good",
       "recommended_style": "East-coast bush-bashing: migration traps, coastal scrub and headlands for Siberian vagrants",
       "main_module": "Eastern",
       "module_percentiles": {
-        "Atlantic": 80.0,
-        "Eastern": 81.5,
+        "Atlantic": 79.3,
+        "Eastern": 80.5,
         "Seawatch": 39.8,
         "Goose": null
       },
       "weighted_contributions": {
-        "Atlantic": 32.94,
-        "Eastern": 33.54,
+        "Atlantic": 32.66,
+        "Eastern": 33.16,
         "Seawatch": 7.02
       },
       "best_hotspots": [
         "Shetland Mainland (7%)",
-        "Fair Isle (7%)",
-        "Shetland Mainland (S) (7%)"
+        "Fair Isle (6%)",
+        "Shetland Mainland (S) (6%)"
       ],
       "target_species": [
         "Two-barred Warbler (2%)",
@@ -83,21 +83,21 @@
       "horizon_days": 7,
       "label": "+7 days",
       "date": "2026-12-01",
-      "boi_score": 49.9,
-      "historical_percentile": 53.1,
+      "boi_score": 48.5,
+      "historical_percentile": 51.0,
       "rating_category": "Average",
       "recommended_style": "East-coast bush-bashing: migration traps, coastal scrub and headlands for Siberian vagrants",
       "main_module": "Eastern",
       "module_percentiles": {
-        "Atlantic": 45.7,
-        "Eastern": 68.2,
-        "Seawatch": 16.7,
+        "Atlantic": 42.7,
+        "Eastern": 67.6,
+        "Seawatch": 17.2,
         "Goose": null
       },
       "weighted_contributions": {
-        "Atlantic": 18.81,
-        "Eastern": 28.1,
-        "Seawatch": 2.95
+        "Atlantic": 17.6,
+        "Eastern": 27.82,
+        "Seawatch": 3.04
       },
       "best_hotspots": [
         "Shetland Mainland (3%)",

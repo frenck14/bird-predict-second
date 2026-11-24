@@ -1,13 +1,13 @@
 # Bird-Predict Daily Report: Yellow-browed Warbler
 
-Generated: 2026-11-24 10:29 UTC
+Generated: 2026-11-24 15:31 UTC
 
 Forecast dates: 2026-11-25 to 2026-12-08
 
 ## Summary
 
-- Mean predicted daily risk: 19.9%
-- Highest predicted risk: 38.0% on 2026-11-30 (Low)
+- Mean predicted daily risk: 18.2%
+- Highest predicted risk: 35.2% on 2026-12-06 (Low)
 - Model: XGBoost; target is at least 10 records.
 - Experiment reference: 14-day lead PR-AUC 0.7502, ROC-AUC 0.9396.
 - Weather input: Open-Meteo Forecast API (best-match forecast model; hourly forecast aggregated to local daily values at four coastal grid points approximating KNMI stations).
@@ -16,16 +16,16 @@ Forecast dates: 2026-11-25 to 2026-12-08
 
 | Date | Probability | Risk category |
 |---|---:|---|
-| 2026-11-25 | 6.5% | Very Low |
+| 2026-11-25 | 7.8% | Very Low |
 | 2026-11-26 | 4.5% | Very Low |
 | 2026-11-27 | 3.6% | Very Low |
 | 2026-11-28 | 6.0% | Very Low |
-| 2026-11-29 | 6.2% | Very Low |
-| 2026-11-30 | 38.0% | Low |
-| 2026-12-01 | 22.1% | Low |
-| 2026-12-02 | 35.0% | Low |
-| 2026-12-03 | 30.7% | Low |
-| 2026-12-04 | 26.6% | Low |
+| 2026-11-29 | 6.3% | Very Low |
+| 2026-11-30 | 15.2% | Very Low |
+| 2026-12-01 | 25.5% | Low |
+| 2026-12-02 | 28.9% | Low |
+| 2026-12-03 | 24.2% | Low |
+| 2026-12-04 | 34.4% | Low |
 | 2026-12-05 | 25.3% | Low |
 | 2026-12-06 | 35.2% | Low |
 | 2026-12-07 | 28.7% | Low |
