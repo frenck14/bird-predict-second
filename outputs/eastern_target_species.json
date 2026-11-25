@@ -12,12 +12,12 @@
     {
       "horizon_days": 1,
       "label": "Tomorrow",
-      "date": "2026-11-25",
+      "date": "2026-11-26",
       "species": [
         {
           "rank": 1,
           "species": "Two-barred Warbler",
-          "probability": 0.026675321015622887,
+          "probability": 0.026149228418720572,
           "historical_percentile": 92.4,
           "historical_label": "Exceptional",
           "star_rating": 4
@@ -25,64 +25,64 @@
         {
           "rank": 2,
           "species": "Rustic Bunting",
-          "probability": 0.02586028477435843,
-          "historical_percentile": 87.2,
+          "probability": 0.02430219335208137,
+          "historical_percentile": 87.1,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 3,
           "species": "Dusky Warbler",
-          "probability": 0.0212024210430117,
-          "historical_percentile": 85.7,
+          "probability": 0.021625439996564834,
+          "historical_percentile": 85.3,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 4,
           "species": "Siberian Chiffchaff",
-          "probability": 0.019287151570585866,
-          "historical_percentile": 84.4,
+          "probability": 0.016743975551773725,
+          "historical_percentile": 83.9,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 5,
           "species": "Pallas's Leaf Warbler",
-          "probability": 0.008910250357444695,
-          "historical_percentile": 85.2,
+          "probability": 0.007307698543637396,
+          "historical_percentile": 83.9,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 6,
           "species": "Red-flanked Bluetail",
-          "probability": 0.007698634863087026,
-          "historical_percentile": 85.2,
+          "probability": 0.007202634735144688,
+          "historical_percentile": 84.9,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 7,
           "species": "Olive-backed Pipit",
-          "probability": 0.0019078707249090244,
-          "historical_percentile": 77.5,
+          "probability": 0.0017929208302256618,
+          "historical_percentile": 77.3,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 8,
           "species": "Yellow-browed Warbler",
-          "probability": 0.0018718974048433999,
-          "historical_percentile": 81.6,
+          "probability": 0.0017591149155816764,
+          "historical_percentile": 81.5,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 9,
           "species": "Radde's Warbler",
-          "probability": 0.0014341104576406436,
-          "historical_percentile": 80.9,
+          "probability": 0.0013477047887880216,
+          "historical_percentile": 80.8,
           "historical_label": "Strong",
           "star_rating": 3
         }
@@ -91,77 +91,77 @@
     {
       "horizon_days": 3,
       "label": "+3 days",
-      "date": "2026-11-27",
+      "date": "2026-11-28",
       "species": [
         {
           "rank": 1,
-          "species": "Two-barred Warbler",
-          "probability": 0.01644568600522902,
-          "historical_percentile": 91.2,
-          "historical_label": "Exceptional",
-          "star_rating": 4
-        },
-        {
-          "rank": 2,
           "species": "Rustic Bunting",
-          "probability": 0.015244662943461355,
+          "probability": 0.015454815985840165,
           "historical_percentile": 85.5,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
+          "rank": 2,
+          "species": "Two-barred Warbler",
+          "probability": 0.014917406565390864,
+          "historical_percentile": 90.9,
+          "historical_label": "Exceptional",
+          "star_rating": 4
+        },
+        {
           "rank": 3,
           "species": "Dusky Warbler",
-          "probability": 0.012221095586085268,
-          "historical_percentile": 82.9,
+          "probability": 0.013218380959903346,
+          "historical_percentile": 82.5,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 4,
           "species": "Siberian Chiffchaff",
-          "probability": 0.010714329673683048,
-          "historical_percentile": 80.1,
+          "probability": 0.009048810396648815,
+          "historical_percentile": 78.8,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 5,
           "species": "Red-flanked Bluetail",
-          "probability": 0.004518182258341048,
-          "historical_percentile": 82.7,
+          "probability": 0.00411660860866852,
+          "historical_percentile": 82.2,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 6,
           "species": "Pallas's Leaf Warbler",
-          "probability": 0.004297582819076892,
-          "historical_percentile": 79.1,
+          "probability": 0.0037682727536500413,
+          "historical_percentile": 77.5,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 7,
           "species": "Olive-backed Pipit",
-          "probability": 0.001124691641825005,
-          "historical_percentile": 74.4,
+          "probability": 0.001020175289523711,
+          "historical_percentile": 73.6,
           "historical_label": "Above Average",
           "star_rating": 2
         },
         {
           "rank": 8,
           "species": "Yellow-browed Warbler",
-          "probability": 0.001103485334773759,
-          "historical_percentile": 78.8,
+          "probability": 0.0010009396611690552,
+          "historical_percentile": 77.9,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 9,
           "species": "Radde's Warbler",
-          "probability": 0.0008454095050067799,
-          "historical_percentile": 78.5,
+          "probability": 0.0007668465332745694,
+          "historical_percentile": 77.7,
           "historical_label": "Strong",
           "star_rating": 3
         }
@@ -170,77 +170,77 @@
     {
       "horizon_days": 7,
       "label": "+7 days",
-      "date": "2026-12-01",
+      "date": "2026-12-02",
       "species": [
         {
           "rank": 1,
           "species": "Rustic Bunting",
-          "probability": 0.008469916150851188,
-          "historical_percentile": 81.6,
+          "probability": 0.006099743747788539,
+          "historical_percentile": 78.5,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 2,
           "species": "Two-barred Warbler",
-          "probability": 0.007986810390234463,
-          "historical_percentile": 88.7,
+          "probability": 0.005849316114115169,
+          "historical_percentile": 87.0,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 3,
           "species": "Dusky Warbler",
-          "probability": 0.0059108910782081844,
-          "historical_percentile": 77.0,
-          "historical_label": "Strong",
-          "star_rating": 3
+          "probability": 0.005074360436637033,
+          "historical_percentile": 74.0,
+          "historical_label": "Above Average",
+          "star_rating": 2
         },
         {
           "rank": 4,
           "species": "Siberian Chiffchaff",
-          "probability": 0.005274241497940757,
-          "historical_percentile": 70.8,
+          "probability": 0.004022633744641117,
+          "historical_percentile": 67.7,
           "historical_label": "Above Average",
           "star_rating": 2
         },
         {
           "rank": 5,
           "species": "Red-flanked Bluetail",
-          "probability": 0.0029815374941515524,
-          "historical_percentile": 80.0,
+          "probability": 0.002030115022376463,
+          "historical_percentile": 76.7,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 6,
           "species": "Pallas's Leaf Warbler",
-          "probability": 0.0018322525088885278,
-          "historical_percentile": 66.3,
+          "probability": 0.0013418903919985244,
+          "historical_percentile": 61.0,
           "historical_label": "Above Average",
           "star_rating": 2
         },
         {
           "rank": 7,
           "species": "Olive-backed Pipit",
-          "probability": 0.0005311457095888615,
-          "historical_percentile": 62.3,
+          "probability": 0.0003889962333198771,
+          "historical_percentile": 53.8,
           "historical_label": "Above Average",
           "star_rating": 2
         },
         {
           "rank": 8,
           "species": "Yellow-browed Warbler",
-          "probability": 0.0005211308409905531,
-          "historical_percentile": 66.9,
+          "probability": 0.00038166162420677507,
+          "historical_percentile": 57.9,
           "historical_label": "Above Average",
           "star_rating": 2
         },
         {
           "rank": 9,
           "species": "Radde's Warbler",
-          "probability": 0.0003992522169911008,
-          "historical_percentile": 66.6,
+          "probability": 0.0002924011354141706,
+          "historical_percentile": 57.8,
           "historical_label": "Above Average",
           "star_rating": 2
         }
@@ -249,77 +249,77 @@
     {
       "horizon_days": 14,
       "label": "+14 days",
-      "date": "2026-12-08",
+      "date": "2026-12-09",
       "species": [
         {
           "rank": 1,
           "species": "Siberian Chiffchaff",
-          "probability": 0.017913545335559496,
-          "historical_percentile": 83.9,
+          "probability": 0.025163545687271537,
+          "historical_percentile": 86.3,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 2,
-          "species": "Rustic Bunting",
-          "probability": 0.015242384916986353,
+          "species": "Dusky Warbler",
+          "probability": 0.02298231721129589,
           "historical_percentile": 85.5,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 3,
-          "species": "Dusky Warbler",
-          "probability": 0.012893170532621612,
-          "historical_percentile": 83.1,
+          "species": "Rustic Bunting",
+          "probability": 0.017349602149723132,
+          "historical_percentile": 86.0,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 4,
-          "species": "Two-barred Warbler",
-          "probability": 0.010665803252118732,
-          "historical_percentile": 89.9,
+          "species": "Pallas's Leaf Warbler",
+          "probability": 0.00891638651200684,
+          "historical_percentile": 85.2,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 5,
-          "species": "Pallas's Leaf Warbler",
-          "probability": 0.006563732493427637,
-          "historical_percentile": 83.0,
+          "species": "Two-barred Warbler",
+          "probability": 0.0071214958700294905,
+          "historical_percentile": 88.2,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 6,
           "species": "Red-flanked Bluetail",
-          "probability": 0.0020570791265661055,
-          "historical_percentile": 76.8,
+          "probability": 0.0028344044946422833,
+          "historical_percentile": 79.6,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 7,
           "species": "Olive-backed Pipit",
-          "probability": 0.0012467544016250267,
-          "historical_percentile": 75.3,
+          "probability": 0.00171787571709992,
+          "historical_percentile": 77.2,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 8,
           "species": "Yellow-browed Warbler",
-          "probability": 0.0012232465745236796,
-          "historical_percentile": 79.6,
+          "probability": 0.0016854847944879352,
+          "historical_percentile": 81.3,
           "historical_label": "Strong",
           "star_rating": 3
         },
         {
           "rank": 9,
           "species": "Radde's Warbler",
-          "probability": 0.0009371617804792371,
-          "historical_percentile": 79.4,
+          "probability": 0.0012912947919662594,
+          "historical_percentile": 80.6,
           "historical_label": "Strong",
           "star_rating": 3
         }

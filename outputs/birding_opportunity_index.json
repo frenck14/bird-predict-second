@@ -20,89 +20,89 @@
     {
       "horizon_days": 1,
       "label": "Tomorrow",
-      "date": "2026-11-25",
-      "boi_score": 75.6,
-      "historical_percentile": 84.1,
+      "date": "2026-11-26",
+      "boi_score": 78.3,
+      "historical_percentile": 85.9,
       "rating_category": "Good",
-      "recommended_style": "East-coast bush-bashing: migration traps, coastal scrub and headlands for Siberian vagrants",
-      "main_module": "Eastern",
+      "recommended_style": "Island and west-coast vagrant hunting: headlands and migration traps for Nearctic passerines",
+      "main_module": "Atlantic",
       "module_percentiles": {
-        "Atlantic": 80.7,
-        "Eastern": 84.1,
-        "Seawatch": 43.9,
+        "Atlantic": 86.3,
+        "Eastern": 83.8,
+        "Seawatch": 46.9,
         "Goose": null
       },
       "weighted_contributions": {
-        "Atlantic": 33.23,
-        "Eastern": 34.61,
-        "Seawatch": 7.75
+        "Atlantic": 35.55,
+        "Eastern": 34.49,
+        "Seawatch": 8.28
       },
       "best_hotspots": [
-        "Shetland Mainland (11%)",
-        "Fair Isle (11%)",
-        "Shetland Mainland (S) (11%)"
+        "Scilly Isles (9%)",
+        "Fair Isle (9%)",
+        "Scilly Isles (SW) (9%)"
       ],
       "target_species": [
-        "Two-barred Warbler (3%)",
-        "Rustic Bunting (3%)",
-        "Dusky Warbler (2%)"
+        "Bobolink (0%)",
+        "Blackpoll Warbler (0%)",
+        "Red-eyed Vireo (0%)"
       ]
     },
     {
       "horizon_days": 3,
       "label": "+3 days",
-      "date": "2026-11-27",
-      "boi_score": 72.8,
-      "historical_percentile": 81.9,
+      "date": "2026-11-28",
+      "boi_score": 67.3,
+      "historical_percentile": 77.1,
       "rating_category": "Good",
       "recommended_style": "East-coast bush-bashing: migration traps, coastal scrub and headlands for Siberian vagrants",
       "main_module": "Eastern",
       "module_percentiles": {
-        "Atlantic": 79.3,
-        "Eastern": 80.5,
-        "Seawatch": 39.8,
+        "Atlantic": 66.0,
+        "Eastern": 79.6,
+        "Seawatch": 41.4,
         "Goose": null
       },
       "weighted_contributions": {
-        "Atlantic": 32.66,
-        "Eastern": 33.16,
-        "Seawatch": 7.02
+        "Atlantic": 27.19,
+        "Eastern": 32.78,
+        "Seawatch": 7.31
       },
       "best_hotspots": [
-        "Shetland Mainland (7%)",
+        "Shetland Mainland (6%)",
         "Fair Isle (6%)",
         "Shetland Mainland (S) (6%)"
       ],
       "target_species": [
-        "Two-barred Warbler (2%)",
         "Rustic Bunting (2%)",
+        "Two-barred Warbler (1%)",
         "Dusky Warbler (1%)"
       ]
     },
     {
       "horizon_days": 7,
       "label": "+7 days",
-      "date": "2026-12-01",
-      "boi_score": 48.5,
-      "historical_percentile": 51.0,
-      "rating_category": "Average",
-      "recommended_style": "East-coast bush-bashing: migration traps, coastal scrub and headlands for Siberian vagrants",
+      "date": "2026-12-02",
+      "boi_score": 33.4,
+      "historical_percentile": 27.0,
+      "rating_category": "Quiet",
+      "recommended_style": "Local patch birding or a rest day; no major target is forecast",
       "main_module": "Eastern",
       "module_percentiles": {
-        "Atlantic": 42.7,
-        "Eastern": 67.6,
-        "Seawatch": 17.2,
+        "Atlantic": 10.3,
+        "Eastern": 58.4,
+        "Seawatch": 28.9,
         "Goose": null
       },
       "weighted_contributions": {
-        "Atlantic": 17.6,
-        "Eastern": 27.82,
-        "Seawatch": 3.04
+        "Atlantic": 4.24,
+        "Eastern": 24.06,
+        "Seawatch": 5.1
       },
       "best_hotspots": [
-        "Shetland Mainland (3%)",
-        "Fair Isle (3%)",
-        "Shetland Mainland (S) (3%)"
+        "Shetland Mainland (2%)",
+        "Fair Isle (2%)",
+        "Shetland Mainland (S) (2%)"
       ],
       "target_species": [
         "Rustic Bunting (1%)",
@@ -113,32 +113,32 @@
     {
       "horizon_days": 14,
       "label": "+14 days",
-      "date": "2026-12-08",
-      "boi_score": 69.7,
-      "historical_percentile": 79.4,
+      "date": "2026-12-09",
+      "boi_score": 70.3,
+      "historical_percentile": 80.0,
       "rating_category": "Good",
-      "recommended_style": "Island and west-coast vagrant hunting: headlands and migration traps for Nearctic passerines",
-      "main_module": "Atlantic",
+      "recommended_style": "East-coast bush-bashing: migration traps, coastal scrub and headlands for Siberian vagrants",
+      "main_module": "Eastern",
       "module_percentiles": {
-        "Atlantic": 84.0,
-        "Eastern": 81.7,
-        "Seawatch": 8.1,
+        "Atlantic": 79.9,
+        "Eastern": 83.6,
+        "Seawatch": 16.8,
         "Goose": null
       },
       "weighted_contributions": {
-        "Atlantic": 34.59,
-        "Eastern": 33.65,
-        "Seawatch": 1.43
+        "Atlantic": 32.89,
+        "Eastern": 34.42,
+        "Seawatch": 2.96
       },
       "best_hotspots": [
-        "Scilly Isles (8%)",
-        "Fair Isle (7%)",
-        "Scilly Isles (SW) (7%)"
+        "Shetland Mainland (10%)",
+        "Fair Isle (10%)",
+        "Shetland Mainland (S) (10%)"
       ],
       "target_species": [
-        "Bobolink (0%)",
-        "Blackpoll Warbler (0%)",
-        "Red-eyed Vireo (0%)"
+        "Siberian Chiffchaff (3%)",
+        "Dusky Warbler (2%)",
+        "Rustic Bunting (2%)"
       ]
     }
   ]
